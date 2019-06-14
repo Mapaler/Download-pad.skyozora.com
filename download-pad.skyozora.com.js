@@ -4,12 +4,11 @@ var http = require("http");
 
 function downloadPage(monArr)
 {
-  console.log("剩余["+monArr.length+"]个");
   let mon = monArr.shift();
   let filename = "./pad.skyozora.com/" + mon.id + ".html";
   fs.access(filename,function(err){
     if(!err){
-        console.log("["+mon.id+".html]文件已经存在");
+        //console.log("["+mon.id+".html]文件已经存在");
         downloadPage(monArr); //下载下一个
     }else if (/^\?+/.test(mon.name["ja"]))
     {
@@ -44,7 +43,7 @@ function downloadPage(monArr)
           });
         });
         res.on('end', function() {
-          console.log("文件[" + mon.id + ".html]下载完毕");
+          console.log("文件[" + mon.id + ".html]下载完毕，剩余["+monArr.length+"]个");
           /*
           if (isNaN(contentLength)) {
             console.log("没有 content length");
