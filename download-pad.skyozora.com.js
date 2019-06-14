@@ -52,6 +52,7 @@ function downloadPage(monArr)
             console.log("下载错误，请重试[" + mon.id + ".html]");
           }
           */
+          out.end();
           downloadPage(monArr); //下载下一个
         });
         req.on('error', function(e) { 
