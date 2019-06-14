@@ -1,5 +1,4 @@
-﻿
-var fs = require('fs');
+﻿var fs = require('fs');
 var http = require("http");
 
 function downloadPage(monArr)
