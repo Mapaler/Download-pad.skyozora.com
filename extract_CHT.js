@@ -1,16 +1,47 @@
 ﻿var fs = require('fs');
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+var folder = "./pad.skyozora.com";
+var path = require('path');//解析需要遍历的文件夹
 
-fs.readFile('pad.skyozora.com/1.html',function(err,data){
+//根据文件路径读取文件，返回文件列表
+fs.readdir(folder,function(err,files){
 	if(err){
-		return console.error(err);
+		console.warn(err)
+	}else{
+		//遍历读取到的文件列表
+		var monArr = [];
+		files.forEach(function(filename){
+			var searchID = /^(\d+)\.html$/i.exec(filename);
+			if (searchID)
+			{
+				var filepath = path.join(folder, filename);//合并当前文件的路径
+				var htmlText = fs.readFileSync(filepath, 'utf-8'); //使用同步读取
+				var searchName = /<h2 .+>\s*?([\s\S]+)\s*?<\/h2>/igm.exec(htmlText);
+				try
+				{
+					var m = {
+						id:searchID[1],
+						name:searchName[1].replace("\n",""),
+					}
+					monArr.push(m);
+					if (monArr.length % 100 == 0)
+					{
+						console.log("已处理 " + monArr.length + " 个网页");
+					}
+				}catch(e)
+				{
+					console.log(filename,e)
+				}
+			}
+		});
+		monArr.sort(function(a,b){
+			return a.id - b.id;
+		})
+		var str = JSON.stringify(monArr);
+		fs.writeFile('../CHT.json',str,function(err){
+			if(err){
+				console.error(err);
+			}
+			console.log('---繁体中文导出成功，共 ' + monArr.length + ' 个名称---');
+		})
 	}
-	var htmlText = data.toString();//将二进制的数据转换为字符串
-
-	const dom = new JSDOM(data);
-
-	var a = dom.window.document.querySelector("#wrapper>table:nth-of-type(3) tr:nth-of-type(2)>td>table:nth-of-type(2) td table tr>td:nth-of-type(2)>h2");
-	console.log(a.textContent);
-
-})
+});
