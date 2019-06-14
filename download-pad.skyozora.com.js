@@ -3,6 +3,11 @@ var http = require("http");
 
 function downloadPage(monArr)
 {
+  if (monArr.length<=0)
+  {
+    console.log("-----下载完毕-----");
+    return;
+  }
   let mon = monArr.shift();
   let filename = "./pad.skyozora.com/" + mon.id + ".html";
   fs.access(filename,function(err){
