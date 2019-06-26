@@ -14,7 +14,7 @@ function downloadPage(monArr)
     if(!err){
         //console.log("["+mon.id+".html]文件已经存在");
         downloadPage(monArr); //下载下一个
-    }else if (/^\?+/.test(mon.name["ja"]))
+    }else if (mon.name["ja"] == undefined || /^\?+/.test(mon.name["ja"]))
     {
       console.log("[" + mon.id+"] 名字是问号");
       downloadPage(monArr); //下载下一个
