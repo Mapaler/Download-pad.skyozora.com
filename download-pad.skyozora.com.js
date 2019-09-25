@@ -1,6 +1,4 @@
 ﻿const fs = require('fs');
-const http = require("http");
-const https = require('https');
 
 function downloadPage(monArr)
 {
@@ -61,7 +59,38 @@ function downloadPage(monArr)
 fs.readFile('../mon.json',function(err,data){
 	if(err){
 		return console.error(err);
-	}
+  }
+  //获取怪物列表
   var mons = JSON.parse(data.toString());
-  downloadPage(mons);
+  //获取没有数据并且不是问好的
+  var nonExistMon = mons.filter(mon => {
+    let filename = "./pad.skyozora.com/" + mon.id + ".html";
+    try {
+      fs.accessSync(filename);
+      //文件存在
+      return false;
+    } catch (err) {
+      //文件不存在，添加下载信息
+      if (mon.name["ja"] == undefined || /^\?+/.test(mon.name["ja"]))
+      {
+        console.log("[" + mon.id+"] 名字是问号");
+        return false;
+      }else
+        return true;
+    }
+  });
+  //变换成down文件格式
+  var outText = nonExistMon.map(mon => {
+    let str = 
+`https://pad.skyozora.com/pets/${mon.id}
+  out=./pad.skyozora.com/${mon.id}.html`;
+    return str;
+  }).join("\n");
+  //写入文件
+  fs.writeFile('./网页下载列表.down',outText,function(err){
+    if(err){
+      console.error(err);
+    }
+    console.log('--下载列表导出成功--');
+  })
 })
