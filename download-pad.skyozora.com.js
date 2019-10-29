@@ -56,7 +56,7 @@ function downloadPage(monArr)
 
 }
 
-fs.readFile('../mon.json',function(err,data){
+fs.readFile('../mon_ja.json',function(err,data){
 	if(err){
 		return console.error(err);
   }
