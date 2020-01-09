@@ -13,7 +13,7 @@ function downloadPage(monArr)
     if(!err){
         //console.log("["+mon.id+".html]文件已经存在");
         downloadPage(monArr); //下载下一个
-    }else if (mon.name["ja"] == undefined || /^\?+/.test(mon.name["ja"]))
+    }else if (mon.name == undefined || /^\?+/.test(mon.name))
     {
       console.log("[" + mon.id+"] 名字是问号");
       downloadPage(monArr); //下载下一个
@@ -71,7 +71,7 @@ fs.readFile('../mon_ja.json',function(err,data){
       return false;
     } catch (err) {
       //文件不存在，添加下载信息
-      if (mon.name["ja"] == undefined || /^\?+/.test(mon.name["ja"]))
+      if (mon.name == undefined || /^\?+/.test(mon.name))
       {
         console.log("[" + mon.id+"] 名字是问号");
         return false;
