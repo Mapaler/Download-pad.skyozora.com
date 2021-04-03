@@ -631,6 +631,27 @@ function vote(e){
 				<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數: 1131</a>
 		</td>
 	</tr>
+	<tr align="center" bgcolor="#000000">
+		<td width="46">
+			等級界限超突破
+		</td>
+		<td align="left">
+			<table width="360" border="0" style="table-layout:fixed">
+				<tr>
+					<td width="46">LV.120</td>
+					<td width="80">HP: 3290</td>
+					<td>攻擊力: 4261</td>
+					<td>回復力: 22</td>
+				</tr>
+				<tr>
+					<td colspan="4">※界限超突破後每提升一級需要20,000,000經驗值</td>
+				</tr>
+			</table>
+		</td>
+		<td>
+				<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數: 1189</a>
+		</td>
+	</tr>
 	
 	<tr align="center" bgcolor="#000000">
 					<td width="46">
@@ -857,7 +878,7 @@ function vote(e){
 	<tr bgcolor="#000000" height="25">
 		<td width="80" align="center"><a href="gacha/レアガチャ">魔法石抽蛋</a></td>
 		<td>
-				</td>
+		<a href="gacha/MARVELコラボ#gacha"><img src="images/gacha/Machine_MARVEL.png" style="padding-right:2px" height="25" />MARVELコラボ</a>		</td>
 	</tr>
 
 	<tr bgcolor="#000000" height="25">
@@ -1028,4 +1049,253 @@ p.EvoName {
 	<div class="tree" width="100%" align="center" style="text-align:center; display:inline-block">
 
 	<ul style="padding-top:5px">
-		<li><a href="pets/6949" class="EvoTarget"><img src="images/pets/6949.png" class="pic" /></a>			<ul><li><a href="/輔助進化/" class="EvoTarget"><img src="images/assist.png" width="60" /></a><br /><a href="pets/6950" class="EvoTarget"><img src="images/pets/6950.png" width="80" height="80" /></a><br /><a href="pets/3911" class="no_style tooltip" title="3911 - 創裝
+		<li><a href="pets/6949" class="EvoTarget"><img src="images/pets/6949.png" class="pic" /></a>			<ul><li><a href="/輔助進化/" class="EvoTarget"><img src="images/assist.png" width="60" /></a><br /><a href="pets/6950" class="EvoTarget"><img src="images/pets/6950.png" width="80" height="80" /></a><br /><a href="pets/3911" class="no_style tooltip" title="3911 - 創裝之寶玉"><img src="images/pets/3911.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1326" class="no_style tooltip" title="1326 - 水之寶玉"><img src="images/pets/1326.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1326" class="no_style tooltip" title="1326 - 水之寶玉"><img src="images/pets/1326.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1326" class="no_style tooltip" title="1326 - 水之寶玉"><img src="images/pets/1326.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1326" class="no_style tooltip" title="1326 - 水之寶玉"><img src="images/pets/1326.png" width="35" height="35" style="padding:1px"  /></a></li><li><a href="/輔助進化/" class="EvoTarget"><img src="images/assist.png" width="60" /></a><br /><a href="pets/6951" class="EvoTarget"><img src="images/pets/6951.png" width="80" height="80" /></a><br /><a href="pets/3911" class="no_style tooltip" title="3911 - 創裝之寶玉"><img src="images/pets/3911.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1326" class="no_style tooltip" title="1326 - 水之寶玉"><img src="images/pets/1326.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1326" class="no_style tooltip" title="1326 - 水之寶玉"><img src="images/pets/1326.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1326" class="no_style tooltip" title="1326 - 水之寶玉"><img src="images/pets/1326.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4459" class="no_style tooltip" title="4459 - 水之希石【中】"><img src="images/pets/4459.png" width="35" height="35" style="padding:1px"  /></a></li></ul>		</li>
+	</ul>
+</div>
+
+	
+		</td>
+	</tr>
+</table>
+
+<br />
+
+
+
+
+
+
+<table width="720" border="0" cellpadding="10" cellspacing="1" align="center">
+	<tr align="center" bgcolor="#000000">
+		<td align="left" class="head"><span style="font-size:18px">玩家評分</span> ＊美觀度以外的五個評分項目只會顯示最近90天的評分結果</td>
+		<td align="center" colspan="2">你的評分</td>
+	</tr>
+	
+	<tr align="center">
+		<td bgcolor="#000000" width="500" rowspan="7">
+		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.js"></script>
+
+			<div style="width:400px"  id="scoregraph">
+			<canvas id="myChart"></canvas>
+			</div>
+			<script>
+			var ctx = document.getElementById("myChart");
+			var myChart = new Chart(ctx, {
+				type: 'radar',
+				data: {
+					labels: ["作為隊長", "作為隊員", "作為輔助", "單人配合", "協力配合", "美觀度"],
+					datasets: [
+						{
+							label: "評分",
+							data: [0, 0, 0, 0, 0, 0],
+							backgroundColor: "rgba(255,99,132,0.2)",
+							borderColor: "rgba(255,99,132,1)",
+							pointBackgroundColor: "rgba(255,99,132,1)",
+							pointBorderColor: "#fff",
+							pointHoverBackgroundColor: "#fff",
+							pointHoverBorderColor: "rgba(179,181,198,1)",
+							pointStyle: "circle",
+							radius: 6,
+							pointRadius: 6,
+							pointHoverRadius: 6,
+							pointHitRadius: 6
+						}
+					]
+				},
+				options: { 
+						elements: {
+							line: {
+								borderColor: 'white',
+								borderWidth: 3
+							}
+						},
+						tooltips: {
+							backgroundColor: 'rgba(0, 0, 0, 0.6)',
+							titleFontSize: 16,
+							bodyFontSize: 16,
+							footerFontSize: 30,
+							xPadding: 20,
+							yPadding: 20,
+							titleFontFamily: "'Meiryo','微軟正黑體','Tahoma'",
+							bodyFontFamily: "'Meiryo','微軟正黑體','Tahoma'"
+						},
+						legend: {
+							display:false
+						},
+						scale: {
+							angleLines: {
+								color: 'rgba(255, 255, 255, 0.1)'
+							},
+							pointLabels :{
+								fontColor: 'white',
+								fontSize: 16,
+								fontFamily: "'Meiryo','微軟正黑體','Tahoma'"
+							},
+							gridLines: {
+								color: 'rgba(255, 255, 255, 0.2)'
+							},
+							ticks: {
+								display: false,
+								beginAtZero: true,
+								max: 10,
+								maxTicksLimit: 6
+							},
+							scaleLabel: {
+								display: true,
+								labelString: "a",
+								fontSize: 30
+							}
+							
+						}
+				}
+			});
+
+			</script>
+			</div>
+		</td>
+		<td bgcolor="#000000" width="80">作為隊長</td><td bgcolor="#000000" class="poll"><select id="poll1" name="poll1" onChange="vote(1);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">作為隊員</td><td bgcolor="#000000" class="poll"><select id="poll2" name="poll2" onChange="vote(2);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">作為輔助</td><td bgcolor="#000000" class="poll"><select id="poll3" name="poll3" onChange="vote(3);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">單人配合</td><td bgcolor="#000000" class="poll"><select id="poll4" name="poll4" onChange="vote(4);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">協力配合</td><td bgcolor="#000000" class="poll"><select id="poll5" name="poll5" onChange="vote(5);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">美觀度</td><td bgcolor="#000000" class="poll"><select id="poll6" name="poll6" onChange="vote(6);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">平均得分</td><td bgcolor="#000000" id="AvgScore">-</td></tr></table>
+
+
+<br />
+<table width=720 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/11月のクエスト 上級者向け" class="tooltip" title="11月のクエスト 上級者向け<br />チャレンジLv9【★5以下のみ】"><img src="images/stage/3498s.png" width="100"></a></td><td><a href="pets/6949" class="tooltip" title="6949 - 暴風女神/暴風女"><img src="images/pets/6949.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/1882" class="tooltip" title="1882 - 雙刃劍的勇士・克蕾瑪雅"><img src="images/pets/1882.png" width="55" height="55" $team[L2][0]</a><a href="pets/5348" class="tooltip" title="5348 - 鳴龍樂士・多克"><img src="images/pets/5348.png" width="55" height="55" $team[L2][0]</a><a href="pets/5984" class="tooltip" title="5984 - 威勢槍騎士・蘭帕特"><img src="images/pets/5984.png" width="55" height="55" $team[L2][0]</a><a href="pets/611" class="tooltip" title="611 - 水豚君"><img src="images/pets/611.png" width="55" height="55" $team[L2][0]</a><a href="pets/6569" class="tooltip" title="6569 - 赫灼之子・竈門炭治郎"><img src="images/pets/6569.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/117827/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
+
+<table width="720" border="0" cellpadding="0" cellspacing="1" align="center">
+	<tr>
+		<td align="left">
+		<a href="pets/6948" class="tooltip" title="6948 - デッドプール【コミックカバー・２】"><img src="images/pets_pic/6948.jpg" style="border-radius:15px" width=350></a> 		</td>
+		<td align="right">
+		<a href="pets/6950" class="tooltip" title="6950 - ストーム【コミックカバー】"><img src="images/pets_pic/6950.jpg" style="border-radius:15px" width=350></a>		</td>
+	</tr>
+</table>
+
+
+
+
+</td>
+
+<td></td>
+<td valign="top" width="336" align="center">
+<div style="background:#545454; padding:5px">
+<span style="font-weight:bold; font-size:130%;text-decoration:underline">Advertisement</span><br />
+
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Skyozora_336x280 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:336px;height:280px"
+     data-ad-client="ca-pub-5454875279695201"
+     data-ad-slot="5104522419"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script><script language='JavaScript' type='text/javascript'>if (!window.af) var af = (function() {return {getcookie:function(n){var m=n+'=';var ca=document.cookie.split(';');for(var i=0;i < ca.length;i++) {var c=ca[i];while (c.charAt(0)==' ') c = c.substring(1,c.length);if (c.indexOf(m) == 0) return c.substring(m.length,c.length);}return null;},existcookie:function(n){var m=af.getcookie(n);if (m!=null&&m!=''){return true;}else{return false;}}};})(); if(af.existcookie('__AF')){afid = af.getcookie('__AF'); } else {afid = 0; } randomstr = new String (Math.random()); randomstr = randomstr.substring(2,8);document.write ("<" + "script language='JavaScript' type='text/javascript' src='" + "https://servedby.adsfactor.net/adj.php?ts=" + randomstr + "&amp;sid=910471385284&amp;afid=" + afid + "'><" + "/script>");
+</script><noscript><a href='https://servedby.adsfactor.net/adc.php?sid=910471385284' ><img src='https://servedby.adsfactor.net/adv.php?sid=910471385284' border='0'></a></noscript><div class="kiwi-ad-wrapper-300x250"></div><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Skyozora_336x280 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:336px;height:280px"
+     data-ad-client="ca-pub-5454875279695201"
+     data-ad-slot="5104522419"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+</td>
+
+</tr>
+
+
+</table>
+
+
+
+<script type="text/javascript">
+hp=new Array();
+atk=new Array();
+re=new Array();
+total=new Array();
+mc=new Array();
+mc2=new Array();
+sc=new Array();
+hp[1]=503;atk[1]=697;re[1]=5;total[1]=191;mc[1]=1125;mc2[1]=1688;sc[1]=480;hp[2]=523;atk[2]=723;re[2]=5;total[2]=199;mc[2]=2250;mc2[2]=3375;sc[2]=960;hp[3]=542;atk[3]=750;re[3]=5;total[3]=206;mc[3]=3375;mc2[3]=5063;sc[3]=1440;hp[4]=562;atk[4]=776;re[4]=5;total[4]=213;mc[4]=4500;mc2[4]=6750;sc[4]=1920;hp[5]=582;atk[5]=802;re[5]=5;total[5]=220;mc[5]=5625;mc2[5]=8438;sc[5]=2400;hp[6]=602;atk[6]=829;re[6]=6;total[6]=228;mc[6]=6750;mc2[6]=10125;sc[6]=2880;hp[7]=621;atk[7]=855;re[7]=6;total[7]=235;mc[7]=7875;mc2[7]=11813;sc[7]=3360;hp[8]=641;atk[8]=881;re[8]=6;total[8]=242;mc[8]=9000;mc2[8]=13500;sc[8]=3840;hp[9]=661;atk[9]=908;re[9]=6;total[9]=250;mc[9]=10125;mc2[9]=15188;sc[9]=4320;hp[10]=681;atk[10]=934;re[10]=6;total[10]=257;mc[10]=11250;mc2[10]=16875;sc[10]=4800;hp[11]=700;atk[11]=960;re[11]=6;total[11]=264;mc[11]=12375;mc2[11]=18563;sc[11]=5280;hp[12]=720;atk[12]=987;re[12]=6;total[12]=271;mc[12]=13500;mc2[12]=20250;sc[12]=5760;hp[13]=740;atk[13]=1013;re[13]=6;total[13]=279;mc[13]=14625;mc2[13]=21938;sc[13]=6240;hp[14]=760;atk[14]=1039;re[14]=7;total[14]=286;mc[14]=15750;mc2[14]=23625;sc[14]=6720;hp[15]=779;atk[15]=1066;re[15]=7;total[15]=293;mc[15]=16875;mc2[15]=25313;sc[15]=7200;hp[16]=799;atk[16]=1092;re[16]=7;total[16]=301;mc[16]=18000;mc2[16]=27000;sc[16]=7680;hp[17]=819;atk[17]=1118;re[17]=7;total[17]=308;mc[17]=19125;mc2[17]=28688;sc[17]=8160;hp[18]=838;atk[18]=1145;re[18]=7;total[18]=315;mc[18]=20250;mc2[18]=30375;sc[18]=8640;hp[19]=858;atk[19]=1171;re[19]=7;total[19]=322;mc[19]=21375;mc2[19]=32063;sc[19]=9120;hp[20]=878;atk[20]=1197;re[20]=7;total[20]=330;mc[20]=22500;mc2[20]=33750;sc[20]=9600;hp[21]=898;atk[21]=1224;re[21]=7;total[21]=337;mc[21]=23625;mc2[21]=35438;sc[21]=10080;hp[22]=917;atk[22]=1250;re[22]=8;total[22]=344;mc[22]=24750;mc2[22]=37125;sc[22]=10560;hp[23]=937;atk[23]=1276;re[23]=8;total[23]=352;mc[23]=25875;mc2[23]=38813;sc[23]=11040;hp[24]=957;atk[24]=1303;re[24]=8;total[24]=359;mc[24]=27000;mc2[24]=40500;sc[24]=11520;hp[25]=977;atk[25]=1329;re[25]=8;total[25]=366;mc[25]=28125;mc2[25]=42188;sc[25]=12000;hp[26]=996;atk[26]=1355;re[26]=8;total[26]=373;mc[26]=29250;mc2[26]=43875;sc[26]=12480;hp[27]=1016;atk[27]=1382;re[27]=8;total[27]=381;mc[27]=30375;mc2[27]=45563;sc[27]=12960;hp[28]=1036;atk[28]=1408;re[28]=8;total[28]=388;mc[28]=31500;mc2[28]=47250;sc[28]=13440;hp[29]=1056;atk[29]=1434;re[29]=8;total[29]=395;mc[29]=32625;mc2[29]=48938;sc[29]=13920;hp[30]=1075;atk[30]=1461;re[30]=9;total[30]=403;mc[30]=33750;mc2[30]=50625;sc[30]=14400;hp[31]=1095;atk[31]=1487;re[31]=9;total[31]=410;mc[31]=34875;mc2[31]=52313;sc[31]=14880;hp[32]=1115;atk[32]=1513;re[32]=9;total[32]=417;mc[32]=36000;mc2[32]=54000;sc[32]=15360;hp[33]=1135;atk[33]=1540;re[33]=9;total[33]=425;mc[33]=37125;mc2[33]=55688;sc[33]=15840;hp[34]=1154;atk[34]=1566;re[34]=9;total[34]=432;mc[34]=38250;mc2[34]=57375;sc[34]=16320;hp[35]=1174;atk[35]=1592;re[35]=9;total[35]=439;mc[35]=39375;mc2[35]=59063;sc[35]=16800;hp[36]=1194;atk[36]=1619;re[36]=9;total[36]=446;mc[36]=40500;mc2[36]=60750;sc[36]=17280;hp[37]=1213;atk[37]=1645;re[37]=9;total[37]=453;mc[37]=41625;mc2[37]=62438;sc[37]=17760;hp[38]=1233;atk[38]=1671;re[38]=10;total[38]=461;mc[38]=42750;mc2[38]=64125;sc[38]=18240;hp[39]=1253;atk[39]=1698;re[39]=10;total[39]=468;mc[39]=43875;mc2[39]=65813;sc[39]=18720;hp[40]=1273;atk[40]=1724;re[40]=10;total[40]=475;mc[40]=45000;mc2[40]=67500;sc[40]=19200;hp[41]=1292;atk[41]=1750;re[41]=10;total[41]=483;mc[41]=46125;mc2[41]=69188;sc[41]=19680;hp[42]=1312;atk[42]=1777;re[42]=10;total[42]=490;mc[42]=47250;mc2[42]=70875;sc[42]=20160;hp[43]=1332;atk[43]=1803;re[43]=10;total[43]=497;mc[43]=48375;mc2[43]=72563;sc[43]=20640;hp[44]=1352;atk[44]=1829;re[44]=10;total[44]=504;mc[44]=49500;mc2[44]=74250;sc[44]=21120;hp[45]=1371;atk[45]=1856;re[45]=10;total[45]=512;mc[45]=50625;mc2[45]=75938;sc[45]=21600;hp[46]=1391;atk[46]=1882;re[46]=11;total[46]=519;mc[46]=51750;mc2[46]=77625;sc[46]=22080;hp[47]=1411;atk[47]=1908;re[47]=11;total[47]=526;mc[47]=52875;mc2[47]=79313;sc[47]=22560;hp[48]=1431;atk[48]=1935;re[48]=11;total[48]=534;mc[48]=54000;mc2[48]=81000;sc[48]=23040;hp[49]=1450;atk[49]=1961;re[49]=11;total[49]=541;mc[49]=55125;mc2[49]=82688;sc[49]=23520;hp[50]=1470;atk[50]=1988;re[50]=11;total[50]=548;mc[50]=56250;mc2[50]=84375;sc[50]=24000;hp[51]=1490;atk[51]=2014;re[51]=11;total[51]=555;mc[51]=57375;mc2[51]=86063;sc[51]=24480;hp[52]=1509;atk[52]=2040;re[52]=11;total[52]=563;mc[52]=58500;mc2[52]=87750;sc[52]=24960;hp[53]=1529;atk[53]=2067;re[53]=11;total[53]=570;mc[53]=59625;mc2[53]=89438;sc[53]=25440;hp[54]=1549;atk[54]=2093;re[54]=11;total[54]=577;mc[54]=60750;mc2[54]=91125;sc[54]=25920;hp[55]=1569;atk[55]=2119;re[55]=12;total[55]=585;mc[55]=61875;mc2[55]=92813;sc[55]=26400;hp[56]=1588;atk[56]=2146;re[56]=12;total[56]=592;mc[56]=63000;mc2[56]=94500;sc[56]=26880;hp[57]=1608;atk[57]=2172;re[57]=12;total[57]=599;mc[57]=64125;mc2[57]=96188;sc[57]=27360;hp[58]=1628;atk[58]=2198;re[58]=12;total[58]=606;mc[58]=65250;mc2[58]=97875;sc[58]=27840;hp[59]=1648;atk[59]=2225;re[59]=12;total[59]=614;mc[59]=66375;mc2[59]=99563;sc[59]=28320;hp[60]=1667;atk[60]=2251;re[60]=12;total[60]=621;mc[60]=67500;mc2[60]=101250;sc[60]=28800;hp[61]=1687;atk[61]=2277;re[61]=12;total[61]=628;mc[61]=68625;mc2[61]=102938;sc[61]=29280;hp[62]=1707;atk[62]=2304;re[62]=12;total[62]=636;mc[62]=69750;mc2[62]=104625;sc[62]=29760;hp[63]=1727;atk[63]=2330;re[63]=13;total[63]=643;mc[63]=70875;mc2[63]=106313;sc[63]=30240;hp[64]=1746;atk[64]=2356;re[64]=13;total[64]=650;mc[64]=72000;mc2[64]=108000;sc[64]=30720;hp[65]=1766;atk[65]=2383;re[65]=13;total[65]=658;mc[65]=73125;mc2[65]=109688;sc[65]=31200;hp[66]=1786;atk[66]=2409;re[66]=13;total[66]=665;mc[66]=74250;mc2[66]=111375;sc[66]=31680;hp[67]=1805;atk[67]=2435;re[67]=13;total[67]=672;mc[67]=75375;mc2[67]=113063;sc[67]=32160;hp[68]=1825;atk[68]=2462;re[68]=13;total[68]=679;mc[68]=76500;mc2[68]=114750;sc[68]=32640;hp[69]=1845;atk[69]=2488;re[69]=13;total[69]=686;mc[69]=77625;mc2[69]=116438;sc[69]=33120;hp[70]=1865;atk[70]=2514;re[70]=13;total[70]=694;mc[70]=78750;mc2[70]=118125;sc[70]=33600;hp[71]=1884;atk[71]=2541;re[71]=14;total[71]=701;mc[71]=79875;mc2[71]=119813;sc[71]=34080;hp[72]=1904;atk[72]=2567;re[72]=14;total[72]=708;mc[72]=81000;mc2[72]=121500;sc[72]=34560;hp[73]=1924;atk[73]=2593;re[73]=14;total[73]=716;mc[73]=82125;mc2[73]=123188;sc[73]=35040;hp[74]=1944;atk[74]=2620;re[74]=14;total[74]=723;mc[74]=83250;mc2[74]=124875;sc[74]=35520;hp[75]=1963;atk[75]=2646;re[75]=14;total[75]=730;mc[75]=84375;mc2[75]=126563;sc[75]=36000;hp[76]=1983;atk[76]=2672;re[76]=14;total[76]=737;mc[76]=85500;mc2[76]=128250;sc[76]=36480;hp[77]=2003;atk[77]=2699;re[77]=14;total[77]=745;mc[77]=86625;mc2[77]=129938;sc[77]=36960;hp[78]=2023;atk[78]=2725;re[78]=14;total[78]=752;mc[78]=87750;mc2[78]=131625;sc[78]=37440;hp[79]=2042;atk[79]=2751;re[79]=15;total[79]=759;mc[79]=88875;mc2[79]=133313;sc[79]=37920;hp[80]=2062;atk[80]=2778;re[80]=15;total[80]=767;mc[80]=90000;mc2[80]=135000;sc[80]=38400;hp[81]=2082;atk[81]=2804;re[81]=15;total[81]=774;mc[81]=91125;mc2[81]=136688;sc[81]=38880;hp[82]=2102;atk[82]=2830;re[82]=15;total[82]=781;mc[82]=92250;mc2[82]=138375;sc[82]=39360;hp[83]=2121;atk[83]=2857;re[83]=15;total[83]=789;mc[83]=93375;mc2[83]=140063;sc[83]=39840;hp[84]=2141;atk[84]=2883;re[84]=15;total[84]=796;mc[84]=94500;mc2[84]=141750;sc[84]=40320;hp[85]=2161;atk[85]=2909;re[85]=15;total[85]=803;mc[85]=95625;mc2[85]=143438;sc[85]=40800;hp[86]=2180;atk[86]=2936;re[86]=15;total[86]=810;mc[86]=96750;mc2[86]=145125;sc[86]=41280;hp[87]=2200;atk[87]=2962;re[87]=16;total[87]=818;mc[87]=97875;mc2[87]=146813;sc[87]=41760;hp[88]=2220;atk[88]=2988;re[88]=16;total[88]=825;mc[88]=99000;mc2[88]=148500;sc[88]=42240;hp[89]=2240;atk[89]=3015;re[89]=16;total[89]=832;mc[89]=100125;mc2[89]=150188;sc[89]=42720;hp[90]=2259;atk[90]=3041;re[90]=16;total[90]=839;mc[90]=101250;mc2[90]=151875;sc[90]=43200;hp[91]=2279;atk[91]=3067;re[91]=16;total[91]=847;mc[91]=102375;mc2[91]=153563;sc[91]=43680;hp[92]=2299;atk[92]=3094;re[92]=16;total[92]=854;mc[92]=103500;mc2[92]=155250;sc[92]=44160;hp[93]=2319;atk[93]=3120;re[93]=16;total[93]=861;mc[93]=104625;mc2[93]=156938;sc[93]=44640;hp[94]=2338;atk[94]=3146;re[94]=16;total[94]=868;mc[94]=105750;mc2[94]=158625;sc[94]=45120;hp[95]=2358;atk[95]=3173;re[95]=17;total[95]=876;mc[95]=106875;mc2[95]=160313;sc[95]=45600;hp[96]=2378;atk[96]=3199;re[96]=17;total[96]=883;mc[96]=108000;mc2[96]=162000;sc[96]=46080;hp[97]=2398;atk[97]=3225;re[97]=17;total[97]=890;mc[97]=109125;mc2[97]=163688;sc[97]=46560;hp[98]=2417;atk[98]=3252;re[98]=17;total[98]=898;mc[98]=110250;mc2[98]=165375;sc[98]=47040;hp[99]=2437;atk[99]=3278;re[99]=17;total[99]=905;mc[99]=111375;mc2[99]=167063;sc[99]=47520;hp[100]=2492;atk[100]=3353;re[100]=17;total[100]=925;mc[100]=112500;mc2[100]=168750;sc[100]=48000;hp[101]=2548;atk[101]=3427;re[101]=18;total[101]=946;mc[101]=113625;mc2[101]=170438;sc[101]=48480;hp[102]=2603;atk[102]=3502;re[102]=18;total[102]=967;mc[102]=114750;mc2[102]=172125;sc[102]=48960;hp[103]=2659;atk[103]=3576;re[103]=19;total[103]=987;mc[103]=115875;mc2[103]=173813;sc[103]=49440;hp[104]=2714;atk[104]=3651;re[104]=19;total[104]=1008;mc[104]=117000;mc2[104]=175500;sc[104]=49920;hp[105]=2769;atk[105]=3725;re[105]=19;total[105]=1028;mc[105]=118125;mc2[105]=177188;sc[105]=50400;hp[106]=2825;atk[106]=3800;re[106]=20;total[106]=1049;mc[106]=119250;mc2[106]=178875;sc[106]=50880;hp[107]=2880;atk[107]=3874;re[107]=20;total[107]=1069;mc[107]=120375;mc2[107]=180563;sc[107]=51360;hp[108]=2935;atk[108]=3949;re[108]=20;total[108]=1090;mc[108]=121500;mc2[108]=182250;sc[108]=51840;hp[109]=2991;atk[109]=4023;re[109]=21;total[109]=1111;mc[109]=122625;mc2[109]=183938;sc[109]=52320;hp[110]=3046;atk[110]=4098;re[110]=21;total[110]=1131;mc[110]=123750;mc2[110]=185625;sc[110]=52800;
+function updateLV(element) { 
+	document.getElementById("lv").innerHTML = "LV." + element ; 
+} 
+function updateLVS(element) { 
+	document.getElementById("lv_s").innerHTML = "LV." + element ; 
+} 
+function updatemc(element) { 
+	document.getElementById("mc").innerHTML = mc[element] ; 
+} 
+function updatemc2(element) { 
+	document.getElementById("mc2").innerHTML = mc2[element] ; 
+} 
+function updatesc(element) { 
+	document.getElementById("sc").innerHTML = sc[element] ; 
+} 
+function updateHP(element) { 
+	currentvalue = hp[element];
+	document.getElementById("hp").innerHTML = "HP: " + currentvalue ; 
+} 
+function updateATK(element) { 
+	currentvalue = atk[element];
+	document.getElementById("atk").innerHTML = "攻擊力: " + currentvalue ; 
+} 
+function updateRE(element) { 
+	currentvalue = re[element];
+	document.getElementById("re").innerHTML = "回復力: " + currentvalue ; 
+} 
+function updateTO(element) { 
+	currentvalue = total[element];
+	document.getElementById("total").innerHTML = "能力指數: " + currentvalue ; 
+} 
+</script>
+
+
+  <script src="javascript/jquery.lazyload.js" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+      $(function() {
+          $("img").lazyload({
+              effect : "fadeIn"
+	/*
+              appear : function(elements_left, settings) {
+                  console.log("appear");
+                  console.log(elements_left);
+                  //console.log(this, elements_left, settings);
+              },
+              load : function(elements_left, settings) {
+                  console.log("load");
+                  console.log(elements_left);
+                  //console.log(this, elements_left, settings);
+              }
+ 	*/
+          });
+      });
+
+
+  </script>
+
+
+<table align="center" border="0" width="1100">
+   <tr>
+      <td align="left">
+      Graphics © Copyright by Gungho Online Entertainment, Inc.<br>
+      <a href="https://pad.skyozora.com">戰友系統及資訊網</a> 由 Sky C. 持有，介面設計 Naldo W.<br>
+      如對本網站有任何查詢，歡迎至 <a href="https://www.facebook.com/PuzzleDragonsSite/">Facebook 專頁</a> 聯絡
+      </td>
+      
+      <td align="right">
+
+		
+              
+      </td>
+   </tr>
+</table>
+
+
+
+</div>
+
+
+
+
+</body>
+</html>
