@@ -660,7 +660,7 @@ function vote(e){
 		8		</td>
 	</tr>
 	<tr bgcolor="#000000">
-		<td colspan="5" style="line-height: 28px;"><img src="images/drops/Fire.png" width="25" /><img src="images/drops/Water.png" width="25" /><img src="images/drops/Wood.png" width="25" /><img src="images/drops/Light.png" width="25" /><img src="images/drops/Dark.png" width="25" /><img src="images/drops/Heart.png" width="25" /><img src="images/change.gif" /><img src="images/drops/Fire+.png" width="25" /><img src="images/drops/Water+.png" width="25" /><img src="images/drops/Wood+.png" width="25" /><img src="images/drops/Light+.png" width="25" /><img src="images/drops/Dark+.png" width="25" /><img src="images/drops/Heart+.png" width="25" />（每顆強化珠傷害/回復效果增加6%）；<br />並解除無法消除寶珠狀態；<br />並解除覺醒無效狀態；<br />並3回合內，寶珠移動時間延長5秒</td>
+		<td colspan="5" style="line-height: 28px;">解除無法消除寶珠狀態；<br />並解除覺醒無效狀態；<br />並3回合內，寶珠移動時間延長5秒；<br />並<img src="images/drops/Fire.png" width="25" /><img src="images/drops/Water.png" width="25" /><img src="images/drops/Wood.png" width="25" /><img src="images/drops/Light.png" width="25" /><img src="images/drops/Dark.png" width="25" /><img src="images/drops/Heart.png" width="25" /><img src="images/change.gif" /><img src="images/drops/Fire+.png" width="25" /><img src="images/drops/Water+.png" width="25" /><img src="images/drops/Wood+.png" width="25" /><img src="images/drops/Light+.png" width="25" /><img src="images/drops/Dark+.png" width="25" /><img src="images/drops/Heart+.png" width="25" />（每顆強化珠傷害/回復效果增加6%）</td>
 	</tr>
 
 	<tr bgcolor="#000000">
@@ -669,6 +669,7 @@ function vote(e){
 			<a href="pets/2325" class="tooltip" title="2325 - 覺醒月讀"><img src="images/pets/2325.png" width="46" height="46" /></a>
 				<a href="pets/3389" class="tooltip" title="3389 - 轉生月讀"><img src="images/pets/3389.png" width="46" height="46" /></a>
 				<a href="pets/6233" class="tooltip" title="6233 - 超轉生月讀"><img src="images/pets/6233.png" width="46" height="46" /></a>
+				<a href="pets/8303" class="tooltip" title="8303 - 梳子：月讀"><img src="images/pets/8303.png" width="46" height="46" /></a>
 				<a href="pets/3418" class="tooltip" title="3418 - 物見之夜月神・月讀"><img src="images/pets/3418.png" width="46" height="46" /></a>
 				<a href="pets/4127" class="tooltip" title="4127 - 遊步之夜月神・月讀"><img src="images/pets/4127.png" width="46" height="46" /></a>
 				<a href="pets/6863" class="tooltip" title="6863 - 逍遙之夜月神・月讀"><img src="images/pets/6863.png" width="46" height="46" /></a>
@@ -820,104 +821,57 @@ function vote(e){
 
 
 <style>
-.tree * {margin: 0; padding: 0;}
-.tree ul {
-	padding-top: 40px;
-	position: relative;
-	transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
+.wtree li {
+  list-style-type: none;
+  margin: 20px 0 10px 10px;
+  padding-left: 10px;
+  position: relative;
+}
+.wtree li:before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -10px;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  width: 20px;
+  height: 55px;
+}
+.wtree li:after {
+  position: absolute;
+  content: "";
+  top: 35px;
+  left: -10px;
+  border-left: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  width: 20px;
+  height: 100%;
+}
+.wtree li:last-child:after {
+  display: none;
+}
+.wtree li span {
+  display: block;
+  border: 1px solid #ddd;
+  padding: 10px;
+  color: #888;
+  text-decoration: none;
 }
 
-.tree li {
-	float: left; text-align: center;
-	list-style-type: none;
-	position: relative;
-	padding: 40px 2px 0 2px;
-	transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
+.wtree li span:hover, .wtree li span:focus {
+  background: #272727;
+  color: #000;
+  border: 1px solid #aaa;
+}
+.wtree li span:hover + ul li span, .wtree li span:focus + ul li span {
+  background: #272727;
+  color: #000;
+  border: 1px solid #aaa;
+}
+.wtree li span:hover + ul li:after, .wtree li span:hover + ul li:before, .wtree li span:focus + ul li:after, .wtree li span:focus + ul li:before {
+  border-color: #aaa;
 }
 
-/*We will use ::before and ::after to draw the connectors*/
-
-.tree li::before, .tree li::after{
-	content: '';
-	position: absolute; top: 0; right: 50%;
-	border-top: 3px solid #ccc;
-	width: 50%; height: 40px;
-}
-.tree li::after{
-	right: auto; left: 50%;
-	border-left: 3px solid #ccc;
-}
-
-/*We need to remove left-right connectors from elements without 
-any siblings*/
-.tree li:only-child::after, .tree li:only-child::before {
-	display: none;
-}
-
-/*Remove space from the top of single children*/
-.tree li:only-child{ padding-top: 0;}
-
-/*Remove left connector from first child and 
-right connector from last child*/
-.tree li:first-child::before, .tree li:last-child::after{
-	border: 0 none;
-}
-/*Adding back the vertical connector to the last nodes*/
-.tree li:last-child::before{
-	border-right: 3px solid #ccc;
-	border-radius: 0 5px 0 0;
-	-webkit-border-radius: 0 5px 0 0;
-	-moz-border-radius: 0 5px 0 0;
-}
-.tree li:first-child::after{
-	border-radius: 5px 0 0 0;
-	-webkit-border-radius: 5px 0 0 0;
-	-moz-border-radius: 5px 0 0 0;
-}
-
-/*Time to add downward connectors from parents*/
-.tree ul ul::before{
-	content: '';
-	position: absolute; 
-	top: 0; left: 50%;
-	border-left: 3px solid #ccc;
-	width: 0; height: 40px;
-}
-
-.tree li a.EvoTarget{
-	//border: 1px solid #fff;
-	padding: 8px 2px;
-	text-decoration: none;
-	color: #666;
-	font-family: arial, verdana, tahoma;
-	font-size: 11px;
-	display: inline-block;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
-	width:100px;
-}
-
-/*Time for some hover effects*/
-/*We will apply the hover effect the the lineage of the element also*/
-.tree li a.EvoTarget:hover {
-	background: #c8e4f8; color: #000; 
-	//border: 1px solid #94a0b4;
-}
-/*Connector styles on hover*/
-.tree li a:hover+ul li::after, 
-.tree li a:hover+ul li::before, 
-.tree li a:hover+ul::before, 
-.tree li a:hover+ul ul::before{
-	border-color:  #94a0b4;
-}
 .pic {
 	  height: 70px;
 	  width: 70px;
@@ -960,13 +914,11 @@ p.EvoName {
 	</tr>
 
 	<tr>
-		<td bgcolor="#000000" style="text-align:center">
-	<div class="tree" width="100%" align="center" style="text-align:center; display:inline-block">
+		<td bgcolor="#000000" style="text-align:left; padding-left: 20px; padding-top: 20px; padding-right:20px">
 
-	<ul style="padding-top:5px">
-		<li><a href="pets/3418" class="EvoTarget"><img src="images/pets/3418.png" width="80" height="80" /></a><br />			<ul><li><a href="/究極進化/" class="EvoTarget"><img src="images/evo1.png" width="60" /></a><br /><a href="pets/4127" class="EvoTarget"><img src="images/pets/4127.png" width="80" height="80" /></a><br /><a href="pets/150" class="no_style tooltip" title="150 - 光之守門人"><img src="images/pets/150.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/321" class="no_style tooltip" title="321 - 虹之守門人"><img src="images/pets/321.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/234" class="no_style tooltip" title="234 - 神秘的面具"><img src="images/pets/234.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/915" class="no_style tooltip" title="915 - 天使精靈"><img src="images/pets/915.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/916" class="no_style tooltip" title="916 - 惡魔精靈"><img src="images/pets/916.png" width="35" height="35" style="padding:1px"  /></a><ul><li><a href="/轉生進化/" class="EvoTarget"><img src="images/evo2.png" width="60" /></a><br /><a href="pets/6863" class="EvoTarget"><img src="images/pets/6863.png" width="80" height="80" /></a><br /><a href="pets/164" class="no_style tooltip" title="164 - 進化的黃面具"><img src="images/pets/164.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/164" class="no_style tooltip" title="164 - 進化的黃面具"><img src="images/pets/164.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/164" class="no_style tooltip" title="164 - 進化的黃面具"><img src="images/pets/164.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/164" class="no_style tooltip" title="164 - 進化的黃面具"><img src="images/pets/164.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/164" class="no_style tooltip" title="164 - 進化的黃面具"><img src="images/pets/164.png" width="35" height="35" style="padding:1px"  /></a><ul><li><a href="/輔助進化/" class="EvoTarget"><img src="images/assist.png" width="60" /></a><br /><a href="pets/8258" class="EvoTarget"><img src="images/pets/8258.png" class="pic" /></a><br /><a href="pets/3911" class="no_style tooltip" title="3911 - 創裝之寶玉"><img src="images/pets/3911.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/8238" class="no_style tooltip" title="8238 - PAD賀年卡"><img src="images/pets/8238.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a></li></ul></li></ul></li></ul>		</li>
-	</ul>
-</div>
+
+<a href="pets/3418" class="EvoTarget"><img src="images/pets/3418.png" width="80" height="80" /></a><br />	<ul class="wtree" style="margin-left:-40px">
+			<ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/4127" class="EvoTarget"><img src="images/pets/4127.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/究極進化/" class="EvoTarget"><img src="images/evo1.png" height="19" /></a></p><a href="pets/150" class="no_style tooltip" title="150 - 光之守門人"><img src="images/pets/150.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/321" class="no_style tooltip" title="321 - 虹之守門人"><img src="images/pets/321.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/234" class="no_style tooltip" title="234 - 神秘的面具"><img src="images/pets/234.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/915" class="no_style tooltip" title="915 - 天使精靈"><img src="images/pets/915.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/916" class="no_style tooltip" title="916 - 惡魔精靈"><img src="images/pets/916.png" width="35" height="35" style="padding:1px"  /></a></div><ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/6863" class="EvoTarget"><img src="images/pets/6863.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/轉生進化/" class="EvoTarget"><img src="images/evo2.png" height="19" /></a></p><a href="pets/164" class="no_style tooltip" title="164 - 進化的黃面具"><img src="images/pets/164.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/164" class="no_style tooltip" title="164 - 進化的黃面具"><img src="images/pets/164.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/164" class="no_style tooltip" title="164 - 進化的黃面具"><img src="images/pets/164.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/164" class="no_style tooltip" title="164 - 進化的黃面具"><img src="images/pets/164.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/164" class="no_style tooltip" title="164 - 進化的黃面具"><img src="images/pets/164.png" width="35" height="35" style="padding:1px"  /></a></div><ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/8258" class="EvoTarget"><img src="images/pets/8258.png" class="pic" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/輔助進化/" class="EvoTarget"><img src="images/assist.png" height="19" /></a></p><a href="pets/3911" class="no_style tooltip" title="3911 - 創裝之寶玉"><img src="images/pets/3911.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/8238" class="no_style tooltip" title="8238 - PAD賀年卡"><img src="images/pets/8238.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a></div></li></ul></li></ul></li></ul>	</ul>
 
 	
 		</td>

@@ -718,6 +718,8 @@ function vote(e){
 		<td colspan="5" style="line-height: 28px;">2回合內，敵人的指定傷害值以上吸收技能無效化；<br />並2回合內，寶珠移動時間變成2倍</td>
 	</tr>
 
+
+
 </table>
 
 <br />
@@ -812,7 +814,7 @@ function vote(e){
 		<td class="head">隊長技能 - <a href="skill/次のボスは絶対にみんなで倒そう"><span style="font-size:18px; font-weight:900">次のボスは絶対にみんなで倒そう</span></a></td>
 <td bgcolor="#008be3" width="120" height="42" style="padding:0px; border-radius:8px; font-size:14px" align="center"><a href="/friendlist/5883/GroupUnspecified/Rank0-999/AllLeader/Unspecified/0-0/SortByLastUpdate/Page1/">搜尋戰友</a></td>	</tr>
 	<tr>
-		<td bgcolor="#000000" colspan=2>所有寵物的HP2倍；<br />另外8COMBO或以上時攻擊力5.5倍；<br />另外4種屬性或以上同時攻擊時攻擊力3倍、結算增加1COMBO</td>
+		<td bgcolor="#000000" colspan=2>HP2倍；<br />另外8COMBO或以上時攻擊力5.5倍；<br />另外4種屬性或以上同時攻擊時攻擊力3倍、結算增加1COMBO</td>
 	</tr>
 </table>
 
@@ -870,104 +872,57 @@ function vote(e){
 
 
 <style>
-.tree * {margin: 0; padding: 0;}
-.tree ul {
-	padding-top: 40px;
-	position: relative;
-	transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
+.wtree li {
+  list-style-type: none;
+  margin: 20px 0 10px 10px;
+  padding-left: 10px;
+  position: relative;
+}
+.wtree li:before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -10px;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  width: 20px;
+  height: 55px;
+}
+.wtree li:after {
+  position: absolute;
+  content: "";
+  top: 35px;
+  left: -10px;
+  border-left: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  width: 20px;
+  height: 100%;
+}
+.wtree li:last-child:after {
+  display: none;
+}
+.wtree li span {
+  display: block;
+  border: 1px solid #ddd;
+  padding: 10px;
+  color: #888;
+  text-decoration: none;
 }
 
-.tree li {
-	float: left; text-align: center;
-	list-style-type: none;
-	position: relative;
-	padding: 40px 2px 0 2px;
-	transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
+.wtree li span:hover, .wtree li span:focus {
+  background: #272727;
+  color: #000;
+  border: 1px solid #aaa;
+}
+.wtree li span:hover + ul li span, .wtree li span:focus + ul li span {
+  background: #272727;
+  color: #000;
+  border: 1px solid #aaa;
+}
+.wtree li span:hover + ul li:after, .wtree li span:hover + ul li:before, .wtree li span:focus + ul li:after, .wtree li span:focus + ul li:before {
+  border-color: #aaa;
 }
 
-/*We will use ::before and ::after to draw the connectors*/
-
-.tree li::before, .tree li::after{
-	content: '';
-	position: absolute; top: 0; right: 50%;
-	border-top: 3px solid #ccc;
-	width: 50%; height: 40px;
-}
-.tree li::after{
-	right: auto; left: 50%;
-	border-left: 3px solid #ccc;
-}
-
-/*We need to remove left-right connectors from elements without 
-any siblings*/
-.tree li:only-child::after, .tree li:only-child::before {
-	display: none;
-}
-
-/*Remove space from the top of single children*/
-.tree li:only-child{ padding-top: 0;}
-
-/*Remove left connector from first child and 
-right connector from last child*/
-.tree li:first-child::before, .tree li:last-child::after{
-	border: 0 none;
-}
-/*Adding back the vertical connector to the last nodes*/
-.tree li:last-child::before{
-	border-right: 3px solid #ccc;
-	border-radius: 0 5px 0 0;
-	-webkit-border-radius: 0 5px 0 0;
-	-moz-border-radius: 0 5px 0 0;
-}
-.tree li:first-child::after{
-	border-radius: 5px 0 0 0;
-	-webkit-border-radius: 5px 0 0 0;
-	-moz-border-radius: 5px 0 0 0;
-}
-
-/*Time to add downward connectors from parents*/
-.tree ul ul::before{
-	content: '';
-	position: absolute; 
-	top: 0; left: 50%;
-	border-left: 3px solid #ccc;
-	width: 0; height: 40px;
-}
-
-.tree li a.EvoTarget{
-	//border: 1px solid #fff;
-	padding: 8px 2px;
-	text-decoration: none;
-	color: #666;
-	font-family: arial, verdana, tahoma;
-	font-size: 11px;
-	display: inline-block;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
-	width:100px;
-}
-
-/*Time for some hover effects*/
-/*We will apply the hover effect the the lineage of the element also*/
-.tree li a.EvoTarget:hover {
-	background: #c8e4f8; color: #000; 
-	//border: 1px solid #94a0b4;
-}
-/*Connector styles on hover*/
-.tree li a:hover+ul li::after, 
-.tree li a:hover+ul li::before, 
-.tree li a:hover+ul::before, 
-.tree li a:hover+ul ul::before{
-	border-color:  #94a0b4;
-}
 .pic {
 	  height: 70px;
 	  width: 70px;
@@ -1010,13 +965,11 @@ p.EvoName {
 	</tr>
 
 	<tr>
-		<td bgcolor="#000000" style="text-align:center">
-	<div class="tree" width="100%" align="center" style="text-align:center; display:inline-block">
+		<td bgcolor="#000000" style="text-align:left; padding-left: 20px; padding-top: 20px; padding-right:20px">
 
-	<ul style="padding-top:5px">
-		<li><a href="pets/4858" class="EvoTarget"><img src="images/pets/4858.png" width="80" height="80" /></a><br />			<ul><li><a href="/究極進化/" class="EvoTarget"><img src="images/evo1.png" width="60" /></a><br /><a href="pets/4859" class="EvoTarget"><img src="images/pets/4859.png" width="80" height="80" /></a><br /><a href="pets/150" class="no_style tooltip" title="150 - 光之守門人"><img src="images/pets/150.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1176" class="no_style tooltip" title="1176 - 黃金守門人"><img src="images/pets/1176.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/174" class="no_style tooltip" title="174 - 神化的金面具"><img src="images/pets/174.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/249" class="no_style tooltip" title="249 - 雙倍黃玉精靈"><img src="images/pets/249.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/251" class="no_style tooltip" title="251 - 雙倍米斯精靈"><img src="images/pets/251.png" width="35" height="35" style="padding:1px"  /></a></li><li><a href="/輔助進化/" class="EvoTarget"><img src="images/assist.png" width="60" /></a><br /><a href="pets/4860" class="EvoTarget"><img src="images/pets/4860.png" width="80" height="80" /></a><br /><a href="pets/3911" class="no_style tooltip" title="3911 - 創裝之寶玉"><img src="images/pets/3911.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a></li><li><a href="/究極進化/" class="EvoTarget"><img src="images/evo1.png" width="60" /></a><br /><a href="pets/5883" class="EvoTarget"><img src="images/pets/5883.png" class="pic" /></a><br /><a href="pets/150" class="no_style tooltip" title="150 - 光之守門人"><img src="images/pets/150.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/234" class="no_style tooltip" title="234 - 神秘的面具"><img src="images/pets/234.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/915" class="no_style tooltip" title="915 - 天使精靈"><img src="images/pets/915.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4456" class="no_style tooltip" title="4456 - 光之希石【小】"><img src="images/pets/4456.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4454" class="no_style tooltip" title="4454 - 水之希石【小】"><img src="images/pets/4454.png" width="35" height="35" style="padding:1px"  /></a></li></ul>		</li>
-	</ul>
-</div>
+
+<a href="pets/4858" class="EvoTarget"><img src="images/pets/4858.png" width="80" height="80" /></a><br />	<ul class="wtree" style="margin-left:-40px">
+			<ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/4859" class="EvoTarget"><img src="images/pets/4859.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/究極進化/" class="EvoTarget"><img src="images/evo1.png" height="19" /></a></p><a href="pets/150" class="no_style tooltip" title="150 - 光之守門人"><img src="images/pets/150.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1176" class="no_style tooltip" title="1176 - 黃金守門人"><img src="images/pets/1176.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/174" class="no_style tooltip" title="174 - 神化的金面具"><img src="images/pets/174.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/249" class="no_style tooltip" title="249 - 雙倍黃玉精靈"><img src="images/pets/249.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/251" class="no_style tooltip" title="251 - 雙倍米斯精靈"><img src="images/pets/251.png" width="35" height="35" style="padding:1px"  /></a></div></li><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/4860" class="EvoTarget"><img src="images/pets/4860.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/輔助進化/" class="EvoTarget"><img src="images/assist.png" height="19" /></a></p><a href="pets/3911" class="no_style tooltip" title="3911 - 創裝之寶玉"><img src="images/pets/3911.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a></div></li><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/5883" class="EvoTarget"><img src="images/pets/5883.png" class="pic" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/究極進化/" class="EvoTarget"><img src="images/evo1.png" height="19" /></a></p><a href="pets/150" class="no_style tooltip" title="150 - 光之守門人"><img src="images/pets/150.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/234" class="no_style tooltip" title="234 - 神秘的面具"><img src="images/pets/234.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/915" class="no_style tooltip" title="915 - 天使精靈"><img src="images/pets/915.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4456" class="no_style tooltip" title="4456 - 光之希石【小】"><img src="images/pets/4456.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4454" class="no_style tooltip" title="4454 - 水之希石【小】"><img src="images/pets/4454.png" width="35" height="35" style="padding:1px"  /></a></div></li></ul>	</ul>
 
 	
 		</td>
@@ -1123,7 +1076,7 @@ p.EvoName {
 
 
 <br />
-<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/ニムエ降臨！" class="tooltip" title="ニムエ降臨！<br />聖湖の乙女 壊滅級"><img src="images/stage/6087s.png" width="100"></a></td><td><a href="pets/5885" class="tooltip" title="5885 - 決意之騎士・愛麗絲"><img src="images/pets/5885.png" width="55" height="55" $team[L2][0]</a><a href="pets/5915" class="tooltip" title="5915 - 滑神"><img src="images/pets/5915.png" width="55" height="55" $team[L2][0]</a><a href="pets/5910" class="tooltip" title="5910 - 點陣圖・橙龍契士・莎里雅"><img src="images/pets/5910.png" width="55" height="55" $team[L2][0]</a><a href="pets/5934" class="tooltip" title="5934 - 超轉生拉斐爾"><img src="images/pets/5934.png" width="55" height="55" $team[L2][0]</a><a href="pets/5883" class="tooltip" title="5883 - 狂暴補師・亞絲娜"><img src="images/pets/5883.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5841" class="tooltip" title="5841 - 雲外之大魔女・花絲卡"><img src="images/pets/5841.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116647/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/極限の闘技場" class="tooltip" title="極限の闘技場<br />列界の化身"><img src="images/stage/4585_4742s.png" width="100"></a></td><td><a href="pets/5841" class="tooltip" title="5841 - 雲外之大魔女・花絲卡"><img src="images/pets/5841.png" width="55" height="55" $team[L2][0]</a><a href="pets/5961" class="tooltip" title="5961 - 大天使・拉結爾"><img src="images/pets/5961.png" width="55" height="55" $team[L2][0]</a><a href="pets/5934" class="tooltip" title="5934 - 超轉生拉斐爾"><img src="images/pets/5934.png" width="55" height="55" $team[L2][0]</a><a href="pets/5644" class="tooltip" title="5644 - 天才劍士・高里＝加布列夫"><img src="images/pets/5644.png" width="55" height="55" $team[L2][0]</a><a href="pets/5883" class="tooltip" title="5883 - 狂暴補師・亞絲娜"><img src="images/pets/5883.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5841" class="tooltip" title="5841 - 雲外之大魔女・花絲卡"><img src="images/pets/5841.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116768/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/壊滅極限コロシアム" class="tooltip" title="壊滅極限コロシアム<br />星壊の滅翼"><img src="images/stage/3598s.png" width="100"></a></td><td><a href="pets/5885" class="tooltip" title="5885 - 決意之騎士・愛麗絲"><img src="images/pets/5885.png" width="55" height="55" $team[L2][0]</a><a href="pets/5883" class="tooltip" title="5883 - 狂暴補師・亞絲娜"><img src="images/pets/5883.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5128" class="tooltip" title="5128 - 雷咬之明龍刀士・姬奧"><img src="images/pets/5128.png" width="55" height="55" $team[L2][0]</a><a href="pets/5940" class="tooltip" title="5940 - 超轉生因陀羅"><img src="images/pets/5940.png" width="55" height="55" $team[L2][0]</a><a href="pets/5915" class="tooltip" title="5915 - 滑神"><img src="images/pets/5915.png" width="55" height="55" $team[L2][0]</a><a href="pets/5842" class="tooltip" title="5842 - 光翼之大魔女・花絲卡"><img src="images/pets/5842.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116793/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/裏・極限の闘技場" class="tooltip" title="裏・極限の闘技場<br />裏異形の存在"><img src="images/stage/3891s.png" width="100"></a></td><td><a href="pets/5885" class="tooltip" title="5885 - 決意之騎士・愛麗絲"><img src="images/pets/5885.png" width="55" height="55" $team[L2][0]</a><a href="pets/5644" class="tooltip" title="5644 - 天才劍士・高里＝加布列夫"><img src="images/pets/5644.png" width="55" height="55" $team[L2][0]</a><a href="pets/5883" class="tooltip" title="5883 - 狂暴補師・亞絲娜"><img src="images/pets/5883.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/3274" class="tooltip" title="3274 - 魔導書之幻魔・伊雷米娜"><img src="images/pets/3274.png" width="55" height="55" $team[L2][0]</a><a href="pets/2765" class="tooltip" title="2765 - 片翼天使・賽菲羅斯"><img src="images/pets/2765.png" width="55" height="55" $team[L2][0]</a><a href="pets/5841" class="tooltip" title="5841 - 雲外之大魔女・花絲卡"><img src="images/pets/5841.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116380/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/極限の闘技場" class="tooltip" title="極限の闘技場<br />列界の化身"><img src="images/stage/4585_4742s.png" width="100"></a></td><td><a href="pets/5885" class="tooltip" title="5885 - 決意之騎士・愛麗絲"><img src="images/pets/5885.png" width="55" height="55" $team[L2][0]</a><a href="pets/5915" class="tooltip" title="5915 - 滑神"><img src="images/pets/5915.png" width="55" height="55" $team[L2][0]</a><a href="pets/5910" class="tooltip" title="5910 - 點陣圖・橙龍契士・莎里雅"><img src="images/pets/5910.png" width="55" height="55" $team[L2][0]</a><a href="pets/5934" class="tooltip" title="5934 - 超轉生拉斐爾"><img src="images/pets/5934.png" width="55" height="55" $team[L2][0]</a><a href="pets/5883" class="tooltip" title="5883 - 狂暴補師・亞絲娜"><img src="images/pets/5883.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5841" class="tooltip" title="5841 - 雲外之大魔女・花絲卡"><img src="images/pets/5841.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116624/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
+<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/裏・極限の闘技場" class="tooltip" title="裏・極限の闘技場<br />裏異形の存在"><img src="images/stage/3891s.png" width="100"></a></td><td><a href="pets/5968" class="tooltip" title="5968 - 兔人武鬥家・迪娜"><img src="images/pets/5968.png" width="55" height="55" $team[L2][0]</a><a href="pets/3294" class="tooltip" title="3294 - 謝雷亞的賢者・楊・修特拉"><img src="images/pets/3294.png" width="55" height="55" $team[L2][0]</a><a href="pets/5785" class="tooltip" title="5785 - 海馬瀬人＆歐貝利斯克的巨神兵"><img src="images/pets/5785.png" width="55" height="55" $team[L2][0]</a><a href="pets/5976" class="tooltip" title="5976 - 妖精舞者・艾爾莎"><img src="images/pets/5976.png" width="55" height="55" $team[L2][0]</a><a href="pets/5883" class="tooltip" title="5883 - 狂暴補師・亞絲娜"><img src="images/pets/5883.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5841" class="tooltip" title="5841 - 雲外之大魔女・花絲卡"><img src="images/pets/5841.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116540/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/極限の闘技場" class="tooltip" title="極限の闘技場<br />運命の三針"><img src="https://i1296.photobucket.com/albums/ag18/skyozora/stage/tokis_zpsedykgx6n.png" width="100"></a></td><td><a href="pets/6158" class="tooltip" title="6158 - 森奥之大魔女・阿爾榭"><img src="images/pets/6158.png" width="55" height="55" $team[L2][0]</a><a href="pets/5931" class="tooltip" title="5931 - 極醒之天陽神・阿頓"><img src="images/pets/5931.png" width="55" height="55" $team[L2][0]</a><a href="pets/4413" class="tooltip" title="4413 - 冰華之大魔女・莉邪"><img src="images/pets/4413.png" width="55" height="55" $team[L2][0]</a><a href="pets/5883" class="tooltip" title="5883 - 狂暴補師・亞絲娜"><img src="images/pets/5883.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5392" class="tooltip" title="5392 - 極醒之威女神・迦梨"><img src="images/pets/5392.png" width="55" height="55" $team[L2][0]</a><a href="pets/6078" class="tooltip" title="6078 - 魔導機士・梅諾亞"><img src="images/pets/6078.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/117150/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/極限の闘技場" class="tooltip" title="極限の闘技場<br />列界の化身"><img src="images/stage/4585_4742s.png" width="100"></a></td><td><a href="pets/5885" class="tooltip" title="5885 - 決意之騎士・愛麗絲"><img src="images/pets/5885.png" width="55" height="55" $team[L2][0]</a><a href="pets/5915" class="tooltip" title="5915 - 滑神"><img src="images/pets/5915.png" width="55" height="55" $team[L2][0]</a><a href="pets/5910" class="tooltip" title="5910 - 點陣圖・橙龍契士・莎里雅"><img src="images/pets/5910.png" width="55" height="55" $team[L2][0]</a><a href="pets/5934" class="tooltip" title="5934 - 超轉生拉斐爾"><img src="images/pets/5934.png" width="55" height="55" $team[L2][0]</a><a href="pets/5883" class="tooltip" title="5883 - 狂暴補師・亞絲娜"><img src="images/pets/5883.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5841" class="tooltip" title="5841 - 雲外之大魔女・花絲卡"><img src="images/pets/5841.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116624/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/極限の闘技場" class="tooltip" title="極限の闘技場<br />列界の化身"><img src="images/stage/4585_4742s.png" width="100"></a></td><td><a href="pets/5553" class="tooltip" title="5553 - 轉生貂蟬"><img src="images/pets/5553.png" width="55" height="55" $team[L2][0]</a><a href="pets/6097" class="tooltip" title="6097 - 平子真子"><img src="images/pets/6097.png" width="55" height="55" $team[L2][0]</a><a href="pets/5883" class="tooltip" title="5883 - 狂暴補師・亞絲娜"><img src="images/pets/5883.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5940" class="tooltip" title="5940 - 超轉生因陀羅"><img src="images/pets/5940.png" width="55" height="55" $team[L2][0]</a><a href="pets/5915" class="tooltip" title="5915 - 滑神"><img src="images/pets/5915.png" width="55" height="55" $team[L2][0]</a><a href="pets/5972" class="tooltip" title="5972 - 出發的冒險者・大也"><img src="images/pets/5972.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116758/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/壊滅極限コロシアム" class="tooltip" title="壊滅極限コロシアム<br />星壊の滅翼"><img src="images/stage/3598s.png" width="100"></a></td><td><a href="pets/5885" class="tooltip" title="5885 - 決意之騎士・愛麗絲"><img src="images/pets/5885.png" width="55" height="55" $team[L2][0]</a><a href="pets/5883" class="tooltip" title="5883 - 狂暴補師・亞絲娜"><img src="images/pets/5883.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5128" class="tooltip" title="5128 - 雷咬之明龍刀士・姬奧"><img src="images/pets/5128.png" width="55" height="55" $team[L2][0]</a><a href="pets/5940" class="tooltip" title="5940 - 超轉生因陀羅"><img src="images/pets/5940.png" width="55" height="55" $team[L2][0]</a><a href="pets/5915" class="tooltip" title="5915 - 滑神"><img src="images/pets/5915.png" width="55" height="55" $team[L2][0]</a><a href="pets/5842" class="tooltip" title="5842 - 光翼之大魔女・花絲卡"><img src="images/pets/5842.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116793/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
 
 <table width="750" border="0" cellpadding="0" cellspacing="1" align="center">
 	<tr>
@@ -1141,28 +1094,9 @@ p.EvoName {
 
 <td></td>
 <td valign="top" width="336" align="center">
-<div style="background:#545454; padding:5px">
-<span style="font-weight:bold; font-size:130%;text-decoration:underline">Advertisement</span><br />
+<div id="pc_right_sticky"></div>
 
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Skyozora_336x280 -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:336px;height:280px"
-     data-ad-client="ca-pub-5454875279695201"
-     data-ad-slot="5104522419"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script><script language='JavaScript' type='text/javascript'>if (!window.af) var af = (function() {return {getcookie:function(n){var m=n+'=';var ca=document.cookie.split(';');for(var i=0;i < ca.length;i++) {var c=ca[i];while (c.charAt(0)==' ') c = c.substring(1,c.length);if (c.indexOf(m) == 0) return c.substring(m.length,c.length);}return null;},existcookie:function(n){var m=af.getcookie(n);if (m!=null&&m!=''){return true;}else{return false;}}};})(); if(af.existcookie('__AF')){afid = af.getcookie('__AF'); } else {afid = 0; } randomstr = new String (Math.random()); randomstr = randomstr.substring(2,8);document.write ("<" + "script language='JavaScript' type='text/javascript' src='" + "https://servedby.adsfactor.net/adj.php?ts=" + randomstr + "&amp;sid=910471385284&amp;afid=" + afid + "'><" + "/script>");
-</script><noscript><a href='https://servedby.adsfactor.net/adc.php?sid=910471385284' ><img src='https://servedby.adsfactor.net/adv.php?sid=910471385284' border='0'></a></noscript><div class="kiwi-ad-wrapper-300x250"></div><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Skyozora_336x280 -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:336px;height:280px"
-     data-ad-client="ca-pub-5454875279695201"
-     data-ad-slot="5104522419"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script></div>
 </td>
 
 </tr>

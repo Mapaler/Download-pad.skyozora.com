@@ -534,7 +534,7 @@ function vote(e){
 </style>
 
 <p style="padding:1px 10px; margin:0px">
-<a href="pets/category/希臘神話" class="category" target="_blank"><span>#希臘神話</span></a><a href="pets/category/降臨寵物" class="category" target="_blank"><span>#降臨寵物</span></a><a href="pets/category/雅典娜" class="category" target="_blank"><span>#雅典娜</span></a></p>
+<a href="pets/category/希臘神話" class="category" target="_blank"><span>#希臘神話</span></a><a href="pets/category/雅典娜" class="category" target="_blank"><span>#雅典娜</span></a></p>
 
 <br />
 
@@ -662,6 +662,8 @@ function vote(e){
 				<a href="pets/4528" class="tooltip" title="4528 - 希石：聖都的守護神・雅典娜"><img src="images/pets/4528.png" width="46" height="46" /></a>
 			</td>
 	</tr>
+
+
 </table>
 
 <br />
@@ -780,104 +782,57 @@ function vote(e){
 
 
 <style>
-.tree * {margin: 0; padding: 0;}
-.tree ul {
-	padding-top: 40px;
-	position: relative;
-	transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
+.wtree li {
+  list-style-type: none;
+  margin: 20px 0 10px 10px;
+  padding-left: 10px;
+  position: relative;
+}
+.wtree li:before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -10px;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  width: 20px;
+  height: 55px;
+}
+.wtree li:after {
+  position: absolute;
+  content: "";
+  top: 35px;
+  left: -10px;
+  border-left: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  width: 20px;
+  height: 100%;
+}
+.wtree li:last-child:after {
+  display: none;
+}
+.wtree li span {
+  display: block;
+  border: 1px solid #ddd;
+  padding: 10px;
+  color: #888;
+  text-decoration: none;
 }
 
-.tree li {
-	float: left; text-align: center;
-	list-style-type: none;
-	position: relative;
-	padding: 40px 2px 0 2px;
-	transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
+.wtree li span:hover, .wtree li span:focus {
+  background: #272727;
+  color: #000;
+  border: 1px solid #aaa;
+}
+.wtree li span:hover + ul li span, .wtree li span:focus + ul li span {
+  background: #272727;
+  color: #000;
+  border: 1px solid #aaa;
+}
+.wtree li span:hover + ul li:after, .wtree li span:hover + ul li:before, .wtree li span:focus + ul li:after, .wtree li span:focus + ul li:before {
+  border-color: #aaa;
 }
 
-/*We will use ::before and ::after to draw the connectors*/
-
-.tree li::before, .tree li::after{
-	content: '';
-	position: absolute; top: 0; right: 50%;
-	border-top: 3px solid #ccc;
-	width: 50%; height: 40px;
-}
-.tree li::after{
-	right: auto; left: 50%;
-	border-left: 3px solid #ccc;
-}
-
-/*We need to remove left-right connectors from elements without 
-any siblings*/
-.tree li:only-child::after, .tree li:only-child::before {
-	display: none;
-}
-
-/*Remove space from the top of single children*/
-.tree li:only-child{ padding-top: 0;}
-
-/*Remove left connector from first child and 
-right connector from last child*/
-.tree li:first-child::before, .tree li:last-child::after{
-	border: 0 none;
-}
-/*Adding back the vertical connector to the last nodes*/
-.tree li:last-child::before{
-	border-right: 3px solid #ccc;
-	border-radius: 0 5px 0 0;
-	-webkit-border-radius: 0 5px 0 0;
-	-moz-border-radius: 0 5px 0 0;
-}
-.tree li:first-child::after{
-	border-radius: 5px 0 0 0;
-	-webkit-border-radius: 5px 0 0 0;
-	-moz-border-radius: 5px 0 0 0;
-}
-
-/*Time to add downward connectors from parents*/
-.tree ul ul::before{
-	content: '';
-	position: absolute; 
-	top: 0; left: 50%;
-	border-left: 3px solid #ccc;
-	width: 0; height: 40px;
-}
-
-.tree li a.EvoTarget{
-	//border: 1px solid #fff;
-	padding: 8px 2px;
-	text-decoration: none;
-	color: #666;
-	font-family: arial, verdana, tahoma;
-	font-size: 11px;
-	display: inline-block;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
-	width:100px;
-}
-
-/*Time for some hover effects*/
-/*We will apply the hover effect the the lineage of the element also*/
-.tree li a.EvoTarget:hover {
-	background: #c8e4f8; color: #000; 
-	//border: 1px solid #94a0b4;
-}
-/*Connector styles on hover*/
-.tree li a:hover+ul li::after, 
-.tree li a:hover+ul li::before, 
-.tree li a:hover+ul::before, 
-.tree li a:hover+ul ul::before{
-	border-color:  #94a0b4;
-}
 .pic {
 	  height: 70px;
 	  width: 70px;
@@ -920,13 +875,11 @@ p.EvoName {
 	</tr>
 
 	<tr>
-		<td bgcolor="#000000" style="text-align:center">
-	<div class="tree" width="100%" align="center" style="text-align:center; display:inline-block">
+		<td bgcolor="#000000" style="text-align:left; padding-left: 20px; padding-top: 20px; padding-right:20px">
 
-	<ul style="padding-top:5px">
-		<li><a href="pets/648" class="EvoTarget"><img src="images/pets/648.png" width="80" height="80" /></a><br />			<ul><li><a href="pets/649" class="EvoTarget"><img src="images/pets/649.png" class="pic" /></a><br /><a href="pets/321" class="no_style tooltip" title="321 - 虹之守門人"><img src="images/pets/321.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/150" class="no_style tooltip" title="150 - 光之守門人"><img src="images/pets/150.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/149" class="no_style tooltip" title="149 - 森之守門人"><img src="images/pets/149.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/251" class="no_style tooltip" title="251 - 雙倍米斯精靈"><img src="images/pets/251.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/248" class="no_style tooltip" title="248 - 雙倍綠寶精靈"><img src="images/pets/248.png" width="35" height="35" style="padding:1px"  /></a><ul><li><a href="/究極進化/" class="EvoTarget"><img src="images/evo1.png" width="60" /></a><br /><a href="pets/1422" class="EvoTarget"><img src="images/pets/1422.png" width="80" height="80" /></a><br /><a href="pets/150" class="no_style tooltip" title="150 - 光之守門人"><img src="images/pets/150.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/234" class="no_style tooltip" title="234 - 神秘的面具"><img src="images/pets/234.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/915" class="no_style tooltip" title="915 - 天使精靈"><img src="images/pets/915.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1327" class="no_style tooltip" title="1327 - 木之寶玉"><img src="images/pets/1327.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a><ul><li><a href="/轉生進化/" class="EvoTarget"><img src="images/evo2.png" width="60" /></a><br /><a href="pets/3833" class="EvoTarget"><img src="images/pets/3833.png" width="80" height="80" /></a><br /><a href="pets/3795" class="no_style tooltip" title="3795 - 古代的三神面"><img src="images/pets/3795.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/161" class="no_style tooltip" title="161 - 進化的紅面具"><img src="images/pets/161.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/161" class="no_style tooltip" title="161 - 進化的紅面具"><img src="images/pets/161.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/161" class="no_style tooltip" title="161 - 進化的紅面具"><img src="images/pets/161.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/161" class="no_style tooltip" title="161 - 進化的紅面具"><img src="images/pets/161.png" width="35" height="35" style="padding:1px"  /></a><ul><li><a href="/轉生進化/" class="EvoTarget"><img src="images/tensei2.png" width="60" /></a><br /><a href="pets/3834" class="EvoTarget"><img src="images/pets/3834.png" width="80" height="80" /></a><br /><a href="pets/5077" class="no_style tooltip" title="5077 - 希石：活動硬幣【虹】"><img src="images/pets/5077.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4528" class="no_style tooltip" title="4528 - 希石：聖都的守護神・雅典娜"><img src="images/pets/4528.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4463" class="no_style tooltip" title="4463 - 火之希石【大】"><img src="images/pets/4463.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1325" class="no_style tooltip" title="1325 - 火之寶玉"><img src="images/pets/1325.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a></li></ul></li></ul></li></ul></li></ul>		</li>
-	</ul>
-</div>
+
+<a href="pets/648" class="EvoTarget"><img src="images/pets/648.png" width="80" height="80" /></a><br />	<ul class="wtree" style="margin-left:-40px">
+			<ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/649" class="EvoTarget"><img src="images/pets/649.png" class="pic" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><img src="images/evo.png" height="19" /></p><a href="pets/321" class="no_style tooltip" title="321 - 虹之守門人"><img src="images/pets/321.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/150" class="no_style tooltip" title="150 - 光之守門人"><img src="images/pets/150.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/149" class="no_style tooltip" title="149 - 森之守門人"><img src="images/pets/149.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/251" class="no_style tooltip" title="251 - 雙倍米斯精靈"><img src="images/pets/251.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/248" class="no_style tooltip" title="248 - 雙倍綠寶精靈"><img src="images/pets/248.png" width="35" height="35" style="padding:1px"  /></a></div><ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/1422" class="EvoTarget"><img src="images/pets/1422.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/究極進化/" class="EvoTarget"><img src="images/evo1.png" height="19" /></a></p><a href="pets/150" class="no_style tooltip" title="150 - 光之守門人"><img src="images/pets/150.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/234" class="no_style tooltip" title="234 - 神秘的面具"><img src="images/pets/234.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/915" class="no_style tooltip" title="915 - 天使精靈"><img src="images/pets/915.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1327" class="no_style tooltip" title="1327 - 木之寶玉"><img src="images/pets/1327.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a></div><ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/3833" class="EvoTarget"><img src="images/pets/3833.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/轉生進化/" class="EvoTarget"><img src="images/evo2.png" height="19" /></a></p><a href="pets/3795" class="no_style tooltip" title="3795 - 古代的三神面"><img src="images/pets/3795.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/161" class="no_style tooltip" title="161 - 進化的紅面具"><img src="images/pets/161.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/161" class="no_style tooltip" title="161 - 進化的紅面具"><img src="images/pets/161.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/161" class="no_style tooltip" title="161 - 進化的紅面具"><img src="images/pets/161.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/161" class="no_style tooltip" title="161 - 進化的紅面具"><img src="images/pets/161.png" width="35" height="35" style="padding:1px"  /></a></div><ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/3834" class="EvoTarget"><img src="images/pets/3834.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/轉生進化/" class="EvoTarget"><img src="images/tensei2.png" height="19" /></a></p><a href="pets/5077" class="no_style tooltip" title="5077 - 希石：活動硬幣【虹】"><img src="images/pets/5077.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4528" class="no_style tooltip" title="4528 - 希石：聖都的守護神・雅典娜"><img src="images/pets/4528.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4463" class="no_style tooltip" title="4463 - 火之希石【大】"><img src="images/pets/4463.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1325" class="no_style tooltip" title="1325 - 火之寶玉"><img src="images/pets/1325.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a></div><ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/8452" class="EvoTarget"><img src="images/pets/8452.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/究極進化/" class="EvoTarget"><img src="images/evo1.png" height="19" /></a></p><a href="pets/3971" class="no_style tooltip" title="3971 - 鑽石龍果"><img src="images/pets/3971.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/8456" class="no_style tooltip" title="8456 - 希石：極醒之空都神・雅典娜"><img src="images/pets/8456.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/8456" class="no_style tooltip" title="8456 - 希石：極醒之空都神・雅典娜"><img src="images/pets/8456.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/8456" class="no_style tooltip" title="8456 - 希石：極醒之空都神・雅典娜"><img src="images/pets/8456.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/8456" class="no_style tooltip" title="8456 - 希石：極醒之空都神・雅典娜"><img src="images/pets/8456.png" width="35" height="35" style="padding:1px"  /></a></div><ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/8453" class="EvoTarget"><img src="images/pets/8453.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/輔助進化/" class="EvoTarget"><img src="images/assist.png" height="19" /></a></p><a href="pets/3911" class="no_style tooltip" title="3911 - 創裝之寶玉"><img src="images/pets/3911.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/8456" class="no_style tooltip" title="8456 - 希石：極醒之空都神・雅典娜"><img src="images/pets/8456.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1325" class="no_style tooltip" title="1325 - 火之寶玉"><img src="images/pets/1325.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1325" class="no_style tooltip" title="1325 - 火之寶玉"><img src="images/pets/1325.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1325" class="no_style tooltip" title="1325 - 火之寶玉"><img src="images/pets/1325.png" width="35" height="35" style="padding:1px"  /></a></div></li></ul></li></ul></li></ul></li></ul></li></ul></li></ul>	</ul>
 
 	
 		</td>
@@ -1033,8 +986,9 @@ p.EvoName {
 
 
 <br />
-<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/サタン降臨！" class="tooltip" title="サタン降臨！<br />大魔王 超地獄級"><img src="images/stage/646s.png" width="100"></a></td><td><a href="pets/649" class="tooltip" title="649 - 覺醒雅典娜"><img src="images/pets/649.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/201" class="tooltip" title="201 - 紅蓮女帝・厄客德娜"><img src="images/pets/201.png" width="55" height="55" $team[L2][0]</a><a href="pets/623" class="tooltip" title="623 - 神託大天使・加百列"><img src="images/pets/623.png" width="55" height="55" $team[L2][0]</a><a href="pets/188" class="tooltip" title="188 - 覺醒宙斯"><img src="images/pets/188.png" width="55" height="55" $team[L2][0]</a><a href="pets/232" class="tooltip" title="232 - 天空騎士・帕傑"><img src="images/pets/232.png" width="55" height="55" $team[L2][0]</a><a href="pets/752" class="tooltip" title="752 - 極光的麒麟・朔夜"><img src="images/pets/752.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/25308/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/バットマン コラボ" class="tooltip" title="バットマン コラボ<br />闇夜の檻 地獄級"><img src="images/stage/925s.png" width="100"></a></td><td><a href="pets/803" class="tooltip" title="803 - 奇稻田姬"><img src="images/pets/803.png" width="55" height="55" $team[L2][0]</a><a href="pets/649" class="tooltip" title="649 - 覺醒雅典娜"><img src="images/pets/649.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/694" class="tooltip" title="694 - 薔薇戰姬・優雅女武神"><img src="images/pets/694.png" width="55" height="55" $team[L2][0]</a><a href="pets/188" class="tooltip" title="188 - 覺醒宙斯"><img src="images/pets/188.png" width="55" height="55" $team[L2][0]</a><a href="pets/139" class="tooltip" title="139 - 天照大神"><img src="images/pets/139.png" width="55" height="55" $team[L2][0]</a><a href="pets/499" class="tooltip" title="499 - 冥狼神・安努比斯"><img src="images/pets/499.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/27568/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/紅の華龍" class="tooltip" title="紅の華龍<br />紅の僻地 地獄級"><img src="images/stage/1166s.png" width="100"></a></td><td><a href="pets/802" class="tooltip" title="802 - 漁獵之神・海幸山幸"><img src="images/pets/802.png" width="55" height="55" $team[L2][0]</a><a href="pets/824" class="tooltip" title="824 - 太古龍騎士・零式"><img src="images/pets/824.png" width="55" height="55" $team[L2][0]</a><a href="pets/649" class="tooltip" title="649 - 覺醒雅典娜"><img src="images/pets/649.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/694" class="tooltip" title="694 - 薔薇戰姬・優雅女武神"><img src="images/pets/694.png" width="55" height="55" $team[L2][0]</a><a href="pets/395" class="tooltip" title="395 - 慈愛神・混沌維納斯"><img src="images/pets/395.png" width="55" height="55" $team[L2][0]</a><a href="pets/802" class="tooltip" title="802 - 漁獵之神・海幸山幸"><img src="images/pets/802.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/37177/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/天上の海原" class="tooltip" title="天上の海原<br />天海神"><img src="images/stage/124s.png" width="100"></a></td><td><a href="pets/706" class="tooltip" title="706 - 真嗣＆渚薰＆第13號機・覚醒"><img src="images/pets/706.png" width="55" height="55" $team[L2][0]</a><a href="pets/700" class="tooltip" title="700 - 真理＆EVA8號機"><img src="images/pets/700.png" width="55" height="55" $team[L2][0]</a><a href="pets/698" class="tooltip" title="698 - 真嗣＆EVA初號機・覺醒"><img src="images/pets/698.png" width="55" height="55" $team[L2][0]</a><a href="pets/649" class="tooltip" title="649 - 覺醒雅典娜"><img src="images/pets/649.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/201" class="tooltip" title="201 - 紅蓮女帝・厄客德娜"><img src="images/pets/201.png" width="55" height="55" $team[L2][0]</a><a href="pets/706" class="tooltip" title="706 - 真嗣＆渚薰＆第13號機・覚醒"><img src="images/pets/706.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/21739/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/海賊龍の潜窟" class="tooltip" title="海賊龍の潜窟<br />黒の海窟"><img src="https://i1296.photobucket.com/albums/ag18/skyozora/stage/978s_zpschdedwtr.png
-" width="100"></a></td><td><a href="pets/649" class="tooltip" title="649 - 覺醒雅典娜"><img src="images/pets/649.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/394" class="tooltip" title="394 - 慈愛神・宇宙維納斯"><img src="images/pets/394.png" width="55" height="55" $team[L2][0]</a><a href="pets/825" class="tooltip" title="825 - 蒼天神騎士・帕傑"><img src="images/pets/825.png" width="55" height="55" $team[L2][0]</a><a href="pets/752" class="tooltip" title="752 - 極光的麒麟・朔夜"><img src="images/pets/752.png" width="55" height="55" $team[L2][0]</a><a href="pets/750" class="tooltip" title="750 - 鎮地的玄武・美美"><img src="images/pets/750.png" width="55" height="55" $team[L2][0]</a><a href="pets/649" class="tooltip" title="649 - 覺醒雅典娜"><img src="images/pets/649.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/32914/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
+<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/神秘龍の史跡" class="tooltip" title="神秘龍の史跡<br />虚の水晶 闇なし"><img src="https://i1296.photobucket.com/albums/ag18/skyozora/stage/785s_zps3lblc8ni.png
+" width="100"></a></td><td><a href="pets/752" class="tooltip" title="752 - 極光的麒麟・朔夜"><img src="images/pets/752.png" width="55" height="55" $team[L2][0]</a><a href="pets/201" class="tooltip" title="201 - 紅蓮女帝・厄客德娜"><img src="images/pets/201.png" width="55" height="55" $team[L2][0]</a><a href="pets/692" class="tooltip" title="692 - 破龍皇帝・雄霸齊格飛"><img src="images/pets/692.png" width="55" height="55" $team[L2][0]</a><a href="pets/694" class="tooltip" title="694 - 薔薇戰姬・優雅女武神"><img src="images/pets/694.png" width="55" height="55" $team[L2][0]</a><a href="pets/649" class="tooltip" title="649 - 覺醒雅典娜"><img src="images/pets/649.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/752" class="tooltip" title="752 - 極光的麒麟・朔夜"><img src="images/pets/752.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/24325/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/神王の空中庭園" class="tooltip" title="神王の空中庭園<br />全知全能の主神"><img src="images/stage/187s.png" width="100"></a></td><td><a href="pets/806" class="tooltip" title="806 - 皇祖之神・伊邪那岐"><img src="images/pets/806.png" width="55" height="55" $team[L2][0]</a><a href="pets/825" class="tooltip" title="825 - 蒼天神騎士・帕傑"><img src="images/pets/825.png" width="55" height="55" $team[L2][0]</a><a href="pets/892" class="tooltip" title="892 - 天弓之光明神・阿波羅"><img src="images/pets/892.png" width="55" height="55" $team[L2][0]</a><a href="pets/649" class="tooltip" title="649 - 覺醒雅典娜"><img src="images/pets/649.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/1103" class="tooltip" title="1103 - 天上界的使徒・安潔兒"><img src="images/pets/1103.png" width="55" height="55" $team[L2][0]</a><a href="pets/806" class="tooltip" title="806 - 皇祖之神・伊邪那岐"><img src="images/pets/806.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/33916/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/神王妃の不夜城" class="tooltip" title="神王妃の不夜城<br />暗黒の神王妃"><img src="images/stage/189s.png" width="100"></a></td><td><a href="pets/649" class="tooltip" title="649 - 覺醒雅典娜"><img src="images/pets/649.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/694" class="tooltip" title="694 - 薔薇戰姬・優雅女武神"><img src="images/pets/694.png" width="55" height="55" $team[L2][0]</a><a href="pets/188" class="tooltip" title="188 - 覺醒宙斯"><img src="images/pets/188.png" width="55" height="55" $team[L2][0]</a><a href="pets/655" class="tooltip" title="655 - 雷槌的金剛神・索爾"><img src="images/pets/655.png" width="55" height="55" $team[L2][0]</a><a href="pets/232" class="tooltip" title="232 - 天空騎士・帕傑"><img src="images/pets/232.png" width="55" height="55" $team[L2][0]</a><a href="pets/649" class="tooltip" title="649 - 覺醒雅典娜"><img src="images/pets/649.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/27252/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/龍騎姫の聖地" class="tooltip" title="龍騎姫の聖地<br />古の天風"><img src="https://i1296.photobucket.com/albums/ag18/skyozora/stage/1363s_zpspu6vedml.png
+" width="100"></a></td><td><a href="pets/995" class="tooltip" title="995 - 白光炎隼神・荷魯斯"><img src="images/pets/995.png" width="55" height="55" $team[L2][0]</a><a href="pets/228" class="tooltip" title="228 - 波利王"><img src="images/pets/228.png" width="55" height="55" $team[L2][0]</a><a href="pets/1216" class="tooltip" title="1216 - 反逆的熾天使・路西法"><img src="images/pets/1216.png" width="55" height="55" $team[L2][0]</a><a href="pets/649" class="tooltip" title="649 - 覺醒雅典娜"><img src="images/pets/649.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/1028" class="tooltip" title="1028 - 百鬼呪怨・捷德"><img src="images/pets/1028.png" width="55" height="55" $team[L2][0]</a><a href="pets/994" class="tooltip" title="994 - 爆熱炎隼神・荷魯斯"><img src="images/pets/994.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/51987/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/ヘラクレス降臨！" class="tooltip" title="ヘラクレス降臨！<br />剛戦神 地獄級"><img src="images/stage/1098s.png" width="100"></a></td><td><a href="pets/746" class="tooltip" title="746 - 天導的朱雀・麗蘭"><img src="images/pets/746.png" width="55" height="55" $team[L2][0]</a><a href="pets/201" class="tooltip" title="201 - 紅蓮女帝・厄客德娜"><img src="images/pets/201.png" width="55" height="55" $team[L2][0]</a><a href="pets/694" class="tooltip" title="694 - 薔薇戰姬・優雅女武神"><img src="images/pets/694.png" width="55" height="55" $team[L2][0]</a><a href="pets/649" class="tooltip" title="649 - 覺醒雅典娜"><img src="images/pets/649.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/760" class="tooltip" title="760 - 聖獣龍・天使妖精龍"><img src="images/pets/760.png" width="55" height="55" $team[L2][0]</a><a href="pets/746" class="tooltip" title="746 - 天導的朱雀・麗蘭"><img src="images/pets/746.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/34577/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
 
 <table width="750" border="0" cellpadding="0" cellspacing="1" align="center">
 	<tr>
@@ -1052,28 +1006,9 @@ p.EvoName {
 
 <td></td>
 <td valign="top" width="336" align="center">
-<div style="background:#545454; padding:5px">
-<span style="font-weight:bold; font-size:130%;text-decoration:underline">Advertisement</span><br />
+<div id="pc_right_sticky"></div>
 
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Skyozora_336x280 -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:336px;height:280px"
-     data-ad-client="ca-pub-5454875279695201"
-     data-ad-slot="5104522419"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script><script language='JavaScript' type='text/javascript'>if (!window.af) var af = (function() {return {getcookie:function(n){var m=n+'=';var ca=document.cookie.split(';');for(var i=0;i < ca.length;i++) {var c=ca[i];while (c.charAt(0)==' ') c = c.substring(1,c.length);if (c.indexOf(m) == 0) return c.substring(m.length,c.length);}return null;},existcookie:function(n){var m=af.getcookie(n);if (m!=null&&m!=''){return true;}else{return false;}}};})(); if(af.existcookie('__AF')){afid = af.getcookie('__AF'); } else {afid = 0; } randomstr = new String (Math.random()); randomstr = randomstr.substring(2,8);document.write ("<" + "script language='JavaScript' type='text/javascript' src='" + "https://servedby.adsfactor.net/adj.php?ts=" + randomstr + "&amp;sid=910471385284&amp;afid=" + afid + "'><" + "/script>");
-</script><noscript><a href='https://servedby.adsfactor.net/adc.php?sid=910471385284' ><img src='https://servedby.adsfactor.net/adv.php?sid=910471385284' border='0'></a></noscript><div class="kiwi-ad-wrapper-300x250"></div><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Skyozora_336x280 -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:336px;height:280px"
-     data-ad-client="ca-pub-5454875279695201"
-     data-ad-slot="5104522419"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script></div>
 </td>
 
 </tr>
