@@ -30,7 +30,7 @@
 
 
 </head>
-<link rel="stylesheet" type="text/css" href="css/style.css?2018080414">
+<link rel="stylesheet" type="text/css" href="css/style.css?0322">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" charset="utf-8"></script>
 
 <script type="text/javascript"> 
@@ -269,21 +269,11 @@ $(function() {
 	<a href="/friendlist/">搜尋戰友請按此 <img src="images/searchBtn2.png" align="absmiddle" /></a>
 </td>
 
-<td style="padding: 15px 10px 8px 10px; border: #272727 1px solid; text-align:center; background: #000; font-size:14px" width="230">
 
-<!---
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="Puzzle &amp; Dragons 戰友系統及資訊網" data-lang="zh-tw" data-dnt="true" data-count="none" data-hashtags="パズドラ">推文</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^https:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
---->
-
-<a href="https://www.facebook.com/PuzzleDragonsSite" target=new class="tooltip" title="戰友系統及資訊網專頁"><img src="images/fb.png" width="20" style="vertical-align: baseline"></a> <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FPuzzleDragonsSite&amp;send=false&amp;layout=button_count&amp;width=85&amp;show_faces=false&amp;font=verdana&amp;colorscheme=light&amp;action=like&amp;height=20&amp;appId=181873884488" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:95px; height:20px;" allowTransparency="true" valign=center></iframe>
-
-</td>
-
-<td style="border: #272727 1px solid; text-align:left; width:680px; background: #000; font-size:14px; padding-left:10px">
+<td style="border: #272727 1px solid; text-align:left; width:800px; background: #000; font-size:14px; padding-left:10px">
 
 <form action="/search/" method="get">
-<input name="q" style="color:#fff; width:500px; font-size:14px" value="">
+<input name="q" style="color:#fff; width:700px; font-size:14px" value="">
 <input type="submit" value='站內搜尋' style="color:#fff; font-size:14px"></form>
 
 </td>
@@ -399,13 +389,38 @@ function vote(e){
 	<tr>
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/7130" class="tooltip" title="&lt;img src=&quot;images/pets/7130.png&quot; width=&quot;50&quot; /&gt; 7130 - 法美愛兒的花丸答題紙"><img src="images/left01.png" width="53" height="585" /></a>		</td>
-		<td width="640">
-			<div style="position: relative; text-align:center; padding:0px; margin:0px; border:0px;">
 
-			<img src="images/pets_pic/7131.png" width="640" style="border-left:1px solid #222222;border-right:1px solid #222222">
+		<td width="640">
+
+			<div style="position: relative; text-align:center; padding:0px; margin:0px; border-left:1px solid #222222;border-right:1px solid #222222; width:640px; height:585px" id="animation">
+
 
 						</div>
+			
+			<script src="javascript/pixi.min.js"></script>
+			<script src="javascript/pixi-spine.js"></script>
+			<script>
+			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
+			document.getElementById('animation').appendChild(app.view);
+			// load spine data
+			app.loader.add('spineboy', 'images/graphics/animation/mons_7131.json').load(onAssetsLoaded);
+
+			const background = PIXI.Sprite.from('images/pets_pic/7131.png');
+			background.width = 640;
+			background.height = 585;
+			app.stage.addChild(background);
+
+			function onAssetsLoaded(loader, res) {
+				const { spineData } = res.spineboy;
+
+				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
+				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
+				spine.state.setAnimation(0, "animation", true);
+				spine.state.timeScale = 1;
+			}
+			</script>
 		</td>
+			
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/7132" class="tooltip" title="&lt;img src=&quot;images/pets/7132.png&quot; width=&quot;50&quot; /&gt; 7132 - 下午的特待生・伊西斯"><img src="images/right01.png" width="53" height="585" /></a>		</td>
 	</tr>
@@ -675,7 +690,7 @@ function vote(e){
 	</tr>
 	<tr bgcolor="#000000">
 		<td>
-<a href="pets/2014" class="tooltip" title="2014 - 學生會長・路西法"><img src="images/grey.gif" data-original="images/pets/2014.png" width="46" height="46" style="padding:2px"></a><a href="pets/6106" class="tooltip" title="6106 - 回家中的學級委員長・雅典娜"><img src="images/grey.gif" data-original="images/pets/6106.png" width="46" height="46" style="padding:2px"></a><a href="pets/6107" class="tooltip" title="6107 - 回家中的風紀委員長・雅典娜"><img src="images/grey.gif" data-original="images/pets/6107.png" width="46" height="46" style="padding:2px"></a><a href="pets/7132" class="tooltip" title="7132 - 下午的特待生・伊西斯"><img src="images/grey.gif" data-original="images/pets/7132.png" width="46" height="46" style="padding:2px"></a><a href="pets/2018" class="tooltip" title="2018 - ↑↑學姐・赫拉・兀爾茲"><img src="images/grey.gif" data-original="images/pets/2018.png" width="46" height="46" style="padding:2px"></a><a href="pets/2019" class="tooltip" title="2019 - 剛腕番長・癸干忒斯"><img src="images/grey.gif" data-original="images/pets/2019.png" width="46" height="46" style="padding:2px"></a><a href="pets/4343" class="tooltip" title="4343 - 樂隊的麒麟姬・朔夜"><img src="images/grey.gif" data-original="images/pets/4343.png" width="46" height="46" style="padding:2px"></a><a href="pets/3647" class="tooltip" title="3647 - 圖書室的監督神・迦梨"><img src="images/grey.gif" data-original="images/pets/3647.png" width="46" height="46" style="padding:2px"></a><a href="pets/2815" class="tooltip" title="2815 - 新聞部的特命記者・猿飛佐助"><img src="images/grey.gif" data-original="images/pets/2815.png" width="46" height="46" style="padding:2px"></a><a href="pets/2816" class="tooltip" title="2816 - 飼育部的元氣娘・小紅帽"><img src="images/grey.gif" data-original="images/pets/2816.png" width="46" height="46" style="padding:2px"></a><a href="pets/2817" class="tooltip" title="2817 - 占卜部的名物部長・白雪公主"><img src="images/grey.gif" data-original="images/pets/2817.png" width="46" height="46" style="padding:2px"></a><a href="pets/2818" class="tooltip" title="2818 - 歸宅部的野姑娘・拇指姑娘"><img src="images/grey.gif" data-original="images/pets/2818.png" width="46" height="46" style="padding:2px"></a><a href="pets/2819" class="tooltip" title="2819 - 話劇部的女主角・灰姑娘"><img src="images/grey.gif" data-original="images/pets/2819.png" width="46" height="46" style="padding:2px"></a><a href="pets/2820" class="tooltip" title="2820 - 讀書部的才女・睡美人"><img src="images/grey.gif" data-original="images/pets/2820.png" width="46" height="46" style="padding:2px"></a><a href="pets/2821" class="tooltip" title="2821 - 排球部的惡魔・迪魯奇亞"><img src="images/grey.gif" data-original="images/pets/2821.png" width="46" height="46" style="padding:2px"></a><a href="pets/5215" class="tooltip" title="5215 - 學園的狂騷龍・八歧大蛇"><img src="images/grey.gif" data-original="images/pets/5215.png" width="46" height="46" style="padding:2px"></a><a href="pets/3649" class="tooltip" title="3649 - 嵐之轉校生・須佐之男命"><img src="images/grey.gif" data-original="images/pets/3649.png" width="46" height="46" style="padding:2px"></a><a href="pets/3650" class="tooltip" title="3650 - 料理部的新鋭・哈索爾"><img src="images/grey.gif" data-original="images/pets/3650.png" width="46" height="46" style="padding:2px"></a><a href="pets/3651" class="tooltip" title="3651 - 劍道部的主將・不動明王"><img src="images/grey.gif" data-original="images/pets/3651.png" width="46" height="46" style="padding:2px"></a><a href="pets/4344" class="tooltip" title="4344 - 學園的偶像・烏璐迦"><img src="images/grey.gif" data-original="images/pets/4344.png" width="46" height="46" style="padding:2px"></a><a href="pets/4345" class="tooltip" title="4345 - 陶藝的の女神・赫斯提亞"><img src="images/grey.gif" data-original="images/pets/4345.png" width="46" height="46" style="padding:2px"></a><a href="pets/4346" class="tooltip" title="4346 - 學生會秘書・洛基"><img src="images/grey.gif" data-original="images/pets/4346.png" width="46" height="46" style="padding:2px"></a><a href="pets/4347" class="tooltip" title="4347 - 熬夜的龍騎姬・伊絲塔"><img src="images/grey.gif" data-original="images/pets/4347.png" width="46" height="46" style="padding:2px"></a><a href="pets/4348" class="tooltip" title="4348 - 在途中的星天使・雷米勒"><img src="images/grey.gif" data-original="images/pets/4348.png" width="46" height="46" style="padding:2px"></a><a href="pets/5216" class="tooltip" title="5216 - 化身青春之物・猶格＝索托斯"><img src="images/grey.gif" data-original="images/pets/5216.png" width="46" height="46" style="padding:2px"></a><a href="pets/5217" class="tooltip" title="5217 - 隱蔽的神玩家・天照大神"><img src="images/grey.gif" data-original="images/pets/5217.png" width="46" height="46" style="padding:2px"></a><a href="pets/6109" class="tooltip" title="6109 - 善良的師龍喚士・瓦萊里婭"><img src="images/grey.gif" data-original="images/pets/6109.png" width="46" height="46" style="padding:2px"></a><a href="pets/6111" class="tooltip" title="6111 - 競爭之龍契士・陸羽＆迪斯提爾"><img src="images/grey.gif" data-original="images/pets/6111.png" width="46" height="46" style="padding:2px"></a><a href="pets/6112" class="tooltip" title="6112 - 弓道部之希望・阿波羅"><img src="images/grey.gif" data-original="images/pets/6112.png" width="46" height="46" style="padding:2px"></a><a href="pets/6113" class="tooltip" title="6113 - 睡過頭的雲龍喚士・艾莉卡"><img src="images/grey.gif" data-original="images/pets/6113.png" width="46" height="46" style="padding:2px"></a><a href="pets/7125" class="tooltip" title="7125 - 足球部前鋒・姬奧"><img src="images/grey.gif" data-original="images/pets/7125.png" width="46" height="46" style="padding:2px"></a><a href="pets/7127" class="tooltip" title="7127 - 吹奏樂部的打龍樂士・洛她洛她"><img src="images/grey.gif" data-original="images/pets/7127.png" width="46" height="46" style="padding:2px"></a><a href="pets/7129" class="tooltip" title="7129 - 午休的蒼天使・法美愛兒"><img src="images/grey.gif" data-original="images/pets/7129.png" width="46" height="46" style="padding:2px"></a>		</td>
+<a href="pets/2014" class="tooltip" title="2014 - 學生會長・路西法"><img src="images/grey.gif" data-original="images/pets/2014.png" width="46" height="46" style="padding:2px"></a><a href="pets/6106" class="tooltip" title="6106 - 回家中的學級委員長・雅典娜"><img src="images/grey.gif" data-original="images/pets/6106.png" width="46" height="46" style="padding:2px"></a><a href="pets/6107" class="tooltip" title="6107 - 回家中的風紀委員長・雅典娜"><img src="images/grey.gif" data-original="images/pets/6107.png" width="46" height="46" style="padding:2px"></a><a href="pets/7132" class="tooltip" title="7132 - 下午的特待生・伊西斯"><img src="images/grey.gif" data-original="images/pets/7132.png" width="46" height="46" style="padding:2px"></a><a href="pets/2018" class="tooltip" title="2018 - ↑↑學姐・赫拉・兀爾茲"><img src="images/grey.gif" data-original="images/pets/2018.png" width="46" height="46" style="padding:2px"></a><a href="pets/2019" class="tooltip" title="2019 - 剛腕番長・癸干忒斯"><img src="images/grey.gif" data-original="images/pets/2019.png" width="46" height="46" style="padding:2px"></a><a href="pets/4343" class="tooltip" title="4343 - 樂隊的麒麟姬・朔夜"><img src="images/grey.gif" data-original="images/pets/4343.png" width="46" height="46" style="padding:2px"></a><a href="pets/3647" class="tooltip" title="3647 - 圖書室的監督神・迦梨"><img src="images/grey.gif" data-original="images/pets/3647.png" width="46" height="46" style="padding:2px"></a><a href="pets/2815" class="tooltip" title="2815 - 新聞部的特命記者・猿飛佐助"><img src="images/grey.gif" data-original="images/pets/2815.png" width="46" height="46" style="padding:2px"></a><a href="pets/2816" class="tooltip" title="2816 - 飼育部的元氣娘・小紅帽"><img src="images/grey.gif" data-original="images/pets/2816.png" width="46" height="46" style="padding:2px"></a><a href="pets/2817" class="tooltip" title="2817 - 占卜部的名物部長・白雪公主"><img src="images/grey.gif" data-original="images/pets/2817.png" width="46" height="46" style="padding:2px"></a><a href="pets/2818" class="tooltip" title="2818 - 歸宅部的野姑娘・拇指姑娘"><img src="images/grey.gif" data-original="images/pets/2818.png" width="46" height="46" style="padding:2px"></a><a href="pets/2819" class="tooltip" title="2819 - 話劇部的女主角・灰姑娘"><img src="images/grey.gif" data-original="images/pets/2819.png" width="46" height="46" style="padding:2px"></a><a href="pets/2820" class="tooltip" title="2820 - 讀書部的才女・睡美人"><img src="images/grey.gif" data-original="images/pets/2820.png" width="46" height="46" style="padding:2px"></a><a href="pets/2821" class="tooltip" title="2821 - 排球部的惡魔・迪魯奇亞"><img src="images/grey.gif" data-original="images/pets/2821.png" width="46" height="46" style="padding:2px"></a><a href="pets/5215" class="tooltip" title="5215 - 學園的狂騷龍・八歧大蛇"><img src="images/grey.gif" data-original="images/pets/5215.png" width="46" height="46" style="padding:2px"></a><a href="pets/3649" class="tooltip" title="3649 - 嵐之轉校生・須佐之男命"><img src="images/grey.gif" data-original="images/pets/3649.png" width="46" height="46" style="padding:2px"></a><a href="pets/3650" class="tooltip" title="3650 - 料理部的新鋭・哈索爾"><img src="images/grey.gif" data-original="images/pets/3650.png" width="46" height="46" style="padding:2px"></a><a href="pets/3651" class="tooltip" title="3651 - 劍道部的主將・不動明王"><img src="images/grey.gif" data-original="images/pets/3651.png" width="46" height="46" style="padding:2px"></a><a href="pets/4344" class="tooltip" title="4344 - 學園的偶像・烏璐迦"><img src="images/grey.gif" data-original="images/pets/4344.png" width="46" height="46" style="padding:2px"></a><a href="pets/4345" class="tooltip" title="4345 - 陶藝的の女神・赫斯提亞"><img src="images/grey.gif" data-original="images/pets/4345.png" width="46" height="46" style="padding:2px"></a><a href="pets/4346" class="tooltip" title="4346 - 學生會秘書・洛基"><img src="images/grey.gif" data-original="images/pets/4346.png" width="46" height="46" style="padding:2px"></a><a href="pets/4347" class="tooltip" title="4347 - 熬夜的龍騎姬・伊絲塔"><img src="images/grey.gif" data-original="images/pets/4347.png" width="46" height="46" style="padding:2px"></a><a href="pets/4348" class="tooltip" title="4348 - 在途中的星天使・雷米勒"><img src="images/grey.gif" data-original="images/pets/4348.png" width="46" height="46" style="padding:2px"></a><a href="pets/5216" class="tooltip" title="5216 - 化身青春之物・猶格＝索托斯"><img src="images/grey.gif" data-original="images/pets/5216.png" width="46" height="46" style="padding:2px"></a><a href="pets/5217" class="tooltip" title="5217 - 隱蔽的神玩家・天照大神"><img src="images/grey.gif" data-original="images/pets/5217.png" width="46" height="46" style="padding:2px"></a><a href="pets/6109" class="tooltip" title="6109 - 善良的師龍喚士・瓦萊里婭"><img src="images/grey.gif" data-original="images/pets/6109.png" width="46" height="46" style="padding:2px"></a><a href="pets/8657" class="tooltip" title="8657 - 談義之師龍喚士・瓦萊里婭"><img src="images/grey.gif" data-original="images/pets/8657.png" width="46" height="46" style="padding:2px"></a><a href="pets/6111" class="tooltip" title="6111 - 競爭之龍契士・陸羽＆迪斯提爾"><img src="images/grey.gif" data-original="images/pets/6111.png" width="46" height="46" style="padding:2px"></a><a href="pets/6112" class="tooltip" title="6112 - 弓道部之希望・阿波羅"><img src="images/grey.gif" data-original="images/pets/6112.png" width="46" height="46" style="padding:2px"></a><a href="pets/6113" class="tooltip" title="6113 - 睡過頭的雲龍喚士・艾莉卡"><img src="images/grey.gif" data-original="images/pets/6113.png" width="46" height="46" style="padding:2px"></a><a href="pets/7125" class="tooltip" title="7125 - 足球部前鋒・基奧"><img src="images/grey.gif" data-original="images/pets/7125.png" width="46" height="46" style="padding:2px"></a><a href="pets/8659" class="tooltip" title="8659 - 夜練前鋒 ・基奧"><img src="images/grey.gif" data-original="images/pets/8659.png" width="46" height="46" style="padding:2px"></a><a href="pets/7127" class="tooltip" title="7127 - 吹奏樂部的打龍樂士・洛她洛她"><img src="images/grey.gif" data-original="images/pets/7127.png" width="46" height="46" style="padding:2px"></a><a href="pets/7129" class="tooltip" title="7129 - 午休的蒼天使・法美愛兒"><img src="images/grey.gif" data-original="images/pets/7129.png" width="46" height="46" style="padding:2px"></a><a href="pets/8648" class="tooltip" title="8648 - 新生之暗龍刀士・伊娜"><img src="images/grey.gif" data-original="images/pets/8648.png" width="46" height="46" style="padding:2px"></a><a href="pets/8650" class="tooltip" title="8650 - 學生指導主任・徳川家康"><img src="images/grey.gif" data-original="images/pets/8650.png" width="46" height="46" style="padding:2px"></a><a href="pets/8652" class="tooltip" title="8652 - 課外活動幫手・琪玲"><img src="images/grey.gif" data-original="images/pets/8652.png" width="46" height="46" style="padding:2px"></a>		</td>
 	</tr>
 </table>
 
@@ -932,17 +947,6 @@ p.EvoName {
 <br />
 
 
-<table width="750" border="0" cellpadding="0" cellspacing="1" align="center">
-	<tr>
-		<td align="left">
-		<a href="pets/7130" class="tooltip" title="7130 - ファミエルのはなまる答案用紙"><img src="images/pets_pic/7130.png" style="border-radius:15px" width=365></a> 		</td>
-		<td align="right">
-		<a href="pets/7132" class="tooltip" title="7132 - 昼下がりの特待生・イシス"><img src="images/pets_pic/7132.png" style="border-radius:15px" width=365></a>		</td>
-	</tr>
-</table>
-
-
-
 
 </td>
 
@@ -1032,7 +1036,6 @@ function updateTO(element) {
       <td align="left">
       Graphics © Copyright by Gungho Online Entertainment, Inc.<br>
       <a href="https://pad.skyozora.com">戰友系統及資訊網</a> 由 Sky C. 持有，介面設計 Naldo W.<br>
-      如對本網站有任何查詢，歡迎至 <a href="https://www.facebook.com/PuzzleDragonsSite/">Facebook 專頁</a> 聯絡
       </td>
       
       <td align="right">

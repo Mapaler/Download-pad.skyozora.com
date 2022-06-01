@@ -30,7 +30,7 @@
 
 
 </head>
-<link rel="stylesheet" type="text/css" href="css/style.css?2018080414">
+<link rel="stylesheet" type="text/css" href="css/style.css?0322">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" charset="utf-8"></script>
 
 <script type="text/javascript"> 
@@ -269,21 +269,11 @@ $(function() {
 	<a href="/friendlist/">搜尋戰友請按此 <img src="images/searchBtn2.png" align="absmiddle" /></a>
 </td>
 
-<td style="padding: 15px 10px 8px 10px; border: #272727 1px solid; text-align:center; background: #000; font-size:14px" width="230">
 
-<!---
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="Puzzle &amp; Dragons 戰友系統及資訊網" data-lang="zh-tw" data-dnt="true" data-count="none" data-hashtags="パズドラ">推文</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^https:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
---->
-
-<a href="https://www.facebook.com/PuzzleDragonsSite" target=new class="tooltip" title="戰友系統及資訊網專頁"><img src="images/fb.png" width="20" style="vertical-align: baseline"></a> <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FPuzzleDragonsSite&amp;send=false&amp;layout=button_count&amp;width=85&amp;show_faces=false&amp;font=verdana&amp;colorscheme=light&amp;action=like&amp;height=20&amp;appId=181873884488" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:95px; height:20px;" allowTransparency="true" valign=center></iframe>
-
-</td>
-
-<td style="border: #272727 1px solid; text-align:left; width:680px; background: #000; font-size:14px; padding-left:10px">
+<td style="border: #272727 1px solid; text-align:left; width:800px; background: #000; font-size:14px; padding-left:10px">
 
 <form action="/search/" method="get">
-<input name="q" style="color:#fff; width:500px; font-size:14px" value="">
+<input name="q" style="color:#fff; width:700px; font-size:14px" value="">
 <input type="submit" value='站內搜尋' style="color:#fff; font-size:14px"></form>
 
 </td>
@@ -399,13 +389,38 @@ function vote(e){
 	<tr>
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/2465" class="tooltip" title="&lt;img src=&quot;images/pets/2465.png&quot; width=&quot;50&quot; /&gt; 2465 - 潮與虎"><img src="images/left01.png" width="53" height="585" /></a>		</td>
-		<td width="640">
-			<div style="position: relative; text-align:center; padding:0px; margin:0px; border:0px;">
 
-			<img src="images/pets_pic/2466.png" width="640" style="border-left:1px solid #222222;border-right:1px solid #222222">
+		<td width="640">
+
+			<div style="position: relative; text-align:center; padding:0px; margin:0px; border-left:1px solid #222222;border-right:1px solid #222222; width:640px; height:585px" id="animation">
+
 
 						</div>
+			
+			<script src="javascript/pixi.min.js"></script>
+			<script src="javascript/pixi-spine.js"></script>
+			<script>
+			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
+			document.getElementById('animation').appendChild(app.view);
+			// load spine data
+			app.loader.add('spineboy', 'images/graphics/animation/mons_2466.json').load(onAssetsLoaded);
+
+			const background = PIXI.Sprite.from('images/pets_pic/2466.png');
+			background.width = 640;
+			background.height = 585;
+			app.stage.addChild(background);
+
+			function onAssetsLoaded(loader, res) {
+				const { spineData } = res.spineboy;
+
+				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
+				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
+				spine.state.setAnimation(0, "animation", true);
+				spine.state.timeScale = 1;
+			}
+			</script>
 		</td>
+			
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/2467" class="tooltip" title="&lt;img src=&quot;images/pets/2467.png&quot; width=&quot;50&quot; /&gt; 2467 - 霧雄與九印"><img src="images/right01.png" width="53" height="585" /></a>		</td>
 	</tr>
@@ -519,7 +534,7 @@ function vote(e){
 </style>
 
 <p style="padding:1px 10px; margin:0px">
-<a href="pets/category/「週刊少年 SUNDAY」合作活動" class="category" target="_blank"><span>#「週刊少年 SUNDAY」合作活動</span></a></p>
+<a href="pets/category/「SUNDAY ALL STARS」合作活動" class="category" target="_blank"><span>#「SUNDAY ALL STARS」合作活動</span></a></p>
 
 <br />
 
@@ -625,10 +640,10 @@ function vote(e){
 		<td width="46" style="font-size:20px">12</td>
 		<td width="46">最小<br />冷卻</td>
 		<td width="46" style="font-size:20px">
-		7		</td>
+		6		</td>
 	</tr>
 	<tr bgcolor="#000000">
-		<td colspan="5" style="line-height: 28px;">2回合內，受到的傷害減少35%；<br />並將綁定狀態減少5回合</td>
+		<td colspan="5" style="line-height: 28px;">4回合內，受到的傷害減少35%；<br />並解除所有綁定及覺醒無效狀態</td>
 	</tr>
 
 	<tr bgcolor="#000000">
@@ -822,7 +837,7 @@ p.EvoName {
 
 
 <a href="pets/2466" class="EvoTarget"><img src="images/pets/2466.png" class="pic" /></a><br />	<ul class="wtree" style="margin-left:-40px">
-			<ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/2467" class="EvoTarget"><img src="images/pets/2467.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><img src="images/evo.png" height="19" /></p><a href="pets/151" class="no_style tooltip" title="151 - 暗之守門人"><img src="images/pets/151.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/148" class="no_style tooltip" title="148 - 水之守門人"><img src="images/pets/148.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/159" class="no_style tooltip" title="159 - 紫晶精靈"><img src="images/pets/159.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/156" class="no_style tooltip" title="156 - 藍寶精靈"><img src="images/pets/156.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/160" class="no_style tooltip" title="160 - 米斯精靈"><img src="images/pets/160.png" width="35" height="35" style="padding:1px"  /></a></div></li></ul>	</ul>
+			<ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/2467" class="EvoTarget"><img src="images/pets/2467.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><img src="images/evo.png" height="19" /></p><a href="pets/151" class="no_style tooltip" title="151 - 暗之守門人"><img src="images/pets/151.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/148" class="no_style tooltip" title="148 - 水之守門人"><img src="images/pets/148.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/159" class="no_style tooltip" title="159 - 紫晶精靈"><img src="images/pets/159.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/156" class="no_style tooltip" title="156 - 藍寶精靈"><img src="images/pets/156.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/160" class="no_style tooltip" title="160 - 米斯精靈"><img src="images/pets/160.png" width="35" height="35" style="padding:1px"  /></a></div><ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/8700" class="EvoTarget"><img src="images/pets/8700.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/輔助進化/" class="EvoTarget"><img src="images/assist.png" height="19" /></a></p><a href="pets/3911" class="no_style tooltip" title="3911 - 創裝之寶玉"><img src="images/pets/3911.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1329" class="no_style tooltip" title="1329 - 暗之寶玉"><img src="images/pets/1329.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1329" class="no_style tooltip" title="1329 - 暗之寶玉"><img src="images/pets/1329.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1329" class="no_style tooltip" title="1329 - 暗之寶玉"><img src="images/pets/1329.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1329" class="no_style tooltip" title="1329 - 暗之寶玉"><img src="images/pets/1329.png" width="35" height="35" style="padding:1px"  /></a></div></li></ul></li></ul>	</ul>
 
 	
 		</td>
@@ -931,17 +946,6 @@ p.EvoName {
 <br />
 
 
-<table width="750" border="0" cellpadding="0" cellspacing="1" align="center">
-	<tr>
-		<td align="left">
-		<a href="pets/2465" class="tooltip" title="2465 - うしおととら"><img src="images/pets_pic/2465.png" style="border-radius:15px" width=365></a> 		</td>
-		<td align="right">
-		<a href="pets/2467" class="tooltip" title="2467 - キリオと九印"><img src="images/pets_pic/2467.png" style="border-radius:15px" width=365></a>		</td>
-	</tr>
-</table>
-
-
-
 
 </td>
 
@@ -1031,7 +1035,6 @@ function updateTO(element) {
       <td align="left">
       Graphics © Copyright by Gungho Online Entertainment, Inc.<br>
       <a href="https://pad.skyozora.com">戰友系統及資訊網</a> 由 Sky C. 持有，介面設計 Naldo W.<br>
-      如對本網站有任何查詢，歡迎至 <a href="https://www.facebook.com/PuzzleDragonsSite/">Facebook 專頁</a> 聯絡
       </td>
       
       <td align="right">

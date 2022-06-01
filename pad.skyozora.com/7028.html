@@ -30,7 +30,7 @@
 
 
 </head>
-<link rel="stylesheet" type="text/css" href="css/style.css?2018080414">
+<link rel="stylesheet" type="text/css" href="css/style.css?0322">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" charset="utf-8"></script>
 
 <script type="text/javascript"> 
@@ -269,21 +269,11 @@ $(function() {
 	<a href="/friendlist/">搜尋戰友請按此 <img src="images/searchBtn2.png" align="absmiddle" /></a>
 </td>
 
-<td style="padding: 15px 10px 8px 10px; border: #272727 1px solid; text-align:center; background: #000; font-size:14px" width="230">
 
-<!---
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="Puzzle &amp; Dragons 戰友系統及資訊網" data-lang="zh-tw" data-dnt="true" data-count="none" data-hashtags="パズドラ">推文</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^https:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
---->
-
-<a href="https://www.facebook.com/PuzzleDragonsSite" target=new class="tooltip" title="戰友系統及資訊網專頁"><img src="images/fb.png" width="20" style="vertical-align: baseline"></a> <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FPuzzleDragonsSite&amp;send=false&amp;layout=button_count&amp;width=85&amp;show_faces=false&amp;font=verdana&amp;colorscheme=light&amp;action=like&amp;height=20&amp;appId=181873884488" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:95px; height:20px;" allowTransparency="true" valign=center></iframe>
-
-</td>
-
-<td style="border: #272727 1px solid; text-align:left; width:680px; background: #000; font-size:14px; padding-left:10px">
+<td style="border: #272727 1px solid; text-align:left; width:800px; background: #000; font-size:14px; padding-left:10px">
 
 <form action="/search/" method="get">
-<input name="q" style="color:#fff; width:500px; font-size:14px" value="">
+<input name="q" style="color:#fff; width:700px; font-size:14px" value="">
 <input type="submit" value='站內搜尋' style="color:#fff; font-size:14px"></form>
 
 </td>
@@ -399,10 +389,11 @@ function vote(e){
 	<tr>
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/7027" class="tooltip" title="&lt;img src=&quot;images/pets/7027.png&quot; width=&quot;50&quot; /&gt; 7027 - 信愛之蝶女神・派絲娜"><img src="images/left01.png" width="53" height="585" /></a>		</td>
-		<td width="640">
-			<div style="position: relative; text-align:center; padding:0px; margin:0px; border:0px;">
 
-			<img src="images/pets_pic/7028.png" width="640" style="border-left:1px solid #222222;border-right:1px solid #222222">
+		<td width="640">
+
+			<div style="position: relative; text-align:center; padding:0px; margin:0px; border-left:1px solid #222222;border-right:1px solid #222222; width:640px; height:585px" id="animation">
+
 
 							<div class="kakusei" style="top: 92px; left: 593px;">
 					<a href="skill/%E3%82%B9%E3%82%AD%E3%83%AB%E3%83%96%E3%83%BC%E3%82%B9%E3%83%88%EF%BC%8B" class="tooltip" title="【スキルブースト＋】進入地下城的時候，隊伍全體的技能先儲了2回合&lt;br /&gt;
@@ -438,7 +429,31 @@ function vote(e){
 由此覺醒技能產生的攻擊力計算為 1 + 15%×覺醒數目×(屬性COMBO數-1)"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 						</div>
+			
+			<script src="javascript/pixi.min.js"></script>
+			<script src="javascript/pixi-spine.js"></script>
+			<script>
+			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
+			document.getElementById('animation').appendChild(app.view);
+			// load spine data
+			app.loader.add('spineboy', 'images/graphics/animation/mons_7028.json').load(onAssetsLoaded);
+
+			const background = PIXI.Sprite.from('images/pets_pic/7028.png');
+			background.width = 640;
+			background.height = 585;
+			app.stage.addChild(background);
+
+			function onAssetsLoaded(loader, res) {
+				const { spineData } = res.spineboy;
+
+				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
+				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
+				spine.state.setAnimation(0, "animation", true);
+				spine.state.timeScale = 1;
+			}
+			</script>
 		</td>
+			
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/7029" class="tooltip" title="&lt;img src=&quot;images/pets/7029.png&quot; width=&quot;50&quot; /&gt; 7029 - 靈蛇之醫學神・克勞斯"><img src="images/right01.png" width="53" height="585" /></a>		</td>
 	</tr>
@@ -730,7 +745,7 @@ function vote(e){
 		3		</td>
 	</tr>
 	<tr bgcolor="#000000">
-		<td colspan="5" style="line-height: 28px;">1回合內，天降的寶珠不會產生COMBO；<br />並解除寶珠的鎖定狀態；<br />並隨機將<img src="images/drops/Water.png" width="25" /><img src="images/drops/Heart.png" width="25" />以外的寶珠生成<img src="images/drops/Water.png" width="25" />寶珠6粒</td>
+		<td colspan="5" style="line-height: 28px;">1回合內，天降的寶珠不會產生COMBO；<br />並1回合內，結算時增加3COMBO；<br />並解除寶珠的鎖定狀態；<br />並隨機將<img src="images/drops/Water.png" width="25" /><img src="images/drops/Heart.png" width="25" />以外的寶珠生成<img src="images/drops/Water.png" width="25" />寶珠6粒</td>
 	</tr>
 
 
@@ -812,6 +827,7 @@ function vote(e){
 ※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/skill/skill-70.png"  /></a>
 					<a href="skill/%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%82%AD%E3%83%A9%E3%83%BC" class="tooltip" title="【ドラゴンキラー】持有此覺醒技能的寵物對「龍類」敵人造成的傷害3倍&lt;br /&gt;
 ※此技能效果發動時，傷害值上限提高至1.2倍"><img src="images/skill/skill-31.png"  /></a>
+					<a href="skill/%E3%82%B3%E3%83%B3%E3%83%9C%E5%BC%B7%E5%8C%96" class="tooltip" title="【コンボ強化】7COMBO或以上時攻擊力2倍"><img src="images/skill/skill-43.png"  /></a>
 				（隨機一種）</td>
 	</tr>
 	<tr align="left" bgcolor="#000000">
@@ -837,7 +853,7 @@ function vote(e){
 		<td class="head">隊長技能 - <a href="skill/医術の知識"><span style="font-size:18px; font-weight:900">医術の知識</span></a></td>
 <td bgcolor="#008be3" width="120" height="42" style="padding:0px; border-radius:8px; font-size:14px" align="center"><a href="/friendlist/7028/GroupUnspecified/Rank0-999/AllLeader/Unspecified/0-0/SortByLastUpdate/Page1/">搜尋戰友</a></td>	</tr>
 	<tr>
-		<td bgcolor="#000000" colspan=2><img src="images/drops/Water.png" width="22" />水屬性的HP2.2倍；<br />另外2種屬性或以上同時攻擊時，結算增加2COMBO；<br />另外相連消除5個或以上的<img src="images/drops/Water.png" width="22" />水寶珠時受到的傷害減少25%、攻擊力20倍</td>
+		<td bgcolor="#000000" colspan=2><img src="images/drops/Water.png" width="22" />水屬性的HP2.5倍；<br />另外2種屬性或以上同時攻擊時，結算增加2COMBO；<br />另外相連消除5個或以上的<img src="images/drops/Water.png" width="22" />水寶珠時受到的傷害減少25%、攻擊力20倍</td>
 	</tr>
 </table>
 
@@ -992,7 +1008,7 @@ p.EvoName {
 
 
 <a href="pets/7028" class="EvoTarget"><img src="images/pets/7028.png" class="pic" /></a><br />	<ul class="wtree" style="margin-left:-40px">
-			<ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/7029" class="EvoTarget"><img src="images/pets/7029.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/究極進化/" class="EvoTarget"><img src="images/evo1.png" height="19" /></a></p><a href="pets/151" class="no_style tooltip" title="151 - 暗之守門人"><img src="images/pets/151.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/321" class="no_style tooltip" title="321 - 虹之守門人"><img src="images/pets/321.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/250" class="no_style tooltip" title="250 - 雙倍紫晶精靈"><img src="images/pets/250.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4467" class="no_style tooltip" title="4467 - 暗之希石【大】"><img src="images/pets/4467.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4459" class="no_style tooltip" title="4459 - 水之希石【中】"><img src="images/pets/4459.png" width="35" height="35" style="padding:1px"  /></a></div></li></ul>	</ul>
+			<ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/7029" class="EvoTarget"><img src="images/pets/7029.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/究極進化/" class="EvoTarget"><img src="images/evo1.png" height="19" /></a></p><a href="pets/151" class="no_style tooltip" title="151 - 暗之守門人"><img src="images/pets/151.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/321" class="no_style tooltip" title="321 - 虹之守門人"><img src="images/pets/321.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/250" class="no_style tooltip" title="250 - 雙倍紫晶精靈"><img src="images/pets/250.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4467" class="no_style tooltip" title="4467 - 暗之希石【大】"><img src="images/pets/4467.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4459" class="no_style tooltip" title="4459 - 水之希石【中】"><img src="images/pets/4459.png" width="35" height="35" style="padding:1px"  /></a></div><ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/8645" class="EvoTarget"><img src="images/pets/8645.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/輔助進化/" class="EvoTarget"><img src="images/assist.png" height="19" /></a></p><a href="pets/3911" class="no_style tooltip" title="3911 - 創裝之寶玉"><img src="images/pets/3911.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/6522" class="no_style tooltip" title="6522 - 希石：靜夜龍・雪赫拉莎德＝龍"><img src="images/pets/6522.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1329" class="no_style tooltip" title="1329 - 暗之寶玉"><img src="images/pets/1329.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1329" class="no_style tooltip" title="1329 - 暗之寶玉"><img src="images/pets/1329.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1329" class="no_style tooltip" title="1329 - 暗之寶玉"><img src="images/pets/1329.png" width="35" height="35" style="padding:1px"  /></a></div></li></ul></li></ul>	</ul>
 
 	
 		</td>
@@ -1029,7 +1045,7 @@ p.EvoName {
 					datasets: [
 						{
 							label: "評分",
-							data: [0, 0, 0, 0, 0, 7.00],
+							data: [0, 0, 0, 0, 0, 7.25],
 							backgroundColor: "rgba(255,99,132,0.2)",
 							borderColor: "rgba(255,99,132,1)",
 							pointBackgroundColor: "rgba(255,99,132,1)",
@@ -1095,22 +1111,11 @@ p.EvoName {
 			</script>
 			</div>
 		</td>
-		<td bgcolor="#000000" width="80">作為隊長</td><td bgcolor="#000000" class="poll"><select id="poll1" name="poll1" onChange="vote(1);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">作為隊員</td><td bgcolor="#000000" class="poll"><select id="poll2" name="poll2" onChange="vote(2);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">作為輔助</td><td bgcolor="#000000" class="poll"><select id="poll3" name="poll3" onChange="vote(3);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">單人配合</td><td bgcolor="#000000" class="poll"><select id="poll4" name="poll4" onChange="vote(4);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">協力配合</td><td bgcolor="#000000" class="poll"><select id="poll5" name="poll5" onChange="vote(5);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">美觀度</td><td bgcolor="#000000" class="poll"><select id="poll6" name="poll6" onChange="vote(6);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">平均得分</td><td bgcolor="#000000" id="AvgScore">1.17</td></tr></table>
+		<td bgcolor="#000000" width="80">作為隊長</td><td bgcolor="#000000" class="poll"><select id="poll1" name="poll1" onChange="vote(1);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">作為隊員</td><td bgcolor="#000000" class="poll"><select id="poll2" name="poll2" onChange="vote(2);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">作為輔助</td><td bgcolor="#000000" class="poll"><select id="poll3" name="poll3" onChange="vote(3);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">單人配合</td><td bgcolor="#000000" class="poll"><select id="poll4" name="poll4" onChange="vote(4);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">協力配合</td><td bgcolor="#000000" class="poll"><select id="poll5" name="poll5" onChange="vote(5);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">美觀度</td><td bgcolor="#000000" class="poll"><select id="poll6" name="poll6" onChange="vote(6);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">平均得分</td><td bgcolor="#000000" id="AvgScore">1.21</td></tr></table>
 
 
 <br />
-<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/ネプチューン＝ドラゴン降臨！" class="tooltip" title="ネプチューン＝ドラゴン降臨！<br />海王神龍 壊滅級【リーダー助っ人固定】"><img src="images/stage/8228s.png" width="100"></a></td><td><a href="pets/6649" class="tooltip" title="6649 - 超轉生尼普頓"><img src="images/pets/6649.png" width="55" height="55" $team[L2][0]</a><a href="pets/6759" class="tooltip" title="6759 - 天導刃之青龍・卡玲"><img src="images/pets/6759.png" width="55" height="55" $team[L2][0]</a><a href="pets/7028" class="tooltip" title="7028 - 克勞斯"><img src="images/pets/7028.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/6149" class="tooltip" title="6149 - 超轉生赫爾墨斯"><img src="images/pets/6149.png" width="55" height="55" $team[L2][0]</a><a href="pets/5932" class="tooltip" title="5932 - 極醒之天央神・天之御中主神"><img src="images/pets/5932.png" width="55" height="55" $team[L2][0]</a><a href="pets/2717" class="tooltip" title="2717 - 聖舶神・挪亞龍"><img src="images/pets/2717.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/118313/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/レガロバン降臨！" class="tooltip" title="レガロバン降臨！<br />豹魔獣 絶壊滅級"><img src="images/stage/7465s.png" width="100"></a></td><td><a href="pets/5526" class="tooltip" title="5526 - 煌黑龍"><img src="images/pets/5526.png" width="55" height="55" $team[L2][0]</a><a href="pets/7028" class="tooltip" title="7028 - 克勞斯"><img src="images/pets/7028.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4137" class="tooltip" title="4137 - 風漂龍"><img src="images/pets/4137.png" width="55" height="55" $team[L2][0]</a><a href="pets/5525" class="tooltip" title="5525 - 冰呪龍"><img src="images/pets/5525.png" width="55" height="55" $team[L2][0]</a><a href="pets/7007" class="tooltip" title="7007 - 超轉生軍荼利明王"><img src="images/pets/7007.png" width="55" height="55" $team[L2][0]</a><a href="pets/7325" class="tooltip" title="7325 - 繡球花之星萌芽"><img src="images/pets/7325.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/118022/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
-
-<table width="750" border="0" cellpadding="0" cellspacing="1" align="center">
-	<tr>
-		<td align="left">
-		<a href="pets/7027" class="tooltip" title="7027 - 信愛の蝶女神・プリシラ"><img src="images/pets_pic/7027.png" style="border-radius:15px" width=365></a> 		</td>
-		<td align="right">
-		<a href="pets/7029" class="tooltip" title="7029 - 霊蛇の医学神・クラウス"><img src="images/pets_pic/7029.png" style="border-radius:15px" width=365></a>		</td>
-	</tr>
-</table>
-
-
+<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/レガロバン降臨！" class="tooltip" title="レガロバン降臨！<br />豹魔獣 絶壊滅級"><img src="images/stage/7465s.png" width="100"></a></td><td><a href="pets/5526" class="tooltip" title="5526 - 煌黑龍"><img src="images/pets/5526.png" width="55" height="55" $team[L2][0]</a><a href="pets/7028" class="tooltip" title="7028 - 克勞斯"><img src="images/pets/7028.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4137" class="tooltip" title="4137 - 風漂龍"><img src="images/pets/4137.png" width="55" height="55" $team[L2][0]</a><a href="pets/5525" class="tooltip" title="5525 - 冰呪龍"><img src="images/pets/5525.png" width="55" height="55" $team[L2][0]</a><a href="pets/7007" class="tooltip" title="7007 - 超轉生軍荼利明王"><img src="images/pets/7007.png" width="55" height="55" $team[L2][0]</a><a href="pets/7325" class="tooltip" title="7325 - 繡球花之星萌芽"><img src="images/pets/7325.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/118022/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/ネプチューン＝ドラゴン降臨！" class="tooltip" title="ネプチューン＝ドラゴン降臨！<br />海王神龍 壊滅級【リーダー助っ人固定】"><img src="images/stage/8228s.png" width="100"></a></td><td><a href="pets/6649" class="tooltip" title="6649 - 超轉生尼普頓"><img src="images/pets/6649.png" width="55" height="55" $team[L2][0]</a><a href="pets/6759" class="tooltip" title="6759 - 天導刃之青龍・卡玲"><img src="images/pets/6759.png" width="55" height="55" $team[L2][0]</a><a href="pets/7028" class="tooltip" title="7028 - 克勞斯"><img src="images/pets/7028.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/6149" class="tooltip" title="6149 - 超轉生赫爾墨斯"><img src="images/pets/6149.png" width="55" height="55" $team[L2][0]</a><a href="pets/5932" class="tooltip" title="5932 - 極醒之天央神・天之御中主神"><img src="images/pets/5932.png" width="55" height="55" $team[L2][0]</a><a href="pets/2717" class="tooltip" title="2717 - 聖舶神・挪亞龍"><img src="images/pets/2717.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/118313/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
 
 
 </td>
@@ -1201,7 +1206,6 @@ function updateTO(element) {
       <td align="left">
       Graphics © Copyright by Gungho Online Entertainment, Inc.<br>
       <a href="https://pad.skyozora.com">戰友系統及資訊網</a> 由 Sky C. 持有，介面設計 Naldo W.<br>
-      如對本網站有任何查詢，歡迎至 <a href="https://www.facebook.com/PuzzleDragonsSite/">Facebook 專頁</a> 聯絡
       </td>
       
       <td align="right">

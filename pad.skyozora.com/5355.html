@@ -30,7 +30,7 @@
 
 
 </head>
-<link rel="stylesheet" type="text/css" href="css/style.css?2018080414">
+<link rel="stylesheet" type="text/css" href="css/style.css?0322">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" charset="utf-8"></script>
 
 <script type="text/javascript"> 
@@ -269,21 +269,11 @@ $(function() {
 	<a href="/friendlist/">搜尋戰友請按此 <img src="images/searchBtn2.png" align="absmiddle" /></a>
 </td>
 
-<td style="padding: 15px 10px 8px 10px; border: #272727 1px solid; text-align:center; background: #000; font-size:14px" width="230">
 
-<!---
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="Puzzle &amp; Dragons 戰友系統及資訊網" data-lang="zh-tw" data-dnt="true" data-count="none" data-hashtags="パズドラ">推文</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^https:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
---->
-
-<a href="https://www.facebook.com/PuzzleDragonsSite" target=new class="tooltip" title="戰友系統及資訊網專頁"><img src="images/fb.png" width="20" style="vertical-align: baseline"></a> <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FPuzzleDragonsSite&amp;send=false&amp;layout=button_count&amp;width=85&amp;show_faces=false&amp;font=verdana&amp;colorscheme=light&amp;action=like&amp;height=20&amp;appId=181873884488" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:95px; height:20px;" allowTransparency="true" valign=center></iframe>
-
-</td>
-
-<td style="border: #272727 1px solid; text-align:left; width:680px; background: #000; font-size:14px; padding-left:10px">
+<td style="border: #272727 1px solid; text-align:left; width:800px; background: #000; font-size:14px; padding-left:10px">
 
 <form action="/search/" method="get">
-<input name="q" style="color:#fff; width:500px; font-size:14px" value="">
+<input name="q" style="color:#fff; width:700px; font-size:14px" value="">
 <input type="submit" value='站內搜尋' style="color:#fff; font-size:14px"></form>
 
 </td>
@@ -399,10 +389,11 @@ function vote(e){
 	<tr>
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/5354" class="tooltip" title="&lt;img src=&quot;images/pets/5354.png&quot; width=&quot;50&quot; /&gt; 5354 - 揮龍樂士・迪奧羅"><img src="images/left01.png" width="53" height="585" /></a>		</td>
-		<td width="640">
-			<div style="position: relative; text-align:center; padding:0px; margin:0px; border:0px;">
 
-			<img src="images/pets_pic/5355.png" width="640" style="border-left:1px solid #222222;border-right:1px solid #222222">
+		<td width="640">
+
+			<div style="position: relative; text-align:center; padding:0px; margin:0px; border-left:1px solid #222222;border-right:1px solid #222222; width:640px; height:585px" id="animation">
+
 
 							<div class="kakusei" style="top: 92px; left: 593px;">
 					<a href="skill/%E7%81%AB%E3%83%80%E3%83%A1%E3%83%BC%E3%82%B8%E8%BB%BD%E6%B8%9B" class="tooltip" title="【火ダメージ軽減】受到的火屬性傷害減少7%"><img src="images/transparent.png" width="31" height="31"></a>
@@ -436,13 +427,37 @@ function vote(e){
 該組寶珠傷害提升為 (1+70%)(1+70%) = 2.89倍，如此類推"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 							<div class="kakusei" style="top: 442px; left: 593px;">
-					<a href="skill/HP50%EF%BC%85%E4%BB%A5%E4%B8%8B%E5%BC%B7%E5%8C%96" class="tooltip" title="【HP50％以下強化】HP50％或以下時，持有此覺醒技能之寵物的攻擊力2倍"><img src="images/transparent.png" width="31" height="31"></a>
+					<a href="skill/HP50%EF%BC%85%E4%BB%A5%E4%B8%8B%E5%BC%B7%E5%8C%96" class="tooltip" title="【HP50％以下強化】HP50％或以下時，持有此覺醒技能之寵物的攻擊力2.2倍"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 							<div class="kakusei" style="top: 492px; left: 593px;">
 					<a href="skill/%E3%82%AC%E3%83%BC%E3%83%89%E3%83%96%E3%83%AC%E3%82%A4%E3%82%AF" class="tooltip" title="【ガードブレイク】5屬性同時攻擊時，持有此覺醒技能的寵物可以無視敵人的防禦力減少進行攻擊"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 						</div>
+			
+			<script src="javascript/pixi.min.js"></script>
+			<script src="javascript/pixi-spine.js"></script>
+			<script>
+			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
+			document.getElementById('animation').appendChild(app.view);
+			// load spine data
+			app.loader.add('spineboy', 'images/graphics/animation/mons_5355.json').load(onAssetsLoaded);
+
+			const background = PIXI.Sprite.from('images/pets_pic/5355.png');
+			background.width = 640;
+			background.height = 585;
+			app.stage.addChild(background);
+
+			function onAssetsLoaded(loader, res) {
+				const { spineData } = res.spineboy;
+
+				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
+				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
+				spine.state.setAnimation(0, "animation", true);
+				spine.state.timeScale = 1;
+			}
+			</script>
 		</td>
+			
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/5356" class="tooltip" title="&lt;img src=&quot;images/pets/5356.png&quot; width=&quot;50&quot; /&gt; 5356 - 光笛龍"><img src="images/right01.png" width="53" height="585" /></a>		</td>
 	</tr>
@@ -800,7 +815,7 @@ function vote(e){
 &lt;br /&gt;
 效果以乘法累積，如該寵物持有2個此覺醒技能時&lt;br /&gt;
 該組寶珠傷害提升為 (1+70%)(1+70%) = 2.89倍，如此類推"><img src="images/skill/skill-27.png"  /></a>
-					<a href="skill/HP50%EF%BC%85%E4%BB%A5%E4%B8%8B%E5%BC%B7%E5%8C%96" class="tooltip" title="【HP50％以下強化】HP50％或以下時，持有此覺醒技能之寵物的攻擊力2倍"><img src="images/skill/skill-58.png"  /></a>
+					<a href="skill/HP50%EF%BC%85%E4%BB%A5%E4%B8%8B%E5%BC%B7%E5%8C%96" class="tooltip" title="【HP50％以下強化】HP50％或以下時，持有此覺醒技能之寵物的攻擊力2.2倍"><img src="images/skill/skill-58.png"  /></a>
 					<a href="skill/%E3%82%AC%E3%83%BC%E3%83%89%E3%83%96%E3%83%AC%E3%82%A4%E3%82%AF" class="tooltip" title="【ガードブレイク】5屬性同時攻擊時，持有此覺醒技能的寵物可以無視敵人的防禦力減少進行攻擊"><img src="images/skill/skill-44.png"  /></a>
 				</td>
 	</tr>
@@ -1104,17 +1119,6 @@ p.EvoName {
 <br />
 <table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/リベルタス降臨！" class="tooltip" title="リベルタス降臨！<br />自由神 壊滅級"><img src="images/stage/5057s.png" width="100"></a></td><td><a href="pets/5689" class="tooltip" title="5689 - 明澄之唱龍樂士・花希兒"><img src="images/pets/5689.png" width="55" height="55" $team[L2][0]</a><a href="pets/5355" class="tooltip" title="5355 - 魔曲之揮龍樂士・迪奧羅"><img src="images/pets/5355.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4746" class="tooltip" title="4746 - 極醒之龍帝王・撒利牙斯＝根源"><img src="images/pets/4746.png" width="55" height="55" $team[L2][0]</a><a href="pets/5435" class="tooltip" title="5435 - 彩龍喚士之子・阿魯杜那"><img src="images/pets/5435.png" width="55" height="55" $team[L2][0]</a><a href="pets/3264" class="tooltip" title="3264 - 起源神・奧丁龍・光槍型"><img src="images/pets/3264.png" width="55" height="55" $team[L2][0]</a><a href="pets/4016" class="tooltip" title="4016 - 靜觀的穩龍契士・陸羽"><img src="images/pets/4016.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116149/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
 
-<table width="750" border="0" cellpadding="0" cellspacing="1" align="center">
-	<tr>
-		<td align="left">
-		<a href="pets/5354" class="tooltip" title="5354 - 揮龍楽士・ディオロ"><img src="images/pets_pic/5354.png" style="border-radius:15px" width=365></a> 		</td>
-		<td align="right">
-		<a href="pets/5356" class="tooltip" title="5356 - ヒカフエドラ"><img src="images/pets_pic/5356.png" style="border-radius:15px" width=365></a>		</td>
-	</tr>
-</table>
-
-
-
 
 </td>
 
@@ -1204,7 +1208,6 @@ function updateTO(element) {
       <td align="left">
       Graphics © Copyright by Gungho Online Entertainment, Inc.<br>
       <a href="https://pad.skyozora.com">戰友系統及資訊網</a> 由 Sky C. 持有，介面設計 Naldo W.<br>
-      如對本網站有任何查詢，歡迎至 <a href="https://www.facebook.com/PuzzleDragonsSite/">Facebook 專頁</a> 聯絡
       </td>
       
       <td align="right">

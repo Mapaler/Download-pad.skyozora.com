@@ -30,7 +30,7 @@
 
 
 </head>
-<link rel="stylesheet" type="text/css" href="css/style.css?2018080414">
+<link rel="stylesheet" type="text/css" href="css/style.css?0322">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" charset="utf-8"></script>
 
 <script type="text/javascript"> 
@@ -269,21 +269,11 @@ $(function() {
 	<a href="/friendlist/">搜尋戰友請按此 <img src="images/searchBtn2.png" align="absmiddle" /></a>
 </td>
 
-<td style="padding: 15px 10px 8px 10px; border: #272727 1px solid; text-align:center; background: #000; font-size:14px" width="230">
 
-<!---
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="Puzzle &amp; Dragons 戰友系統及資訊網" data-lang="zh-tw" data-dnt="true" data-count="none" data-hashtags="パズドラ">推文</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^https:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
---->
-
-<a href="https://www.facebook.com/PuzzleDragonsSite" target=new class="tooltip" title="戰友系統及資訊網專頁"><img src="images/fb.png" width="20" style="vertical-align: baseline"></a> <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FPuzzleDragonsSite&amp;send=false&amp;layout=button_count&amp;width=85&amp;show_faces=false&amp;font=verdana&amp;colorscheme=light&amp;action=like&amp;height=20&amp;appId=181873884488" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:95px; height:20px;" allowTransparency="true" valign=center></iframe>
-
-</td>
-
-<td style="border: #272727 1px solid; text-align:left; width:680px; background: #000; font-size:14px; padding-left:10px">
+<td style="border: #272727 1px solid; text-align:left; width:800px; background: #000; font-size:14px; padding-left:10px">
 
 <form action="/search/" method="get">
-<input name="q" style="color:#fff; width:500px; font-size:14px" value="">
+<input name="q" style="color:#fff; width:700px; font-size:14px" value="">
 <input type="submit" value='站內搜尋' style="color:#fff; font-size:14px"></form>
 
 </td>
@@ -399,10 +389,11 @@ function vote(e){
 	<tr>
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/3952" class="tooltip" title="&lt;img src=&quot;images/pets/3952.png&quot; width=&quot;50&quot; /&gt; 3952 - 班力杜拉"><img src="images/left01.png" width="53" height="585" /></a>		</td>
-		<td width="640">
-			<div style="position: relative; text-align:center; padding:0px; margin:0px; border:0px;">
 
-			<img src="images/pets_pic/3953.png" width="640" style="border-left:1px solid #222222;border-right:1px solid #222222">
+		<td width="640">
+
+			<div style="position: relative; text-align:center; padding:0px; margin:0px; border-left:1px solid #222222;border-right:1px solid #222222; width:640px; height:585px" id="animation">
+
 
 							<div class="kakusei" style="top: 92px; left: 593px;">
 					<a href="skill/%E5%B0%81%E5%8D%B0%E8%80%90%E6%80%A7" class="tooltip" title="【封印耐性】20%機率可將敵人使用的技能封印無效化&lt;br /&gt;效果以加法累積，全隊伍有5個此覺醒技能時則可達到100%無效化&lt;br /&gt;
@@ -459,7 +450,31 @@ function vote(e){
 此效果以加法累積，如隊伍一共有 y 個此覺醒技能，可為該組寶珠額外提升 7y %的傷害"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 						</div>
+			
+			<script src="javascript/pixi.min.js"></script>
+			<script src="javascript/pixi-spine.js"></script>
+			<script>
+			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
+			document.getElementById('animation').appendChild(app.view);
+			// load spine data
+			app.loader.add('spineboy', 'images/graphics/animation/mons_3953.json').load(onAssetsLoaded);
+
+			const background = PIXI.Sprite.from('images/pets_pic/3953.png');
+			background.width = 640;
+			background.height = 585;
+			app.stage.addChild(background);
+
+			function onAssetsLoaded(loader, res) {
+				const { spineData } = res.spineboy;
+
+				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
+				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
+				spine.state.setAnimation(0, "animation", true);
+				spine.state.timeScale = 1;
+			}
+			</script>
 		</td>
+			
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/3954" class="tooltip" title="&lt;img src=&quot;images/pets/3954.png&quot; width=&quot;50&quot; /&gt; 3954 - 燈龍喚士・舞寧"><img src="images/right01.png" width="53" height="585" /></a>		</td>
 	</tr>
@@ -573,7 +588,7 @@ function vote(e){
 </style>
 
 <p style="padding:1px 10px; margin:0px">
-<a href="pets/category/龍契士＆龍喚士" class="category" target="_blank"><span>#龍契士＆龍喚士</span></a></p>
+<a href="pets/category/「龍契士＆龍喚士」系列活動" class="category" target="_blank"><span>#「龍契士＆龍喚士」系列活動</span></a></p>
 
 <br />
 
@@ -724,7 +739,7 @@ function vote(e){
 		13		</td>
 	</tr>
 	<tr bgcolor="#000000">
-		<td colspan="5" style="line-height: 28px;">將敵人攻擊時間延遲2回合；<br />並2回合內，敵人的屬性傷害吸收技能無效化；<br />並所有寶珠變成<img src="images/drops/Fire.png" width="25" /><img src="images/drops/Water.png" width="25" /><img src="images/drops/Wood.png" width="25" /><img src="images/drops/Light.png" width="25" /><img src="images/drops/Dark.png" width="25" /><img src="images/drops/Heart.png" width="25" /></td>
+		<td colspan="5" style="line-height: 28px;">將敵人攻擊時間延遲2回合；<br />並2回合內，敵人的指定傷害值以上吸收技能＆屬性傷害吸收技能無效化；<br />並所有寶珠變成<img src="images/drops/Fire.png" width="25" /><img src="images/drops/Water.png" width="25" /><img src="images/drops/Wood.png" width="25" /><img src="images/drops/Light.png" width="25" /><img src="images/drops/Dark.png" width="25" /><img src="images/drops/Heart.png" width="25" /></td>
 	</tr>
 
 	<tr bgcolor="#000000">
@@ -732,6 +747,7 @@ function vote(e){
 			持有相同主動技能的寵物: <br />
 			<a href="pets/3930" class="tooltip" title="3930 - 博愛的彩龍喚士・伊德雅兒"><img src="images/pets/3930.png" width="46" height="46" /></a>
 				<a href="pets/3931" class="tooltip" title="3931 - 偏愛的凶龍喚士・伊德雅兒"><img src="images/pets/3931.png" width="46" height="46" /></a>
+				<a href="pets/8860" class="tooltip" title="8860 - 伊德雅兒的龍杖"><img src="images/pets/8860.png" width="46" height="46" /></a>
 				<a href="pets/3952" class="tooltip" title="3952 - 班力杜拉"><img src="images/pets/3952.png" width="46" height="46" /></a>
 			</td>
 	</tr>
@@ -806,7 +822,7 @@ function vote(e){
 		<td>
 					<a href="skill/%E9%9B%B2%E8%80%90%E6%80%A7" class="tooltip" title="【雲耐性】可將敵人的雲攻撃100%無效化&lt;br /&gt;
 ※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/skill/skill-54.png"  /></a>
-					<a href="skill/HP50%EF%BC%85%E4%BB%A5%E4%B8%8B%E5%BC%B7%E5%8C%96" class="tooltip" title="【HP50％以下強化】HP50％或以下時，持有此覺醒技能之寵物的攻擊力2倍"><img src="images/skill/skill-58.png"  /></a>
+					<a href="skill/HP50%EF%BC%85%E4%BB%A5%E4%B8%8B%E5%BC%B7%E5%8C%96" class="tooltip" title="【HP50％以下強化】HP50％或以下時，持有此覺醒技能之寵物的攻擊力2.2倍"><img src="images/skill/skill-58.png"  /></a>
 					<a href="skill/2%E4%BD%93%E6%94%BB%E6%92%83" class="tooltip" title="【2体攻撃】消除4顆與自身屬性相同的寶珠時，持有該技能的寵物、該組寶珠的攻擊力上升70%&lt;br /&gt;
 並可同時攻擊2個敵人（4顆以上不會有攻擊加乘）&lt;br /&gt;
 &lt;br /&gt;
@@ -1101,17 +1117,6 @@ p.EvoName {
 <br />
 
 
-<table width="750" border="0" cellpadding="0" cellspacing="1" align="center">
-	<tr>
-		<td align="left">
-		<a href="pets/3952" class="tooltip" title="3952 - バリドゥーラ"><img src="images/pets_pic/3952.png" style="border-radius:15px" width=365></a> 		</td>
-		<td align="right">
-		<a href="pets/3954" class="tooltip" title="3954 - 灯龍喚士・マイネ"><img src="images/pets_pic/3954.png" style="border-radius:15px" width=365></a>		</td>
-	</tr>
-</table>
-
-
-
 
 </td>
 
@@ -1201,7 +1206,6 @@ function updateTO(element) {
       <td align="left">
       Graphics © Copyright by Gungho Online Entertainment, Inc.<br>
       <a href="https://pad.skyozora.com">戰友系統及資訊網</a> 由 Sky C. 持有，介面設計 Naldo W.<br>
-      如對本網站有任何查詢，歡迎至 <a href="https://www.facebook.com/PuzzleDragonsSite/">Facebook 專頁</a> 聯絡
       </td>
       
       <td align="right">

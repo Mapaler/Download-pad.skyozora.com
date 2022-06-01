@@ -30,7 +30,7 @@
 
 
 </head>
-<link rel="stylesheet" type="text/css" href="css/style.css?2018080414">
+<link rel="stylesheet" type="text/css" href="css/style.css?0322">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" charset="utf-8"></script>
 
 <script type="text/javascript"> 
@@ -269,21 +269,11 @@ $(function() {
 	<a href="/friendlist/">搜尋戰友請按此 <img src="images/searchBtn2.png" align="absmiddle" /></a>
 </td>
 
-<td style="padding: 15px 10px 8px 10px; border: #272727 1px solid; text-align:center; background: #000; font-size:14px" width="230">
 
-<!---
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="Puzzle &amp; Dragons 戰友系統及資訊網" data-lang="zh-tw" data-dnt="true" data-count="none" data-hashtags="パズドラ">推文</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^https:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
---->
-
-<a href="https://www.facebook.com/PuzzleDragonsSite" target=new class="tooltip" title="戰友系統及資訊網專頁"><img src="images/fb.png" width="20" style="vertical-align: baseline"></a> <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FPuzzleDragonsSite&amp;send=false&amp;layout=button_count&amp;width=85&amp;show_faces=false&amp;font=verdana&amp;colorscheme=light&amp;action=like&amp;height=20&amp;appId=181873884488" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:95px; height:20px;" allowTransparency="true" valign=center></iframe>
-
-</td>
-
-<td style="border: #272727 1px solid; text-align:left; width:680px; background: #000; font-size:14px; padding-left:10px">
+<td style="border: #272727 1px solid; text-align:left; width:800px; background: #000; font-size:14px; padding-left:10px">
 
 <form action="/search/" method="get">
-<input name="q" style="color:#fff; width:500px; font-size:14px" value="">
+<input name="q" style="color:#fff; width:700px; font-size:14px" value="">
 <input type="submit" value='站內搜尋' style="color:#fff; font-size:14px"></form>
 
 </td>
@@ -399,10 +389,11 @@ function vote(e){
 	<tr>
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/3936" class="tooltip" title="&lt;img src=&quot;images/pets/3936.png&quot; width=&quot;50&quot; /&gt; 3936 - 庭龍喚士・紗薩爾"><img src="images/left01.png" width="53" height="585" /></a>		</td>
-		<td width="640">
-			<div style="position: relative; text-align:center; padding:0px; margin:0px; border:0px;">
 
-			<img src="images/pets_pic/3937.png" width="640" style="border-left:1px solid #222222;border-right:1px solid #222222">
+		<td width="640">
+
+			<div style="position: relative; text-align:center; padding:0px; margin:0px; border-left:1px solid #222222;border-right:1px solid #222222; width:640px; height:585px" id="animation">
+
 
 							<div class="kakusei" style="top: 92px; left: 593px;">
 					<a href="skill/%E6%93%8D%E4%BD%9C%E6%99%82%E9%96%93%E5%BB%B6%E9%95%B7" class="tooltip" title="【操作時間延長】寶珠移動時間延長0.5秒"><img src="images/transparent.png" width="31" height="31"></a>
@@ -437,7 +428,31 @@ function vote(e){
 					<a href="skill/%E3%83%81%E3%83%BC%E3%83%A0HP%E5%BC%B7%E5%8C%96" class="tooltip" title="【チームHP強化】隊伍的HP量提升5%"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 						</div>
+			
+			<script src="javascript/pixi.min.js"></script>
+			<script src="javascript/pixi-spine.js"></script>
+			<script>
+			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
+			document.getElementById('animation').appendChild(app.view);
+			// load spine data
+			app.loader.add('spineboy', 'images/graphics/animation/mons_3937.json').load(onAssetsLoaded);
+
+			const background = PIXI.Sprite.from('images/pets_pic/3937.png');
+			background.width = 640;
+			background.height = 585;
+			app.stage.addChild(background);
+
+			function onAssetsLoaded(loader, res) {
+				const { spineData } = res.spineboy;
+
+				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
+				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
+				spine.state.setAnimation(0, "animation", true);
+				spine.state.timeScale = 1;
+			}
+			</script>
 		</td>
+			
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/3938" class="tooltip" title="&lt;img src=&quot;images/pets/3938.png&quot; width=&quot;50&quot; /&gt; 3938 - 衛龍喚士・拉斯昂絲"><img src="images/right01.png" width="53" height="585" /></a>		</td>
 	</tr>
@@ -551,7 +566,7 @@ function vote(e){
 </style>
 
 <p style="padding:1px 10px; margin:0px">
-<a href="pets/category/龍喚士" class="category" target="_blank"><span>#龍喚士</span></a><a href="pets/category/龍契士＆龍喚士" class="category" target="_blank"><span>#龍契士＆龍喚士</span></a></p>
+<a href="pets/category/「龍契士＆龍喚士」系列活動" class="category" target="_blank"><span>#「龍契士＆龍喚士」系列活動</span></a><a href="pets/category/龍喚士" class="category" target="_blank"><span>#龍喚士</span></a></p>
 
 <br />
 
@@ -597,14 +612,14 @@ function vote(e){
 			<table width="360" border="0" style="table-layout:fixed">
 				<tr>
 					<td width="46"></td>
-					<td width="80">HP:  <span style="color:#FF73B7; font-weight:900">+400</span></td>
-					<td>攻擊力:  <span style="color:#FF73B7; font-weight:900">+200</span></td>
-					<td>回復力:  <span style="color:#FF73B7; font-weight:900">+200</span></td>
+					<td width="80">HP: -</td>
+					<td>攻擊力: -</td>
+					<td>回復力: -</td>
 				</tr>
 			</table>
 		</td>
 			<td>
-			<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數:  <span style="color:#FF73B7; font-weight:900">+147</span></a>
+			<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數: -</a>
 		</td>
 	</tr>
 
@@ -616,9 +631,9 @@ function vote(e){
 			<table width="360" border="0" style="table-layout:fixed">
 				<tr>
 					<td width="46">LV.110</td>
-					<td width="80">HP: 4211</td>
-					<td>攻擊力: 1870</td>
-					<td>回復力: 994</td>
+					<td width="80">HP: 4548</td>
+					<td>攻擊力: 2020</td>
+					<td>回復力: 1073</td>
 				</tr>
 				<tr>
 					<td colspan="4">※界限突破後每提升一級需要5,000,000經驗值</td>
@@ -626,7 +641,7 @@ function vote(e){
 			</table>
 		</td>
 		<td>
-				<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數: 1126</a>
+				<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數: 1216</a>
 		</td>
 	</tr>
 	<tr align="center" bgcolor="#000000">
@@ -637,9 +652,9 @@ function vote(e){
 			<table width="360" border="0" style="table-layout:fixed">
 				<tr>
 					<td width="46">LV.120</td>
-					<td width="80">HP: 4548</td>
-					<td>攻擊力: 1945</td>
-					<td>回復力: 1034</td>
+					<td width="80">HP: 4885</td>
+					<td>攻擊力: 2094</td>
+					<td>回復力: 1113</td>
 				</tr>
 				<tr>
 					<td colspan="4">※界限超突破後每提升一級需要20,000,000經驗值</td>
@@ -647,7 +662,7 @@ function vote(e){
 			</table>
 		</td>
 		<td>
-				<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數: 1188</a>
+				<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數: 1278</a>
 		</td>
 	</tr>
 	
@@ -718,13 +733,14 @@ function vote(e){
 		7		</td>
 	</tr>
 	<tr bgcolor="#000000">
-		<td colspan="5" style="line-height: 28px;"><img src="images/drops/Dark.png" width="25" /><img src="images/drops/Dead.png" width="25" /><img src="images/drops/Poison.png" width="25" /><img src="images/drops/Poison+.png" width="25" /><img src="images/change.gif" /><img src="images/drops/Wood.png" width="25" />；<br />並將自身以外寵物的技能冷卻時間縮短1回合</td>
+		<td colspan="5" style="line-height: 28px;">解除寶珠的鎖定狀態；<br />並<img src="images/drops/Dark.png" width="25" /><img src="images/drops/Dead.png" width="25" /><img src="images/drops/Poison.png" width="25" /><img src="images/drops/Poison+.png" width="25" /><img src="images/change.gif" /><img src="images/drops/Wood.png" width="25" />；<br />並將自身以外寵物的技能冷卻時間縮短1回合；<br />並解除覺醒無效狀態</td>
 	</tr>
 
 	<tr bgcolor="#000000">
 		<td colspan="5">
 			持有相同主動技能的寵物: <br />
 			<a href="pets/3936" class="tooltip" title="3936 - 庭龍喚士・紗薩爾"><img src="images/pets/3936.png" width="46" height="46" /></a>
+				<a href="pets/8879" class="tooltip" title="8879 - 紗薩爾的龍喚石"><img src="images/pets/8879.png" width="46" height="46" /></a>
 				<a href="pets/3958" class="tooltip" title="3958 - 綠色書龍"><img src="images/pets/3958.png" width="46" height="46" /></a>
 			</td>
 	</tr>
@@ -759,9 +775,9 @@ function vote(e){
 				<td>（滿等＆+297時）</td>
 			</tr>
 						<tr>
-				<td style="padding-right:8px">HP<span style="color:#FF73B7;">+520</span></td>
-				<td style="padding-right:8px">攻擊力<span style="color:#FF73B7;">+118</span></td>
-				<td style="padding-right:8px">回復力<span style="color:#FF73B7;">+194</span></td>
+				<td style="padding-right:8px">HP<span style="color:#FF73B7;">+554</span></td>
+				<td style="padding-right:8px">攻擊力<span style="color:#FF73B7;">+126</span></td>
+				<td style="padding-right:8px">回復力<span style="color:#FF73B7;">+206</span></td>
 				<td>（LV110＆+297時）</td>
 			</tr>
 					</table>
@@ -798,12 +814,13 @@ function vote(e){
 	<tr align="left" bgcolor="#000000">
 		<td width="80" class="head"><a href="/news/「超覚醒」系統登場!!">超覺醒</a></td>
 		<td>
-					<a href="skill/L%E5%AD%97%E6%B6%88%E3%81%97%E6%94%BB%E6%92%83" class="tooltip" title="【L字消し攻撃】將5個與自身屬性相同的寶珠以L字形的方式消除，該寵物的攻擊力1.5倍，並可以解除盤面上的寶珠鎖定狀態，以及解除鎖定寶珠掉落的效果"><img src="images/skill/skill-60.png"  /></a>
+					<a href="skill/L%E5%AD%97%E6%B6%88%E3%81%97%E6%94%BB%E6%92%83" class="tooltip" title="【L字消し攻撃】將5個與自身屬性相同的寶珠以L字形的方式消除，該寵物的攻擊力1.7倍，並可以解除盤面上的寶珠鎖定狀態，以及解除鎖定寶珠掉落的效果"><img src="images/skill/skill-60.png"  /></a>
 					<a href="skill/%E3%83%81%E3%83%BC%E3%83%A0HP%E5%BC%B7%E5%8C%96" class="tooltip" title="【チームHP強化】隊伍的HP量提升5%"><img src="images/skill/skill-46.png"  /></a>
 					<a href="skill/%E9%9B%B2%E8%80%90%E6%80%A7" class="tooltip" title="【雲耐性】可將敵人的雲攻撃100%無效化&lt;br /&gt;
 ※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/skill/skill-54.png"  /></a>
 					<a href="skill/%E6%82%AA%E9%AD%94%E3%82%AD%E3%83%A9%E3%83%BC" class="tooltip" title="【悪魔キラー】持有此覺醒技能的寵物對「惡魔類」敵人造成的傷害3倍&lt;br /&gt;
 ※此技能效果發動時，傷害值上限提高至1.2倍"><img src="images/skill/skill-33.png"  /></a>
+					<a href="skill/%E8%B6%85%E3%82%B3%E3%83%B3%E3%83%9C%E5%BC%B7%E5%8C%96" class="tooltip" title="【超コンボ強化】10COMBO或以上時攻擊力5倍"><img src="images/skill/skill-61.png"  /></a>
 				（隨機一種）</td>
 	</tr>
 	<tr align="left" bgcolor="#000000">
@@ -993,7 +1010,7 @@ p.EvoName {
 
 
 <a href="pets/3936" class="EvoTarget"><img src="images/pets/3936.png" width="80" height="80" /></a><br />	<ul class="wtree" style="margin-left:-40px">
-			<ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/3937" class="EvoTarget"><img src="images/pets/3937.png" class="pic" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/究極進化/" class="EvoTarget"><img src="images/evo1.png" height="19" /></a></p><a href="pets/149" class="no_style tooltip" title="149 - 森之守門人"><img src="images/pets/149.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/321" class="no_style tooltip" title="321 - 虹之守門人"><img src="images/pets/321.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/227" class="no_style tooltip" title="227 - 龍果"><img src="images/pets/227.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/248" class="no_style tooltip" title="248 - 雙倍綠寶精靈"><img src="images/pets/248.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/249" class="no_style tooltip" title="249 - 雙倍黃玉精靈"><img src="images/pets/249.png" width="35" height="35" style="padding:1px"  /></a></div></li></ul>	</ul>
+			<ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/3937" class="EvoTarget"><img src="images/pets/3937.png" class="pic" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/究極進化/" class="EvoTarget"><img src="images/evo1.png" height="19" /></a></p><a href="pets/149" class="no_style tooltip" title="149 - 森之守門人"><img src="images/pets/149.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/321" class="no_style tooltip" title="321 - 虹之守門人"><img src="images/pets/321.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/227" class="no_style tooltip" title="227 - 龍果"><img src="images/pets/227.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/248" class="no_style tooltip" title="248 - 雙倍綠寶精靈"><img src="images/pets/248.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/249" class="no_style tooltip" title="249 - 雙倍黃玉精靈"><img src="images/pets/249.png" width="35" height="35" style="padding:1px"  /></a></div></li><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/8879" class="EvoTarget"><img src="images/pets/8879.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/輔助進化/" class="EvoTarget"><img src="images/assist.png" height="19" /></a></p><a href="pets/3911" class="no_style tooltip" title="3911 - 創裝之寶玉"><img src="images/pets/3911.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1327" class="no_style tooltip" title="1327 - 木之寶玉"><img src="images/pets/1327.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1327" class="no_style tooltip" title="1327 - 木之寶玉"><img src="images/pets/1327.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1327" class="no_style tooltip" title="1327 - 木之寶玉"><img src="images/pets/1327.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1327" class="no_style tooltip" title="1327 - 木之寶玉"><img src="images/pets/1327.png" width="35" height="35" style="padding:1px"  /></a></div></li></ul>	</ul>
 
 	
 		</td>
@@ -1100,18 +1117,7 @@ p.EvoName {
 
 
 <br />
-<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/7周年記念クエスト 上級者向け" class="tooltip" title="7周年記念クエスト 上級者向け<br />Lv28"><img src="https://i1296.photobucket.com/albums/ag18/skyozora/stage/4906s_zpssbt3wil4.png" width="100"></a></td><td><a href="pets/3565" class="tooltip" title="3565 - 山神之風龍喚士・楓"><img src="images/pets/3565.png" width="55" height="55" $team[L2][0]</a><a href="pets/4258" class="tooltip" title="4258 - 雙扇之天鬼姬・風神"><img src="images/pets/4258.png" width="55" height="55" $team[L2][0]</a><a href="pets/3937" class="tooltip" title="3937 - 悲願的庭龍喚士・紗薩爾"><img src="images/pets/3937.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4284" class="tooltip" title="4284 - 極醒之綠龍喚士・索妮亞＝菲奧"><img src="images/pets/4284.png" width="55" height="55" $team[L2][0]</a><a href="pets/2752" class="tooltip" title="2752 - 天空的守護龍・德雷克阿瓦隆"><img src="images/pets/2752.png" width="55" height="55" $team[L2][0]</a><a href="pets/3565" class="tooltip" title="3565 - 山神之風龍喚士・楓"><img src="images/pets/3565.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/113849/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/10月のクエスト 上級者向け" class="tooltip" title="10月のクエスト 上級者向け<br />チャレンジLv10【回復なし】"><img src="" width="100"></a></td><td><a href="pets/4585" class="tooltip" title="4585 - 化身空無之物・猶格＝索托斯"><img src="images/pets/4585.png" width="55" height="55" $team[L2][0]</a><a href="pets/5136" class="tooltip" title="5136 - 極醒之白幻魔・伊雷姆"><img src="images/pets/5136.png" width="55" height="55" $team[L2][0]</a><a href="pets/4648" class="tooltip" title="4648 - 輝門之大魔女・莎妮寧"><img src="images/pets/4648.png" width="55" height="55" $team[L2][0]</a><a href="pets/3071" class="tooltip" title="3071 - 財成的學問神・葛內舍"><img src="images/pets/3071.png" width="55" height="55" $team[L2][0]</a><a href="pets/4877" class="tooltip" title="4877 - 初等練士・尤吉歐"><img src="images/pets/4877.png" width="55" height="55" $team[L2][0]</a><a href="pets/4586" class="tooltip" title="4586 - 化身此方之物・猶格＝索托斯"><img src="images/pets/4586.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/115882/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/イベント記念闘技場" class="tooltip" title="イベント記念闘技場<br />超決戦"><img src="" width="100"></a></td><td><a href="pets/4746" class="tooltip" title="4746 - 極醒之龍帝王・撒利牙斯＝根源"><img src="images/pets/4746.png" width="55" height="55" $team[L2][0]</a><a href="pets/3264" class="tooltip" title="3264 - 起源神・奧丁龍・光槍型"><img src="images/pets/3264.png" width="55" height="55" $team[L2][0]</a><a href="pets/4688" class="tooltip" title="4688 - 黑白合"><img src="images/pets/4688.png" width="55" height="55" $team[L2][0]</a><a href="pets/3937" class="tooltip" title="3937 - 悲願的庭龍喚士・紗薩爾"><img src="images/pets/3937.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5004" class="tooltip" title="5004 - 英靈・SABER"><img src="images/pets/5004.png" width="55" height="55" $team[L2][0]</a><a href="pets/4746" class="tooltip" title="4746 - 極醒之龍帝王・撒利牙斯＝根源"><img src="images/pets/4746.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/113767/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/サンデーオールスターズ" class="tooltip" title="サンデーオールスターズ<br />強者集結 超地獄級"><img src="images/stage/2485s.png" width="100"></a></td><td><a href="pets/3937" class="tooltip" title="3937 - 悲願的庭龍喚士・紗薩爾"><img src="images/pets/3937.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/0" class="tooltip" title="0 - "><img src="images/pets/000.png" width="55" height="55" $team[L2][0]</a><a href="pets/0" class="tooltip" title="0 - "><img src="images/pets/000.png" width="55" height="55" $team[L2][0]</a><a href="pets/0" class="tooltip" title="0 - "><img src="images/pets/000.png" width="55" height="55" $team[L2][0]</a><a href="pets/0" class="tooltip" title="0 - "><img src="images/pets/000.png" width="55" height="55" $team[L2][0]</a><a href="pets/4104" class="tooltip" title="4104 - 瓊"><img src="images/pets/4104.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/111498/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/パネラ降臨！" class="tooltip" title="パネラ降臨！<br />新星の獣使い 壊滅級"><img src="images/stage/4421s.png" width="100"></a></td><td><a href="pets/3385" class="tooltip" title="3385 - 轉生安努比斯"><img src="images/pets/3385.png" width="55" height="55" $team[L2][0]</a><a href="pets/831" class="tooltip" title="831 - TOP・Android 龍"><img src="images/pets/831.png" width="55" height="55" $team[L2][0]</a><a href="pets/3937" class="tooltip" title="3937 - 悲願的庭龍喚士・紗薩爾"><img src="images/pets/3937.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/3333" class="tooltip" title="3333 - 殘紅天陽神・阿頓"><img src="images/pets/3333.png" width="55" height="55" $team[L2][0]</a><a href="pets/3947" class="tooltip" title="3947 - 裂爪的蠻龍契士・他迪斯"><img src="images/pets/3947.png" width="55" height="55" $team[L2][0]</a><a href="pets/3663" class="tooltip" title="3663 - 鏖魔角龍"><img src="images/pets/3663.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/112003/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
-
-<table width="750" border="0" cellpadding="0" cellspacing="1" align="center">
-	<tr>
-		<td align="left">
-		<a href="pets/3936" class="tooltip" title="3936 - 庭龍喚士・シャゼル"><img src="images/pets_pic/3936.png" style="border-radius:15px" width=365></a> 		</td>
-		<td align="right">
-		<a href="pets/3938" class="tooltip" title="3938 - 衛龍喚士・ラシオス"><img src="images/pets_pic/3938.png" style="border-radius:15px" width=365></a>		</td>
-	</tr>
-</table>
-
-
+<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/イベント記念闘技場" class="tooltip" title="イベント記念闘技場<br />超決戦"><img src="" width="100"></a></td><td><a href="pets/4746" class="tooltip" title="4746 - 極醒之龍帝王・撒利牙斯＝根源"><img src="images/pets/4746.png" width="55" height="55" $team[L2][0]</a><a href="pets/3264" class="tooltip" title="3264 - 起源神・奧丁龍・光槍型"><img src="images/pets/3264.png" width="55" height="55" $team[L2][0]</a><a href="pets/4688" class="tooltip" title="4688 - 黑白合"><img src="images/pets/4688.png" width="55" height="55" $team[L2][0]</a><a href="pets/3937" class="tooltip" title="3937 - 悲願的庭龍喚士・紗薩爾"><img src="images/pets/3937.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5004" class="tooltip" title="5004 - 英靈・SABER"><img src="images/pets/5004.png" width="55" height="55" $team[L2][0]</a><a href="pets/4746" class="tooltip" title="4746 - 極醒之龍帝王・撒利牙斯＝根源"><img src="images/pets/4746.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/113767/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/リーダー助っ人固定チャレンジ！【2】" class="tooltip" title="リーダー助っ人固定チャレンジ！【2】<br />監督神のお手伝い"><img src="images/stage/2322s.png" width="100"></a></td><td><a href="pets/3647" class="tooltip" title="3647 - 圖書室的監督神・迦梨"><img src="images/pets/3647.png" width="55" height="55" $team[L2][0]</a><a href="pets/3937" class="tooltip" title="3937 - 悲願的庭龍喚士・紗薩爾"><img src="images/pets/3937.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4746" class="tooltip" title="4746 - 極醒之龍帝王・撒利牙斯＝根源"><img src="images/pets/4746.png" width="55" height="55" $team[L2][0]</a><a href="pets/5321" class="tooltip" title="5321 - 轉生降三世明王"><img src="images/pets/5321.png" width="55" height="55" $team[L2][0]</a><a href="pets/5326" class="tooltip" title="5326 - 超轉生美美"><img src="images/pets/5326.png" width="55" height="55" $team[L2][0]</a><a href="pets/3647" class="tooltip" title="3647 - 圖書室的監督神・迦梨"><img src="images/pets/3647.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/115103/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/魔神王の無間獄" class="tooltip" title="魔神王の無間獄<br />最終層"><img src="images/stage/4286s.png" width="100"></a></td><td><a href="pets/4016" class="tooltip" title="4016 - 靜觀的穩龍契士・陸羽"><img src="images/pets/4016.png" width="55" height="55" $team[L2][0]</a><a href="pets/3937" class="tooltip" title="3937 - 悲願的庭龍喚士・紗薩爾"><img src="images/pets/3937.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4283" class="tooltip" title="4283 - 極醒之青龍喚士・索妮亞＝克萊雅"><img src="images/pets/4283.png" width="55" height="55" $team[L2][0]</a><a href="pets/4284" class="tooltip" title="4284 - 極醒之綠龍喚士・索妮亞＝菲奧"><img src="images/pets/4284.png" width="55" height="55" $team[L2][0]</a><a href="pets/4231" class="tooltip" title="4231 - 六天之星霜龍・六昇昂"><img src="images/pets/4231.png" width="55" height="55" $team[L2][0]</a><a href="pets/4016" class="tooltip" title="4016 - 靜觀的穩龍契士・陸羽"><img src="images/pets/4016.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/111408/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/練磨の闘技場" class="tooltip" title="練磨の闘技場<br />魔法の極才"><img src="images/stage/4650s.png" width="100"></a></td><td><a href="pets/3663" class="tooltip" title="3663 - 鏖魔角龍"><img src="images/pets/3663.png" width="55" height="55" $team[L2][0]</a><a href="pets/3933" class="tooltip" title="3933 - 秘匿的漂龍喚士・緣蘿"><img src="images/pets/3933.png" width="55" height="55" $team[L2][0]</a><a href="pets/3657" class="tooltip" title="3657 - 嵐龍"><img src="images/pets/3657.png" width="55" height="55" $team[L2][0]</a><a href="pets/2940" class="tooltip" title="2940 - 絕海龍・維魯多爾"><img src="images/pets/2940.png" width="55" height="55" $team[L2][0]</a><a href="pets/3937" class="tooltip" title="3937 - 悲願的庭龍喚士・紗薩爾"><img src="images/pets/3937.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4746" class="tooltip" title="4746 - 極醒之龍帝王・撒利牙斯＝根源"><img src="images/pets/4746.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/113102/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/パネラ降臨！" class="tooltip" title="パネラ降臨！<br />新星の獣使い 壊滅級"><img src="images/stage/4421s.png" width="100"></a></td><td><a href="pets/3385" class="tooltip" title="3385 - 轉生安努比斯"><img src="images/pets/3385.png" width="55" height="55" $team[L2][0]</a><a href="pets/3999" class="tooltip" title="3999 - 究極・群馬縣"><img src="images/pets/3999.png" width="55" height="55" $team[L2][0]</a><a href="pets/4258" class="tooltip" title="4258 - 雙扇之天鬼姬・風神"><img src="images/pets/4258.png" width="55" height="55" $team[L2][0]</a><a href="pets/3937" class="tooltip" title="3937 - 悲願的庭龍喚士・紗薩爾"><img src="images/pets/3937.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/3522" class="tooltip" title="3522 - 山守神之龍巫女・紅葉"><img src="images/pets/3522.png" width="55" height="55" $team[L2][0]</a><a href="pets/3663" class="tooltip" title="3663 - 鏖魔角龍"><img src="images/pets/3663.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/112749/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
 
 
 </td>
@@ -1138,7 +1144,7 @@ total=new Array();
 mc=new Array();
 mc2=new Array();
 sc=new Array();
-hp[1]=642;atk[1]=596;re[1]=162;total[1]=237;mc[1]=2475;mc2[1]=3713;sc[1]=1020;hp[2]=670;atk[2]=605;re[2]=168;total[2]=244;mc[2]=4950;mc2[2]=7425;sc[2]=2040;hp[3]=698;atk[3]=614;re[3]=175;total[3]=251;mc[3]=7425;mc2[3]=11138;sc[3]=3060;hp[4]=725;atk[4]=624;re[4]=181;total[4]=258;mc[4]=9900;mc2[4]=14850;sc[4]=4080;hp[5]=753;atk[5]=633;re[5]=188;total[5]=265;mc[5]=12375;mc2[5]=18563;sc[5]=5100;hp[6]=781;atk[6]=642;re[6]=194;total[6]=271;mc[6]=14850;mc2[6]=22275;sc[6]=6120;hp[7]=809;atk[7]=651;re[7]=201;total[7]=278;mc[7]=17325;mc2[7]=25988;sc[7]=7140;hp[8]=837;atk[8]=660;re[8]=207;total[8]=285;mc[8]=19800;mc2[8]=29700;sc[8]=8160;hp[9]=865;atk[9]=669;re[9]=214;total[9]=292;mc[9]=22275;mc2[9]=33413;sc[9]=9180;hp[10]=892;atk[10]=679;re[10]=220;total[10]=298;mc[10]=24750;mc2[10]=37125;sc[10]=10200;hp[11]=920;atk[11]=688;re[11]=227;total[11]=305;mc[11]=27225;mc2[11]=40838;sc[11]=11220;hp[12]=948;atk[12]=697;re[12]=233;total[12]=312;mc[12]=29700;mc2[12]=44550;sc[12]=12240;hp[13]=976;atk[13]=706;re[13]=240;total[13]=319;mc[13]=32175;mc2[13]=48263;sc[13]=13260;hp[14]=1004;atk[14]=715;re[14]=246;total[14]=325;mc[14]=34650;mc2[14]=51975;sc[14]=14280;hp[15]=1032;atk[15]=725;re[15]=252;total[15]=332;mc[15]=37125;mc2[15]=55688;sc[15]=15300;hp[16]=1059;atk[16]=734;re[16]=259;total[16]=339;mc[16]=39600;mc2[16]=59400;sc[16]=16320;hp[17]=1087;atk[17]=743;re[17]=265;total[17]=346;mc[17]=42075;mc2[17]=63113;sc[17]=17340;hp[18]=1115;atk[18]=752;re[18]=272;total[18]=353;mc[18]=44550;mc2[18]=66825;sc[18]=18360;hp[19]=1143;atk[19]=761;re[19]=278;total[19]=359;mc[19]=47025;mc2[19]=70538;sc[19]=19380;hp[20]=1171;atk[20]=770;re[20]=285;total[20]=366;mc[20]=49500;mc2[20]=74250;sc[20]=20400;hp[21]=1199;atk[21]=780;re[21]=291;total[21]=373;mc[21]=51975;mc2[21]=77963;sc[21]=21420;hp[22]=1226;atk[22]=789;re[22]=298;total[22]=380;mc[22]=54450;mc2[22]=81675;sc[22]=22440;hp[23]=1254;atk[23]=798;re[23]=304;total[23]=386;mc[23]=56925;mc2[23]=85388;sc[23]=23460;hp[24]=1282;atk[24]=807;re[24]=311;total[24]=393;mc[24]=59400;mc2[24]=89100;sc[24]=24480;hp[25]=1310;atk[25]=816;re[25]=317;total[25]=400;mc[25]=61875;mc2[25]=92813;sc[25]=25500;hp[26]=1338;atk[26]=826;re[26]=323;total[26]=407;mc[26]=64350;mc2[26]=96525;sc[26]=26520;hp[27]=1365;atk[27]=835;re[27]=330;total[27]=414;mc[27]=66825;mc2[27]=100238;sc[27]=27540;hp[28]=1393;atk[28]=844;re[28]=336;total[28]=420;mc[28]=69300;mc2[28]=103950;sc[28]=28560;hp[29]=1421;atk[29]=853;re[29]=343;total[29]=427;mc[29]=71775;mc2[29]=107663;sc[29]=29580;hp[30]=1449;atk[30]=862;re[30]=349;total[30]=434;mc[30]=74250;mc2[30]=111375;sc[30]=30600;hp[31]=1477;atk[31]=872;re[31]=356;total[31]=441;mc[31]=76725;mc2[31]=115088;sc[31]=31620;hp[32]=1505;atk[32]=881;re[32]=362;total[32]=447;mc[32]=79200;mc2[32]=118800;sc[32]=32640;hp[33]=1532;atk[33]=890;re[33]=369;total[33]=454;mc[33]=81675;mc2[33]=122513;sc[33]=33660;hp[34]=1560;atk[34]=899;re[34]=375;total[34]=461;mc[34]=84150;mc2[34]=126225;sc[34]=34680;hp[35]=1588;atk[35]=908;re[35]=382;total[35]=468;mc[35]=86625;mc2[35]=129938;sc[35]=35700;hp[36]=1616;atk[36]=917;re[36]=388;total[36]=474;mc[36]=89100;mc2[36]=133650;sc[36]=36720;hp[37]=1644;atk[37]=927;re[37]=395;total[37]=481;mc[37]=91575;mc2[37]=137363;sc[37]=37740;hp[38]=1672;atk[38]=936;re[38]=401;total[38]=488;mc[38]=94050;mc2[38]=141075;sc[38]=38760;hp[39]=1699;atk[39]=945;re[39]=407;total[39]=495;mc[39]=96525;mc2[39]=144788;sc[39]=39780;hp[40]=1727;atk[40]=954;re[40]=414;total[40]=502;mc[40]=99000;mc2[40]=148500;sc[40]=40800;hp[41]=1755;atk[41]=963;re[41]=420;total[41]=508;mc[41]=101475;mc2[41]=152213;sc[41]=41820;hp[42]=1783;atk[42]=973;re[42]=427;total[42]=515;mc[42]=103950;mc2[42]=155925;sc[42]=42840;hp[43]=1811;atk[43]=982;re[43]=433;total[43]=522;mc[43]=106425;mc2[43]=159638;sc[43]=43860;hp[44]=1839;atk[44]=991;re[44]=440;total[44]=529;mc[44]=108900;mc2[44]=163350;sc[44]=44880;hp[45]=1866;atk[45]=1000;re[45]=446;total[45]=535;mc[45]=111375;mc2[45]=167063;sc[45]=45900;hp[46]=1894;atk[46]=1009;re[46]=453;total[46]=542;mc[46]=113850;mc2[46]=170775;sc[46]=46920;hp[47]=1922;atk[47]=1018;re[47]=459;total[47]=549;mc[47]=116325;mc2[47]=174488;sc[47]=47940;hp[48]=1950;atk[48]=1028;re[48]=466;total[48]=556;mc[48]=118800;mc2[48]=178200;sc[48]=48960;hp[49]=1978;atk[49]=1037;re[49]=472;total[49]=563;mc[49]=121275;mc2[49]=181913;sc[49]=49980;hp[50]=2006;atk[50]=1046;re[50]=479;total[50]=569;mc[50]=123750;mc2[50]=185625;sc[50]=51000;hp[51]=2033;atk[51]=1055;re[51]=485;total[51]=576;mc[51]=126225;mc2[51]=189338;sc[51]=52020;hp[52]=2061;atk[52]=1064;re[52]=491;total[52]=583;mc[52]=128700;mc2[52]=193050;sc[52]=53040;hp[53]=2089;atk[53]=1074;re[53]=498;total[53]=590;mc[53]=131175;mc2[53]=196763;sc[53]=54060;hp[54]=2117;atk[54]=1083;re[54]=504;total[54]=596;mc[54]=133650;mc2[54]=200475;sc[54]=55080;hp[55]=2145;atk[55]=1092;re[55]=511;total[55]=603;mc[55]=136125;mc2[55]=204188;sc[55]=56100;hp[56]=2172;atk[56]=1101;re[56]=517;total[56]=610;mc[56]=138600;mc2[56]=207900;sc[56]=57120;hp[57]=2200;atk[57]=1110;re[57]=524;total[57]=617;mc[57]=141075;mc2[57]=211613;sc[57]=58140;hp[58]=2228;atk[58]=1119;re[58]=530;total[58]=623;mc[58]=143550;mc2[58]=215325;sc[58]=59160;hp[59]=2256;atk[59]=1129;re[59]=537;total[59]=630;mc[59]=146025;mc2[59]=219038;sc[59]=60180;hp[60]=2284;atk[60]=1138;re[60]=543;total[60]=637;mc[60]=148500;mc2[60]=222750;sc[60]=61200;hp[61]=2312;atk[61]=1147;re[61]=550;total[61]=644;mc[61]=150975;mc2[61]=226463;sc[61]=62220;hp[62]=2339;atk[62]=1156;re[62]=556;total[62]=650;mc[62]=153450;mc2[62]=230175;sc[62]=63240;hp[63]=2367;atk[63]=1165;re[63]=562;total[63]=657;mc[63]=155925;mc2[63]=233888;sc[63]=64260;hp[64]=2395;atk[64]=1175;re[64]=569;total[64]=664;mc[64]=158400;mc2[64]=237600;sc[64]=65280;hp[65]=2423;atk[65]=1184;re[65]=575;total[65]=671;mc[65]=160875;mc2[65]=241313;sc[65]=66300;hp[66]=2451;atk[66]=1193;re[66]=582;total[66]=678;mc[66]=163350;mc2[66]=245025;sc[66]=67320;hp[67]=2479;atk[67]=1202;re[67]=588;total[67]=684;mc[67]=165825;mc2[67]=248738;sc[67]=68340;hp[68]=2506;atk[68]=1211;re[68]=595;total[68]=691;mc[68]=168300;mc2[68]=252450;sc[68]=69360;hp[69]=2534;atk[69]=1220;re[69]=601;total[69]=698;mc[69]=170775;mc2[69]=256163;sc[69]=70380;hp[70]=2562;atk[70]=1230;re[70]=608;total[70]=705;mc[70]=173250;mc2[70]=259875;sc[70]=71400;hp[71]=2590;atk[71]=1239;re[71]=614;total[71]=711;mc[71]=175725;mc2[71]=263588;sc[71]=72420;hp[72]=2618;atk[72]=1248;re[72]=621;total[72]=718;mc[72]=178200;mc2[72]=267300;sc[72]=73440;hp[73]=2646;atk[73]=1257;re[73]=627;total[73]=725;mc[73]=180675;mc2[73]=271013;sc[73]=74460;hp[74]=2673;atk[74]=1266;re[74]=634;total[74]=732;mc[74]=183150;mc2[74]=274725;sc[74]=75480;hp[75]=2701;atk[75]=1276;re[75]=640;total[75]=739;mc[75]=185625;mc2[75]=278438;sc[75]=76500;hp[76]=2729;atk[76]=1285;re[76]=646;total[76]=745;mc[76]=188100;mc2[76]=282150;sc[76]=77520;hp[77]=2757;atk[77]=1294;re[77]=653;total[77]=752;mc[77]=190575;mc2[77]=285863;sc[77]=78540;hp[78]=2785;atk[78]=1303;re[78]=659;total[78]=759;mc[78]=193050;mc2[78]=289575;sc[78]=79560;hp[79]=2812;atk[79]=1312;re[79]=666;total[79]=766;mc[79]=195525;mc2[79]=293288;sc[79]=80580;hp[80]=2840;atk[80]=1322;re[80]=672;total[80]=772;mc[80]=198000;mc2[80]=297000;sc[80]=81600;hp[81]=2868;atk[81]=1331;re[81]=679;total[81]=779;mc[81]=200475;mc2[81]=300713;sc[81]=82620;hp[82]=2896;atk[82]=1340;re[82]=685;total[82]=786;mc[82]=202950;mc2[82]=304425;sc[82]=83640;hp[83]=2924;atk[83]=1349;re[83]=692;total[83]=793;mc[83]=205425;mc2[83]=308138;sc[83]=84660;hp[84]=2952;atk[84]=1358;re[84]=698;total[84]=799;mc[84]=207900;mc2[84]=311850;sc[84]=85680;hp[85]=2979;atk[85]=1367;re[85]=705;total[85]=806;mc[85]=210375;mc2[85]=315563;sc[85]=86700;hp[86]=3007;atk[86]=1377;re[86]=711;total[86]=813;mc[86]=212850;mc2[86]=319275;sc[86]=87720;hp[87]=3035;atk[87]=1386;re[87]=717;total[87]=820;mc[87]=215325;mc2[87]=322988;sc[87]=88740;hp[88]=3063;atk[88]=1395;re[88]=724;total[88]=827;mc[88]=217800;mc2[88]=326700;sc[88]=89760;hp[89]=3091;atk[89]=1404;re[89]=730;total[89]=833;mc[89]=220275;mc2[89]=330413;sc[89]=90780;hp[90]=3119;atk[90]=1413;re[90]=737;total[90]=840;mc[90]=222750;mc2[90]=334125;sc[90]=91800;hp[91]=3146;atk[91]=1423;re[91]=743;total[91]=847;mc[91]=225225;mc2[91]=337838;sc[91]=92820;hp[92]=3174;atk[92]=1432;re[92]=750;total[92]=854;mc[92]=227700;mc2[92]=341550;sc[92]=93840;hp[93]=3202;atk[93]=1441;re[93]=756;total[93]=860;mc[93]=230175;mc2[93]=345263;sc[93]=94860;hp[94]=3230;atk[94]=1450;re[94]=763;total[94]=867;mc[94]=232650;mc2[94]=348975;sc[94]=95880;hp[95]=3258;atk[95]=1459;re[95]=769;total[95]=874;mc[95]=235125;mc2[95]=352688;sc[95]=96900;hp[96]=3286;atk[96]=1468;re[96]=776;total[96]=881;mc[96]=237600;mc2[96]=356400;sc[96]=97920;hp[97]=3313;atk[97]=1478;re[97]=782;total[97]=888;mc[97]=240075;mc2[97]=360113;sc[97]=98940;hp[98]=3341;atk[98]=1487;re[98]=789;total[98]=895;mc[98]=242550;mc2[98]=363825;sc[98]=99960;hp[99]=3369;atk[99]=1496;re[99]=795;total[99]=901;mc[99]=245025;mc2[99]=367538;sc[99]=100980;hp[100]=3446;atk[100]=1530;re[100]=813;total[100]=922;mc[100]=247500;mc2[100]=371250;sc[100]=102000;hp[101]=3522;atk[101]=1564;re[101]=831;total[101]=942;mc[101]=249975;mc2[101]=374963;sc[101]=103020;hp[102]=3599;atk[102]=1598;re[102]=849;total[102]=963;mc[102]=252450;mc2[102]=378675;sc[102]=104040;hp[103]=3675;atk[103]=1632;re[103]=867;total[103]=983;mc[103]=254925;mc2[103]=382388;sc[103]=105060;hp[104]=3752;atk[104]=1666;re[104]=885;total[104]=1003;mc[104]=257400;mc2[104]=386100;sc[104]=106080;hp[105]=3828;atk[105]=1700;re[105]=903;total[105]=1024;mc[105]=259875;mc2[105]=389813;sc[105]=107100;hp[106]=3905;atk[106]=1734;re[106]=921;total[106]=1044;mc[106]=262350;mc2[106]=393525;sc[106]=108120;hp[107]=3982;atk[107]=1768;re[107]=940;total[107]=1065;mc[107]=264825;mc2[107]=397238;sc[107]=109140;hp[108]=4058;atk[108]=1802;re[108]=958;total[108]=1086;mc[108]=267300;mc2[108]=400950;sc[108]=110160;hp[109]=4135;atk[109]=1836;re[109]=976;total[109]=1106;mc[109]=269775;mc2[109]=404663;sc[109]=111180;hp[110]=4211;atk[110]=1870;re[110]=994;total[110]=1126;mc[110]=272250;mc2[110]=408375;sc[110]=112200;
+hp[1]=642;atk[1]=596;re[1]=162;total[1]=237;mc[1]=2475;mc2[1]=3713;sc[1]=1020;hp[2]=670;atk[2]=605;re[2]=168;total[2]=244;mc[2]=4950;mc2[2]=7425;sc[2]=2040;hp[3]=698;atk[3]=614;re[3]=175;total[3]=251;mc[3]=7425;mc2[3]=11138;sc[3]=3060;hp[4]=725;atk[4]=624;re[4]=181;total[4]=258;mc[4]=9900;mc2[4]=14850;sc[4]=4080;hp[5]=753;atk[5]=633;re[5]=188;total[5]=265;mc[5]=12375;mc2[5]=18563;sc[5]=5100;hp[6]=781;atk[6]=642;re[6]=194;total[6]=271;mc[6]=14850;mc2[6]=22275;sc[6]=6120;hp[7]=809;atk[7]=651;re[7]=201;total[7]=278;mc[7]=17325;mc2[7]=25988;sc[7]=7140;hp[8]=837;atk[8]=660;re[8]=207;total[8]=285;mc[8]=19800;mc2[8]=29700;sc[8]=8160;hp[9]=865;atk[9]=669;re[9]=214;total[9]=292;mc[9]=22275;mc2[9]=33413;sc[9]=9180;hp[10]=892;atk[10]=679;re[10]=220;total[10]=298;mc[10]=24750;mc2[10]=37125;sc[10]=10200;hp[11]=920;atk[11]=688;re[11]=227;total[11]=305;mc[11]=27225;mc2[11]=40838;sc[11]=11220;hp[12]=948;atk[12]=697;re[12]=233;total[12]=312;mc[12]=29700;mc2[12]=44550;sc[12]=12240;hp[13]=976;atk[13]=706;re[13]=240;total[13]=319;mc[13]=32175;mc2[13]=48263;sc[13]=13260;hp[14]=1004;atk[14]=715;re[14]=246;total[14]=325;mc[14]=34650;mc2[14]=51975;sc[14]=14280;hp[15]=1032;atk[15]=725;re[15]=252;total[15]=332;mc[15]=37125;mc2[15]=55688;sc[15]=15300;hp[16]=1059;atk[16]=734;re[16]=259;total[16]=339;mc[16]=39600;mc2[16]=59400;sc[16]=16320;hp[17]=1087;atk[17]=743;re[17]=265;total[17]=346;mc[17]=42075;mc2[17]=63113;sc[17]=17340;hp[18]=1115;atk[18]=752;re[18]=272;total[18]=353;mc[18]=44550;mc2[18]=66825;sc[18]=18360;hp[19]=1143;atk[19]=761;re[19]=278;total[19]=359;mc[19]=47025;mc2[19]=70538;sc[19]=19380;hp[20]=1171;atk[20]=770;re[20]=285;total[20]=366;mc[20]=49500;mc2[20]=74250;sc[20]=20400;hp[21]=1199;atk[21]=780;re[21]=291;total[21]=373;mc[21]=51975;mc2[21]=77963;sc[21]=21420;hp[22]=1226;atk[22]=789;re[22]=298;total[22]=380;mc[22]=54450;mc2[22]=81675;sc[22]=22440;hp[23]=1254;atk[23]=798;re[23]=304;total[23]=386;mc[23]=56925;mc2[23]=85388;sc[23]=23460;hp[24]=1282;atk[24]=807;re[24]=311;total[24]=393;mc[24]=59400;mc2[24]=89100;sc[24]=24480;hp[25]=1310;atk[25]=816;re[25]=317;total[25]=400;mc[25]=61875;mc2[25]=92813;sc[25]=25500;hp[26]=1338;atk[26]=826;re[26]=323;total[26]=407;mc[26]=64350;mc2[26]=96525;sc[26]=26520;hp[27]=1365;atk[27]=835;re[27]=330;total[27]=414;mc[27]=66825;mc2[27]=100238;sc[27]=27540;hp[28]=1393;atk[28]=844;re[28]=336;total[28]=420;mc[28]=69300;mc2[28]=103950;sc[28]=28560;hp[29]=1421;atk[29]=853;re[29]=343;total[29]=427;mc[29]=71775;mc2[29]=107663;sc[29]=29580;hp[30]=1449;atk[30]=862;re[30]=349;total[30]=434;mc[30]=74250;mc2[30]=111375;sc[30]=30600;hp[31]=1477;atk[31]=872;re[31]=356;total[31]=441;mc[31]=76725;mc2[31]=115088;sc[31]=31620;hp[32]=1505;atk[32]=881;re[32]=362;total[32]=447;mc[32]=79200;mc2[32]=118800;sc[32]=32640;hp[33]=1532;atk[33]=890;re[33]=369;total[33]=454;mc[33]=81675;mc2[33]=122513;sc[33]=33660;hp[34]=1560;atk[34]=899;re[34]=375;total[34]=461;mc[34]=84150;mc2[34]=126225;sc[34]=34680;hp[35]=1588;atk[35]=908;re[35]=382;total[35]=468;mc[35]=86625;mc2[35]=129938;sc[35]=35700;hp[36]=1616;atk[36]=917;re[36]=388;total[36]=474;mc[36]=89100;mc2[36]=133650;sc[36]=36720;hp[37]=1644;atk[37]=927;re[37]=395;total[37]=481;mc[37]=91575;mc2[37]=137363;sc[37]=37740;hp[38]=1672;atk[38]=936;re[38]=401;total[38]=488;mc[38]=94050;mc2[38]=141075;sc[38]=38760;hp[39]=1699;atk[39]=945;re[39]=407;total[39]=495;mc[39]=96525;mc2[39]=144788;sc[39]=39780;hp[40]=1727;atk[40]=954;re[40]=414;total[40]=502;mc[40]=99000;mc2[40]=148500;sc[40]=40800;hp[41]=1755;atk[41]=963;re[41]=420;total[41]=508;mc[41]=101475;mc2[41]=152213;sc[41]=41820;hp[42]=1783;atk[42]=973;re[42]=427;total[42]=515;mc[42]=103950;mc2[42]=155925;sc[42]=42840;hp[43]=1811;atk[43]=982;re[43]=433;total[43]=522;mc[43]=106425;mc2[43]=159638;sc[43]=43860;hp[44]=1839;atk[44]=991;re[44]=440;total[44]=529;mc[44]=108900;mc2[44]=163350;sc[44]=44880;hp[45]=1866;atk[45]=1000;re[45]=446;total[45]=535;mc[45]=111375;mc2[45]=167063;sc[45]=45900;hp[46]=1894;atk[46]=1009;re[46]=453;total[46]=542;mc[46]=113850;mc2[46]=170775;sc[46]=46920;hp[47]=1922;atk[47]=1018;re[47]=459;total[47]=549;mc[47]=116325;mc2[47]=174488;sc[47]=47940;hp[48]=1950;atk[48]=1028;re[48]=466;total[48]=556;mc[48]=118800;mc2[48]=178200;sc[48]=48960;hp[49]=1978;atk[49]=1037;re[49]=472;total[49]=563;mc[49]=121275;mc2[49]=181913;sc[49]=49980;hp[50]=2006;atk[50]=1046;re[50]=479;total[50]=569;mc[50]=123750;mc2[50]=185625;sc[50]=51000;hp[51]=2033;atk[51]=1055;re[51]=485;total[51]=576;mc[51]=126225;mc2[51]=189338;sc[51]=52020;hp[52]=2061;atk[52]=1064;re[52]=491;total[52]=583;mc[52]=128700;mc2[52]=193050;sc[52]=53040;hp[53]=2089;atk[53]=1074;re[53]=498;total[53]=590;mc[53]=131175;mc2[53]=196763;sc[53]=54060;hp[54]=2117;atk[54]=1083;re[54]=504;total[54]=596;mc[54]=133650;mc2[54]=200475;sc[54]=55080;hp[55]=2145;atk[55]=1092;re[55]=511;total[55]=603;mc[55]=136125;mc2[55]=204188;sc[55]=56100;hp[56]=2172;atk[56]=1101;re[56]=517;total[56]=610;mc[56]=138600;mc2[56]=207900;sc[56]=57120;hp[57]=2200;atk[57]=1110;re[57]=524;total[57]=617;mc[57]=141075;mc2[57]=211613;sc[57]=58140;hp[58]=2228;atk[58]=1119;re[58]=530;total[58]=623;mc[58]=143550;mc2[58]=215325;sc[58]=59160;hp[59]=2256;atk[59]=1129;re[59]=537;total[59]=630;mc[59]=146025;mc2[59]=219038;sc[59]=60180;hp[60]=2284;atk[60]=1138;re[60]=543;total[60]=637;mc[60]=148500;mc2[60]=222750;sc[60]=61200;hp[61]=2312;atk[61]=1147;re[61]=550;total[61]=644;mc[61]=150975;mc2[61]=226463;sc[61]=62220;hp[62]=2339;atk[62]=1156;re[62]=556;total[62]=650;mc[62]=153450;mc2[62]=230175;sc[62]=63240;hp[63]=2367;atk[63]=1165;re[63]=562;total[63]=657;mc[63]=155925;mc2[63]=233888;sc[63]=64260;hp[64]=2395;atk[64]=1175;re[64]=569;total[64]=664;mc[64]=158400;mc2[64]=237600;sc[64]=65280;hp[65]=2423;atk[65]=1184;re[65]=575;total[65]=671;mc[65]=160875;mc2[65]=241313;sc[65]=66300;hp[66]=2451;atk[66]=1193;re[66]=582;total[66]=678;mc[66]=163350;mc2[66]=245025;sc[66]=67320;hp[67]=2479;atk[67]=1202;re[67]=588;total[67]=684;mc[67]=165825;mc2[67]=248738;sc[67]=68340;hp[68]=2506;atk[68]=1211;re[68]=595;total[68]=691;mc[68]=168300;mc2[68]=252450;sc[68]=69360;hp[69]=2534;atk[69]=1220;re[69]=601;total[69]=698;mc[69]=170775;mc2[69]=256163;sc[69]=70380;hp[70]=2562;atk[70]=1230;re[70]=608;total[70]=705;mc[70]=173250;mc2[70]=259875;sc[70]=71400;hp[71]=2590;atk[71]=1239;re[71]=614;total[71]=711;mc[71]=175725;mc2[71]=263588;sc[71]=72420;hp[72]=2618;atk[72]=1248;re[72]=621;total[72]=718;mc[72]=178200;mc2[72]=267300;sc[72]=73440;hp[73]=2646;atk[73]=1257;re[73]=627;total[73]=725;mc[73]=180675;mc2[73]=271013;sc[73]=74460;hp[74]=2673;atk[74]=1266;re[74]=634;total[74]=732;mc[74]=183150;mc2[74]=274725;sc[74]=75480;hp[75]=2701;atk[75]=1276;re[75]=640;total[75]=739;mc[75]=185625;mc2[75]=278438;sc[75]=76500;hp[76]=2729;atk[76]=1285;re[76]=646;total[76]=745;mc[76]=188100;mc2[76]=282150;sc[76]=77520;hp[77]=2757;atk[77]=1294;re[77]=653;total[77]=752;mc[77]=190575;mc2[77]=285863;sc[77]=78540;hp[78]=2785;atk[78]=1303;re[78]=659;total[78]=759;mc[78]=193050;mc2[78]=289575;sc[78]=79560;hp[79]=2812;atk[79]=1312;re[79]=666;total[79]=766;mc[79]=195525;mc2[79]=293288;sc[79]=80580;hp[80]=2840;atk[80]=1322;re[80]=672;total[80]=772;mc[80]=198000;mc2[80]=297000;sc[80]=81600;hp[81]=2868;atk[81]=1331;re[81]=679;total[81]=779;mc[81]=200475;mc2[81]=300713;sc[81]=82620;hp[82]=2896;atk[82]=1340;re[82]=685;total[82]=786;mc[82]=202950;mc2[82]=304425;sc[82]=83640;hp[83]=2924;atk[83]=1349;re[83]=692;total[83]=793;mc[83]=205425;mc2[83]=308138;sc[83]=84660;hp[84]=2952;atk[84]=1358;re[84]=698;total[84]=799;mc[84]=207900;mc2[84]=311850;sc[84]=85680;hp[85]=2979;atk[85]=1367;re[85]=705;total[85]=806;mc[85]=210375;mc2[85]=315563;sc[85]=86700;hp[86]=3007;atk[86]=1377;re[86]=711;total[86]=813;mc[86]=212850;mc2[86]=319275;sc[86]=87720;hp[87]=3035;atk[87]=1386;re[87]=717;total[87]=820;mc[87]=215325;mc2[87]=322988;sc[87]=88740;hp[88]=3063;atk[88]=1395;re[88]=724;total[88]=827;mc[88]=217800;mc2[88]=326700;sc[88]=89760;hp[89]=3091;atk[89]=1404;re[89]=730;total[89]=833;mc[89]=220275;mc2[89]=330413;sc[89]=90780;hp[90]=3119;atk[90]=1413;re[90]=737;total[90]=840;mc[90]=222750;mc2[90]=334125;sc[90]=91800;hp[91]=3146;atk[91]=1423;re[91]=743;total[91]=847;mc[91]=225225;mc2[91]=337838;sc[91]=92820;hp[92]=3174;atk[92]=1432;re[92]=750;total[92]=854;mc[92]=227700;mc2[92]=341550;sc[92]=93840;hp[93]=3202;atk[93]=1441;re[93]=756;total[93]=860;mc[93]=230175;mc2[93]=345263;sc[93]=94860;hp[94]=3230;atk[94]=1450;re[94]=763;total[94]=867;mc[94]=232650;mc2[94]=348975;sc[94]=95880;hp[95]=3258;atk[95]=1459;re[95]=769;total[95]=874;mc[95]=235125;mc2[95]=352688;sc[95]=96900;hp[96]=3286;atk[96]=1468;re[96]=776;total[96]=881;mc[96]=237600;mc2[96]=356400;sc[96]=97920;hp[97]=3313;atk[97]=1478;re[97]=782;total[97]=888;mc[97]=240075;mc2[97]=360113;sc[97]=98940;hp[98]=3341;atk[98]=1487;re[98]=789;total[98]=895;mc[98]=242550;mc2[98]=363825;sc[98]=99960;hp[99]=3369;atk[99]=1496;re[99]=795;total[99]=901;mc[99]=245025;mc2[99]=367538;sc[99]=100980;hp[100]=3476;atk[100]=1544;re[100]=820;total[100]=930;mc[100]=247500;mc2[100]=371250;sc[100]=102000;hp[101]=3583;atk[101]=1591;re[101]=846;total[101]=959;mc[101]=249975;mc2[101]=374963;sc[101]=103020;hp[102]=3691;atk[102]=1639;re[102]=871;total[102]=987;mc[102]=252450;mc2[102]=378675;sc[102]=104040;hp[103]=3798;atk[103]=1686;re[103]=896;total[103]=1016;mc[103]=254925;mc2[103]=382388;sc[103]=105060;hp[104]=3905;atk[104]=1734;re[104]=921;total[104]=1044;mc[104]=257400;mc2[104]=386100;sc[104]=106080;hp[105]=4012;atk[105]=1782;re[105]=947;total[105]=1073;mc[105]=259875;mc2[105]=389813;sc[105]=107100;hp[106]=4119;atk[106]=1829;re[106]=972;total[106]=1102;mc[106]=262350;mc2[106]=393525;sc[106]=108120;hp[107]=4227;atk[107]=1877;re[107]=997;total[107]=1130;mc[107]=264825;mc2[107]=397238;sc[107]=109140;hp[108]=4334;atk[108]=1924;re[108]=1023;total[108]=1159;mc[108]=267300;mc2[108]=400950;sc[108]=110160;hp[109]=4441;atk[109]=1972;re[109]=1048;total[109]=1188;mc[109]=269775;mc2[109]=404663;sc[109]=111180;hp[110]=4548;atk[110]=2020;re[110]=1073;total[110]=1216;mc[110]=272250;mc2[110]=408375;sc[110]=112200;
 function updateLV(element) { 
 	document.getElementById("lv").innerHTML = "LV." + element ; 
 } 
@@ -1202,7 +1208,6 @@ function updateTO(element) {
       <td align="left">
       Graphics © Copyright by Gungho Online Entertainment, Inc.<br>
       <a href="https://pad.skyozora.com">戰友系統及資訊網</a> 由 Sky C. 持有，介面設計 Naldo W.<br>
-      如對本網站有任何查詢，歡迎至 <a href="https://www.facebook.com/PuzzleDragonsSite/">Facebook 專頁</a> 聯絡
       </td>
       
       <td align="right">

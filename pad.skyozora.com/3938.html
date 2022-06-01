@@ -30,7 +30,7 @@
 
 
 </head>
-<link rel="stylesheet" type="text/css" href="css/style.css?2018080414">
+<link rel="stylesheet" type="text/css" href="css/style.css?0322">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" charset="utf-8"></script>
 
 <script type="text/javascript"> 
@@ -269,21 +269,11 @@ $(function() {
 	<a href="/friendlist/">搜尋戰友請按此 <img src="images/searchBtn2.png" align="absmiddle" /></a>
 </td>
 
-<td style="padding: 15px 10px 8px 10px; border: #272727 1px solid; text-align:center; background: #000; font-size:14px" width="230">
 
-<!---
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="Puzzle &amp; Dragons 戰友系統及資訊網" data-lang="zh-tw" data-dnt="true" data-count="none" data-hashtags="パズドラ">推文</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^https:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
---->
-
-<a href="https://www.facebook.com/PuzzleDragonsSite" target=new class="tooltip" title="戰友系統及資訊網專頁"><img src="images/fb.png" width="20" style="vertical-align: baseline"></a> <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FPuzzleDragonsSite&amp;send=false&amp;layout=button_count&amp;width=85&amp;show_faces=false&amp;font=verdana&amp;colorscheme=light&amp;action=like&amp;height=20&amp;appId=181873884488" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:95px; height:20px;" allowTransparency="true" valign=center></iframe>
-
-</td>
-
-<td style="border: #272727 1px solid; text-align:left; width:680px; background: #000; font-size:14px; padding-left:10px">
+<td style="border: #272727 1px solid; text-align:left; width:800px; background: #000; font-size:14px; padding-left:10px">
 
 <form action="/search/" method="get">
-<input name="q" style="color:#fff; width:500px; font-size:14px" value="">
+<input name="q" style="color:#fff; width:700px; font-size:14px" value="">
 <input type="submit" value='站內搜尋' style="color:#fff; font-size:14px"></form>
 
 </td>
@@ -399,10 +389,11 @@ function vote(e){
 	<tr>
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/3937" class="tooltip" title="&lt;img src=&quot;images/pets/3937.png&quot; width=&quot;50&quot; /&gt; 3937 - 悲願的庭龍喚士・紗薩爾"><img src="images/left01.png" width="53" height="585" /></a>		</td>
-		<td width="640">
-			<div style="position: relative; text-align:center; padding:0px; margin:0px; border:0px;">
 
-			<img src="images/pets_pic/3938.png" width="640" style="border-left:1px solid #222222;border-right:1px solid #222222">
+		<td width="640">
+
+			<div style="position: relative; text-align:center; padding:0px; margin:0px; border-left:1px solid #222222;border-right:1px solid #222222; width:640px; height:585px" id="animation">
+
 
 							<div class="kakusei" style="top: 92px; left: 593px;">
 					<a href="skill/%E5%85%89%E5%88%97%E5%BC%B7%E5%8C%96" class="tooltip" title="【光列強化】消除一橫行的&lt;img src=&quot;images/drops/Light.png&quot; width=&quot;25&quot; alt=&quot;光寶珠&quot; /&gt;時，光屬性的攻擊力上升20%&lt;br /&gt;
@@ -441,7 +432,31 @@ function vote(e){
 					<a href="skill/%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%80%90%E6%80%A7%EF%BC%8B" class="tooltip" title="【バインド耐性＋】受到敵人的綁定攻擊時，持有此技能的寵物可令綁定對自己無效化"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 						</div>
+			
+			<script src="javascript/pixi.min.js"></script>
+			<script src="javascript/pixi-spine.js"></script>
+			<script>
+			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
+			document.getElementById('animation').appendChild(app.view);
+			// load spine data
+			app.loader.add('spineboy', 'images/graphics/animation/mons_3938.json').load(onAssetsLoaded);
+
+			const background = PIXI.Sprite.from('images/pets_pic/3938.png');
+			background.width = 640;
+			background.height = 585;
+			app.stage.addChild(background);
+
+			function onAssetsLoaded(loader, res) {
+				const { spineData } = res.spineboy;
+
+				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
+				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
+				spine.state.setAnimation(0, "animation", true);
+				spine.state.timeScale = 1;
+			}
+			</script>
 		</td>
+			
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/3939" class="tooltip" title="&lt;img src=&quot;images/pets/3939.png&quot; width=&quot;50&quot; /&gt; 3939 - 劍壁的衛龍喚士・拉斯昂絲"><img src="images/right01.png" width="53" height="585" /></a>		</td>
 	</tr>
@@ -555,7 +570,7 @@ function vote(e){
 </style>
 
 <p style="padding:1px 10px; margin:0px">
-<a href="pets/category/龍喚士" class="category" target="_blank"><span>#龍喚士</span></a><a href="pets/category/龍契士＆龍喚士" class="category" target="_blank"><span>#龍契士＆龍喚士</span></a></p>
+<a href="pets/category/「龍契士＆龍喚士」系列活動" class="category" target="_blank"><span>#「龍契士＆龍喚士」系列活動</span></a><a href="pets/category/龍喚士" class="category" target="_blank"><span>#龍喚士</span></a></p>
 
 <br />
 
@@ -604,9 +619,9 @@ function vote(e){
 			<table width="360" border="0" style="table-layout:fixed">
 				<tr>
 					<td width="46">LV.110</td>
-					<td width="80">HP: 6880</td>
-					<td>攻擊力: 1986</td>
-					<td>回復力: 126</td>
+					<td width="80">HP: 7430</td>
+					<td>攻擊力: 2145</td>
+					<td>回復力: 136</td>
 				</tr>
 				<tr>
 					<td colspan="4">※界限突破後每提升一級需要5,000,000經驗值</td>
@@ -614,7 +629,7 @@ function vote(e){
 			</table>
 		</td>
 		<td>
-				<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數: 1127</a>
+				<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數: 1218</a>
 		</td>
 	</tr>
 	<tr align="center" bgcolor="#000000">
@@ -625,9 +640,9 @@ function vote(e){
 			<table width="360" border="0" style="table-layout:fixed">
 				<tr>
 					<td width="46">LV.120</td>
-					<td width="80">HP: 7430</td>
-					<td>攻擊力: 2066</td>
-					<td>回復力: 131</td>
+					<td width="80">HP: 7981</td>
+					<td>攻擊力: 2225</td>
+					<td>回復力: 141</td>
 				</tr>
 				<tr>
 					<td colspan="4">※界限超突破後每提升一級需要20,000,000經驗值</td>
@@ -635,7 +650,7 @@ function vote(e){
 			</table>
 		</td>
 		<td>
-				<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數: 1200</a>
+				<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數: 1290</a>
 		</td>
 	</tr>
 	
@@ -703,16 +718,17 @@ function vote(e){
 		<td width="46" style="font-size:20px">17</td>
 		<td width="46">最小<br />冷卻</td>
 		<td width="46" style="font-size:20px">
-		11		</td>
+		9		</td>
 	</tr>
 	<tr bgcolor="#000000">
-		<td colspan="5" style="line-height: 28px;">3回合內，受到的傷害減少50%；<br />並左方第1直行的寶珠變為<img src="images/drops/Light.png" width="25" />；<br />右方第1直行的寶珠變為<img src="images/drops/Fire.png" width="25" /></td>
+		<td colspan="5" style="line-height: 28px;">3回合內，受到的傷害減少50%；<br />並3回合內，隊員的攻擊力變成2倍；<br />並左方第1直行的寶珠變為<img src="images/drops/Light.png" width="25" />；<br />右方第1直行的寶珠變為<img src="images/drops/Fire.png" width="25" /></td>
 	</tr>
 
 	<tr bgcolor="#000000">
 		<td colspan="5">
 			持有相同主動技能的寵物: <br />
 			<a href="pets/3939" class="tooltip" title="3939 - 劍壁的衛龍喚士・拉斯昂絲"><img src="images/pets/3939.png" width="46" height="46" /></a>
+				<a href="pets/8880" class="tooltip" title="8880 - 拉斯昂絲的龍喚石"><img src="images/pets/8880.png" width="46" height="46" /></a>
 				<a href="pets/3959" class="tooltip" title="3959 - 白色書龍"><img src="images/pets/3959.png" width="46" height="46" /></a>
 			</td>
 	</tr>
@@ -747,9 +763,9 @@ function vote(e){
 				<td>（滿等＆+297時）</td>
 			</tr>
 						<tr>
-				<td style="padding-right:8px">HP<span style="color:#FF73B7;">+787</span></td>
-				<td style="padding-right:8px">攻擊力<span style="color:#FF73B7;">+124</span></td>
-				<td style="padding-right:8px">回復力<span style="color:#FF73B7;">+63</span></td>
+				<td style="padding-right:8px">HP<span style="color:#FF73B7;">+842</span></td>
+				<td style="padding-right:8px">攻擊力<span style="color:#FF73B7;">+132</span></td>
+				<td style="padding-right:8px">回復力<span style="color:#FF73B7;">+65</span></td>
 				<td>（LV110＆+297時）</td>
 			</tr>
 					</table>
@@ -795,6 +811,7 @@ function vote(e){
 由此覺醒技能產生的攻擊力計算為 1 + 15%×覺醒數目×(屬性COMBO數-1)"><img src="images/skill/skill-76.png"  /></a>
 					<a href="skill/%E3%82%B9%E3%82%AD%E3%83%AB%E3%83%96%E3%83%BC%E3%82%B9%E3%83%88%EF%BC%8B" class="tooltip" title="【スキルブースト＋】進入地下城的時候，隊伍全體的技能先儲了2回合&lt;br /&gt;
 ※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/skill/skill-56.png"  /></a>
+					<a href="skill/%E8%B6%85%E3%81%A4%E3%81%AA%E3%81%92%E6%B6%88%E3%81%97%E5%BC%B7%E5%8C%96" class="tooltip" title="【超つなげ消し強化】消除12顆或以上與自身屬性相同的寶珠時，持有該技能的寵物、該組寶珠的攻擊力12倍"><img src="images/skill/skill-82.png"  /></a>
 				（隨機一種）</td>
 	</tr>
 	<tr align="left" bgcolor="#000000">
@@ -984,7 +1001,7 @@ p.EvoName {
 
 
 <a href="pets/3938" class="EvoTarget"><img src="images/pets/3938.png" class="pic" /></a><br />	<ul class="wtree" style="margin-left:-40px">
-			<ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/3939" class="EvoTarget"><img src="images/pets/3939.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/輔助進化/" class="EvoTarget"><img src="images/assist.png" height="19" /></a></p><a href="pets/3911" class="no_style tooltip" title="3911 - 創裝之寶玉"><img src="images/pets/3911.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/150" class="no_style tooltip" title="150 - 光之守門人"><img src="images/pets/150.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/227" class="no_style tooltip" title="227 - 龍果"><img src="images/pets/227.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/249" class="no_style tooltip" title="249 - 雙倍黃玉精靈"><img src="images/pets/249.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/246" class="no_style tooltip" title="246 - 雙倍紅寶精靈"><img src="images/pets/246.png" width="35" height="35" style="padding:1px"  /></a></div></li></ul>	</ul>
+			<ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/3939" class="EvoTarget"><img src="images/pets/3939.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/究極進化/" class="EvoTarget"><img src="images/evo1.png" height="19" /></a></p><a href="pets/3911" class="no_style tooltip" title="3911 - 創裝之寶玉"><img src="images/pets/3911.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/150" class="no_style tooltip" title="150 - 光之守門人"><img src="images/pets/150.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/227" class="no_style tooltip" title="227 - 龍果"><img src="images/pets/227.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/249" class="no_style tooltip" title="249 - 雙倍黃玉精靈"><img src="images/pets/249.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/246" class="no_style tooltip" title="246 - 雙倍紅寶精靈"><img src="images/pets/246.png" width="35" height="35" style="padding:1px"  /></a></div></li><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/8880" class="EvoTarget"><img src="images/pets/8880.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/輔助進化/" class="EvoTarget"><img src="images/assist.png" height="19" /></a></p><a href="pets/3911" class="no_style tooltip" title="3911 - 創裝之寶玉"><img src="images/pets/3911.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1328" class="no_style tooltip" title="1328 - 光之寶玉"><img src="images/pets/1328.png" width="35" height="35" style="padding:1px"  /></a></div></li></ul>	</ul>
 
 	
 		</td>
@@ -1091,18 +1108,7 @@ p.EvoName {
 
 
 <br />
-<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/6月のクエスト 上級者向け" class="tooltip" title="6月のクエスト 上級者向け<br />チャレンジLv8【固定チーム】"><img src="images/stage/2719s.png" width="100"></a></td><td><a href="pets/5749" class="tooltip" title="5749 - 覺醒魯格"><img src="images/pets/5749.png" width="55" height="55" $team[L2][0]</a><a href="pets/4253" class="tooltip" title="4253 - 護持之智慧神・金剛夜叉明王"><img src="images/pets/4253.png" width="55" height="55" $team[L2][0]</a><a href="pets/4065" class="tooltip" title="4065 - 聖宴的黃龍神・法剛"><img src="images/pets/4065.png" width="55" height="55" $team[L2][0]</a><a href="pets/3938" class="tooltip" title="3938 - 衛龍喚士・拉斯昂絲"><img src="images/pets/3938.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/3060" class="tooltip" title="3060 - 奏冥之星機神・波妮克絲"><img src="images/pets/3060.png" width="55" height="55" $team[L2][0]</a><a href="pets/5749" class="tooltip" title="5749 - 覺醒魯格"><img src="images/pets/5749.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/117005/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
-
-<table width="750" border="0" cellpadding="0" cellspacing="1" align="center">
-	<tr>
-		<td align="left">
-		<a href="pets/3937" class="tooltip" title="3937 - 悲願の庭龍喚士・シャゼル"><img src="images/pets_pic/3937.png" style="border-radius:15px" width=365></a> 		</td>
-		<td align="right">
-		<a href="pets/3939" class="tooltip" title="3939 - 剣壁の衛龍喚士・ラシオス"><img src="images/pets_pic/3939.png" style="border-radius:15px" width=365></a>		</td>
-	</tr>
-</table>
-
-
+<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/6月のクエスト 上級者向け" class="tooltip" title="6月のクエスト 上級者向け<br />チャレンジLv8【固定チーム】"><img src="images/stage/7797s.png" width="100"></a></td><td><a href="pets/5749" class="tooltip" title="5749 - 覺醒魯格"><img src="images/pets/5749.png" width="55" height="55" $team[L2][0]</a><a href="pets/4253" class="tooltip" title="4253 - 護持之智慧神・金剛夜叉明王"><img src="images/pets/4253.png" width="55" height="55" $team[L2][0]</a><a href="pets/4065" class="tooltip" title="4065 - 聖宴的黃龍神・法剛"><img src="images/pets/4065.png" width="55" height="55" $team[L2][0]</a><a href="pets/3938" class="tooltip" title="3938 - 衛龍喚士・拉斯昂絲"><img src="images/pets/3938.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/3060" class="tooltip" title="3060 - 奏冥之星機神・波妮克絲"><img src="images/pets/3060.png" width="55" height="55" $team[L2][0]</a><a href="pets/5749" class="tooltip" title="5749 - 覺醒魯格"><img src="images/pets/5749.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/117005/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
 
 
 </td>
@@ -1193,7 +1199,6 @@ function updateTO(element) {
       <td align="left">
       Graphics © Copyright by Gungho Online Entertainment, Inc.<br>
       <a href="https://pad.skyozora.com">戰友系統及資訊網</a> 由 Sky C. 持有，介面設計 Naldo W.<br>
-      如對本網站有任何查詢，歡迎至 <a href="https://www.facebook.com/PuzzleDragonsSite/">Facebook 專頁</a> 聯絡
       </td>
       
       <td align="right">

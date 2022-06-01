@@ -30,7 +30,7 @@
 
 
 </head>
-<link rel="stylesheet" type="text/css" href="css/style.css?2018080414">
+<link rel="stylesheet" type="text/css" href="css/style.css?0322">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" charset="utf-8"></script>
 
 <script type="text/javascript"> 
@@ -269,21 +269,11 @@ $(function() {
 	<a href="/friendlist/">搜尋戰友請按此 <img src="images/searchBtn2.png" align="absmiddle" /></a>
 </td>
 
-<td style="padding: 15px 10px 8px 10px; border: #272727 1px solid; text-align:center; background: #000; font-size:14px" width="230">
 
-<!---
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="Puzzle &amp; Dragons 戰友系統及資訊網" data-lang="zh-tw" data-dnt="true" data-count="none" data-hashtags="パズドラ">推文</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^https:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
---->
-
-<a href="https://www.facebook.com/PuzzleDragonsSite" target=new class="tooltip" title="戰友系統及資訊網專頁"><img src="images/fb.png" width="20" style="vertical-align: baseline"></a> <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FPuzzleDragonsSite&amp;send=false&amp;layout=button_count&amp;width=85&amp;show_faces=false&amp;font=verdana&amp;colorscheme=light&amp;action=like&amp;height=20&amp;appId=181873884488" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:95px; height:20px;" allowTransparency="true" valign=center></iframe>
-
-</td>
-
-<td style="border: #272727 1px solid; text-align:left; width:680px; background: #000; font-size:14px; padding-left:10px">
+<td style="border: #272727 1px solid; text-align:left; width:800px; background: #000; font-size:14px; padding-left:10px">
 
 <form action="/search/" method="get">
-<input name="q" style="color:#fff; width:500px; font-size:14px" value="">
+<input name="q" style="color:#fff; width:700px; font-size:14px" value="">
 <input type="submit" value='站內搜尋' style="color:#fff; font-size:14px"></form>
 
 </td>
@@ -399,10 +389,11 @@ function vote(e){
 	<tr>
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/4836" class="tooltip" title="&lt;img src=&quot;images/pets/4836.png&quot; width=&quot;50&quot; /&gt; 4836 - 怒雷之全能神・宙斯 -GIGA-"><img src="images/left01.png" width="53" height="585" /></a>		</td>
-		<td width="640">
-			<div style="position: relative; text-align:center; padding:0px; margin:0px; border:0px;">
 
-			<img src="images/pets_pic/4837.png" width="640" style="border-left:1px solid #222222;border-right:1px solid #222222">
+		<td width="640">
+
+			<div style="position: relative; text-align:center; padding:0px; margin:0px; border-left:1px solid #222222;border-right:1px solid #222222; width:640px; height:585px" id="animation">
+
 
 							<div class="kakusei" style="top: 92px; left: 593px;">
 					<a href="skill/%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%80%90%E6%80%A7%EF%BC%8B" class="tooltip" title="【バインド耐性＋】受到敵人的綁定攻擊時，持有此技能的寵物可令綁定對自己無效化"><img src="images/transparent.png" width="31" height="31"></a>
@@ -435,7 +426,31 @@ function vote(e){
 					<a href="skill/%E3%83%80%E3%83%A1%E3%83%BC%E3%82%B8%E7%84%A1%E5%8A%B9%E8%B2%AB%E9%80%9A" class="tooltip" title="【ダメージ無効貫通】將與自身屬性相同的寶珠以形狀為3×3正方形的方式消除，該寵物的攻擊力2.5倍，並可以直接貫穿敵人的傷害無效化"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 						</div>
+			
+			<script src="javascript/pixi.min.js"></script>
+			<script src="javascript/pixi-spine.js"></script>
+			<script>
+			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
+			document.getElementById('animation').appendChild(app.view);
+			// load spine data
+			app.loader.add('spineboy', 'images/graphics/animation/mons_4837.json').load(onAssetsLoaded);
+
+			const background = PIXI.Sprite.from('images/pets_pic/4837.png');
+			background.width = 640;
+			background.height = 585;
+			app.stage.addChild(background);
+
+			function onAssetsLoaded(loader, res) {
+				const { spineData } = res.spineboy;
+
+				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
+				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
+				spine.state.setAnimation(0, "animation", true);
+				spine.state.timeScale = 1;
+			}
+			</script>
 		</td>
+			
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/4838" class="tooltip" title="&lt;img src=&quot;images/pets/4838.png&quot; width=&quot;50&quot; /&gt; 4838 - 神都之守護神・雅典娜 -NON-"><img src="images/right01.png" width="53" height="585" /></a>		</td>
 	</tr>
@@ -800,7 +815,7 @@ function vote(e){
 ※此技能效果發動時，傷害值上限提高至1.2倍"><img src="images/skill/skill-34.png"  /></a>
 					<a href="skill/%E4%BD%93%E5%8A%9B%E3%82%AD%E3%83%A9%E3%83%BC" class="tooltip" title="【体力キラー】持有此覺醒技能的寵物對「體力類」敵人造成的傷害3倍&lt;br /&gt;
 ※此技能效果發動時，傷害值上限提高至1.2倍"><img src="images/skill/skill-37.png"  /></a>
-					<a href="skill/HP50%EF%BC%85%E4%BB%A5%E4%B8%8A%E5%BC%B7%E5%8C%96" class="tooltip" title="【HP50％以上強化】HP50％或以上時，持有此覺醒技能之寵物的攻擊力1.5倍"><img src="images/skill/skill-57.png"  /></a>
+					<a href="skill/HP50%EF%BC%85%E4%BB%A5%E4%B8%8A%E5%BC%B7%E5%8C%96" class="tooltip" title="【HP50％以上強化】HP50％或以上時，持有此覺醒技能之寵物的攻擊力1.7倍"><img src="images/skill/skill-57.png"  /></a>
 				（隨機一種）</td>
 	</tr>
 	<tr align="left" bgcolor="#000000">
@@ -1088,18 +1103,7 @@ p.EvoName {
 
 
 <br />
-<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/白鯨降臨！" class="tooltip" title="白鯨降臨！<br />魔海獣 絶地獄級"><img src="images/stage/4419s.png" width="100"></a></td><td><a href="pets/4837" class="tooltip" title="4837 - 神空之全能神・宙斯 -GIGA-"><img src="images/pets/4837.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4013" class="tooltip" title="4013 - 萬天之全能神・宙斯＝巴斯"><img src="images/pets/4013.png" width="55" height="55" $team[L2][0]</a><a href="pets/4013" class="tooltip" title="4013 - 萬天之全能神・宙斯＝巴斯"><img src="images/pets/4013.png" width="55" height="55" $team[L2][0]</a><a href="pets/4648" class="tooltip" title="4648 - 輝門之大魔女・莎妮寧"><img src="images/pets/4648.png" width="55" height="55" $team[L2][0]</a><a href="pets/4800" class="tooltip" title="4800 - 轉戰之師龍喚士・瓦萊里婭"><img src="images/pets/4800.png" width="55" height="55" $team[L2][0]</a><a href="pets/4837" class="tooltip" title="4837 - 神空之全能神・宙斯 -GIGA-"><img src="images/pets/4837.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/115065/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/チィリン降臨！" class="tooltip" title="チィリン降臨！<br />七星の避邪姫 壊滅級"><img src="images/stage/5121s.png" width="100"></a></td><td><a href="pets/5156" class="tooltip" title="5156 - 魔族大隔世・浦飯幽助"><img src="images/pets/5156.png" width="55" height="55" $team[L2][0]</a><a href="pets/5105" class="tooltip" title="5105 - R・米卡"><img src="images/pets/5105.png" width="55" height="55" $team[L2][0]</a><a href="pets/4837" class="tooltip" title="4837 - 神空之全能神・宙斯 -GIGA-"><img src="images/pets/4837.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4648" class="tooltip" title="4648 - 輝門之大魔女・莎妮寧"><img src="images/pets/4648.png" width="55" height="55" $team[L2][0]</a><a href="pets/5136" class="tooltip" title="5136 - 極醒之白幻魔・伊雷姆"><img src="images/pets/5136.png" width="55" height="55" $team[L2][0]</a><a href="pets/5156" class="tooltip" title="5156 - 魔族大隔世・浦飯幽助"><img src="images/pets/5156.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/114365/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/白鯨降臨！" class="tooltip" title="白鯨降臨！<br />魔海獣 絶地獄級"><img src="images/stage/4419s.png" width="100"></a></td><td><a href="pets/4837" class="tooltip" title="4837 - 神空之全能神・宙斯 -GIGA-"><img src="images/pets/4837.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4648" class="tooltip" title="4648 - 輝門之大魔女・莎妮寧"><img src="images/pets/4648.png" width="55" height="55" $team[L2][0]</a><a href="pets/4836" class="tooltip" title="4836 - 怒雷之全能神・宙斯 -GIGA-"><img src="images/pets/4836.png" width="55" height="55" $team[L2][0]</a><a href="pets/4800" class="tooltip" title="4800 - 轉戰之師龍喚士・瓦萊里婭"><img src="images/pets/4800.png" width="55" height="55" $team[L2][0]</a><a href="pets/4013" class="tooltip" title="4013 - 萬天之全能神・宙斯＝巴斯"><img src="images/pets/4013.png" width="55" height="55" $team[L2][0]</a><a href="pets/4013" class="tooltip" title="4013 - 萬天之全能神・宙斯＝巴斯"><img src="images/pets/4013.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/115098/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/壊滅降臨ラッシュ！" class="tooltip" title="壊滅降臨ラッシュ！<br />激烈の戦城 超壊滅級"><img src="images/stage/5318s.png" width="100"></a></td><td><a href="pets/5744" class="tooltip" title="5744 - 點陣圖・閃光波利"><img src="images/pets/5744.png" width="55" height="55" $team[L2][0]</a><a href="pets/4836" class="tooltip" title="4836 - 怒雷之全能神・宙斯 -GIGA-"><img src="images/pets/4836.png" width="55" height="55" $team[L2][0]</a><a href="pets/4647" class="tooltip" title="4647 - 秘境之大魔女・莎妮寧"><img src="images/pets/4647.png" width="55" height="55" $team[L2][0]</a><a href="pets/2538" class="tooltip" title="2538 - 初日影之幻光・服部半蔵"><img src="images/pets/2538.png" width="55" height="55" $team[L2][0]</a><a href="pets/4800" class="tooltip" title="4800 - 轉戰之師龍喚士・瓦萊里婭"><img src="images/pets/4800.png" width="55" height="55" $team[L2][0]</a><a href="pets/3654" class="tooltip" title="3654 - 麒麟"><img src="images/pets/3654.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116433/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/ケツァルコアトル降臨！" class="tooltip" title="ケツァルコアトル降臨！<br />石蛇龍 壊滅級"><img src="images/stage/4906s.png" width="100"></a></td><td><a href="pets/4749" class="tooltip" title="4749 - 坂田銀時＆天之御中主神衣裝"><img src="images/pets/4749.png" width="55" height="55" $team[L2][0]</a><a href="pets/2538" class="tooltip" title="2538 - 初日影之幻光・服部半蔵"><img src="images/pets/2538.png" width="55" height="55" $team[L2][0]</a><a href="pets/4837" class="tooltip" title="4837 - 神空之全能神・宙斯 -GIGA-"><img src="images/pets/4837.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4745" class="tooltip" title="4745 - 極醒之龍刃機・巴路迪"><img src="images/pets/4745.png" width="55" height="55" $team[L2][0]</a><a href="pets/4835" class="tooltip" title="4835 - 白鳥之戰姬神・瓦爾奇琳 -CIEL-"><img src="images/pets/4835.png" width="55" height="55" $team[L2][0]</a><a href="pets/4859" class="tooltip" title="4859 - 閃光的亞絲娜"><img src="images/pets/4859.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/113238/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
-
-<table width="750" border="0" cellpadding="0" cellspacing="1" align="center">
-	<tr>
-		<td align="left">
-		<a href="pets/4836" class="tooltip" title="4836 - 怒雷の全能神・ゼウス -GIGA-"><img src="images/pets_pic/4836.png" style="border-radius:15px" width=365></a> 		</td>
-		<td align="right">
-		<a href="pets/4838" class="tooltip" title="4838 - 神都の守護神・アテナ -NON-"><img src="images/pets_pic/4838.png" style="border-radius:15px" width=365></a>		</td>
-	</tr>
-</table>
-
-
+<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/白鯨降臨！" class="tooltip" title="白鯨降臨！<br />魔海獣 絶地獄級"><img src="images/stage/4419s.png" width="100"></a></td><td><a href="pets/4837" class="tooltip" title="4837 - 神空之全能神・宙斯 -GIGA-"><img src="images/pets/4837.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4648" class="tooltip" title="4648 - 輝門之大魔女・莎妮寧"><img src="images/pets/4648.png" width="55" height="55" $team[L2][0]</a><a href="pets/4836" class="tooltip" title="4836 - 怒雷之全能神・宙斯 -GIGA-"><img src="images/pets/4836.png" width="55" height="55" $team[L2][0]</a><a href="pets/4800" class="tooltip" title="4800 - 轉戰之師龍喚士・瓦萊里婭"><img src="images/pets/4800.png" width="55" height="55" $team[L2][0]</a><a href="pets/4013" class="tooltip" title="4013 - 萬天之全能神・宙斯＝巴斯"><img src="images/pets/4013.png" width="55" height="55" $team[L2][0]</a><a href="pets/4013" class="tooltip" title="4013 - 萬天之全能神・宙斯＝巴斯"><img src="images/pets/4013.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/115098/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/壊滅降臨ラッシュ！" class="tooltip" title="壊滅降臨ラッシュ！<br />激烈の戦城 超壊滅級"><img src="images/stage/5318s.png" width="100"></a></td><td><a href="pets/5744" class="tooltip" title="5744 - 點陣圖・閃光波利"><img src="images/pets/5744.png" width="55" height="55" $team[L2][0]</a><a href="pets/4836" class="tooltip" title="4836 - 怒雷之全能神・宙斯 -GIGA-"><img src="images/pets/4836.png" width="55" height="55" $team[L2][0]</a><a href="pets/4647" class="tooltip" title="4647 - 秘境之大魔女・莎妮寧"><img src="images/pets/4647.png" width="55" height="55" $team[L2][0]</a><a href="pets/2538" class="tooltip" title="2538 - 初日影之幻光・服部半蔵"><img src="images/pets/2538.png" width="55" height="55" $team[L2][0]</a><a href="pets/4800" class="tooltip" title="4800 - 轉戰之師龍喚士・瓦萊里婭"><img src="images/pets/4800.png" width="55" height="55" $team[L2][0]</a><a href="pets/3654" class="tooltip" title="3654 - 麒麟"><img src="images/pets/3654.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116433/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/9月のクエスト 上級者向け(2020)" class="tooltip" title="9月のクエスト 上級者向け(2020)<br />チャレンジLv9【LS無効 同キャラ禁止】"><img src="" width="100"></a></td><td><a href="pets/4837" class="tooltip" title="4837 - 神空之全能神・宙斯 -GIGA-"><img src="images/pets/4837.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4877" class="tooltip" title="4877 - 初等練士・尤吉歐"><img src="images/pets/4877.png" width="55" height="55" $team[L2][0]</a><a href="pets/5012" class="tooltip" title="5012 - 間桐慎二"><img src="images/pets/5012.png" width="55" height="55" $team[L2][0]</a><a href="pets/2940" class="tooltip" title="2940 - 絕海龍・維魯多爾"><img src="images/pets/2940.png" width="55" height="55" $team[L2][0]</a><a href="pets/3885" class="tooltip" title="3885 - 輝輪王 加奈"><img src="images/pets/3885.png" width="55" height="55" $team[L2][0]</a><a href="pets/5209" class="tooltip" title="5209 - 神道花梨【暗黑】"><img src="images/pets/5209.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/115670/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/白鯨降臨！" class="tooltip" title="白鯨降臨！<br />魔海獣 絶地獄級"><img src="images/stage/4419s.png" width="100"></a></td><td><a href="pets/4837" class="tooltip" title="4837 - 神空之全能神・宙斯 -GIGA-"><img src="images/pets/4837.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4013" class="tooltip" title="4013 - 萬天之全能神・宙斯＝巴斯"><img src="images/pets/4013.png" width="55" height="55" $team[L2][0]</a><a href="pets/4013" class="tooltip" title="4013 - 萬天之全能神・宙斯＝巴斯"><img src="images/pets/4013.png" width="55" height="55" $team[L2][0]</a><a href="pets/4648" class="tooltip" title="4648 - 輝門之大魔女・莎妮寧"><img src="images/pets/4648.png" width="55" height="55" $team[L2][0]</a><a href="pets/4800" class="tooltip" title="4800 - 轉戰之師龍喚士・瓦萊里婭"><img src="images/pets/4800.png" width="55" height="55" $team[L2][0]</a><a href="pets/4837" class="tooltip" title="4837 - 神空之全能神・宙斯 -GIGA-"><img src="images/pets/4837.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/115065/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/6月のクエスト 上級者向け" class="tooltip" title="6月のクエスト 上級者向け<br />チャレンジLv10【操作時間5秒固定】"><img src="images/stage/7797s.png" width="100"></a></td><td><a href="pets/3337" class="tooltip" title="3337 - 焦陽的炎柱神・阿蒙"><img src="images/pets/3337.png" width="55" height="55" $team[L2][0]</a><a href="pets/3350" class="tooltip" title="3350 - 傾國的歌姬神・貂蟬"><img src="images/pets/3350.png" width="55" height="55" $team[L2][0]</a><a href="pets/5858" class="tooltip" title="5858 - 極醒之化身無盡之物・猶格＝索托斯"><img src="images/pets/5858.png" width="55" height="55" $team[L2][0]</a><a href="pets/4837" class="tooltip" title="4837 - 神空之全能神・宙斯 -GIGA-"><img src="images/pets/4837.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/2940" class="tooltip" title="2940 - 絕海龍・維魯多爾"><img src="images/pets/2940.png" width="55" height="55" $team[L2][0]</a><a href="pets/5324" class="tooltip" title="5324 - 轉生金剛夜叉明王"><img src="images/pets/5324.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/117064/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
 
 
 </td>
@@ -1190,7 +1194,6 @@ function updateTO(element) {
       <td align="left">
       Graphics © Copyright by Gungho Online Entertainment, Inc.<br>
       <a href="https://pad.skyozora.com">戰友系統及資訊網</a> 由 Sky C. 持有，介面設計 Naldo W.<br>
-      如對本網站有任何查詢，歡迎至 <a href="https://www.facebook.com/PuzzleDragonsSite/">Facebook 專頁</a> 聯絡
       </td>
       
       <td align="right">

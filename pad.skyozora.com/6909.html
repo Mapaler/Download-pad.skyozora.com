@@ -30,7 +30,7 @@
 
 
 </head>
-<link rel="stylesheet" type="text/css" href="css/style.css?2018080414">
+<link rel="stylesheet" type="text/css" href="css/style.css?0322">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" charset="utf-8"></script>
 
 <script type="text/javascript"> 
@@ -269,21 +269,11 @@ $(function() {
 	<a href="/friendlist/">搜尋戰友請按此 <img src="images/searchBtn2.png" align="absmiddle" /></a>
 </td>
 
-<td style="padding: 15px 10px 8px 10px; border: #272727 1px solid; text-align:center; background: #000; font-size:14px" width="230">
 
-<!---
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="Puzzle &amp; Dragons 戰友系統及資訊網" data-lang="zh-tw" data-dnt="true" data-count="none" data-hashtags="パズドラ">推文</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^https:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
---->
-
-<a href="https://www.facebook.com/PuzzleDragonsSite" target=new class="tooltip" title="戰友系統及資訊網專頁"><img src="images/fb.png" width="20" style="vertical-align: baseline"></a> <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FPuzzleDragonsSite&amp;send=false&amp;layout=button_count&amp;width=85&amp;show_faces=false&amp;font=verdana&amp;colorscheme=light&amp;action=like&amp;height=20&amp;appId=181873884488" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:95px; height:20px;" allowTransparency="true" valign=center></iframe>
-
-</td>
-
-<td style="border: #272727 1px solid; text-align:left; width:680px; background: #000; font-size:14px; padding-left:10px">
+<td style="border: #272727 1px solid; text-align:left; width:800px; background: #000; font-size:14px; padding-left:10px">
 
 <form action="/search/" method="get">
-<input name="q" style="color:#fff; width:500px; font-size:14px" value="">
+<input name="q" style="color:#fff; width:700px; font-size:14px" value="">
 <input type="submit" value='站內搜尋' style="color:#fff; font-size:14px"></form>
 
 </td>
@@ -399,10 +389,11 @@ function vote(e){
 	<tr>
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/6908" class="tooltip" title="&lt;img src=&quot;images/pets/6908.png&quot; width=&quot;50&quot; /&gt; 6908 - 美國隊長【經典封面】"><img src="images/left01.png" width="53" height="585" /></a>		</td>
-		<td width="640">
-			<div style="position: relative; text-align:center; padding:0px; margin:0px; border:0px;">
 
-			<img src="images/pets_pic/6909.png" width="640" style="border-left:1px solid #222222;border-right:1px solid #222222">
+		<td width="640">
+
+			<div style="position: relative; text-align:center; padding:0px; margin:0px; border-left:1px solid #222222;border-right:1px solid #222222; width:640px; height:585px" id="animation">
+
 
 							<div class="kakusei" style="top: 92px; left: 593px;">
 					<a href="skill/%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%80%90%E6%80%A7" class="tooltip" title="【バインド耐性】受到敵人的綁定攻擊時，持有此技能的寵物有50%機率令綁定對自己無效化&lt;br /&gt;效果以加法累積，當該寵物持有2個此覺醒技能時則可達到100%無效化"><img src="images/transparent.png" width="31" height="31"></a>
@@ -435,7 +426,31 @@ function vote(e){
 					<a href="skill/%E3%82%B3%E3%83%B3%E3%83%9C%E5%BC%B7%E5%8C%96" class="tooltip" title="【コンボ強化】7COMBO或以上時攻擊力2倍"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 						</div>
+			
+			<script src="javascript/pixi.min.js"></script>
+			<script src="javascript/pixi-spine.js"></script>
+			<script>
+			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
+			document.getElementById('animation').appendChild(app.view);
+			// load spine data
+			app.loader.add('spineboy', 'images/graphics/animation/mons_6909.json').load(onAssetsLoaded);
+
+			const background = PIXI.Sprite.from('images/pets_pic/6909.png');
+			background.width = 640;
+			background.height = 585;
+			app.stage.addChild(background);
+
+			function onAssetsLoaded(loader, res) {
+				const { spineData } = res.spineboy;
+
+				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
+				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
+				spine.state.setAnimation(0, "animation", true);
+				spine.state.timeScale = 1;
+			}
+			</script>
 		</td>
+			
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/6910" class="tooltip" title="&lt;img src=&quot;images/pets/6910.png&quot; width=&quot;50&quot; /&gt; 6910 - 鐵甲奇俠/鋼鐵人【變形俠醫/浩克毀滅者】"><img src="images/right01.png" width="53" height="585" /></a>		</td>
 	</tr>
@@ -997,18 +1012,7 @@ p.EvoName {
 
 
 <br />
-<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/7月のクエスト 上級者向け" class="tooltip" title="7月のクエスト 上級者向け<br />チャレンジLv10【7×6マス】"><img src="images/stage/5961s.png" width="100"></a></td><td><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/6353" class="tooltip" title="6353 - 超轉生濕婆"><img src="images/pets/6353.png" width="55" height="55" $team[L2][0]</a><a href="pets/4800" class="tooltip" title="4800 - 轉戰之師龍喚士・瓦萊里婭"><img src="images/pets/4800.png" width="55" height="55" $team[L2][0]</a><a href="pets/6820" class="tooltip" title="6820 - 聖夜的禮物・蛋龍"><img src="images/pets/6820.png" width="55" height="55" $team[L2][0]</a><a href="pets/7276" class="tooltip" title="7276 - 轉生魯格"><img src="images/pets/7276.png" width="55" height="55" $team[L2][0]</a><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/118045/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/ラタトスク降臨！" class="tooltip" title="ラタトスク降臨！<br />伝魔獣 絶壊滅級"><img src="images/stage/7610s.png" width="100"></a></td><td><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/7438" class="tooltip" title="7438 - 城之内克也＆真紅眼黑鋼龍"><img src="images/pets/7438.png" width="55" height="55" $team[L2][0]</a><a href="pets/6052" class="tooltip" title="6052 - 友愛之灰幻魔・伊雷米娜"><img src="images/pets/6052.png" width="55" height="55" $team[L2][0]</a><a href="pets/4995" class="tooltip" title="4995 - 灼華之魔女・奧莉雅"><img src="images/pets/4995.png" width="55" height="55" $team[L2][0]</a><a href="pets/5510" class="tooltip" title="5510 - 奧米加"><img src="images/pets/5510.png" width="55" height="55" $team[L2][0]</a><a href="pets/5954" class="tooltip" title="5954 - 機神王・古蘭帝士"><img src="images/pets/5954.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/118072/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/ジュロンド降臨！" class="tooltip" title="ジュロンド降臨！<br />双跡龍 絶壊滅級"><img src="images/stage/6719s.png" width="100"></a></td><td><a href="pets/6659" class="tooltip" title="6659 - 火車之式神使・星奈"><img src="images/pets/6659.png" width="55" height="55" $team[L2][0]</a><a href="pets/6539" class="tooltip" title="6539 - 竈門禰豆子"><img src="images/pets/6539.png" width="55" height="55" $team[L2][0]</a><a href="pets/6974" class="tooltip" title="6974 - 磁界王・磁力王/萬磁王"><img src="images/pets/6974.png" width="55" height="55" $team[L2][0]</a><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4916" class="tooltip" title="4916 - 幪面超人電王（假面騎士） 電王 巔峰形態"><img src="images/pets/4916.png" width="55" height="55" $team[L2][0]</a><a href="pets/6659" class="tooltip" title="6659 - 火車之式神使・星奈"><img src="images/pets/6659.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/117868/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/アポピス降臨！" class="tooltip" title="アポピス降臨！<br />暗影蛇 絶壊滅級"><img src="images/stage/7242s.png" width="100"></a></td><td><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/6052" class="tooltip" title="6052 - 友愛之灰幻魔・伊雷米娜"><img src="images/pets/6052.png" width="55" height="55" $team[L2][0]</a><a href="pets/6941" class="tooltip" title="6941 - 佩妮・柏加/潘妮・帕克"><img src="images/pets/6941.png" width="55" height="55" $team[L2][0]</a><a href="pets/6132" class="tooltip" title="6132 - 遠坂的第六代繼承者・遠坂凛"><img src="images/pets/6132.png" width="55" height="55" $team[L2][0]</a><a href="pets/6819" class="tooltip" title="6819 - 聖夜的歡迎者・格莫瑞"><img src="images/pets/6819.png" width="55" height="55" $team[L2][0]</a><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/117951/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/レガロバン降臨！" class="tooltip" title="レガロバン降臨！<br />豹魔獣 壊滅級"><img src="images/stage/7465s.png" width="100"></a></td><td><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/6005" class="tooltip" title="6005 - 米奇與好朋友【慶典】"><img src="images/pets/6005.png" width="55" height="55" $team[L2][0]</a><a href="pets/4916" class="tooltip" title="4916 - 幪面超人電王（假面騎士） 電王 巔峰形態"><img src="images/pets/4916.png" width="55" height="55" $team[L2][0]</a><a href="pets/3943" class="tooltip" title="3943 - 滅腕的荒龍契士・6號"><img src="images/pets/3943.png" width="55" height="55" $team[L2][0]</a><a href="pets/6841" class="tooltip" title="6841 - 殘煌裝姬 艾可蕾璐"><img src="images/pets/6841.png" width="55" height="55" $team[L2][0]</a><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/118333/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
-
-<table width="750" border="0" cellpadding="0" cellspacing="1" align="center">
-	<tr>
-		<td align="left">
-		<a href="pets/6908" class="tooltip" title="6908 - キャプテン・アメリカ【クラシックカバー】"><img src="images/pets_pic/6908.png" style="border-radius:15px" width=365></a> 		</td>
-		<td align="right">
-		<a href="pets/6910" class="tooltip" title="6910 - アイアンマン【ハルクバスターアーマー】"><img src="images/pets_pic/6910.png" style="border-radius:15px" width=365></a>		</td>
-	</tr>
-</table>
-
-
+<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/イレーヌ降臨！" class="tooltip" title="イレーヌ降臨！<br />降魔術士 絶壊滅級"><img src="images/stage/7122s.png" width="100"></a></td><td><a href="pets/6941" class="tooltip" title="6941 - 佩妮・柏加/潘妮・帕克"><img src="images/pets/6941.png" width="55" height="55" $team[L2][0]</a><a href="pets/6872" class="tooltip" title="6872 - 超轉生彼列"><img src="images/pets/6872.png" width="55" height="55" $team[L2][0]</a><a href="pets/6760" class="tooltip" title="6760 - 靈護爪之朱雀・麗蘭"><img src="images/pets/6760.png" width="55" height="55" $team[L2][0]</a><a href="pets/6152" class="tooltip" title="6152 - 睡床的大魔女・蕾慕"><img src="images/pets/6152.png" width="55" height="55" $team[L2][0]</a><a href="pets/5137" class="tooltip" title="5137 - 極醒之魔公爵・但他林"><img src="images/pets/5137.png" width="55" height="55" $team[L2][0]</a><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/117899/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/金曜の闘技場" class="tooltip" title="金曜の闘技場<br />金曜日の決戦"><img src="" width="100"></a></td><td><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/7455" class="tooltip" title="7455 - 王道遊我＆第七王道魔術師"><img src="images/pets/7455.png" width="55" height="55" $team[L2][0]</a><a href="pets/6662" class="tooltip" title="6662 - 赫龍之式神使・龍明"><img src="images/pets/6662.png" width="55" height="55" $team[L2][0]</a><a href="pets/4916" class="tooltip" title="4916 - 幪面超人電王（假面騎士） 電王 巔峰形態"><img src="images/pets/4916.png" width="55" height="55" $team[L2][0]</a><a href="pets/5641" class="tooltip" title="5641 - 盗賊殺手・莉娜＝因巴斯"><img src="images/pets/5641.png" width="55" height="55" $team[L2][0]</a><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/118050/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/裏・極限の闘技場" class="tooltip" title="裏・極限の闘技場<br />裏列界の化身"><img src="images/stage/3891s.png" width="100"></a></td><td><a href="pets/6659" class="tooltip" title="6659 - 火車之式神使・星奈"><img src="images/pets/6659.png" width="55" height="55" $team[L2][0]</a><a href="pets/6539" class="tooltip" title="6539 - 竈門禰豆子"><img src="images/pets/6539.png" width="55" height="55" $team[L2][0]</a><a href="pets/5241" class="tooltip" title="5241 - 降魔調伏・恐山安娜"><img src="images/pets/5241.png" width="55" height="55" $team[L2][0]</a><a href="pets/4916" class="tooltip" title="4916 - 幪面超人電王（假面騎士） 電王 巔峰形態"><img src="images/pets/4916.png" width="55" height="55" $team[L2][0]</a><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/6659" class="tooltip" title="6659 - 火車之式神使・星奈"><img src="images/pets/6659.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/117814/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/ジュロンド降臨！" class="tooltip" title="ジュロンド降臨！<br />双跡龍 絶壊滅級"><img src="images/stage/6719s.png" width="100"></a></td><td><a href="pets/6659" class="tooltip" title="6659 - 火車之式神使・星奈"><img src="images/pets/6659.png" width="55" height="55" $team[L2][0]</a><a href="pets/6539" class="tooltip" title="6539 - 竈門禰豆子"><img src="images/pets/6539.png" width="55" height="55" $team[L2][0]</a><a href="pets/6974" class="tooltip" title="6974 - 磁界王・磁力王/萬磁王"><img src="images/pets/6974.png" width="55" height="55" $team[L2][0]</a><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4916" class="tooltip" title="4916 - 幪面超人電王（假面騎士） 電王 巔峰形態"><img src="images/pets/4916.png" width="55" height="55" $team[L2][0]</a><a href="pets/6659" class="tooltip" title="6659 - 火車之式神使・星奈"><img src="images/pets/6659.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/117868/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/3月のクエスト 上級者向け" class="tooltip" title="3月のクエスト 上級者向け<br />チャレンジLv10【全属性必須】"><img src="" width="100"></a></td><td><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" style="background-color:#FFFF00; padding-right:5px;padding-top:5px;padding-bottom:5px"$team[L2][0]</a><a href="pets/3943" class="tooltip" title="3943 - 滅腕的荒龍契士・6號"><img src="images/pets/3943.png" width="55" height="55" $team[L2][0]</a><a href="pets/6418" class="tooltip" title="6418 - 色欲之大罪龍王・巴利鴉斯"><img src="images/pets/6418.png" width="55" height="55" $team[L2][0]</a><a href="pets/6590" class="tooltip" title="6590 - 吉祥之女神・拉克什米【暗黑】"><img src="images/pets/6590.png" width="55" height="55" $team[L2][0]</a><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/117848/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
 
 
 </td>
@@ -1099,7 +1103,6 @@ function updateTO(element) {
       <td align="left">
       Graphics © Copyright by Gungho Online Entertainment, Inc.<br>
       <a href="https://pad.skyozora.com">戰友系統及資訊網</a> 由 Sky C. 持有，介面設計 Naldo W.<br>
-      如對本網站有任何查詢，歡迎至 <a href="https://www.facebook.com/PuzzleDragonsSite/">Facebook 專頁</a> 聯絡
       </td>
       
       <td align="right">

@@ -30,7 +30,7 @@
 
 
 </head>
-<link rel="stylesheet" type="text/css" href="css/style.css?2018080414">
+<link rel="stylesheet" type="text/css" href="css/style.css?0322">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" charset="utf-8"></script>
 
 <script type="text/javascript"> 
@@ -269,21 +269,11 @@ $(function() {
 	<a href="/friendlist/">搜尋戰友請按此 <img src="images/searchBtn2.png" align="absmiddle" /></a>
 </td>
 
-<td style="padding: 15px 10px 8px 10px; border: #272727 1px solid; text-align:center; background: #000; font-size:14px" width="230">
 
-<!---
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="Puzzle &amp; Dragons 戰友系統及資訊網" data-lang="zh-tw" data-dnt="true" data-count="none" data-hashtags="パズドラ">推文</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^https:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
---->
-
-<a href="https://www.facebook.com/PuzzleDragonsSite" target=new class="tooltip" title="戰友系統及資訊網專頁"><img src="images/fb.png" width="20" style="vertical-align: baseline"></a> <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FPuzzleDragonsSite&amp;send=false&amp;layout=button_count&amp;width=85&amp;show_faces=false&amp;font=verdana&amp;colorscheme=light&amp;action=like&amp;height=20&amp;appId=181873884488" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:95px; height:20px;" allowTransparency="true" valign=center></iframe>
-
-</td>
-
-<td style="border: #272727 1px solid; text-align:left; width:680px; background: #000; font-size:14px; padding-left:10px">
+<td style="border: #272727 1px solid; text-align:left; width:800px; background: #000; font-size:14px; padding-left:10px">
 
 <form action="/search/" method="get">
-<input name="q" style="color:#fff; width:500px; font-size:14px" value="">
+<input name="q" style="color:#fff; width:700px; font-size:14px" value="">
 <input type="submit" value='站內搜尋' style="color:#fff; font-size:14px"></form>
 
 </td>
@@ -399,10 +389,11 @@ function vote(e){
 	<tr>
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/4878" class="tooltip" title="&lt;img src=&quot;images/pets/4878.png&quot; width=&quot;50&quot; /&gt; 4878 - 初等練士・桐人"><img src="images/left01.png" width="53" height="585" /></a>		</td>
-		<td width="640">
-			<div style="position: relative; text-align:center; padding:0px; margin:0px; border:0px;">
 
-			<img src="images/pets_pic/4879.png" width="640" style="border-left:1px solid #222222;border-right:1px solid #222222">
+		<td width="640">
+
+			<div style="position: relative; text-align:center; padding:0px; margin:0px; border-left:1px solid #222222;border-right:1px solid #222222; width:640px; height:585px" id="animation">
+
 
 							<div class="kakusei" style="top: 92px; left: 593px;">
 					<a href="skill/%E5%9B%9E%E5%BE%A9%E3%83%89%E3%83%AD%E3%83%83%E3%83%97%E5%BC%B7%E5%8C%96" class="tooltip" title="【回復ドロップ強化】掉落的回復寶珠有20%機率直接出現&lt;img src=&quot;images/drops/Heart+.png&quot; width=&quot;25&quot; alt=&quot;回復強化寶珠&quot; /&gt;&lt;br /&gt;
@@ -443,7 +434,31 @@ function vote(e){
 					<a href="skill/%E3%82%B9%E3%82%AD%E3%83%AB%E3%83%9C%E3%82%A4%E3%82%B9" class="tooltip" title="【スキルボイス】全數值提升10%，使用技能時會有角色語音（此覺醒技能不受敵人的覺醒無效影響）"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 						</div>
+			
+			<script src="javascript/pixi.min.js"></script>
+			<script src="javascript/pixi-spine.js"></script>
+			<script>
+			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
+			document.getElementById('animation').appendChild(app.view);
+			// load spine data
+			app.loader.add('spineboy', 'images/graphics/animation/mons_4879.json').load(onAssetsLoaded);
+
+			const background = PIXI.Sprite.from('images/pets_pic/4879.png');
+			background.width = 640;
+			background.height = 585;
+			app.stage.addChild(background);
+
+			function onAssetsLoaded(loader, res) {
+				const { spineData } = res.spineboy;
+
+				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
+				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
+				spine.state.setAnimation(0, "animation", true);
+				spine.state.timeScale = 1;
+			}
+			</script>
 		</td>
+			
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/4880" class="tooltip" title="&lt;img src=&quot;images/pets/4880.png&quot; width=&quot;50&quot; /&gt; 4880 - 尤娜"><img src="images/right01.png" width="53" height="585" /></a>		</td>
 	</tr>
@@ -1081,18 +1096,7 @@ p.EvoName {
 
 
 <br />
-<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/9月のクエスト 上級者向け(2020)" class="tooltip" title="9月のクエスト 上級者向け(2020)<br />チャレンジLv9【★5以下のみ／7×6マス】"><img src="" width="100"></a></td><td><a href="pets/6325" class="tooltip" title="6325 - 雄英高校英雄科・綠谷出久"><img src="images/pets/6325.png" width="55" height="55" $team[L2][0]</a><a href="pets/6042" class="tooltip" title="6042 - 布魯托【經典】"><img src="images/pets/6042.png" width="55" height="55" $team[L2][0]</a><a href="pets/2485" class="tooltip" title="2485 - 邪惡化身・白面者"><img src="images/pets/2485.png" width="55" height="55" $team[L2][0]</a><a href="pets/4879" class="tooltip" title="4879 - 導航妖精・結衣"><img src="images/pets/4879.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/6317" class="tooltip" title="6317 - 飯田天哉"><img src="images/pets/6317.png" width="55" height="55" $team[L2][0]</a><a href="pets/6316" class="tooltip" title="6316 - 麗日御茶子"><img src="images/pets/6316.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/117398/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/ナイトメアストリート" class="tooltip" title="ナイトメアストリート<br />極光夜（4体以下編成）"><img src="images/stage/3286s.png" width="100"></a></td><td><a href="pets/4856" class="tooltip" title="4856 - 黑之劍士・桐人"><img src="images/pets/4856.png" width="55" height="55" $team[L2][0]</a><a href="pets/4877" class="tooltip" title="4877 - 初等練士・尤吉歐"><img src="images/pets/4877.png" width="55" height="55" $team[L2][0]</a><a href="pets/0" class="tooltip" title="0 - "><img src="images/pets/000.png" width="55" height="55" $team[L2][0]</a><a href="pets/4879" class="tooltip" title="4879 - 導航妖精・結衣"><img src="images/pets/4879.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/0" class="tooltip" title="0 - "><img src="images/pets/000.png" width="55" height="55" $team[L2][0]</a><a href="pets/4865" class="tooltip" title="4865 - 冥界之女神・詩音"><img src="images/pets/4865.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/113886/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/シェヘラザード降臨！" class="tooltip" title="シェヘラザード降臨！<br />静夜の語り手 壊滅級"><img src="images/stage/5173s.png" width="100"></a></td><td><a href="pets/5002" class="tooltip" title="5002 - 志願成為正義的夥伴・衛宮士郎"><img src="images/pets/5002.png" width="55" height="55" $team[L2][0]</a><a href="pets/4411" class="tooltip" title="4411 - 炎鎖之大魔女・瑪杜"><img src="images/pets/4411.png" width="55" height="55" $team[L2][0]</a><a href="pets/5100" class="tooltip" title="5100 - 超級大小姐・神月卡琳"><img src="images/pets/5100.png" width="55" height="55" $team[L2][0]</a><a href="pets/4879" class="tooltip" title="4879 - 導航妖精・結衣"><img src="images/pets/4879.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4020" class="tooltip" title="4020 - 鋼之鍊金術師・愛德華・愛力克"><img src="images/pets/4020.png" width="55" height="55" $team[L2][0]</a><a href="pets/5002" class="tooltip" title="5002 - 志願成為正義的夥伴・衛宮士郎"><img src="images/pets/5002.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/114520/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
-
-<table width="750" border="0" cellpadding="0" cellspacing="1" align="center">
-	<tr>
-		<td align="left">
-		<a href="pets/4878" class="tooltip" title="4878 - 初等練士・キリト"><img src="images/pets_pic/4878.png" style="border-radius:15px" width=365></a> 		</td>
-		<td align="right">
-		<a href="pets/4880" class="tooltip" title="4880 - ユナ"><img src="images/pets_pic/4880.png" style="border-radius:15px" width=365></a>		</td>
-	</tr>
-</table>
-
-
+<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/シェヘラザード降臨！" class="tooltip" title="シェヘラザード降臨！<br />静夜の語り手 壊滅級"><img src="images/stage/5173s.png" width="100"></a></td><td><a href="pets/5002" class="tooltip" title="5002 - 志願成為正義的夥伴・衛宮士郎"><img src="images/pets/5002.png" width="55" height="55" $team[L2][0]</a><a href="pets/4411" class="tooltip" title="4411 - 炎鎖之大魔女・瑪杜"><img src="images/pets/4411.png" width="55" height="55" $team[L2][0]</a><a href="pets/5100" class="tooltip" title="5100 - 超級大小姐・神月卡琳"><img src="images/pets/5100.png" width="55" height="55" $team[L2][0]</a><a href="pets/4879" class="tooltip" title="4879 - 導航妖精・結衣"><img src="images/pets/4879.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4020" class="tooltip" title="4020 - 鋼之鍊金術師・愛德華・愛力克"><img src="images/pets/4020.png" width="55" height="55" $team[L2][0]</a><a href="pets/5002" class="tooltip" title="5002 - 志願成為正義的夥伴・衛宮士郎"><img src="images/pets/5002.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/114520/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/ナイトメアストリート" class="tooltip" title="ナイトメアストリート<br />極光夜（4体以下編成）"><img src="images/stage/3286s.png" width="100"></a></td><td><a href="pets/4856" class="tooltip" title="4856 - 黑之劍士・桐人"><img src="images/pets/4856.png" width="55" height="55" $team[L2][0]</a><a href="pets/4877" class="tooltip" title="4877 - 初等練士・尤吉歐"><img src="images/pets/4877.png" width="55" height="55" $team[L2][0]</a><a href="pets/0" class="tooltip" title="0 - "><img src="images/pets/000.png" width="55" height="55" $team[L2][0]</a><a href="pets/4879" class="tooltip" title="4879 - 導航妖精・結衣"><img src="images/pets/4879.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/0" class="tooltip" title="0 - "><img src="images/pets/000.png" width="55" height="55" $team[L2][0]</a><a href="pets/4865" class="tooltip" title="4865 - 冥界之女神・詩音"><img src="images/pets/4865.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/113886/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/9月のクエスト 上級者向け(2020)" class="tooltip" title="9月のクエスト 上級者向け(2020)<br />チャレンジLv9【★5以下のみ／7×6マス】"><img src="" width="100"></a></td><td><a href="pets/6325" class="tooltip" title="6325 - 雄英高校英雄科・綠谷出久"><img src="images/pets/6325.png" width="55" height="55" $team[L2][0]</a><a href="pets/6042" class="tooltip" title="6042 - 布魯托【經典】"><img src="images/pets/6042.png" width="55" height="55" $team[L2][0]</a><a href="pets/2485" class="tooltip" title="2485 - 邪惡化身・白面者"><img src="images/pets/2485.png" width="55" height="55" $team[L2][0]</a><a href="pets/4879" class="tooltip" title="4879 - 導航妖精・結衣"><img src="images/pets/4879.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/6317" class="tooltip" title="6317 - 飯田天哉"><img src="images/pets/6317.png" width="55" height="55" $team[L2][0]</a><a href="pets/6316" class="tooltip" title="6316 - 麗日御茶子"><img src="images/pets/6316.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/117398/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
 
 
 </td>
@@ -1183,7 +1187,6 @@ function updateTO(element) {
       <td align="left">
       Graphics © Copyright by Gungho Online Entertainment, Inc.<br>
       <a href="https://pad.skyozora.com">戰友系統及資訊網</a> 由 Sky C. 持有，介面設計 Naldo W.<br>
-      如對本網站有任何查詢，歡迎至 <a href="https://www.facebook.com/PuzzleDragonsSite/">Facebook 專頁</a> 聯絡
       </td>
       
       <td align="right">

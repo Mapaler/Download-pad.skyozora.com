@@ -30,7 +30,7 @@
 
 
 </head>
-<link rel="stylesheet" type="text/css" href="css/style.css?2018080414">
+<link rel="stylesheet" type="text/css" href="css/style.css?0322">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" charset="utf-8"></script>
 
 <script type="text/javascript"> 
@@ -269,21 +269,11 @@ $(function() {
 	<a href="/friendlist/">搜尋戰友請按此 <img src="images/searchBtn2.png" align="absmiddle" /></a>
 </td>
 
-<td style="padding: 15px 10px 8px 10px; border: #272727 1px solid; text-align:center; background: #000; font-size:14px" width="230">
 
-<!---
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="Puzzle &amp; Dragons 戰友系統及資訊網" data-lang="zh-tw" data-dnt="true" data-count="none" data-hashtags="パズドラ">推文</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^https:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
---->
-
-<a href="https://www.facebook.com/PuzzleDragonsSite" target=new class="tooltip" title="戰友系統及資訊網專頁"><img src="images/fb.png" width="20" style="vertical-align: baseline"></a> <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FPuzzleDragonsSite&amp;send=false&amp;layout=button_count&amp;width=85&amp;show_faces=false&amp;font=verdana&amp;colorscheme=light&amp;action=like&amp;height=20&amp;appId=181873884488" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:95px; height:20px;" allowTransparency="true" valign=center></iframe>
-
-</td>
-
-<td style="border: #272727 1px solid; text-align:left; width:680px; background: #000; font-size:14px; padding-left:10px">
+<td style="border: #272727 1px solid; text-align:left; width:800px; background: #000; font-size:14px; padding-left:10px">
 
 <form action="/search/" method="get">
-<input name="q" style="color:#fff; width:500px; font-size:14px" value="">
+<input name="q" style="color:#fff; width:700px; font-size:14px" value="">
 <input type="submit" value='站內搜尋' style="color:#fff; font-size:14px"></form>
 
 </td>
@@ -399,10 +389,11 @@ function vote(e){
 	<tr>
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/6131" class="tooltip" title="&lt;img src=&quot;images/pets/6131.png&quot; width=&quot;50&quot; /&gt; 6131 - 只屬於櫻的正義夥伴・衛宮士郎"><img src="images/left01.png" width="53" height="585" /></a>		</td>
-		<td width="640">
-			<div style="position: relative; text-align:center; padding:0px; margin:0px; border:0px;">
 
-			<img src="images/pets_pic/6132.png" width="640" style="border-left:1px solid #222222;border-right:1px solid #222222">
+		<td width="640">
+
+			<div style="position: relative; text-align:center; padding:0px; margin:0px; border-left:1px solid #222222;border-right:1px solid #222222; width:640px; height:585px" id="animation">
+
 
 							<div class="kakusei" style="top: 92px; left: 593px;">
 					<a href="skill/%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%80%90%E6%80%A7%EF%BC%8B" class="tooltip" title="【バインド耐性＋】受到敵人的綁定攻擊時，持有此技能的寵物可令綁定對自己無效化"><img src="images/transparent.png" width="31" height="31"></a>
@@ -454,7 +445,31 @@ function vote(e){
 					<a href="skill/%E3%82%B9%E3%82%AD%E3%83%AB%E3%83%9C%E3%82%A4%E3%82%B9" class="tooltip" title="【スキルボイス】全數值提升10%，使用技能時會有角色語音（此覺醒技能不受敵人的覺醒無效影響）"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 						</div>
+			
+			<script src="javascript/pixi.min.js"></script>
+			<script src="javascript/pixi-spine.js"></script>
+			<script>
+			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
+			document.getElementById('animation').appendChild(app.view);
+			// load spine data
+			app.loader.add('spineboy', 'images/graphics/animation/mons_6132.json').load(onAssetsLoaded);
+
+			const background = PIXI.Sprite.from('images/pets_pic/6132.png');
+			background.width = 640;
+			background.height = 585;
+			app.stage.addChild(background);
+
+			function onAssetsLoaded(loader, res) {
+				const { spineData } = res.spineboy;
+
+				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
+				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
+				spine.state.setAnimation(0, "animation", true);
+				spine.state.timeScale = 1;
+			}
+			</script>
 		</td>
+			
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/6133" class="tooltip" title="&lt;img src=&quot;images/pets/6133.png&quot; width=&quot;50&quot; /&gt; 6133 - 寶石劍澤爾里奇"><img src="images/right01.png" width="53" height="585" /></a>		</td>
 	</tr>
@@ -831,7 +846,7 @@ function vote(e){
 	<tr align="left" bgcolor="#000000">
 		<td width="80" class="head"><a href="/news/「超覚醒」系統登場!!">超覺醒</a></td>
 		<td>
-					<a href="skill/L%E5%AD%97%E6%B6%88%E3%81%97%E6%94%BB%E6%92%83" class="tooltip" title="【L字消し攻撃】將5個與自身屬性相同的寶珠以L字形的方式消除，該寵物的攻擊力1.5倍，並可以解除盤面上的寶珠鎖定狀態，以及解除鎖定寶珠掉落的效果"><img src="images/skill/skill-60.png"  /></a>
+					<a href="skill/L%E5%AD%97%E6%B6%88%E3%81%97%E6%94%BB%E6%92%83" class="tooltip" title="【L字消し攻撃】將5個與自身屬性相同的寶珠以L字形的方式消除，該寵物的攻擊力1.7倍，並可以解除盤面上的寶珠鎖定狀態，以及解除鎖定寶珠掉落的效果"><img src="images/skill/skill-60.png"  /></a>
 					<a href="skill/%E8%BF%BD%E5%8A%A0%E6%94%BB%E6%92%83" class="tooltip" title="【追加攻撃】消除一直行的回復寶珠時，對敵人追加500,000點固定傷害"><img src="images/skill/skill-45.png"  /></a>
 					<a href="skill/%E3%81%8A%E9%82%AA%E9%AD%94%E8%80%90%E6%80%A7%EF%BC%8B" class="tooltip" title="【お邪魔耐性＋】不受到敵人的邪魔攻擊或炸彈攻擊，寶珠不會變成&lt;img src=&quot;http://pad.skyozora.com/images/drops/Dead.png&quot; width=&quot;25&quot; alt=&quot;邪魔寶珠&quot; /&gt;&lt;img src=&quot;http://pad.skyozora.com/images/drops/Bomb.png&quot; width=&quot;25&quot; alt=&quot;炸彈寶珠&quot; /&gt;&lt;br /&gt;
 ※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/skill/skill-69.png"  /></a>
@@ -1124,18 +1139,7 @@ p.EvoName {
 
 
 <br />
-<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/アポピス降臨！" class="tooltip" title="アポピス降臨！<br />暗影蛇 絶壊滅級"><img src="images/stage/7242s.png" width="100"></a></td><td><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" $team[L2][0]</a><a href="pets/6052" class="tooltip" title="6052 - 友愛之灰幻魔・伊雷米娜"><img src="images/pets/6052.png" width="55" height="55" $team[L2][0]</a><a href="pets/6941" class="tooltip" title="6941 - 佩妮・柏加/潘妮・帕克"><img src="images/pets/6941.png" width="55" height="55" $team[L2][0]</a><a href="pets/6132" class="tooltip" title="6132 - 遠坂的第六代繼承者・遠坂凛"><img src="images/pets/6132.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/6819" class="tooltip" title="6819 - 聖夜的歡迎者・格莫瑞"><img src="images/pets/6819.png" width="55" height="55" $team[L2][0]</a><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/117951/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/イレーヌ降臨！" class="tooltip" title="イレーヌ降臨！<br />降魔術士 絶壊滅級"><img src="images/stage/7122s.png" width="100"></a></td><td><a href="pets/6783" class="tooltip" title="6783 - 羽川翼"><img src="images/pets/6783.png" width="55" height="55" $team[L2][0]</a><a href="pets/6421" class="tooltip" title="6421 - 傲慢之大罪龍王・法德爾"><img src="images/pets/6421.png" width="55" height="55" $team[L2][0]</a><a href="pets/6406" class="tooltip" title="6406 - 嫉妒之大罪龍王・吉維"><img src="images/pets/6406.png" width="55" height="55" $team[L2][0]</a><a href="pets/5858" class="tooltip" title="5858 - 極醒之化身無盡之物・猶格＝索托斯"><img src="images/pets/5858.png" width="55" height="55" $team[L2][0]</a><a href="pets/5644" class="tooltip" title="5644 - 天才劍士・高里＝加布列夫"><img src="images/pets/5644.png" width="55" height="55" $team[L2][0]</a><a href="pets/6913" class="tooltip" title="6913 - Marvel隊長/驚奇隊長"><img src="images/pets/6913.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/117898/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
-
-<table width="750" border="0" cellpadding="0" cellspacing="1" align="center">
-	<tr>
-		<td align="left">
-		<a href="pets/6131" class="tooltip" title="6131 - 桜だけの正義の味方・衛宮士郎"><img src="images/pets_pic/6131.png" style="border-radius:15px" width=365></a> 		</td>
-		<td align="right">
-		<a href="pets/6133" class="tooltip" title="6133 - 宝石剣ゼルレッチ"><img src="images/pets_pic/6133.png" style="border-radius:15px" width=365></a>		</td>
-	</tr>
-</table>
-
-
+<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/イレーヌ降臨！" class="tooltip" title="イレーヌ降臨！<br />降魔術士 絶壊滅級"><img src="images/stage/7122s.png" width="100"></a></td><td><a href="pets/6783" class="tooltip" title="6783 - 羽川翼"><img src="images/pets/6783.png" width="55" height="55" $team[L2][0]</a><a href="pets/6421" class="tooltip" title="6421 - 傲慢之大罪龍王・法德爾"><img src="images/pets/6421.png" width="55" height="55" $team[L2][0]</a><a href="pets/6406" class="tooltip" title="6406 - 嫉妒之大罪龍王・吉維"><img src="images/pets/6406.png" width="55" height="55" $team[L2][0]</a><a href="pets/5858" class="tooltip" title="5858 - 極醒之化身無盡之物・猶格＝索托斯"><img src="images/pets/5858.png" width="55" height="55" $team[L2][0]</a><a href="pets/5644" class="tooltip" title="5644 - 天才劍士・高里＝加布列夫"><img src="images/pets/5644.png" width="55" height="55" $team[L2][0]</a><a href="pets/6913" class="tooltip" title="6913 - Marvel隊長/驚奇隊長"><img src="images/pets/6913.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/117898/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/アポピス降臨！" class="tooltip" title="アポピス降臨！<br />暗影蛇 絶壊滅級"><img src="images/stage/7242s.png" width="100"></a></td><td><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" $team[L2][0]</a><a href="pets/6052" class="tooltip" title="6052 - 友愛之灰幻魔・伊雷米娜"><img src="images/pets/6052.png" width="55" height="55" $team[L2][0]</a><a href="pets/6941" class="tooltip" title="6941 - 佩妮・柏加/潘妮・帕克"><img src="images/pets/6941.png" width="55" height="55" $team[L2][0]</a><a href="pets/6132" class="tooltip" title="6132 - 遠坂的第六代繼承者・遠坂凛"><img src="images/pets/6132.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/6819" class="tooltip" title="6819 - 聖夜的歡迎者・格莫瑞"><img src="images/pets/6819.png" width="55" height="55" $team[L2][0]</a><a href="pets/6909" class="tooltip" title="6909 - 鐵甲奇俠/鋼鐵人"><img src="images/pets/6909.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/117951/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
 
 
 </td>
@@ -1226,7 +1230,6 @@ function updateTO(element) {
       <td align="left">
       Graphics © Copyright by Gungho Online Entertainment, Inc.<br>
       <a href="https://pad.skyozora.com">戰友系統及資訊網</a> 由 Sky C. 持有，介面設計 Naldo W.<br>
-      如對本網站有任何查詢，歡迎至 <a href="https://www.facebook.com/PuzzleDragonsSite/">Facebook 專頁</a> 聯絡
       </td>
       
       <td align="right">

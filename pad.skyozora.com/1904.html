@@ -30,7 +30,7 @@
 
 
 </head>
-<link rel="stylesheet" type="text/css" href="css/style.css?2018080414">
+<link rel="stylesheet" type="text/css" href="css/style.css?0322">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" charset="utf-8"></script>
 
 <script type="text/javascript"> 
@@ -269,21 +269,11 @@ $(function() {
 	<a href="/friendlist/">搜尋戰友請按此 <img src="images/searchBtn2.png" align="absmiddle" /></a>
 </td>
 
-<td style="padding: 15px 10px 8px 10px; border: #272727 1px solid; text-align:center; background: #000; font-size:14px" width="230">
 
-<!---
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="Puzzle &amp; Dragons 戰友系統及資訊網" data-lang="zh-tw" data-dnt="true" data-count="none" data-hashtags="パズドラ">推文</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^https:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
---->
-
-<a href="https://www.facebook.com/PuzzleDragonsSite" target=new class="tooltip" title="戰友系統及資訊網專頁"><img src="images/fb.png" width="20" style="vertical-align: baseline"></a> <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FPuzzleDragonsSite&amp;send=false&amp;layout=button_count&amp;width=85&amp;show_faces=false&amp;font=verdana&amp;colorscheme=light&amp;action=like&amp;height=20&amp;appId=181873884488" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:95px; height:20px;" allowTransparency="true" valign=center></iframe>
-
-</td>
-
-<td style="border: #272727 1px solid; text-align:left; width:680px; background: #000; font-size:14px; padding-left:10px">
+<td style="border: #272727 1px solid; text-align:left; width:800px; background: #000; font-size:14px; padding-left:10px">
 
 <form action="/search/" method="get">
-<input name="q" style="color:#fff; width:500px; font-size:14px" value="">
+<input name="q" style="color:#fff; width:700px; font-size:14px" value="">
 <input type="submit" value='站內搜尋' style="color:#fff; font-size:14px"></form>
 
 </td>
@@ -399,10 +389,11 @@ function vote(e){
 	<tr>
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/1903" class="tooltip" title="&lt;img src=&quot;images/pets/1903.png&quot; width=&quot;50&quot; /&gt; 1903 - 究極裝備・時魔道士"><img src="images/left01.png" width="53" height="585" /></a>		</td>
-		<td width="640">
-			<div style="position: relative; text-align:center; padding:0px; margin:0px; border:0px;">
 
-			<img src="images/pets_pic/1904.png" width="640" style="border-left:1px solid #222222;border-right:1px solid #222222">
+		<td width="640">
+
+			<div style="position: relative; text-align:center; padding:0px; margin:0px; border-left:1px solid #222222;border-right:1px solid #222222; width:640px; height:585px" id="animation">
+
 
 							<div class="kakusei" style="top: 92px; left: 593px;">
 					<a href="skill/%E7%81%AB%E3%83%89%E3%83%AD%E3%83%83%E3%83%97%E5%BC%B7%E5%8C%96" class="tooltip" title="【火ドロップ強化】掉落的火寶珠有20%機率直接出現&lt;img src=&quot;images/drops/Fire+.png&quot; width=&quot;25&quot; alt=&quot;火強化寶珠&quot; /&gt;&lt;br /&gt;
@@ -426,7 +417,31 @@ function vote(e){
 ※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 						</div>
+			
+			<script src="javascript/pixi.min.js"></script>
+			<script src="javascript/pixi-spine.js"></script>
+			<script>
+			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
+			document.getElementById('animation').appendChild(app.view);
+			// load spine data
+			app.loader.add('spineboy', 'images/graphics/animation/mons_1904.json').load(onAssetsLoaded);
+
+			const background = PIXI.Sprite.from('images/pets_pic/1904.png');
+			background.width = 640;
+			background.height = 585;
+			app.stage.addChild(background);
+
+			function onAssetsLoaded(loader, res) {
+				const { spineData } = res.spineboy;
+
+				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
+				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
+				spine.state.setAnimation(0, "animation", true);
+				spine.state.timeScale = 1;
+			}
+			</script>
 		</td>
+			
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/1905" class="tooltip" title="&lt;img src=&quot;images/pets/1905.png&quot; width=&quot;50&quot; /&gt; 1905 - 究極裝備・機關士"><img src="images/right01.png" width="53" height="585" /></a>		</td>
 	</tr>
@@ -1023,19 +1038,8 @@ p.EvoName {
 
 
 <br />
-<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/レジェロンテ降臨！" class="tooltip" title="レジェロンテ降臨！<br />音楽龍 地獄級"><img src="images/stage/1916s.png" width="100"></a></td><td><a href="pets/2074" class="tooltip" title="2074 - 覺醒卡玲"><img src="images/pets/2074.png" width="55" height="55" $team[L2][0]</a><a href="pets/3031" class="tooltip" title="3031 - 御庭番眾女忍者・卷町操"><img src="images/pets/3031.png" width="55" height="55" $team[L2][0]</a><a href="pets/2981" class="tooltip" title="2981 - 覺醒天鈿女命"><img src="images/pets/2981.png" width="55" height="55" $team[L2][0]</a><a href="pets/1904" class="tooltip" title="1904 - 究極裝備・獵人"><img src="images/pets/1904.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/1606" class="tooltip" title="1606 - 大怪鳥＆大怪鳥貓"><img src="images/pets/1606.png" width="55" height="55" $team[L2][0]</a><a href="pets/2074" class="tooltip" title="2074 - 覺醒卡玲"><img src="images/pets/2074.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/107642/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/「CD」コラボ杯" class="tooltip" title="「CD」コラボ杯<br />「CD」コラボ杯"><img src="images/stage/1907s.png" width="100"></a></td><td><a href="pets/1904" class="tooltip" title="1904 - 究極裝備・獵人"><img src="images/pets/1904.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/1903" class="tooltip" title="1903 - 究極裝備・時魔道士"><img src="images/pets/1903.png" width="55" height="55" $team[L2][0]</a><a href="pets/1902" class="tooltip" title="1902 - 究極裝備・盜賊"><img src="images/pets/1902.png" width="55" height="55" $team[L2][0]</a><a href="pets/2800" class="tooltip" title="2800 - 究極裝備・狂戰士"><img src="images/pets/2800.png" width="55" height="55" $team[L2][0]</a><a href="pets/3218" class="tooltip" title="3218 - 最強裝備・魔砲士"><img src="images/pets/3218.png" width="55" height="55" $team[L2][0]</a><a href="pets/1904" class="tooltip" title="1904 - 究極裝備・獵人"><img src="images/pets/1904.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/104108/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/チャレンジダンジョン！11" class="tooltip" title="チャレンジダンジョン！11<br />Lv8 回復なし"><img src="https://i1296.photobucket.com/albums/ag18/skyozora/stage/638s_zpsdep1xvd6.png
-" width="100"></a></td><td><a href="pets/1904" class="tooltip" title="1904 - 究極裝備・獵人"><img src="images/pets/1904.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/1937" class="tooltip" title="1937 - 最強戰士・超級比古洛"><img src="images/pets/1937.png" width="55" height="55" $team[L2][0]</a><a href="pets/814" class="tooltip" title="814 - 黃泉主神・伊邪那美"><img src="images/pets/814.png" width="55" height="55" $team[L2][0]</a><a href="pets/1217" class="tooltip" title="1217 - 神書的管理者・米達倫"><img src="images/pets/1217.png" width="55" height="55" $team[L2][0]</a><a href="pets/1099" class="tooltip" title="1099 - 紅蓮華的女傑・厄客德娜"><img src="images/pets/1099.png" width="55" height="55" $team[L2][0]</a><a href="pets/1747" class="tooltip" title="1747 - 綺羅之秘女神・迦梨"><img src="images/pets/1747.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/75728/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/「CD」コラボ杯" class="tooltip" title="「CD」コラボ杯<br />「CD」コラボ杯"><img src="images/stage/1907s.png" width="100"></a></td><td><a href="pets/1904" class="tooltip" title="1904 - 究極裝備・獵人"><img src="images/pets/1904.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/1903" class="tooltip" title="1903 - 究極裝備・時魔道士"><img src="images/pets/1903.png" width="55" height="55" $team[L2][0]</a><a href="pets/1902" class="tooltip" title="1902 - 究極裝備・盜賊"><img src="images/pets/1902.png" width="55" height="55" $team[L2][0]</a><a href="pets/2800" class="tooltip" title="2800 - 究極裝備・狂戰士"><img src="images/pets/2800.png" width="55" height="55" $team[L2][0]</a><a href="pets/3218" class="tooltip" title="3218 - 最強裝備・魔砲士"><img src="images/pets/3218.png" width="55" height="55" $team[L2][0]</a><a href="pets/1904" class="tooltip" title="1904 - 究極裝備・獵人"><img src="images/pets/1904.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/104107/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/メフィスト降臨！" class="tooltip" title="メフィスト降臨！<br />求魂師 超地獄級"><img src="images/stage/1510s.png" width="100"></a></td><td><a href="pets/1904" class="tooltip" title="1904 - 究極裝備・獵人"><img src="images/pets/1904.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/1645" class="tooltip" title="1645 - 絕世的紅龍喚士・索妮亞"><img src="images/pets/1645.png" width="55" height="55" $team[L2][0]</a><a href="pets/1726" class="tooltip" title="1726 - 覺醒火之迦具土"><img src="images/pets/1726.png" width="55" height="55" $team[L2][0]</a><a href="pets/1113" class="tooltip" title="1113 - 破戒之創造神・濕婆"><img src="images/pets/1113.png" width="55" height="55" $team[L2][0]</a><a href="pets/1535" class="tooltip" title="1535 - 覺醒瑟雷斯"><img src="images/pets/1535.png" width="55" height="55" $team[L2][0]</a><a href="pets/1904" class="tooltip" title="1904 - 究極裝備・獵人"><img src="images/pets/1904.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/77018/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
-
-<table width="750" border="0" cellpadding="0" cellspacing="1" align="center">
-	<tr>
-		<td align="left">
-		<a href="pets/1903" class="tooltip" title="1903 - 究極装備・時魔道士"><img src="images/pets_pic/1903.png" style="border-radius:15px" width=365></a> 		</td>
-		<td align="right">
-		<a href="pets/1905" class="tooltip" title="1905 - 究極装備・からくり士"><img src="images/pets_pic/1905.png" style="border-radius:15px" width=365></a>		</td>
-	</tr>
-</table>
-
-
+<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/「CD」コラボ杯" class="tooltip" title="「CD」コラボ杯<br />「CD」コラボ杯"><img src="images/stage/1907s.png" width="100"></a></td><td><a href="pets/1904" class="tooltip" title="1904 - 究極裝備・獵人"><img src="images/pets/1904.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/1903" class="tooltip" title="1903 - 究極裝備・時魔道士"><img src="images/pets/1903.png" width="55" height="55" $team[L2][0]</a><a href="pets/1902" class="tooltip" title="1902 - 究極裝備・盜賊"><img src="images/pets/1902.png" width="55" height="55" $team[L2][0]</a><a href="pets/2800" class="tooltip" title="2800 - 究極裝備・狂戰士"><img src="images/pets/2800.png" width="55" height="55" $team[L2][0]</a><a href="pets/3218" class="tooltip" title="3218 - 最強裝備・魔砲士"><img src="images/pets/3218.png" width="55" height="55" $team[L2][0]</a><a href="pets/1904" class="tooltip" title="1904 - 究極裝備・獵人"><img src="images/pets/1904.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/104107/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/タケミナカタ降臨！" class="tooltip" title="タケミナカタ降臨！<br />武刀神 超地獄級"><img src="images/stage/810s.png" width="100"></a></td><td><a href="pets/1904" class="tooltip" title="1904 - 究極裝備・獵人"><img src="images/pets/1904.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/1738" class="tooltip" title="1738 - 霸征之龍武王・曹操"><img src="images/pets/1738.png" width="55" height="55" $team[L2][0]</a><a href="pets/1670" class="tooltip" title="1670 - 過去的時女神・兀兒德"><img src="images/pets/1670.png" width="55" height="55" $team[L2][0]</a><a href="pets/995" class="tooltip" title="995 - 白光炎隼神・荷魯斯"><img src="images/pets/995.png" width="55" height="55" $team[L2][0]</a><a href="pets/1263" class="tooltip" title="1263 - 天聖導之朱雀・麗蘭"><img src="images/pets/1263.png" width="55" height="55" $team[L2][0]</a><a href="pets/1937" class="tooltip" title="1937 - 最強戰士・超級比古洛"><img src="images/pets/1937.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/79966/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/チャレンジダンジョン！11" class="tooltip" title="チャレンジダンジョン！11<br />Lv8 回復なし"><img src="https://i1296.photobucket.com/albums/ag18/skyozora/stage/638s_zpsdep1xvd6.png
+" width="100"></a></td><td><a href="pets/1904" class="tooltip" title="1904 - 究極裝備・獵人"><img src="images/pets/1904.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/1937" class="tooltip" title="1937 - 最強戰士・超級比古洛"><img src="images/pets/1937.png" width="55" height="55" $team[L2][0]</a><a href="pets/814" class="tooltip" title="814 - 黃泉主神・伊邪那美"><img src="images/pets/814.png" width="55" height="55" $team[L2][0]</a><a href="pets/1217" class="tooltip" title="1217 - 神書的管理者・米達倫"><img src="images/pets/1217.png" width="55" height="55" $team[L2][0]</a><a href="pets/1099" class="tooltip" title="1099 - 紅蓮華的女傑・厄客德娜"><img src="images/pets/1099.png" width="55" height="55" $team[L2][0]</a><a href="pets/1747" class="tooltip" title="1747 - 綺羅之秘女神・迦梨"><img src="images/pets/1747.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/75728/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/火の猫龍" class="tooltip" title="火の猫龍<br />虎猫龍 超地獄級"><img src="images/stage/1957s.png" width="100"></a></td><td><a href="pets/1904" class="tooltip" title="1904 - 究極裝備・獵人"><img src="images/pets/1904.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/1937" class="tooltip" title="1937 - 最強戰士・超級比古洛"><img src="images/pets/1937.png" width="55" height="55" $team[L2][0]</a><a href="pets/1645" class="tooltip" title="1645 - 絕世的紅龍喚士・索妮亞"><img src="images/pets/1645.png" width="55" height="55" $team[L2][0]</a><a href="pets/2018" class="tooltip" title="2018 - ↑↑學姐・赫拉・兀爾茲"><img src="images/pets/2018.png" width="55" height="55" $team[L2][0]</a><a href="pets/1588" class="tooltip" title="1588 - 暴滅之威女神・迦梨"><img src="images/pets/1588.png" width="55" height="55" $team[L2][0]</a><a href="pets/1108" class="tooltip" title="1108 - 覺醒幻神・奧丁"><img src="images/pets/1108.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/78074/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/「CD」コラボ杯" class="tooltip" title="「CD」コラボ杯<br />「CD」コラボ杯"><img src="images/stage/1907s.png" width="100"></a></td><td><a href="pets/1904" class="tooltip" title="1904 - 究極裝備・獵人"><img src="images/pets/1904.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/0" class="tooltip" title="0 - "><img src="images/pets/000.png" width="55" height="55" $team[L2][0]</a><a href="pets/0" class="tooltip" title="0 - "><img src="images/pets/000.png" width="55" height="55" $team[L2][0]</a><a href="pets/0" class="tooltip" title="0 - "><img src="images/pets/000.png" width="55" height="55" $team[L2][0]</a><a href="pets/0" class="tooltip" title="0 - "><img src="images/pets/000.png" width="55" height="55" $team[L2][0]</a><a href="pets/1904" class="tooltip" title="1904 - 究極裝備・獵人"><img src="images/pets/1904.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/104112/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
 
 
 </td>
@@ -1126,7 +1130,6 @@ function updateTO(element) {
       <td align="left">
       Graphics © Copyright by Gungho Online Entertainment, Inc.<br>
       <a href="https://pad.skyozora.com">戰友系統及資訊網</a> 由 Sky C. 持有，介面設計 Naldo W.<br>
-      如對本網站有任何查詢，歡迎至 <a href="https://www.facebook.com/PuzzleDragonsSite/">Facebook 專頁</a> 聯絡
       </td>
       
       <td align="right">

@@ -30,7 +30,7 @@
 
 
 </head>
-<link rel="stylesheet" type="text/css" href="css/style.css?2018080414">
+<link rel="stylesheet" type="text/css" href="css/style.css?0322">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" charset="utf-8"></script>
 
 <script type="text/javascript"> 
@@ -269,21 +269,11 @@ $(function() {
 	<a href="/friendlist/">搜尋戰友請按此 <img src="images/searchBtn2.png" align="absmiddle" /></a>
 </td>
 
-<td style="padding: 15px 10px 8px 10px; border: #272727 1px solid; text-align:center; background: #000; font-size:14px" width="230">
 
-<!---
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="Puzzle &amp; Dragons 戰友系統及資訊網" data-lang="zh-tw" data-dnt="true" data-count="none" data-hashtags="パズドラ">推文</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^https:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
---->
-
-<a href="https://www.facebook.com/PuzzleDragonsSite" target=new class="tooltip" title="戰友系統及資訊網專頁"><img src="images/fb.png" width="20" style="vertical-align: baseline"></a> <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FPuzzleDragonsSite&amp;send=false&amp;layout=button_count&amp;width=85&amp;show_faces=false&amp;font=verdana&amp;colorscheme=light&amp;action=like&amp;height=20&amp;appId=181873884488" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:95px; height:20px;" allowTransparency="true" valign=center></iframe>
-
-</td>
-
-<td style="border: #272727 1px solid; text-align:left; width:680px; background: #000; font-size:14px; padding-left:10px">
+<td style="border: #272727 1px solid; text-align:left; width:800px; background: #000; font-size:14px; padding-left:10px">
 
 <form action="/search/" method="get">
-<input name="q" style="color:#fff; width:500px; font-size:14px" value="">
+<input name="q" style="color:#fff; width:700px; font-size:14px" value="">
 <input type="submit" value='站內搜尋' style="color:#fff; font-size:14px"></form>
 
 </td>
@@ -399,10 +389,11 @@ function vote(e){
 	<tr>
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/1384" class="tooltip" title="&lt;img src=&quot;images/pets/1384.png&quot; width=&quot;50&quot; /&gt; 1384 - 畢特"><img src="images/left01.png" width="53" height="585" /></a>		</td>
-		<td width="640">
-			<div style="position: relative; text-align:center; padding:0px; margin:0px; border:0px;">
 
-			<img src="images/pets_pic/1385.png" width="640" style="border-left:1px solid #222222;border-right:1px solid #222222">
+		<td width="640">
+
+			<div style="position: relative; text-align:center; padding:0px; margin:0px; border-left:1px solid #222222;border-right:1px solid #222222; width:640px; height:585px" id="animation">
+
 
 							<div class="kakusei" style="top: 92px; left: 593px;">
 					<a href="skill/%E6%B0%B4%E3%83%89%E3%83%AD%E3%83%83%E3%83%97%E5%BC%B7%E5%8C%96" class="tooltip" title="【水ドロップ強化】掉落的水寶珠有20%機率直接出現&lt;img src=&quot;images/drops/Water+.png&quot; width=&quot;25&quot; alt=&quot;水強化寶珠&quot; /&gt;&lt;br /&gt;
@@ -415,7 +406,31 @@ function vote(e){
 					<a href="skill/%E6%94%BB%E6%92%83%E5%BC%B7%E5%8C%96" class="tooltip" title="【攻撃強化】攻擊力增加100點"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 						</div>
+			
+			<script src="javascript/pixi.min.js"></script>
+			<script src="javascript/pixi-spine.js"></script>
+			<script>
+			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
+			document.getElementById('animation').appendChild(app.view);
+			// load spine data
+			app.loader.add('spineboy', 'images/graphics/animation/mons_1385.json').load(onAssetsLoaded);
+
+			const background = PIXI.Sprite.from('images/pets_pic/1385.png');
+			background.width = 640;
+			background.height = 585;
+			app.stage.addChild(background);
+
+			function onAssetsLoaded(loader, res) {
+				const { spineData } = res.spineboy;
+
+				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
+				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
+				spine.state.setAnimation(0, "animation", true);
+				spine.state.timeScale = 1;
+			}
+			</script>
 		</td>
+			
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/1386" class="tooltip" title="&lt;img src=&quot;images/pets/1386.png&quot; width=&quot;50&quot; /&gt; 1386 - 捷斯"><img src="images/right01.png" width="53" height="585" /></a>		</td>
 	</tr>
@@ -962,18 +977,7 @@ p.EvoName {
 
 
 <br />
-<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/サンダルフォン降臨！" class="tooltip" title="サンダルフォン降臨！<br />瞑奏神 超地獄級"><img src="images/stage/1119s.png" width="100"></a></td><td><a href="pets/1391" class="tooltip" title="1391 - 傑紐特戰隊・傑紐"><img src="images/pets/1391.png" width="55" height="55" $team[L2][0]</a><a href="pets/1383" class="tooltip" title="1383 - 傑紐特戰隊・力高"><img src="images/pets/1383.png" width="55" height="55" $team[L2][0]</a><a href="pets/1389" class="tooltip" title="1389 - 傑紐特戰隊・古杜"><img src="images/pets/1389.png" width="55" height="55" $team[L2][0]</a><a href="pets/1385" class="tooltip" title="1385 - 傑紐特戰隊・畢特"><img src="images/pets/1385.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/1387" class="tooltip" title="1387 - 傑紐特戰隊・捷斯"><img src="images/pets/1387.png" width="55" height="55" $team[L2][0]</a><a href="pets/1937" class="tooltip" title="1937 - 最強戰士・超級比古洛"><img src="images/pets/1937.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/82620/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/ヨルムンガンド降臨！" class="tooltip" title="ヨルムンガンド降臨！<br />世界蛇 超地獄級"><img src="images/stage/2639s.png" width="100"></a></td><td><a href="pets/1760" class="tooltip" title="1760 - 最初之龍喚士・元始索妮亞"><img src="images/pets/1760.png" width="55" height="55" $team[L2][0]</a><a href="pets/1596" class="tooltip" title="1596 - 一星瓢蟲"><img src="images/pets/1596.png" width="55" height="55" $team[L2][0]</a><a href="pets/1385" class="tooltip" title="1385 - 傑紐特戰隊・畢特"><img src="images/pets/1385.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/831" class="tooltip" title="831 - TOP・Android 龍"><img src="images/pets/831.png" width="55" height="55" $team[L2][0]</a><a href="pets/1361" class="tooltip" title="1361 - 焰土之龍騎姬・卑彌呼"><img src="images/pets/1361.png" width="55" height="55" $team[L2][0]</a><a href="pets/1937" class="tooltip" title="1937 - 最強戰士・超級比古洛"><img src="images/pets/1937.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/99741/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/ラグオデA コラボ" class="tooltip" title="ラグオデA コラボ<br />巨人の都 地獄級"><img src="images/stage/820s.png" width="100"></a></td><td><a href="pets/1817" class="tooltip" title="1817 - 迷你大喬＆小喬"><img src="images/pets/1817.png" width="55" height="55" $team[L2][0]</a><a href="pets/88" class="tooltip" title="88 - 納迦"><img src="images/pets/88.png" width="55" height="55" $team[L2][0]</a><a href="pets/464" class="tooltip" title="464 - 魔界花王"><img src="images/pets/464.png" width="55" height="55" $team[L2][0]</a><a href="pets/277" class="tooltip" title="277 - 平頭哥布林Plus"><img src="images/pets/277.png" width="55" height="55" $team[L2][0]</a><a href="pets/1385" class="tooltip" title="1385 - 傑紐特戰隊・畢特"><img src="images/pets/1385.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/1789" class="tooltip" title="1789 - 麒麟的化身・迷你朔夜"><img src="images/pets/1789.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/87454/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/光の猫龍" class="tooltip" title="光の猫龍<br />重猫龍 超地獄級"><img src="images/stage/1960s.png" width="100"></a></td><td><a href="pets/751" class="tooltip" title="751 - 麒麟的化身・朔夜"><img src="images/pets/751.png" width="55" height="55" $team[L2][0]</a><a href="pets/1684" class="tooltip" title="1684 - 深紅的高速之星・閃電俠【漫畫】"><img src="images/pets/1684.png" width="55" height="55" $team[L2][0]</a><a href="pets/1871" class="tooltip" title="1871 - 南斗白鷺拳・修武"><img src="images/pets/1871.png" width="55" height="55" $team[L2][0]</a><a href="pets/1743" class="tooltip" title="1743 - 克己之龍英傑・劉備"><img src="images/pets/1743.png" width="55" height="55" $team[L2][0]</a><a href="pets/1385" class="tooltip" title="1385 - 傑紐特戰隊・畢特"><img src="images/pets/1385.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/2077" class="tooltip" title="2077 - 翠輝星的麒麟・朔夜"><img src="images/pets/2077.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/83490/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/大天狗降臨！" class="tooltip" title="大天狗降臨！<br />修験者 地獄級"><img src="images/stage/778s.png" width="100"></a></td><td><a href="pets/2043" class="tooltip" title="2043 - 優娜"><img src="images/pets/2043.png" width="55" height="55" $team[L2][0]</a><a href="pets/1387" class="tooltip" title="1387 - 傑紐特戰隊・捷斯"><img src="images/pets/1387.png" width="55" height="55" $team[L2][0]</a><a href="pets/1385" class="tooltip" title="1385 - 傑紐特戰隊・畢特"><img src="images/pets/1385.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/1389" class="tooltip" title="1389 - 傑紐特戰隊・古杜"><img src="images/pets/1389.png" width="55" height="55" $team[L2][0]</a><a href="pets/1765" class="tooltip" title="1765 - 月釜的丼龍・釜飯"><img src="images/pets/1765.png" width="55" height="55" $team[L2][0]</a><a href="pets/1349" class="tooltip" title="1349 - 艾可薩・海德拉"><img src="images/pets/1349.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/85583/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
-
-<table width="750" border="0" cellpadding="0" cellspacing="1" align="center">
-	<tr>
-		<td align="left">
-		<a href="pets/1384" class="tooltip" title="1384 - バータ"><img src="images/pets_pic/1384.png" style="border-radius:15px" width=365></a> 		</td>
-		<td align="right">
-		<a href="pets/1386" class="tooltip" title="1386 - ジース"><img src="images/pets_pic/1386.png" style="border-radius:15px" width=365></a>		</td>
-	</tr>
-</table>
-
-
+<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/大天狗降臨！" class="tooltip" title="大天狗降臨！<br />修験者 地獄級"><img src="images/stage/778s.png" width="100"></a></td><td><a href="pets/1466" class="tooltip" title="1466 - 拉 蛋龍"><img src="images/pets/1466.png" width="55" height="55" $team[L2][0]</a><a href="pets/1385" class="tooltip" title="1385 - 傑紐特戰隊・畢特"><img src="images/pets/1385.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/2084" class="tooltip" title="2084 - 奇妙召喚・胖陸行鳥"><img src="images/pets/2084.png" width="55" height="55" $team[L2][0]</a><a href="pets/1275" class="tooltip" title="1275 - 審判傀儡"><img src="images/pets/1275.png" width="55" height="55" $team[L2][0]</a><a href="pets/830" class="tooltip" title="830 - 闇之守護鬼・邪氣"><img src="images/pets/830.png" width="55" height="55" $team[L2][0]</a><a href="pets/1466" class="tooltip" title="1466 - 拉 蛋龍"><img src="images/pets/1466.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/92704/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/極限デビルラッシュ！" class="tooltip" title="極限デビルラッシュ！<br />天魔界 絶地獄級"><img src="https://i1296.photobucket.com/albums/ag18/skyozora/stage/1371s_zpsjmfkwrrr.png" width="100"></a></td><td><a href="pets/1937" class="tooltip" title="1937 - 最強戰士・超級比古洛"><img src="images/pets/1937.png" width="55" height="55" $team[L2][0]</a><a href="pets/1373" class="tooltip" title="1373 - 俊才之臥龍神・諸葛亮"><img src="images/pets/1373.png" width="55" height="55" $team[L2][0]</a><a href="pets/1560" class="tooltip" title="1560 - 超級撒亞人・破壞王子比達"><img src="images/pets/1560.png" width="55" height="55" $team[L2][0]</a><a href="pets/1743" class="tooltip" title="1743 - 克己之龍英傑・劉備"><img src="images/pets/1743.png" width="55" height="55" $team[L2][0]</a><a href="pets/1385" class="tooltip" title="1385 - 傑紐特戰隊・畢特"><img src="images/pets/1385.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/1937" class="tooltip" title="1937 - 最強戰士・超級比古洛"><img src="images/pets/1937.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/82899/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/神羅万象チョコ2" class="tooltip" title="神羅万象チョコ2<br />一鬼火勢 超地獄級"><img src="images/stage/1983s.png" width="100"></a></td><td><a href="pets/1937" class="tooltip" title="1937 - 最強戰士・超級比古洛"><img src="images/pets/1937.png" width="55" height="55" $team[L2][0]</a><a href="pets/689" class="tooltip" title="689 - 荒武士・武者哥布林"><img src="images/pets/689.png" width="55" height="55" $team[L2][0]</a><a href="pets/1385" class="tooltip" title="1385 - 傑紐特戰隊・畢特"><img src="images/pets/1385.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/164" class="tooltip" title="164 - 進化的黃面具"><img src="images/pets/164.png" width="55" height="55" $team[L2][0]</a><a href="pets/295" class="tooltip" title="295 - 玩具三角龍"><img src="images/pets/295.png" width="55" height="55" $team[L2][0]</a><a href="pets/1937" class="tooltip" title="1937 - 最強戰士・超級比古洛"><img src="images/pets/1937.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/75117/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/光の猫龍" class="tooltip" title="光の猫龍<br />重猫龍 超地獄級"><img src="images/stage/1960s.png" width="100"></a></td><td><a href="pets/751" class="tooltip" title="751 - 麒麟的化身・朔夜"><img src="images/pets/751.png" width="55" height="55" $team[L2][0]</a><a href="pets/1684" class="tooltip" title="1684 - 深紅的高速之星・閃電俠【漫畫】"><img src="images/pets/1684.png" width="55" height="55" $team[L2][0]</a><a href="pets/1871" class="tooltip" title="1871 - 南斗白鷺拳・修武"><img src="images/pets/1871.png" width="55" height="55" $team[L2][0]</a><a href="pets/1743" class="tooltip" title="1743 - 克己之龍英傑・劉備"><img src="images/pets/1743.png" width="55" height="55" $team[L2][0]</a><a href="pets/1385" class="tooltip" title="1385 - 傑紐特戰隊・畢特"><img src="images/pets/1385.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/2077" class="tooltip" title="2077 - 翠輝星的麒麟・朔夜"><img src="images/pets/2077.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/83490/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/三蔵法師降臨！" class="tooltip" title="三蔵法師降臨！<br />功徳神 地獄級"><img src="images/stage/1248s.png" width="100"></a></td><td><a href="pets/751" class="tooltip" title="751 - 麒麟的化身・朔夜"><img src="images/pets/751.png" width="55" height="55" $team[L2][0]</a><a href="pets/2084" class="tooltip" title="2084 - 奇妙召喚・胖陸行鳥"><img src="images/pets/2084.png" width="55" height="55" $team[L2][0]</a><a href="pets/1625" class="tooltip" title="1625 - 時空的魔術師・威札斯"><img src="images/pets/1625.png" width="55" height="55" $team[L2][0]</a><a href="pets/1385" class="tooltip" title="1385 - 傑紐特戰隊・畢特"><img src="images/pets/1385.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/1275" class="tooltip" title="1275 - 審判傀儡"><img src="images/pets/1275.png" width="55" height="55" $team[L2][0]</a><a href="pets/751" class="tooltip" title="751 - 麒麟的化身・朔夜"><img src="images/pets/751.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/88538/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
 
 
 </td>
@@ -1064,7 +1068,6 @@ function updateTO(element) {
       <td align="left">
       Graphics © Copyright by Gungho Online Entertainment, Inc.<br>
       <a href="https://pad.skyozora.com">戰友系統及資訊網</a> 由 Sky C. 持有，介面設計 Naldo W.<br>
-      如對本網站有任何查詢，歡迎至 <a href="https://www.facebook.com/PuzzleDragonsSite/">Facebook 專頁</a> 聯絡
       </td>
       
       <td align="right">

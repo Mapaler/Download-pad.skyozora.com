@@ -30,7 +30,7 @@
 
 
 </head>
-<link rel="stylesheet" type="text/css" href="css/style.css?2018080414">
+<link rel="stylesheet" type="text/css" href="css/style.css?0322">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" charset="utf-8"></script>
 
 <script type="text/javascript"> 
@@ -269,21 +269,11 @@ $(function() {
 	<a href="/friendlist/">搜尋戰友請按此 <img src="images/searchBtn2.png" align="absmiddle" /></a>
 </td>
 
-<td style="padding: 15px 10px 8px 10px; border: #272727 1px solid; text-align:center; background: #000; font-size:14px" width="230">
 
-<!---
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="Puzzle &amp; Dragons 戰友系統及資訊網" data-lang="zh-tw" data-dnt="true" data-count="none" data-hashtags="パズドラ">推文</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^https:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
---->
-
-<a href="https://www.facebook.com/PuzzleDragonsSite" target=new class="tooltip" title="戰友系統及資訊網專頁"><img src="images/fb.png" width="20" style="vertical-align: baseline"></a> <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FPuzzleDragonsSite&amp;send=false&amp;layout=button_count&amp;width=85&amp;show_faces=false&amp;font=verdana&amp;colorscheme=light&amp;action=like&amp;height=20&amp;appId=181873884488" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:95px; height:20px;" allowTransparency="true" valign=center></iframe>
-
-</td>
-
-<td style="border: #272727 1px solid; text-align:left; width:680px; background: #000; font-size:14px; padding-left:10px">
+<td style="border: #272727 1px solid; text-align:left; width:800px; background: #000; font-size:14px; padding-left:10px">
 
 <form action="/search/" method="get">
-<input name="q" style="color:#fff; width:500px; font-size:14px" value="">
+<input name="q" style="color:#fff; width:700px; font-size:14px" value="">
 <input type="submit" value='站內搜尋' style="color:#fff; font-size:14px"></form>
 
 </td>
@@ -399,10 +389,11 @@ function vote(e){
 	<tr>
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/6361" class="tooltip" title="&lt;img src=&quot;images/pets/6361.png&quot; width=&quot;50&quot; /&gt; 6361 - 轉生濃姬"><img src="images/left01.png" width="53" height="585" /></a>		</td>
-		<td width="640">
-			<div style="position: relative; text-align:center; padding:0px; margin:0px; border:0px;">
 
-			<img src="images/pets_pic/6362.png" width="640" style="border-left:1px solid #222222;border-right:1px solid #222222">
+		<td width="640">
+
+			<div style="position: relative; text-align:center; padding:0px; margin:0px; border-left:1px solid #222222;border-right:1px solid #222222; width:640px; height:585px" id="animation">
+
 
 							<div class="kakusei" style="top: 92px; left: 593px;">
 					<a href="skill/2%E4%BD%93%E6%94%BB%E6%92%83" class="tooltip" title="【2体攻撃】消除4顆與自身屬性相同的寶珠時，持有該技能的寵物、該組寶珠的攻擊力上升70%&lt;br /&gt;
@@ -450,7 +441,31 @@ function vote(e){
 					<a href="skill/%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%80%90%E6%80%A7%EF%BC%8B" class="tooltip" title="【バインド耐性＋】受到敵人的綁定攻擊時，持有此技能的寵物可令綁定對自己無效化"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 						</div>
+			
+			<script src="javascript/pixi.min.js"></script>
+			<script src="javascript/pixi-spine.js"></script>
+			<script>
+			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
+			document.getElementById('animation').appendChild(app.view);
+			// load spine data
+			app.loader.add('spineboy', 'images/graphics/animation/mons_6362.json').load(onAssetsLoaded);
+
+			const background = PIXI.Sprite.from('images/pets_pic/6362.png');
+			background.width = 640;
+			background.height = 585;
+			app.stage.addChild(background);
+
+			function onAssetsLoaded(loader, res) {
+				const { spineData } = res.spineboy;
+
+				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
+				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
+				spine.state.setAnimation(0, "animation", true);
+				spine.state.timeScale = 1;
+			}
+			</script>
 		</td>
+			
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/6363" class="tooltip" title="&lt;img src=&quot;images/pets/6363.png&quot; width=&quot;50&quot; /&gt; 6363 - 稀有抽蛋龍Ｗ"><img src="images/right01.png" width="53" height="585" /></a>		</td>
 	</tr>
@@ -594,14 +609,14 @@ function vote(e){
 			<table width="360" border="0" style="table-layout:fixed">
 				<tr>
 					<td width="46">LV.99</td>
-					<td width="80">HP: 3654</td>
-					<td>攻擊力: 2610</td>
+					<td width="80">HP: 4654</td>
+					<td>攻擊力: 3110</td>
 					<td>回復力: 47</td>
 				</tr>
 			</table>
 		</td>
 		<td>
-			<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數: 903</a>
+			<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數: 1103</a>
 		</td>
 	</tr>
 
@@ -689,7 +704,7 @@ function vote(e){
 		7		</td>
 	</tr>
 	<tr bgcolor="#000000">
-		<td colspan="5" style="line-height: 28px;">所有寶珠變成<img src="images/drops/Water.png" width="25" /><img src="images/drops/Wood.png" width="25" /><img src="images/drops/Light.png" width="25" /><img src="images/drops/Dark.png" width="25" />；<br />並將自身以外寵物的技能冷卻時間縮短1回合</td>
+		<td colspan="5" style="line-height: 28px;">解除寶珠的鎖定狀態；<br />並所有寶珠變成<img src="images/drops/Water.png" width="25" /><img src="images/drops/Wood.png" width="25" /><img src="images/drops/Light.png" width="25" /><img src="images/drops/Dark.png" width="25" />；<br />並將自身以外寵物的技能冷卻時間縮短1回合</td>
 	</tr>
 
 
@@ -772,7 +787,7 @@ function vote(e){
 		<td class="head">隊長技能 - <a href="skill/潜み紛れる"><span style="font-size:18px; font-weight:900">潜み紛れる</span></a></td>
 <td bgcolor="#008be3" width="120" height="42" style="padding:0px; border-radius:8px; font-size:14px" align="center"><a href="/friendlist/6362/GroupUnspecified/Rank0-999/AllLeader/Unspecified/0-0/SortByLastUpdate/Page1/">搜尋戰友</a></td>	</tr>
 	<tr>
-		<td bgcolor="#000000" colspan=2><img src="images/type/attack.png" width="20" style="padding:1px" />攻擊類的HP1.5倍、攻擊力4倍；<br />另外<img src="images/drops/Dark.png" width="22" />暗<img src="images/drops/Light.png" width="22" />光同時攻擊時受到的傷害減少25%、攻擊力4倍</td>
+		<td bgcolor="#000000" colspan=2><img src="images/type/attack.png" width="20" style="padding:1px" />攻擊類的HP1.5倍、攻擊力4倍；<br />另外<img src="images/drops/Dark.png" width="22" />暗<img src="images/drops/Light.png" width="22" />光同時攻擊時受到的傷害減少50%、攻擊力4倍</td>
 	</tr>
 </table>
 
@@ -1031,17 +1046,6 @@ p.EvoName {
 <br />
 
 
-<table width="750" border="0" cellpadding="0" cellspacing="1" align="center">
-	<tr>
-		<td align="left">
-		<a href="pets/6361" class="tooltip" title="6361 - 転生濃姫"><img src="images/pets_pic/6361.png" style="border-radius:15px" width=365></a> 		</td>
-		<td align="right">
-		<a href="pets/6363" class="tooltip" title="6363 - レアガチャドラＷ"><img src="images/pets_pic/6363.png" style="border-radius:15px" width=365></a>		</td>
-	</tr>
-</table>
-
-
-
 
 </td>
 
@@ -1067,7 +1071,7 @@ total=new Array();
 mc=new Array();
 mc2=new Array();
 sc=new Array();
-hp[1]=1131;atk[1]=955;re[1]=2;total[1]=305;mc[1]=938;mc2[1]=1406;sc[1]=405;hp[2]=1157;atk[2]=972;re[2]=2;total[2]=311;mc[2]=1875;mc2[2]=2813;sc[2]=810;hp[3]=1182;atk[3]=989;re[3]=3;total[3]=317;mc[3]=2813;mc2[3]=4219;sc[3]=1215;hp[4]=1208;atk[4]=1006;re[4]=3;total[4]=323;mc[4]=3750;mc2[4]=5625;sc[4]=1620;hp[5]=1234;atk[5]=1023;re[5]=4;total[5]=329;mc[5]=4688;mc2[5]=7031;sc[5]=2025;hp[6]=1260;atk[6]=1039;re[6]=4;total[6]=335;mc[6]=5625;mc2[6]=8438;sc[6]=2430;hp[7]=1285;atk[7]=1056;re[7]=5;total[7]=341;mc[7]=6563;mc2[7]=9844;sc[7]=2835;hp[8]=1311;atk[8]=1073;re[8]=5;total[8]=347;mc[8]=7500;mc2[8]=11250;sc[8]=3240;hp[9]=1337;atk[9]=1090;re[9]=6;total[9]=354;mc[9]=8438;mc2[9]=12656;sc[9]=3645;hp[10]=1363;atk[10]=1107;re[10]=6;total[10]=360;mc[10]=9375;mc2[10]=14063;sc[10]=4050;hp[11]=1388;atk[11]=1124;re[11]=7;total[11]=366;mc[11]=10313;mc2[11]=15469;sc[11]=4455;hp[12]=1414;atk[12]=1141;re[12]=7;total[12]=372;mc[12]=11250;mc2[12]=16875;sc[12]=4860;hp[13]=1440;atk[13]=1158;re[13]=8;total[13]=378;mc[13]=12188;mc2[13]=18281;sc[13]=5265;hp[14]=1466;atk[14]=1175;re[14]=8;total[14]=384;mc[14]=13125;mc2[14]=19688;sc[14]=5670;hp[15]=1491;atk[15]=1191;re[15]=8;total[15]=390;mc[15]=14063;mc2[15]=21094;sc[15]=6075;hp[16]=1517;atk[16]=1208;re[16]=9;total[16]=396;mc[16]=15000;mc2[16]=22500;sc[16]=6480;hp[17]=1543;atk[17]=1225;re[17]=9;total[17]=402;mc[17]=15938;mc2[17]=23906;sc[17]=6885;hp[18]=1569;atk[18]=1242;re[18]=10;total[18]=409;mc[18]=16875;mc2[18]=25313;sc[18]=7290;hp[19]=1594;atk[19]=1259;re[19]=10;total[19]=415;mc[19]=17813;mc2[19]=26719;sc[19]=7695;hp[20]=1620;atk[20]=1276;re[20]=11;total[20]=421;mc[20]=18750;mc2[20]=28125;sc[20]=8100;hp[21]=1646;atk[21]=1293;re[21]=11;total[21]=427;mc[21]=19688;mc2[21]=29531;sc[21]=8505;hp[22]=1672;atk[22]=1310;re[22]=12;total[22]=433;mc[22]=20625;mc2[22]=30938;sc[22]=8910;hp[23]=1697;atk[23]=1327;re[23]=12;total[23]=439;mc[23]=21563;mc2[23]=32344;sc[23]=9315;hp[24]=1723;atk[24]=1343;re[24]=13;total[24]=445;mc[24]=22500;mc2[24]=33750;sc[24]=9720;hp[25]=1749;atk[25]=1360;re[25]=13;total[25]=451;mc[25]=23438;mc2[25]=35156;sc[25]=10125;hp[26]=1775;atk[26]=1377;re[26]=13;total[26]=457;mc[26]=24375;mc2[26]=36563;sc[26]=10530;hp[27]=1800;atk[27]=1394;re[27]=14;total[27]=463;mc[27]=25313;mc2[27]=37969;sc[27]=10935;hp[28]=1826;atk[28]=1411;re[28]=14;total[28]=469;mc[28]=26250;mc2[28]=39375;sc[28]=11340;hp[29]=1852;atk[29]=1428;re[29]=15;total[29]=476;mc[29]=27188;mc2[29]=40781;sc[29]=11745;hp[30]=1878;atk[30]=1445;re[30]=15;total[30]=482;mc[30]=28125;mc2[30]=42188;sc[30]=12150;hp[31]=1903;atk[31]=1462;re[31]=16;total[31]=488;mc[31]=29063;mc2[31]=43594;sc[31]=12555;hp[32]=1929;atk[32]=1479;re[32]=16;total[32]=494;mc[32]=30000;mc2[32]=45000;sc[32]=12960;hp[33]=1955;atk[33]=1495;re[33]=17;total[33]=500;mc[33]=30938;mc2[33]=46406;sc[33]=13365;hp[34]=1981;atk[34]=1512;re[34]=17;total[34]=506;mc[34]=31875;mc2[34]=47813;sc[34]=13770;hp[35]=2006;atk[35]=1529;re[35]=18;total[35]=512;mc[35]=32813;mc2[35]=49219;sc[35]=14175;hp[36]=2032;atk[36]=1546;re[36]=18;total[36]=518;mc[36]=33750;mc2[36]=50625;sc[36]=14580;hp[37]=2058;atk[37]=1563;re[37]=19;total[37]=525;mc[37]=34688;mc2[37]=52031;sc[37]=14985;hp[38]=2084;atk[38]=1580;re[38]=19;total[38]=531;mc[38]=35625;mc2[38]=53438;sc[38]=15390;hp[39]=2109;atk[39]=1597;re[39]=19;total[39]=537;mc[39]=36563;mc2[39]=54844;sc[39]=15795;hp[40]=2135;atk[40]=1614;re[40]=20;total[40]=543;mc[40]=37500;mc2[40]=56250;sc[40]=16200;hp[41]=2161;atk[41]=1631;re[41]=20;total[41]=549;mc[41]=38438;mc2[41]=57656;sc[41]=16605;hp[42]=2187;atk[42]=1647;re[42]=21;total[42]=555;mc[42]=39375;mc2[42]=59063;sc[42]=17010;hp[43]=2212;atk[43]=1664;re[43]=21;total[43]=561;mc[43]=40313;mc2[43]=60469;sc[43]=17415;hp[44]=2238;atk[44]=1681;re[44]=22;total[44]=567;mc[44]=41250;mc2[44]=61875;sc[44]=17820;hp[45]=2264;atk[45]=1698;re[45]=22;total[45]=573;mc[45]=42188;mc2[45]=63281;sc[45]=18225;hp[46]=2290;atk[46]=1715;re[46]=23;total[46]=580;mc[46]=43125;mc2[46]=64688;sc[46]=18630;hp[47]=2315;atk[47]=1732;re[47]=23;total[47]=586;mc[47]=44063;mc2[47]=66094;sc[47]=19035;hp[48]=2341;atk[48]=1749;re[48]=24;total[48]=592;mc[48]=45000;mc2[48]=67500;sc[48]=19440;hp[49]=2367;atk[49]=1766;re[49]=24;total[49]=598;mc[49]=45938;mc2[49]=68906;sc[49]=19845;hp[50]=2393;atk[50]=1783;re[50]=25;total[50]=604;mc[50]=46875;mc2[50]=70313;sc[50]=20250;hp[51]=2418;atk[51]=1799;re[51]=25;total[51]=610;mc[51]=47813;mc2[51]=71719;sc[51]=20655;hp[52]=2444;atk[52]=1816;re[52]=25;total[52]=616;mc[52]=48750;mc2[52]=73125;sc[52]=21060;hp[53]=2470;atk[53]=1833;re[53]=26;total[53]=622;mc[53]=49688;mc2[53]=74531;sc[53]=21465;hp[54]=2495;atk[54]=1850;re[54]=26;total[54]=628;mc[54]=50625;mc2[54]=75938;sc[54]=21870;hp[55]=2521;atk[55]=1867;re[55]=27;total[55]=635;mc[55]=51563;mc2[55]=77344;sc[55]=22275;hp[56]=2547;atk[56]=1884;re[56]=27;total[56]=641;mc[56]=52500;mc2[56]=78750;sc[56]=22680;hp[57]=2573;atk[57]=1901;re[57]=28;total[57]=647;mc[57]=53438;mc2[57]=80156;sc[57]=23085;hp[58]=2598;atk[58]=1918;re[58]=28;total[58]=653;mc[58]=54375;mc2[58]=81563;sc[58]=23490;hp[59]=2624;atk[59]=1934;re[59]=29;total[59]=659;mc[59]=55313;mc2[59]=82969;sc[59]=23895;hp[60]=2650;atk[60]=1951;re[60]=29;total[60]=665;mc[60]=56250;mc2[60]=84375;sc[60]=24300;hp[61]=2676;atk[61]=1968;re[61]=30;total[61]=671;mc[61]=57188;mc2[61]=85781;sc[61]=24705;hp[62]=2701;atk[62]=1985;re[62]=30;total[62]=677;mc[62]=58125;mc2[62]=87188;sc[62]=25110;hp[63]=2727;atk[63]=2002;re[63]=30;total[63]=683;mc[63]=59063;mc2[63]=88594;sc[63]=25515;hp[64]=2753;atk[64]=2019;re[64]=31;total[64]=689;mc[64]=60000;mc2[64]=90000;sc[64]=25920;hp[65]=2779;atk[65]=2036;re[65]=31;total[65]=695;mc[65]=60938;mc2[65]=91406;sc[65]=26325;hp[66]=2804;atk[66]=2053;re[66]=32;total[66]=702;mc[66]=61875;mc2[66]=92813;sc[66]=26730;hp[67]=2830;atk[67]=2070;re[67]=32;total[67]=708;mc[67]=62813;mc2[67]=94219;sc[67]=27135;hp[68]=2856;atk[68]=2086;re[68]=33;total[68]=714;mc[68]=63750;mc2[68]=95625;sc[68]=27540;hp[69]=2882;atk[69]=2103;re[69]=33;total[69]=720;mc[69]=64688;mc2[69]=97031;sc[69]=27945;hp[70]=2907;atk[70]=2120;re[70]=34;total[70]=726;mc[70]=65625;mc2[70]=98438;sc[70]=28350;hp[71]=2933;atk[71]=2137;re[71]=34;total[71]=732;mc[71]=66563;mc2[71]=99844;sc[71]=28755;hp[72]=2959;atk[72]=2154;re[72]=35;total[72]=738;mc[72]=67500;mc2[72]=101250;sc[72]=29160;hp[73]=2985;atk[73]=2171;re[73]=35;total[73]=744;mc[73]=68438;mc2[73]=102656;sc[73]=29565;hp[74]=3010;atk[74]=2188;re[74]=36;total[74]=751;mc[74]=69375;mc2[74]=104063;sc[74]=29970;hp[75]=3036;atk[75]=2205;re[75]=36;total[75]=757;mc[75]=70313;mc2[75]=105469;sc[75]=30375;hp[76]=3062;atk[76]=2222;re[76]=36;total[76]=763;mc[76]=71250;mc2[76]=106875;sc[76]=30780;hp[77]=3088;atk[77]=2238;re[77]=37;total[77]=769;mc[77]=72188;mc2[77]=108281;sc[77]=31185;hp[78]=3113;atk[78]=2255;re[78]=37;total[78]=775;mc[78]=73125;mc2[78]=109688;sc[78]=31590;hp[79]=3139;atk[79]=2272;re[79]=38;total[79]=781;mc[79]=74063;mc2[79]=111094;sc[79]=31995;hp[80]=3165;atk[80]=2289;re[80]=38;total[80]=787;mc[80]=75000;mc2[80]=112500;sc[80]=32400;hp[81]=3191;atk[81]=2306;re[81]=39;total[81]=793;mc[81]=75938;mc2[81]=113906;sc[81]=32805;hp[82]=3216;atk[82]=2323;re[82]=39;total[82]=799;mc[82]=76875;mc2[82]=115313;sc[82]=33210;hp[83]=3242;atk[83]=2340;re[83]=40;total[83]=806;mc[83]=77813;mc2[83]=116719;sc[83]=33615;hp[84]=3268;atk[84]=2357;re[84]=40;total[84]=812;mc[84]=78750;mc2[84]=118125;sc[84]=34020;hp[85]=3294;atk[85]=2374;re[85]=41;total[85]=818;mc[85]=79688;mc2[85]=119531;sc[85]=34425;hp[86]=3319;atk[86]=2390;re[86]=41;total[86]=824;mc[86]=80625;mc2[86]=120938;sc[86]=34830;hp[87]=3345;atk[87]=2407;re[87]=41;total[87]=830;mc[87]=81563;mc2[87]=122344;sc[87]=35235;hp[88]=3371;atk[88]=2424;re[88]=42;total[88]=836;mc[88]=82500;mc2[88]=123750;sc[88]=35640;hp[89]=3397;atk[89]=2441;re[89]=42;total[89]=842;mc[89]=83438;mc2[89]=125156;sc[89]=36045;hp[90]=3422;atk[90]=2458;re[90]=43;total[90]=848;mc[90]=84375;mc2[90]=126563;sc[90]=36450;hp[91]=3448;atk[91]=2475;re[91]=43;total[91]=854;mc[91]=85313;mc2[91]=127969;sc[91]=36855;hp[92]=3474;atk[92]=2492;re[92]=44;total[92]=860;mc[92]=86250;mc2[92]=129375;sc[92]=37260;hp[93]=3500;atk[93]=2509;re[93]=44;total[93]=866;mc[93]=87188;mc2[93]=130781;sc[93]=37665;hp[94]=3525;atk[94]=2526;re[94]=45;total[94]=873;mc[94]=88125;mc2[94]=132188;sc[94]=38070;hp[95]=3551;atk[95]=2542;re[95]=45;total[95]=879;mc[95]=89063;mc2[95]=133594;sc[95]=38475;hp[96]=3577;atk[96]=2559;re[96]=46;total[96]=885;mc[96]=90000;mc2[96]=135000;sc[96]=38880;hp[97]=3603;atk[97]=2576;re[97]=46;total[97]=891;mc[97]=90938;mc2[97]=136406;sc[97]=39285;hp[98]=3628;atk[98]=2593;re[98]=47;total[98]=897;mc[98]=91875;mc2[98]=137813;sc[98]=39690;hp[99]=3654;atk[99]=2610;re[99]=47;total[99]=903;mc[99]=92813;mc2[99]=139219;sc[99]=40095;
+hp[1]=1131;atk[1]=955;re[1]=2;total[1]=305;mc[1]=938;mc2[1]=1406;sc[1]=405;hp[2]=1167;atk[2]=977;re[2]=2;total[2]=313;mc[2]=1875;mc2[2]=2813;sc[2]=810;hp[3]=1203;atk[3]=999;re[3]=3;total[3]=321;mc[3]=2813;mc2[3]=4219;sc[3]=1215;hp[4]=1239;atk[4]=1021;re[4]=3;total[4]=329;mc[4]=3750;mc2[4]=5625;sc[4]=1620;hp[5]=1275;atk[5]=1043;re[5]=4;total[5]=337;mc[5]=4688;mc2[5]=7031;sc[5]=2025;hp[6]=1311;atk[6]=1065;re[6]=4;total[6]=345;mc[6]=5625;mc2[6]=8438;sc[6]=2430;hp[7]=1347;atk[7]=1087;re[7]=5;total[7]=354;mc[7]=6563;mc2[7]=9844;sc[7]=2835;hp[8]=1383;atk[8]=1109;re[8]=5;total[8]=362;mc[8]=7500;mc2[8]=11250;sc[8]=3240;hp[9]=1419;atk[9]=1131;re[9]=6;total[9]=370;mc[9]=8438;mc2[9]=12656;sc[9]=3645;hp[10]=1455;atk[10]=1153;re[10]=6;total[10]=378;mc[10]=9375;mc2[10]=14063;sc[10]=4050;hp[11]=1490;atk[11]=1175;re[11]=7;total[11]=386;mc[11]=10313;mc2[11]=15469;sc[11]=4455;hp[12]=1526;atk[12]=1197;re[12]=7;total[12]=394;mc[12]=11250;mc2[12]=16875;sc[12]=4860;hp[13]=1562;atk[13]=1219;re[13]=8;total[13]=403;mc[13]=12188;mc2[13]=18281;sc[13]=5265;hp[14]=1598;atk[14]=1241;re[14]=8;total[14]=411;mc[14]=13125;mc2[14]=19688;sc[14]=5670;hp[15]=1634;atk[15]=1263;re[15]=8;total[15]=419;mc[15]=14063;mc2[15]=21094;sc[15]=6075;hp[16]=1670;atk[16]=1285;re[16]=9;total[16]=427;mc[16]=15000;mc2[16]=22500;sc[16]=6480;hp[17]=1706;atk[17]=1307;re[17]=9;total[17]=435;mc[17]=15938;mc2[17]=23906;sc[17]=6885;hp[18]=1742;atk[18]=1329;re[18]=10;total[18]=443;mc[18]=16875;mc2[18]=25313;sc[18]=7290;hp[19]=1778;atk[19]=1351;re[19]=10;total[19]=451;mc[19]=17813;mc2[19]=26719;sc[19]=7695;hp[20]=1814;atk[20]=1373;re[20]=11;total[20]=460;mc[20]=18750;mc2[20]=28125;sc[20]=8100;hp[21]=1850;atk[21]=1395;re[21]=11;total[21]=468;mc[21]=19688;mc2[21]=29531;sc[21]=8505;hp[22]=1886;atk[22]=1417;re[22]=12;total[22]=476;mc[22]=20625;mc2[22]=30938;sc[22]=8910;hp[23]=1922;atk[23]=1439;re[23]=12;total[23]=484;mc[23]=21563;mc2[23]=32344;sc[23]=9315;hp[24]=1958;atk[24]=1461;re[24]=13;total[24]=492;mc[24]=22500;mc2[24]=33750;sc[24]=9720;hp[25]=1994;atk[25]=1483;re[25]=13;total[25]=500;mc[25]=23438;mc2[25]=35156;sc[25]=10125;hp[26]=2030;atk[26]=1505;re[26]=13;total[26]=508;mc[26]=24375;mc2[26]=36563;sc[26]=10530;hp[27]=2066;atk[27]=1527;re[27]=14;total[27]=517;mc[27]=25313;mc2[27]=37969;sc[27]=10935;hp[28]=2102;atk[28]=1549;re[28]=14;total[28]=525;mc[28]=26250;mc2[28]=39375;sc[28]=11340;hp[29]=2138;atk[29]=1571;re[29]=15;total[29]=533;mc[29]=27188;mc2[29]=40781;sc[29]=11745;hp[30]=2174;atk[30]=1593;re[30]=15;total[30]=541;mc[30]=28125;mc2[30]=42188;sc[30]=12150;hp[31]=2209;atk[31]=1615;re[31]=16;total[31]=549;mc[31]=29063;mc2[31]=43594;sc[31]=12555;hp[32]=2245;atk[32]=1637;re[32]=16;total[32]=557;mc[32]=30000;mc2[32]=45000;sc[32]=12960;hp[33]=2281;atk[33]=1659;re[33]=17;total[33]=566;mc[33]=30938;mc2[33]=46406;sc[33]=13365;hp[34]=2317;atk[34]=1681;re[34]=17;total[34]=574;mc[34]=31875;mc2[34]=47813;sc[34]=13770;hp[35]=2353;atk[35]=1703;re[35]=18;total[35]=582;mc[35]=32813;mc2[35]=49219;sc[35]=14175;hp[36]=2389;atk[36]=1725;re[36]=18;total[36]=590;mc[36]=33750;mc2[36]=50625;sc[36]=14580;hp[37]=2425;atk[37]=1747;re[37]=19;total[37]=598;mc[37]=34688;mc2[37]=52031;sc[37]=14985;hp[38]=2461;atk[38]=1769;re[38]=19;total[38]=606;mc[38]=35625;mc2[38]=53438;sc[38]=15390;hp[39]=2497;atk[39]=1791;re[39]=19;total[39]=614;mc[39]=36563;mc2[39]=54844;sc[39]=15795;hp[40]=2533;atk[40]=1813;re[40]=20;total[40]=623;mc[40]=37500;mc2[40]=56250;sc[40]=16200;hp[41]=2569;atk[41]=1835;re[41]=20;total[41]=631;mc[41]=38438;mc2[41]=57656;sc[41]=16605;hp[42]=2605;atk[42]=1857;re[42]=21;total[42]=639;mc[42]=39375;mc2[42]=59063;sc[42]=17010;hp[43]=2641;atk[43]=1879;re[43]=21;total[43]=647;mc[43]=40313;mc2[43]=60469;sc[43]=17415;hp[44]=2677;atk[44]=1901;re[44]=22;total[44]=655;mc[44]=41250;mc2[44]=61875;sc[44]=17820;hp[45]=2713;atk[45]=1923;re[45]=22;total[45]=663;mc[45]=42188;mc2[45]=63281;sc[45]=18225;hp[46]=2749;atk[46]=1945;re[46]=23;total[46]=672;mc[46]=43125;mc2[46]=64688;sc[46]=18630;hp[47]=2785;atk[47]=1967;re[47]=23;total[47]=680;mc[47]=44063;mc2[47]=66094;sc[47]=19035;hp[48]=2821;atk[48]=1989;re[48]=24;total[48]=688;mc[48]=45000;mc2[48]=67500;sc[48]=19440;hp[49]=2857;atk[49]=2011;re[49]=24;total[49]=696;mc[49]=45938;mc2[49]=68906;sc[49]=19845;hp[50]=2893;atk[50]=2033;re[50]=25;total[50]=704;mc[50]=46875;mc2[50]=70313;sc[50]=20250;hp[51]=2928;atk[51]=2054;re[51]=25;total[51]=712;mc[51]=47813;mc2[51]=71719;sc[51]=20655;hp[52]=2964;atk[52]=2076;re[52]=25;total[52]=720;mc[52]=48750;mc2[52]=73125;sc[52]=21060;hp[53]=3000;atk[53]=2098;re[53]=26;total[53]=728;mc[53]=49688;mc2[53]=74531;sc[53]=21465;hp[54]=3036;atk[54]=2120;re[54]=26;total[54]=736;mc[54]=50625;mc2[54]=75938;sc[54]=21870;hp[55]=3072;atk[55]=2142;re[55]=27;total[55]=745;mc[55]=51563;mc2[55]=77344;sc[55]=22275;hp[56]=3108;atk[56]=2164;re[56]=27;total[56]=753;mc[56]=52500;mc2[56]=78750;sc[56]=22680;hp[57]=3144;atk[57]=2186;re[57]=28;total[57]=761;mc[57]=53438;mc2[57]=80156;sc[57]=23085;hp[58]=3180;atk[58]=2208;re[58]=28;total[58]=769;mc[58]=54375;mc2[58]=81563;sc[58]=23490;hp[59]=3216;atk[59]=2230;re[59]=29;total[59]=777;mc[59]=55313;mc2[59]=82969;sc[59]=23895;hp[60]=3252;atk[60]=2252;re[60]=29;total[60]=785;mc[60]=56250;mc2[60]=84375;sc[60]=24300;hp[61]=3288;atk[61]=2274;re[61]=30;total[61]=794;mc[61]=57188;mc2[61]=85781;sc[61]=24705;hp[62]=3324;atk[62]=2296;re[62]=30;total[62]=802;mc[62]=58125;mc2[62]=87188;sc[62]=25110;hp[63]=3360;atk[63]=2318;re[63]=30;total[63]=810;mc[63]=59063;mc2[63]=88594;sc[63]=25515;hp[64]=3396;atk[64]=2340;re[64]=31;total[64]=818;mc[64]=60000;mc2[64]=90000;sc[64]=25920;hp[65]=3432;atk[65]=2362;re[65]=31;total[65]=826;mc[65]=60938;mc2[65]=91406;sc[65]=26325;hp[66]=3468;atk[66]=2384;re[66]=32;total[66]=834;mc[66]=61875;mc2[66]=92813;sc[66]=26730;hp[67]=3504;atk[67]=2406;re[67]=32;total[67]=842;mc[67]=62813;mc2[67]=94219;sc[67]=27135;hp[68]=3540;atk[68]=2428;re[68]=33;total[68]=851;mc[68]=63750;mc2[68]=95625;sc[68]=27540;hp[69]=3576;atk[69]=2450;re[69]=33;total[69]=859;mc[69]=64688;mc2[69]=97031;sc[69]=27945;hp[70]=3611;atk[70]=2472;re[70]=34;total[70]=867;mc[70]=65625;mc2[70]=98438;sc[70]=28350;hp[71]=3647;atk[71]=2494;re[71]=34;total[71]=875;mc[71]=66563;mc2[71]=99844;sc[71]=28755;hp[72]=3683;atk[72]=2516;re[72]=35;total[72]=883;mc[72]=67500;mc2[72]=101250;sc[72]=29160;hp[73]=3719;atk[73]=2538;re[73]=35;total[73]=891;mc[73]=68438;mc2[73]=102656;sc[73]=29565;hp[74]=3755;atk[74]=2560;re[74]=36;total[74]=900;mc[74]=69375;mc2[74]=104063;sc[74]=29970;hp[75]=3791;atk[75]=2582;re[75]=36;total[75]=908;mc[75]=70313;mc2[75]=105469;sc[75]=30375;hp[76]=3827;atk[76]=2604;re[76]=36;total[76]=916;mc[76]=71250;mc2[76]=106875;sc[76]=30780;hp[77]=3863;atk[77]=2626;re[77]=37;total[77]=924;mc[77]=72188;mc2[77]=108281;sc[77]=31185;hp[78]=3899;atk[78]=2648;re[78]=37;total[78]=932;mc[78]=73125;mc2[78]=109688;sc[78]=31590;hp[79]=3935;atk[79]=2670;re[79]=38;total[79]=940;mc[79]=74063;mc2[79]=111094;sc[79]=31995;hp[80]=3971;atk[80]=2692;re[80]=38;total[80]=948;mc[80]=75000;mc2[80]=112500;sc[80]=32400;hp[81]=4007;atk[81]=2714;re[81]=39;total[81]=957;mc[81]=75938;mc2[81]=113906;sc[81]=32805;hp[82]=4043;atk[82]=2736;re[82]=39;total[82]=965;mc[82]=76875;mc2[82]=115313;sc[82]=33210;hp[83]=4079;atk[83]=2758;re[83]=40;total[83]=973;mc[83]=77813;mc2[83]=116719;sc[83]=33615;hp[84]=4115;atk[84]=2780;re[84]=40;total[84]=981;mc[84]=78750;mc2[84]=118125;sc[84]=34020;hp[85]=4151;atk[85]=2802;re[85]=41;total[85]=989;mc[85]=79688;mc2[85]=119531;sc[85]=34425;hp[86]=4187;atk[86]=2824;re[86]=41;total[86]=997;mc[86]=80625;mc2[86]=120938;sc[86]=34830;hp[87]=4223;atk[87]=2846;re[87]=41;total[87]=1005;mc[87]=81563;mc2[87]=122344;sc[87]=35235;hp[88]=4259;atk[88]=2868;re[88]=42;total[88]=1014;mc[88]=82500;mc2[88]=123750;sc[88]=35640;hp[89]=4295;atk[89]=2890;re[89]=42;total[89]=1022;mc[89]=83438;mc2[89]=125156;sc[89]=36045;hp[90]=4330;atk[90]=2912;re[90]=43;total[90]=1030;mc[90]=84375;mc2[90]=126563;sc[90]=36450;hp[91]=4366;atk[91]=2934;re[91]=43;total[91]=1038;mc[91]=85313;mc2[91]=127969;sc[91]=36855;hp[92]=4402;atk[92]=2956;re[92]=44;total[92]=1046;mc[92]=86250;mc2[92]=129375;sc[92]=37260;hp[93]=4438;atk[93]=2978;re[93]=44;total[93]=1054;mc[93]=87188;mc2[93]=130781;sc[93]=37665;hp[94]=4474;atk[94]=3000;re[94]=45;total[94]=1062;mc[94]=88125;mc2[94]=132188;sc[94]=38070;hp[95]=4510;atk[95]=3022;re[95]=45;total[95]=1070;mc[95]=89063;mc2[95]=133594;sc[95]=38475;hp[96]=4546;atk[96]=3044;re[96]=46;total[96]=1079;mc[96]=90000;mc2[96]=135000;sc[96]=38880;hp[97]=4582;atk[97]=3066;re[97]=46;total[97]=1087;mc[97]=90938;mc2[97]=136406;sc[97]=39285;hp[98]=4618;atk[98]=3088;re[98]=47;total[98]=1095;mc[98]=91875;mc2[98]=137813;sc[98]=39690;hp[99]=4654;atk[99]=3110;re[99]=47;total[99]=1103;mc[99]=92813;mc2[99]=139219;sc[99]=40095;
 function updateLV(element) { 
 	document.getElementById("lv").innerHTML = "LV." + element ; 
 } 
@@ -1131,7 +1135,6 @@ function updateTO(element) {
       <td align="left">
       Graphics © Copyright by Gungho Online Entertainment, Inc.<br>
       <a href="https://pad.skyozora.com">戰友系統及資訊網</a> 由 Sky C. 持有，介面設計 Naldo W.<br>
-      如對本網站有任何查詢，歡迎至 <a href="https://www.facebook.com/PuzzleDragonsSite/">Facebook 專頁</a> 聯絡
       </td>
       
       <td align="right">

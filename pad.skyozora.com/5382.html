@@ -30,7 +30,7 @@
 
 
 </head>
-<link rel="stylesheet" type="text/css" href="css/style.css?2018080414">
+<link rel="stylesheet" type="text/css" href="css/style.css?0322">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" charset="utf-8"></script>
 
 <script type="text/javascript"> 
@@ -269,21 +269,11 @@ $(function() {
 	<a href="/friendlist/">搜尋戰友請按此 <img src="images/searchBtn2.png" align="absmiddle" /></a>
 </td>
 
-<td style="padding: 15px 10px 8px 10px; border: #272727 1px solid; text-align:center; background: #000; font-size:14px" width="230">
 
-<!---
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="Puzzle &amp; Dragons 戰友系統及資訊網" data-lang="zh-tw" data-dnt="true" data-count="none" data-hashtags="パズドラ">推文</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^https:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
---->
-
-<a href="https://www.facebook.com/PuzzleDragonsSite" target=new class="tooltip" title="戰友系統及資訊網專頁"><img src="images/fb.png" width="20" style="vertical-align: baseline"></a> <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FPuzzleDragonsSite&amp;send=false&amp;layout=button_count&amp;width=85&amp;show_faces=false&amp;font=verdana&amp;colorscheme=light&amp;action=like&amp;height=20&amp;appId=181873884488" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:95px; height:20px;" allowTransparency="true" valign=center></iframe>
-
-</td>
-
-<td style="border: #272727 1px solid; text-align:left; width:680px; background: #000; font-size:14px; padding-left:10px">
+<td style="border: #272727 1px solid; text-align:left; width:800px; background: #000; font-size:14px; padding-left:10px">
 
 <form action="/search/" method="get">
-<input name="q" style="color:#fff; width:500px; font-size:14px" value="">
+<input name="q" style="color:#fff; width:700px; font-size:14px" value="">
 <input type="submit" value='站內搜尋' style="color:#fff; font-size:14px"></form>
 
 </td>
@@ -399,10 +389,11 @@ function vote(e){
 	<tr>
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/5381" class="tooltip" title="&lt;img src=&quot;images/pets/5381.png&quot; width=&quot;50&quot; /&gt; 5381 - 金色的新娘・帕爾巴蒂"><img src="images/left01.png" width="53" height="585" /></a>		</td>
-		<td width="640">
-			<div style="position: relative; text-align:center; padding:0px; margin:0px; border:0px;">
 
-			<img src="images/pets_pic/5382.png" width="640" style="border-left:1px solid #222222;border-right:1px solid #222222">
+		<td width="640">
+
+			<div style="position: relative; text-align:center; padding:0px; margin:0px; border-left:1px solid #222222;border-right:1px solid #222222; width:640px; height:585px" id="animation">
+
 
 							<div class="kakusei" style="top: 92px; left: 593px;">
 					<a href="skill/%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%80%90%E6%80%A7%EF%BC%8B" class="tooltip" title="【バインド耐性＋】受到敵人的綁定攻擊時，持有此技能的寵物可令綁定對自己無效化"><img src="images/transparent.png" width="31" height="31"></a>
@@ -431,10 +422,34 @@ function vote(e){
 ※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 							<div class="kakusei" style="top: 492px; left: 593px;">
-					<a href="skill/%E8%B6%85%E8%BF%BD%E5%8A%A0%E6%94%BB%E6%92%83" class="tooltip" title="【超追加攻撃】將回復寶珠以形狀為3×3正方形的方式消除，該寵物的攻擊力3.5倍，並對敵人追加999,999點固定傷害"><img src="images/transparent.png" width="31" height="31"></a>
+					<a href="skill/%E8%B6%85%E8%BF%BD%E5%8A%A0%E6%94%BB%E6%92%83" class="tooltip" title="【超追加攻撃】將回復寶珠以形狀為3×3正方形的方式消除，該寵物的攻擊力3.5倍，並對敵人追加9,999,999點固定傷害"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 						</div>
+			
+			<script src="javascript/pixi.min.js"></script>
+			<script src="javascript/pixi-spine.js"></script>
+			<script>
+			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
+			document.getElementById('animation').appendChild(app.view);
+			// load spine data
+			app.loader.add('spineboy', 'images/graphics/animation/mons_5382.json').load(onAssetsLoaded);
+
+			const background = PIXI.Sprite.from('images/pets_pic/5382.png');
+			background.width = 640;
+			background.height = 585;
+			app.stage.addChild(background);
+
+			function onAssetsLoaded(loader, res) {
+				const { spineData } = res.spineboy;
+
+				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
+				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
+				spine.state.setAnimation(0, "animation", true);
+				spine.state.timeScale = 1;
+			}
+			</script>
 		</td>
+			
 		<td width="39" bgcolor="#000000" class="previous_next">
 		<a href="pets/5383" class="tooltip" title="&lt;img src=&quot;images/pets/5383.png&quot; width=&quot;50&quot; /&gt; 5383 - 感激的魔帽子・煙霧"><img src="images/right01.png" width="53" height="585" /></a>		</td>
 	</tr>
@@ -769,7 +784,7 @@ function vote(e){
 					<a href="skill/%E6%93%8D%E4%BD%9C%E6%99%82%E9%96%93%E5%BB%B6%E9%95%B7%EF%BC%8B" class="tooltip" title="【操作時間延長＋】寶珠移動時間延長1秒"><img src="images/skill/skill-53.png"  /></a>
 					<a href="skill/%E3%82%B9%E3%82%AD%E3%83%AB%E3%83%96%E3%83%BC%E3%82%B9%E3%83%88%EF%BC%8B" class="tooltip" title="【スキルブースト＋】進入地下城的時候，隊伍全體的技能先儲了2回合&lt;br /&gt;
 ※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/skill/skill-56.png"  /></a>
-					<a href="skill/%E8%B6%85%E8%BF%BD%E5%8A%A0%E6%94%BB%E6%92%83" class="tooltip" title="【超追加攻撃】將回復寶珠以形狀為3×3正方形的方式消除，該寵物的攻擊力3.5倍，並對敵人追加999,999點固定傷害"><img src="images/skill/skill-50.png"  /></a>
+					<a href="skill/%E8%B6%85%E8%BF%BD%E5%8A%A0%E6%94%BB%E6%92%83" class="tooltip" title="【超追加攻撃】將回復寶珠以形狀為3×3正方形的方式消除，該寵物的攻擊力3.5倍，並對敵人追加9,999,999點固定傷害"><img src="images/skill/skill-50.png"  /></a>
 				</td>
 	</tr>
 	<tr align="left" bgcolor="#000000">
@@ -1069,18 +1084,7 @@ p.EvoName {
 
 
 <br />
-<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/10月のクエスト 上級者向け" class="tooltip" title="10月のクエスト 上級者向け<br />チャレンジLv9"><img src="" width="100"></a></td><td><a href="pets/5063" class="tooltip" title="5063 - 咒劍之溟手神・尼曼"><img src="images/pets/5063.png" width="55" height="55" $team[L2][0]</a><a href="pets/4415" class="tooltip" title="4415 - 岩拳之大魔女・澤娜"><img src="images/pets/4415.png" width="55" height="55" $team[L2][0]</a><a href="pets/3294" class="tooltip" title="3294 - 謝雷亞的賢者・楊・修特拉"><img src="images/pets/3294.png" width="55" height="55" $team[L2][0]</a><a href="pets/5203" class="tooltip" title="5203 - 超轉生芭絲特"><img src="images/pets/5203.png" width="55" height="55" $team[L2][0]</a><a href="pets/5382" class="tooltip" title="5382 - 孤峰之新娘・澤娜"><img src="images/pets/5382.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5379" class="tooltip" title="5379 - 真心之新娘・盧遮那"><img src="images/pets/5379.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/115891/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/裏・極限の闘技場" class="tooltip" title="裏・極限の闘技場<br />裏異形の存在"><img src="images/stage/3891s.png" width="100"></a></td><td><a href="pets/5446" class="tooltip" title="5446 - 甜心戰士"><img src="images/pets/5446.png" width="55" height="55" $team[L2][0]</a><a href="pets/5382" class="tooltip" title="5382 - 孤峰之新娘・澤娜"><img src="images/pets/5382.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4127" class="tooltip" title="4127 - 遊步之夜月神・月讀"><img src="images/pets/4127.png" width="55" height="55" $team[L2][0]</a><a href="pets/5141" class="tooltip" title="5141 - 極醒之神葬狼・芬里爾＝顯現"><img src="images/pets/5141.png" width="55" height="55" $team[L2][0]</a><a href="pets/2763" class="tooltip" title="2763 - 莫古利"><img src="images/pets/2763.png" width="55" height="55" $team[L2][0]</a><a href="pets/3298" class="tooltip" title="3298 - 第七天堂的看板娘・蒂法"><img src="images/pets/3298.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/115793/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/裏・極限の闘技場" class="tooltip" title="裏・極限の闘技場<br />裏異形の存在"><img src="images/stage/3891s.png" width="100"></a></td><td><a href="pets/3298" class="tooltip" title="3298 - 第七天堂的看板娘・蒂法"><img src="images/pets/3298.png" width="55" height="55" $team[L2][0]</a><a href="pets/5382" class="tooltip" title="5382 - 孤峰之新娘・澤娜"><img src="images/pets/5382.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5395" class="tooltip" title="5395 - 古代種的末裔・艾莉絲"><img src="images/pets/5395.png" width="55" height="55" $team[L2][0]</a><a href="pets/5217" class="tooltip" title="5217 - 隱蔽的神玩家・天照大神"><img src="images/pets/5217.png" width="55" height="55" $team[L2][0]</a><a href="pets/2763" class="tooltip" title="2763 - 莫古利"><img src="images/pets/2763.png" width="55" height="55" $team[L2][0]</a><a href="pets/2764" class="tooltip" title="2764 - 克勞德＆芬里爾"><img src="images/pets/2764.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/115448/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/3択！1度きりゼウスチャレンジ！" class="tooltip" title="3択！1度きりゼウスチャレンジ！<br />壊滅級【制限時間10分】"><img src="" width="100"></a></td><td><a href="pets/5885" class="tooltip" title="5885 - 決意之騎士・愛麗絲"><img src="images/pets/5885.png" width="55" height="55" $team[L2][0]</a><a href="pets/5382" class="tooltip" title="5382 - 孤峰之新娘・澤娜"><img src="images/pets/5382.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/3274" class="tooltip" title="3274 - 魔導書之幻魔・伊雷米娜"><img src="images/pets/3274.png" width="55" height="55" $team[L2][0]</a><a href="pets/5849" class="tooltip" title="5849 - 初雪之大魔女・莉邪"><img src="images/pets/5849.png" width="55" height="55" $team[L2][0]</a><a href="pets/5141" class="tooltip" title="5141 - 極醒之神葬狼・芬里爾＝顯現"><img src="images/pets/5141.png" width="55" height="55" $team[L2][0]</a><a href="pets/5841" class="tooltip" title="5841 - 雲外之大魔女・花絲卡"><img src="images/pets/5841.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116455/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/ガウェイン降臨！" class="tooltip" title="ガウェイン降臨！<br />鷹騎士 壊滅級"><img src="images/stage/6348s.png" width="100"></a></td><td><a href="pets/5885" class="tooltip" title="5885 - 決意之騎士・愛麗絲"><img src="images/pets/5885.png" width="55" height="55" $team[L2][0]</a><a href="pets/5858" class="tooltip" title="5858 - 極醒之化身無盡之物・猶格＝索托斯"><img src="images/pets/5858.png" width="55" height="55" $team[L2][0]</a><a href="pets/5553" class="tooltip" title="5553 - 轉生貂蟬"><img src="images/pets/5553.png" width="55" height="55" $team[L2][0]</a><a href="pets/6015" class="tooltip" title="6015 - 米妮老鼠【快樂】"><img src="images/pets/6015.png" width="55" height="55" $team[L2][0]</a><a href="pets/4800" class="tooltip" title="4800 - 轉戰之師龍喚士・瓦萊里婭"><img src="images/pets/4800.png" width="55" height="55" $team[L2][0]</a><a href="pets/5382" class="tooltip" title="5382 - 孤峰之新娘・澤娜"><img src="images/pets/5382.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/117208/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
-
-<table width="750" border="0" cellpadding="0" cellspacing="1" align="center">
-	<tr>
-		<td align="left">
-		<a href="pets/5381" class="tooltip" title="5381 - 金色の花嫁・パールヴァティー"><img src="images/pets_pic/5381.png" style="border-radius:15px" width=365></a> 		</td>
-		<td align="right">
-		<a href="pets/5383" class="tooltip" title="5383 - 感激の魔帽子・スモック"><img src="images/pets_pic/5383.png" style="border-radius:15px" width=365></a>		</td>
-	</tr>
-</table>
-
-
+<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/リベルタス降臨！" class="tooltip" title="リベルタス降臨！<br />自由神 壊滅級"><img src="images/stage/5057s.png" width="100"></a></td><td><a href="pets/3663" class="tooltip" title="3663 - 鏖魔角龍"><img src="images/pets/3663.png" width="55" height="55" $team[L2][0]</a><a href="pets/5141" class="tooltip" title="5141 - 極醒之神葬狼・芬里爾＝顯現"><img src="images/pets/5141.png" width="55" height="55" $team[L2][0]</a><a href="pets/5382" class="tooltip" title="5382 - 孤峰之新娘・澤娜"><img src="images/pets/5382.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/4302" class="tooltip" title="4302 - 靈界偵探・浦飯幽助"><img src="images/pets/4302.png" width="55" height="55" $team[L2][0]</a><a href="pets/0" class="tooltip" title="0 - "><img src="images/pets/000.png" width="55" height="55" $team[L2][0]</a><a href="pets/4020" class="tooltip" title="4020 - 鋼之鍊金術師・愛德華・愛力克"><img src="images/pets/4020.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/115519/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/極練の闘技場" class="tooltip" title="極練の闘技場<br />風華の悪戯"><img src="images/stage/3311s.png" width="100"></a></td><td><a href="pets/5885" class="tooltip" title="5885 - 決意之騎士・愛麗絲"><img src="images/pets/5885.png" width="55" height="55" $team[L2][0]</a><a href="pets/5382" class="tooltip" title="5382 - 孤峰之新娘・澤娜"><img src="images/pets/5382.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5521" class="tooltip" title="5521 - 白羽騎士 布拉達曼特"><img src="images/pets/5521.png" width="55" height="55" $team[L2][0]</a><a href="pets/5128" class="tooltip" title="5128 - 雷咬之明龍刀士・基奧"><img src="images/pets/5128.png" width="55" height="55" $team[L2][0]</a><a href="pets/2766" class="tooltip" title="2766 - 覺悟的召喚士・優娜"><img src="images/pets/2766.png" width="55" height="55" $team[L2][0]</a><a href="pets/5841" class="tooltip" title="5841 - 雲外之大魔女・花絲卡"><img src="images/pets/5841.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116385/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/3択！1度きりゼウスチャレンジ！" class="tooltip" title="3択！1度きりゼウスチャレンジ！<br />壊滅級【制限時間10分】"><img src="" width="100"></a></td><td><a href="pets/5885" class="tooltip" title="5885 - 決意之騎士・愛麗絲"><img src="images/pets/5885.png" width="55" height="55" $team[L2][0]</a><a href="pets/5382" class="tooltip" title="5382 - 孤峰之新娘・澤娜"><img src="images/pets/5382.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/3274" class="tooltip" title="3274 - 魔導書之幻魔・伊雷米娜"><img src="images/pets/3274.png" width="55" height="55" $team[L2][0]</a><a href="pets/5849" class="tooltip" title="5849 - 初雪之大魔女・莉邪"><img src="images/pets/5849.png" width="55" height="55" $team[L2][0]</a><a href="pets/5141" class="tooltip" title="5141 - 極醒之神葬狼・芬里爾＝顯現"><img src="images/pets/5141.png" width="55" height="55" $team[L2][0]</a><a href="pets/5841" class="tooltip" title="5841 - 雲外之大魔女・花絲卡"><img src="images/pets/5841.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116455/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/12月のクエスト 上級者向け" class="tooltip" title="12月のクエスト 上級者向け<br />チャレンジLv10"><img src="images/stage/5934s.png" width="100"></a></td><td><a href="pets/5766" class="tooltip" title="5766 - 幪面超人（假面騎士）01 閃耀蝗蟲"><img src="images/pets/5766.png" width="55" height="55" $team[L2][0]</a><a href="pets/4647" class="tooltip" title="4647 - 秘境之大魔女・莎妮寧"><img src="images/pets/4647.png" width="55" height="55" $team[L2][0]</a><a href="pets/4648" class="tooltip" title="4648 - 輝門之大魔女・莎妮寧"><img src="images/pets/4648.png" width="55" height="55" $team[L2][0]</a><a href="pets/4836" class="tooltip" title="4836 - 怒雷之全能神・宙斯 -GIGA-"><img src="images/pets/4836.png" width="55" height="55" $team[L2][0]</a><a href="pets/2940" class="tooltip" title="2940 - 絕海龍・維魯多爾"><img src="images/pets/2940.png" width="55" height="55" $team[L2][0]</a><a href="pets/5765" class="tooltip" title="5765 - 幪面超人（假面騎士）01"><img src="images/pets/5765.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116242/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/ドロシー降臨！" class="tooltip" title="ドロシー降臨！<br />魔法と旅する者 壊滅級"><img src="images/stage/5390s.png" width="100"></a></td><td><a href="pets/5209" class="tooltip" title="5209 - 神道花梨【暗黑】"><img src="images/pets/5209.png" width="55" height="55" $team[L2][0]</a><a href="pets/4204" class="tooltip" title="4204 - 甘美之零龍喚士・寧"><img src="images/pets/4204.png" width="55" height="55" $team[L2][0]</a><a href="pets/5235" class="tooltip" title="5235 - 時間迷宮的名探偵・夏林福德"><img src="images/pets/5235.png" width="55" height="55" $team[L2][0]</a><a href="pets/4586" class="tooltip" title="4586 - 化身此方之物・猶格＝索托斯"><img src="images/pets/4586.png" width="55" height="55" $team[L2][0]</a><a href="pets/5382" class="tooltip" title="5382 - 孤峰之新娘・澤娜"><img src="images/pets/5382.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5209" class="tooltip" title="5209 - 神道花梨【暗黑】"><img src="images/pets/5209.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/115315/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
 
 
 </td>
@@ -1171,7 +1175,6 @@ function updateTO(element) {
       <td align="left">
       Graphics © Copyright by Gungho Online Entertainment, Inc.<br>
       <a href="https://pad.skyozora.com">戰友系統及資訊網</a> 由 Sky C. 持有，介面設計 Naldo W.<br>
-      如對本網站有任何查詢，歡迎至 <a href="https://www.facebook.com/PuzzleDragonsSite/">Facebook 專頁</a> 聯絡
       </td>
       
       <td align="right">
