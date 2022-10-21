@@ -402,7 +402,7 @@ function vote(e){
 					<a href="skill/%E3%82%B3%E3%83%B3%E3%83%9C%E5%BC%B7%E5%8C%96" class="tooltip" title="【コンボ強化】7COMBO或以上時攻擊力2倍"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 							<div class="kakusei" style="top: 192px; left: 593px;">
-					<a href="skill/%E3%83%80%E3%83%A1%E3%83%BC%E3%82%B8%E7%84%A1%E5%8A%B9%E8%B2%AB%E9%80%9A" class="tooltip" title="【ダメージ無効貫通】將與自身屬性相同的寶珠以形狀為3×3正方形的方式消除，該寵物的攻擊力2.5倍，並可以直接貫穿敵人的傷害無效化"><img src="images/transparent.png" width="31" height="31"></a>
+					<a href="skill/%E3%82%B3%E3%83%B3%E3%83%9C%E5%BC%B7%E5%8C%96" class="tooltip" title="【コンボ強化】7COMBO或以上時攻擊力2倍"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 							<div class="kakusei" style="top: 242px; left: 593px;">
 					<a href="skill/%E3%83%80%E3%83%A1%E3%83%BC%E3%82%B8%E7%84%A1%E5%8A%B9%E8%B2%AB%E9%80%9A" class="tooltip" title="【ダメージ無効貫通】將與自身屬性相同的寶珠以形狀為3×3正方形的方式消除，該寵物的攻擊力2.5倍，並可以直接貫穿敵人的傷害無效化"><img src="images/transparent.png" width="31" height="31"></a>
@@ -425,28 +425,38 @@ function vote(e){
 				</div>
 						</div>
 			
-			<script src="javascript/pixi.min.js"></script>
-			<script src="javascript/pixi-spine.js"></script>
+						<script src="javascript/spine-player.3.9.js"></script>
+   			<link rel="stylesheet" href="javascript/spine-player.3.9.css">
+			
 			<script>
-			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
-			document.getElementById('animation').appendChild(app.view);
-			// load spine data
-			app.loader.add('spineboy', 'images/graphics/animation/mons_6401.json').load(onAssetsLoaded);
-
-			const background = PIXI.Sprite.from('images/pets_pic/6401.png');
-			background.width = 640;
-			background.height = 585;
-			app.stage.addChild(background);
-
-			function onAssetsLoaded(loader, res) {
-				const { spineData } = res.spineboy;
-
-				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
-				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
-				spine.state.setAnimation(0, "animation", true);
-				spine.state.timeScale = 1;
-			}
+			new spine.SpinePlayer("animation", {
+				jsonUrl: "images/graphics/animation/mons_6401.json",
+				atlasUrl: "images/graphics/animation/mons_6401.atlas",
+				premultipliedAlpha: false,
+				showControls: false,
+				animation: "animation",
+				alpha: true,
+				backgroundColor: "#00000000",
+				viewport: {
+					x: -320,
+					y: -101,
+					width: 640,
+					height: 585,
+					padLeft: 0,
+					padRight: 0,
+					padTop: 0,
+					padBottom: 0,
+				},
+				backgroundImage: { 
+					url: "images/pets_pic/6401.png",
+					x: -320,
+					y: -101,
+					width: 640,
+					height: 585
+				}
+			});
 			</script>
+			
 		</td>
 			
 		<td width="39" bgcolor="#000000" class="previous_next">
@@ -593,13 +603,13 @@ function vote(e){
 				<tr>
 					<td width="46">LV.99</td>
 					<td width="80">HP: 8095</td>
-					<td>攻擊力: 3598</td>
+					<td>攻擊力: 4598</td>
 					<td>回復力: 236</td>
 				</tr>
 			</table>
 		</td>
 		<td>
-			<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數: 1608</a>
+			<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數: 1808</a>
 		</td>
 	</tr>
 
@@ -609,13 +619,13 @@ function vote(e){
 				<tr>
 					<td width="46"></td>
 					<td width="80">HP:  <span style="color:#FF73B7; font-weight:900">+2250</span></td>
-					<td>攻擊力:  <span style="color:#FF73B7; font-weight:900">+1180</span></td>
+					<td>攻擊力:  <span style="color:#FF73B7; font-weight:900">+2180</span></td>
 					<td>回復力:  <span style="color:#FF73B7; font-weight:900">+140</span></td>
 				</tr>
 			</table>
 		</td>
 			<td>
-			<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數:  <span style="color:#FF73B7; font-weight:900">+508</span></a>
+			<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數:  <span style="color:#FF73B7; font-weight:900">+708</span></a>
 		</td>
 	</tr>
 
@@ -687,7 +697,7 @@ function vote(e){
 		3		</td>
 	</tr>
 	<tr bgcolor="#000000">
-		<td colspan="5" style="line-height: 28px;">1回合內，光屬性的攻擊力變成3倍；<br />1回合內，回復力變成3倍；<br />並最下方一橫行的寶珠變為<img src="images/drops/Light.png" width="25" />；<br />並將<img src="images/drops/Light.png" width="25" />鎖定</td>
+		<td colspan="5" style="line-height: 28px;">1回合內，光屬性的攻擊力變成3倍；<br />1回合內，回復力變成3倍；<br />並1回合內，自身的攻擊力變成3倍；<br />並最下方一橫行的寶珠變為<img src="images/drops/Light.png" width="25" />；<br />並將<img src="images/drops/Light.png" width="25" />鎖定</td>
 	</tr>
 
 
@@ -720,7 +730,7 @@ function vote(e){
 		<td>
 					<a href="skill/%E3%82%B3%E3%83%B3%E3%83%9C%E5%BC%B7%E5%8C%96" class="tooltip" title="【コンボ強化】7COMBO或以上時攻擊力2倍"><img src="images/skill/skill-43.png"  /></a>
 					<a href="skill/%E3%82%B3%E3%83%B3%E3%83%9C%E5%BC%B7%E5%8C%96" class="tooltip" title="【コンボ強化】7COMBO或以上時攻擊力2倍"><img src="images/skill/skill-43.png"  /></a>
-					<a href="skill/%E3%83%80%E3%83%A1%E3%83%BC%E3%82%B8%E7%84%A1%E5%8A%B9%E8%B2%AB%E9%80%9A" class="tooltip" title="【ダメージ無効貫通】將與自身屬性相同的寶珠以形狀為3×3正方形的方式消除，該寵物的攻擊力2.5倍，並可以直接貫穿敵人的傷害無效化"><img src="images/skill/skill-48.png"  /></a>
+					<a href="skill/%E3%82%B3%E3%83%B3%E3%83%9C%E5%BC%B7%E5%8C%96" class="tooltip" title="【コンボ強化】7COMBO或以上時攻擊力2倍"><img src="images/skill/skill-43.png"  /></a>
 					<a href="skill/%E3%83%80%E3%83%A1%E3%83%BC%E3%82%B8%E7%84%A1%E5%8A%B9%E8%B2%AB%E9%80%9A" class="tooltip" title="【ダメージ無効貫通】將與自身屬性相同的寶珠以形狀為3×3正方形的方式消除，該寵物的攻擊力2.5倍，並可以直接貫穿敵人的傷害無效化"><img src="images/skill/skill-48.png"  /></a>
 					<a href="skill/%E8%B6%85%E8%BF%BD%E5%8A%A0%E6%94%BB%E6%92%83" class="tooltip" title="【超追加攻撃】將回復寶珠以形狀為3×3正方形的方式消除，該寵物的攻擊力3.5倍，並對敵人追加9,999,999點固定傷害"><img src="images/skill/skill-50.png"  /></a>
 					<a href="skill/%E8%B6%85%E8%BF%BD%E5%8A%A0%E6%94%BB%E6%92%83" class="tooltip" title="【超追加攻撃】將回復寶珠以形狀為3×3正方形的方式消除，該寵物的攻擊力3.5倍，並對敵人追加9,999,999點固定傷害"><img src="images/skill/skill-50.png"  /></a>
@@ -753,7 +763,7 @@ function vote(e){
 		<td class="head">隊長技能 - <a href="skill/輝空の双剣"><span style="font-size:18px; font-weight:900">輝空の双剣</span></a></td>
 <td bgcolor="#008be3" width="120" height="42" style="padding:0px; border-radius:8px; font-size:14px" align="center"><a href="/friendlist/6401/GroupUnspecified/Rank0-999/AllLeader/Unspecified/0-0/SortByLastUpdate/Page1/">搜尋戰友</a></td>	</tr>
 	<tr>
-		<td bgcolor="#000000" colspan=2><img src="images/drops/Light.png" width="22" />光屬性的HP和回復力2倍、攻擊力20倍；<br />另外消除毒/猛毒寶珠時不會受到毒傷害；<br />另外相連消除6個或以上的<img src="images/drops/Light.png" width="22" />光寶珠時受到的傷害減少35%、結算增加3COMBO</td>
+		<td bgcolor="#000000" colspan=2><img src="images/drops/Light.png" width="22" />光屬性的HP和回復力2倍、攻擊力20倍；<br />另外消除毒/猛毒寶珠時不會受到毒傷害；<br />另外相連消除6個或以上的<img src="images/drops/Light.png" width="22" />光寶珠時受到的傷害減少50%、結算增加3COMBO</td>
 	</tr>
 </table>
 
@@ -945,7 +955,7 @@ p.EvoName {
 					datasets: [
 						{
 							label: "評分",
-							data: [0, 0, 0, 0, 0, 9.31],
+							data: [0, 0, 0, 0, 0, 9.36],
 							backgroundColor: "rgba(255,99,132,0.2)",
 							borderColor: "rgba(255,99,132,1)",
 							pointBackgroundColor: "rgba(255,99,132,1)",
@@ -1011,7 +1021,7 @@ p.EvoName {
 			</script>
 			</div>
 		</td>
-		<td bgcolor="#000000" width="80">作為隊長</td><td bgcolor="#000000" class="poll"><select id="poll1" name="poll1" onChange="vote(1);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">作為隊員</td><td bgcolor="#000000" class="poll"><select id="poll2" name="poll2" onChange="vote(2);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">作為輔助</td><td bgcolor="#000000" class="poll">不可輔助</td></tr><tr align="center"><td bgcolor="#000000" width="80">單人配合</td><td bgcolor="#000000" class="poll"><select id="poll4" name="poll4" onChange="vote(4);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">協力配合</td><td bgcolor="#000000" class="poll"><select id="poll5" name="poll5" onChange="vote(5);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">美觀度</td><td bgcolor="#000000" class="poll"><select id="poll6" name="poll6" onChange="vote(6);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">平均得分</td><td bgcolor="#000000" id="AvgScore">1.55</td></tr></table>
+		<td bgcolor="#000000" width="80">作為隊長</td><td bgcolor="#000000" class="poll"><select id="poll1" name="poll1" onChange="vote(1);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">作為隊員</td><td bgcolor="#000000" class="poll"><select id="poll2" name="poll2" onChange="vote(2);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">作為輔助</td><td bgcolor="#000000" class="poll">不可輔助</td></tr><tr align="center"><td bgcolor="#000000" width="80">單人配合</td><td bgcolor="#000000" class="poll"><select id="poll4" name="poll4" onChange="vote(4);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">協力配合</td><td bgcolor="#000000" class="poll"><select id="poll5" name="poll5" onChange="vote(5);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">美觀度</td><td bgcolor="#000000" class="poll"><select id="poll6" name="poll6" onChange="vote(6);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">平均得分</td><td bgcolor="#000000" id="AvgScore">1.56</td></tr></table>
 
 
 <br />
@@ -1042,7 +1052,7 @@ total=new Array();
 mc=new Array();
 mc2=new Array();
 sc=new Array();
-hp[1]=1478;atk[1]=1147;re[1]=83;total[1]=405;mc[1]=1988;mc2[1]=2981;sc[1]=825;hp[2]=1546;atk[2]=1172;re[2]=85;total[2]=417;mc[2]=3975;mc2[2]=5963;sc[2]=1650;hp[3]=1613;atk[3]=1197;re[3]=86;total[3]=429;mc[3]=5963;mc2[3]=8944;sc[3]=2475;hp[4]=1681;atk[4]=1222;re[4]=88;total[4]=442;mc[4]=7950;mc2[4]=11925;sc[4]=3300;hp[5]=1748;atk[5]=1247;re[5]=89;total[5]=454;mc[5]=9938;mc2[5]=14906;sc[5]=4125;hp[6]=1816;atk[6]=1272;re[6]=91;total[6]=466;mc[6]=11925;mc2[6]=17888;sc[6]=4950;hp[7]=1883;atk[7]=1297;re[7]=92;total[7]=478;mc[7]=13913;mc2[7]=20869;sc[7]=5775;hp[8]=1951;atk[8]=1322;re[8]=94;total[8]=491;mc[8]=15900;mc2[8]=23850;sc[8]=6600;hp[9]=2018;atk[9]=1347;re[9]=95;total[9]=503;mc[9]=17888;mc2[9]=26831;sc[9]=7425;hp[10]=2086;atk[10]=1372;re[10]=97;total[10]=515;mc[10]=19875;mc2[10]=29813;sc[10]=8250;hp[11]=2153;atk[11]=1397;re[11]=99;total[11]=528;mc[11]=21863;mc2[11]=32794;sc[11]=9075;hp[12]=2221;atk[12]=1422;re[12]=100;total[12]=540;mc[12]=23850;mc2[12]=35775;sc[12]=9900;hp[13]=2288;atk[13]=1447;re[13]=102;total[13]=552;mc[13]=25838;mc2[13]=38756;sc[13]=10725;hp[14]=2356;atk[14]=1472;re[14]=103;total[14]=564;mc[14]=27825;mc2[14]=41738;sc[14]=11550;hp[15]=2423;atk[15]=1497;re[15]=105;total[15]=577;mc[15]=29813;mc2[15]=44719;sc[15]=12375;hp[16]=2491;atk[16]=1522;re[16]=106;total[16]=589;mc[16]=31800;mc2[16]=47700;sc[16]=13200;hp[17]=2558;atk[17]=1547;re[17]=108;total[17]=601;mc[17]=33788;mc2[17]=50681;sc[17]=14025;hp[18]=2626;atk[18]=1572;re[18]=110;total[18]=614;mc[18]=35775;mc2[18]=53663;sc[18]=14850;hp[19]=2693;atk[19]=1597;re[19]=111;total[19]=626;mc[19]=37763;mc2[19]=56644;sc[19]=15675;hp[20]=2761;atk[20]=1622;re[20]=113;total[20]=638;mc[20]=39750;mc2[20]=59625;sc[20]=16500;hp[21]=2828;atk[21]=1647;re[21]=114;total[21]=650;mc[21]=41738;mc2[21]=62606;sc[21]=17325;hp[22]=2896;atk[22]=1672;re[22]=116;total[22]=663;mc[22]=43725;mc2[22]=65588;sc[22]=18150;hp[23]=2963;atk[23]=1697;re[23]=117;total[23]=675;mc[23]=45713;mc2[23]=68569;sc[23]=18975;hp[24]=3031;atk[24]=1722;re[24]=119;total[24]=687;mc[24]=47700;mc2[24]=71550;sc[24]=19800;hp[25]=3098;atk[25]=1747;re[25]=120;total[25]=699;mc[25]=49688;mc2[25]=74531;sc[25]=20625;hp[26]=3166;atk[26]=1772;re[26]=122;total[26]=712;mc[26]=51675;mc2[26]=77513;sc[26]=21450;hp[27]=3234;atk[27]=1797;re[27]=124;total[27]=724;mc[27]=53663;mc2[27]=80494;sc[27]=22275;hp[28]=3301;atk[28]=1822;re[28]=125;total[28]=736;mc[28]=55650;mc2[28]=83475;sc[28]=23100;hp[29]=3369;atk[29]=1847;re[29]=127;total[29]=749;mc[29]=57638;mc2[29]=86456;sc[29]=23925;hp[30]=3436;atk[30]=1872;re[30]=128;total[30]=761;mc[30]=59625;mc2[30]=89438;sc[30]=24750;hp[31]=3504;atk[31]=1897;re[31]=130;total[31]=773;mc[31]=61613;mc2[31]=92419;sc[31]=25575;hp[32]=3571;atk[32]=1922;re[32]=131;total[32]=785;mc[32]=63600;mc2[32]=95400;sc[32]=26400;hp[33]=3639;atk[33]=1947;re[33]=133;total[33]=798;mc[33]=65588;mc2[33]=98381;sc[33]=27225;hp[34]=3706;atk[34]=1972;re[34]=135;total[34]=810;mc[34]=67575;mc2[34]=101363;sc[34]=28050;hp[35]=3774;atk[35]=1997;re[35]=136;total[35]=822;mc[35]=69563;mc2[35]=104344;sc[35]=28875;hp[36]=3841;atk[36]=2022;re[36]=138;total[36]=835;mc[36]=71550;mc2[36]=107325;sc[36]=29700;hp[37]=3909;atk[37]=2047;re[37]=139;total[37]=847;mc[37]=73538;mc2[37]=110306;sc[37]=30525;hp[38]=3976;atk[38]=2072;re[38]=141;total[38]=859;mc[38]=75525;mc2[38]=113288;sc[38]=31350;hp[39]=4044;atk[39]=2097;re[39]=142;total[39]=871;mc[39]=77513;mc2[39]=116269;sc[39]=32175;hp[40]=4111;atk[40]=2122;re[40]=144;total[40]=884;mc[40]=79500;mc2[40]=119250;sc[40]=33000;hp[41]=4179;atk[41]=2147;re[41]=145;total[41]=896;mc[41]=81488;mc2[41]=122231;sc[41]=33825;hp[42]=4246;atk[42]=2172;re[42]=147;total[42]=908;mc[42]=83475;mc2[42]=125213;sc[42]=34650;hp[43]=4314;atk[43]=2197;re[43]=149;total[43]=920;mc[43]=85463;mc2[43]=128194;sc[43]=35475;hp[44]=4381;atk[44]=2222;re[44]=150;total[44]=933;mc[44]=87450;mc2[44]=131175;sc[44]=36300;hp[45]=4449;atk[45]=2247;re[45]=152;total[45]=945;mc[45]=89438;mc2[45]=134156;sc[45]=37125;hp[46]=4516;atk[46]=2272;re[46]=153;total[46]=957;mc[46]=91425;mc2[46]=137138;sc[46]=37950;hp[47]=4584;atk[47]=2297;re[47]=155;total[47]=969;mc[47]=93413;mc2[47]=140119;sc[47]=38775;hp[48]=4651;atk[48]=2322;re[48]=156;total[48]=982;mc[48]=95400;mc2[48]=143100;sc[48]=39600;hp[49]=4719;atk[49]=2347;re[49]=158;total[49]=994;mc[49]=97388;mc2[49]=146081;sc[49]=40425;hp[50]=4787;atk[50]=2373;re[50]=160;total[50]=1007;mc[50]=99375;mc2[50]=149063;sc[50]=41250;hp[51]=4854;atk[51]=2398;re[51]=161;total[51]=1019;mc[51]=101363;mc2[51]=152044;sc[51]=42075;hp[52]=4922;atk[52]=2423;re[52]=163;total[52]=1031;mc[52]=103350;mc2[52]=155025;sc[52]=42900;hp[53]=4989;atk[53]=2448;re[53]=164;total[53]=1043;mc[53]=105338;mc2[53]=158006;sc[53]=43725;hp[54]=5057;atk[54]=2473;re[54]=166;total[54]=1056;mc[54]=107325;mc2[54]=160988;sc[54]=44550;hp[55]=5124;atk[55]=2498;re[55]=167;total[55]=1068;mc[55]=109313;mc2[55]=163969;sc[55]=45375;hp[56]=5192;atk[56]=2523;re[56]=169;total[56]=1080;mc[56]=111300;mc2[56]=166950;sc[56]=46200;hp[57]=5259;atk[57]=2548;re[57]=170;total[57]=1092;mc[57]=113288;mc2[57]=169931;sc[57]=47025;hp[58]=5327;atk[58]=2573;re[58]=172;total[58]=1105;mc[58]=115275;mc2[58]=172913;sc[58]=47850;hp[59]=5394;atk[59]=2598;re[59]=174;total[59]=1117;mc[59]=117263;mc2[59]=175894;sc[59]=48675;hp[60]=5462;atk[60]=2623;re[60]=175;total[60]=1129;mc[60]=119250;mc2[60]=178875;sc[60]=49500;hp[61]=5529;atk[61]=2648;re[61]=177;total[61]=1142;mc[61]=121238;mc2[61]=181856;sc[61]=50325;hp[62]=5597;atk[62]=2673;re[62]=178;total[62]=1154;mc[62]=123225;mc2[62]=184838;sc[62]=51150;hp[63]=5664;atk[63]=2698;re[63]=180;total[63]=1166;mc[63]=125213;mc2[63]=187819;sc[63]=51975;hp[64]=5732;atk[64]=2723;re[64]=181;total[64]=1178;mc[64]=127200;mc2[64]=190800;sc[64]=52800;hp[65]=5799;atk[65]=2748;re[65]=183;total[65]=1191;mc[65]=129188;mc2[65]=193781;sc[65]=53625;hp[66]=5867;atk[66]=2773;re[66]=184;total[66]=1203;mc[66]=131175;mc2[66]=196763;sc[66]=54450;hp[67]=5934;atk[67]=2798;re[67]=186;total[67]=1215;mc[67]=133163;mc2[67]=199744;sc[67]=55275;hp[68]=6002;atk[68]=2823;re[68]=188;total[68]=1227;mc[68]=135150;mc2[68]=202725;sc[68]=56100;hp[69]=6069;atk[69]=2848;re[69]=189;total[69]=1240;mc[69]=137138;mc2[69]=205706;sc[69]=56925;hp[70]=6137;atk[70]=2873;re[70]=191;total[70]=1252;mc[70]=139125;mc2[70]=208688;sc[70]=57750;hp[71]=6204;atk[71]=2898;re[71]=192;total[71]=1264;mc[71]=141113;mc2[71]=211669;sc[71]=58575;hp[72]=6272;atk[72]=2923;re[72]=194;total[72]=1276;mc[72]=143100;mc2[72]=214650;sc[72]=59400;hp[73]=6339;atk[73]=2948;re[73]=195;total[73]=1289;mc[73]=145088;mc2[73]=217631;sc[73]=60225;hp[74]=6407;atk[74]=2973;re[74]=197;total[74]=1301;mc[74]=147075;mc2[74]=220613;sc[74]=61050;hp[75]=6475;atk[75]=2998;re[75]=199;total[75]=1313;mc[75]=149063;mc2[75]=223594;sc[75]=61875;hp[76]=6542;atk[76]=3023;re[76]=200;total[76]=1325;mc[76]=151050;mc2[76]=226575;sc[76]=62700;hp[77]=6610;atk[77]=3048;re[77]=202;total[77]=1338;mc[77]=153038;mc2[77]=229556;sc[77]=63525;hp[78]=6677;atk[78]=3073;re[78]=203;total[78]=1350;mc[78]=155025;mc2[78]=232538;sc[78]=64350;hp[79]=6745;atk[79]=3098;re[79]=205;total[79]=1362;mc[79]=157013;mc2[79]=235519;sc[79]=65175;hp[80]=6812;atk[80]=3123;re[80]=206;total[80]=1374;mc[80]=159000;mc2[80]=238500;sc[80]=66000;hp[81]=6880;atk[81]=3148;re[81]=208;total[81]=1387;mc[81]=160988;mc2[81]=241481;sc[81]=66825;hp[82]=6947;atk[82]=3173;re[82]=209;total[82]=1399;mc[82]=162975;mc2[82]=244463;sc[82]=67650;hp[83]=7015;atk[83]=3198;re[83]=211;total[83]=1411;mc[83]=164963;mc2[83]=247444;sc[83]=68475;hp[84]=7082;atk[84]=3223;re[84]=213;total[84]=1424;mc[84]=166950;mc2[84]=250425;sc[84]=69300;hp[85]=7150;atk[85]=3248;re[85]=214;total[85]=1436;mc[85]=168938;mc2[85]=253406;sc[85]=70125;hp[86]=7217;atk[86]=3273;re[86]=216;total[86]=1448;mc[86]=170925;mc2[86]=256388;sc[86]=70950;hp[87]=7285;atk[87]=3298;re[87]=217;total[87]=1460;mc[87]=172913;mc2[87]=259369;sc[87]=71775;hp[88]=7352;atk[88]=3323;re[88]=219;total[88]=1473;mc[88]=174900;mc2[88]=262350;sc[88]=72600;hp[89]=7420;atk[89]=3348;re[89]=220;total[89]=1485;mc[89]=176888;mc2[89]=265331;sc[89]=73425;hp[90]=7487;atk[90]=3373;re[90]=222;total[90]=1497;mc[90]=178875;mc2[90]=268313;sc[90]=74250;hp[91]=7555;atk[91]=3398;re[91]=224;total[91]=1510;mc[91]=180863;mc2[91]=271294;sc[91]=75075;hp[92]=7622;atk[92]=3423;re[92]=225;total[92]=1522;mc[92]=182850;mc2[92]=274275;sc[92]=75900;hp[93]=7690;atk[93]=3448;re[93]=227;total[93]=1534;mc[93]=184838;mc2[93]=277256;sc[93]=76725;hp[94]=7757;atk[94]=3473;re[94]=228;total[94]=1546;mc[94]=186825;mc2[94]=280238;sc[94]=77550;hp[95]=7825;atk[95]=3498;re[95]=230;total[95]=1559;mc[95]=188813;mc2[95]=283219;sc[95]=78375;hp[96]=7892;atk[96]=3523;re[96]=231;total[96]=1571;mc[96]=190800;mc2[96]=286200;sc[96]=79200;hp[97]=7960;atk[97]=3548;re[97]=233;total[97]=1583;mc[97]=192788;mc2[97]=289181;sc[97]=80025;hp[98]=8027;atk[98]=3573;re[98]=234;total[98]=1595;mc[98]=194775;mc2[98]=292163;sc[98]=80850;hp[99]=8095;atk[99]=3598;re[99]=236;total[99]=1608;mc[99]=196763;mc2[99]=295144;sc[99]=81675;
+hp[1]=1478;atk[1]=1147;re[1]=83;total[1]=405;mc[1]=1988;mc2[1]=2981;sc[1]=825;hp[2]=1546;atk[2]=1182;re[2]=85;total[2]=419;mc[2]=3975;mc2[2]=5963;sc[2]=1650;hp[3]=1613;atk[3]=1217;re[3]=86;total[3]=433;mc[3]=5963;mc2[3]=8944;sc[3]=2475;hp[4]=1681;atk[4]=1253;re[4]=88;total[4]=448;mc[4]=7950;mc2[4]=11925;sc[4]=3300;hp[5]=1748;atk[5]=1288;re[5]=89;total[5]=462;mc[5]=9938;mc2[5]=14906;sc[5]=4125;hp[6]=1816;atk[6]=1323;re[6]=91;total[6]=477;mc[6]=11925;mc2[6]=17888;sc[6]=4950;hp[7]=1883;atk[7]=1358;re[7]=92;total[7]=491;mc[7]=13913;mc2[7]=20869;sc[7]=5775;hp[8]=1951;atk[8]=1394;re[8]=94;total[8]=505;mc[8]=15900;mc2[8]=23850;sc[8]=6600;hp[9]=2018;atk[9]=1429;re[9]=95;total[9]=519;mc[9]=17888;mc2[9]=26831;sc[9]=7425;hp[10]=2086;atk[10]=1464;re[10]=97;total[10]=534;mc[10]=19875;mc2[10]=29813;sc[10]=8250;hp[11]=2153;atk[11]=1499;re[11]=99;total[11]=548;mc[11]=21863;mc2[11]=32794;sc[11]=9075;hp[12]=2221;atk[12]=1534;re[12]=100;total[12]=562;mc[12]=23850;mc2[12]=35775;sc[12]=9900;hp[13]=2288;atk[13]=1570;re[13]=102;total[13]=577;mc[13]=25838;mc2[13]=38756;sc[13]=10725;hp[14]=2356;atk[14]=1605;re[14]=103;total[14]=591;mc[14]=27825;mc2[14]=41738;sc[14]=11550;hp[15]=2423;atk[15]=1640;re[15]=105;total[15]=605;mc[15]=29813;mc2[15]=44719;sc[15]=12375;hp[16]=2491;atk[16]=1675;re[16]=106;total[16]=619;mc[16]=31800;mc2[16]=47700;sc[16]=13200;hp[17]=2558;atk[17]=1710;re[17]=108;total[17]=634;mc[17]=33788;mc2[17]=50681;sc[17]=14025;hp[18]=2626;atk[18]=1746;re[18]=110;total[18]=648;mc[18]=35775;mc2[18]=53663;sc[18]=14850;hp[19]=2693;atk[19]=1781;re[19]=111;total[19]=663;mc[19]=37763;mc2[19]=56644;sc[19]=15675;hp[20]=2761;atk[20]=1816;re[20]=113;total[20]=677;mc[20]=39750;mc2[20]=59625;sc[20]=16500;hp[21]=2828;atk[21]=1851;re[21]=114;total[21]=691;mc[21]=41738;mc2[21]=62606;sc[21]=17325;hp[22]=2896;atk[22]=1887;re[22]=116;total[22]=706;mc[22]=43725;mc2[22]=65588;sc[22]=18150;hp[23]=2963;atk[23]=1922;re[23]=117;total[23]=720;mc[23]=45713;mc2[23]=68569;sc[23]=18975;hp[24]=3031;atk[24]=1957;re[24]=119;total[24]=734;mc[24]=47700;mc2[24]=71550;sc[24]=19800;hp[25]=3098;atk[25]=1992;re[25]=120;total[25]=748;mc[25]=49688;mc2[25]=74531;sc[25]=20625;hp[26]=3166;atk[26]=2027;re[26]=122;total[26]=763;mc[26]=51675;mc2[26]=77513;sc[26]=21450;hp[27]=3234;atk[27]=2063;re[27]=124;total[27]=777;mc[27]=53663;mc2[27]=80494;sc[27]=22275;hp[28]=3301;atk[28]=2098;re[28]=125;total[28]=791;mc[28]=55650;mc2[28]=83475;sc[28]=23100;hp[29]=3369;atk[29]=2133;re[29]=127;total[29]=806;mc[29]=57638;mc2[29]=86456;sc[29]=23925;hp[30]=3436;atk[30]=2168;re[30]=128;total[30]=820;mc[30]=59625;mc2[30]=89438;sc[30]=24750;hp[31]=3504;atk[31]=2203;re[31]=130;total[31]=834;mc[31]=61613;mc2[31]=92419;sc[31]=25575;hp[32]=3571;atk[32]=2239;re[32]=131;total[32]=849;mc[32]=63600;mc2[32]=95400;sc[32]=26400;hp[33]=3639;atk[33]=2274;re[33]=133;total[33]=863;mc[33]=65588;mc2[33]=98381;sc[33]=27225;hp[34]=3706;atk[34]=2309;re[34]=135;total[34]=877;mc[34]=67575;mc2[34]=101363;sc[34]=28050;hp[35]=3774;atk[35]=2344;re[35]=136;total[35]=892;mc[35]=69563;mc2[35]=104344;sc[35]=28875;hp[36]=3841;atk[36]=2380;re[36]=138;total[36]=906;mc[36]=71550;mc2[36]=107325;sc[36]=29700;hp[37]=3909;atk[37]=2415;re[37]=139;total[37]=920;mc[37]=73538;mc2[37]=110306;sc[37]=30525;hp[38]=3976;atk[38]=2450;re[38]=141;total[38]=935;mc[38]=75525;mc2[38]=113288;sc[38]=31350;hp[39]=4044;atk[39]=2485;re[39]=142;total[39]=949;mc[39]=77513;mc2[39]=116269;sc[39]=32175;hp[40]=4111;atk[40]=2520;re[40]=144;total[40]=963;mc[40]=79500;mc2[40]=119250;sc[40]=33000;hp[41]=4179;atk[41]=2556;re[41]=145;total[41]=977;mc[41]=81488;mc2[41]=122231;sc[41]=33825;hp[42]=4246;atk[42]=2591;re[42]=147;total[42]=992;mc[42]=83475;mc2[42]=125213;sc[42]=34650;hp[43]=4314;atk[43]=2626;re[43]=149;total[43]=1006;mc[43]=85463;mc2[43]=128194;sc[43]=35475;hp[44]=4381;atk[44]=2661;re[44]=150;total[44]=1020;mc[44]=87450;mc2[44]=131175;sc[44]=36300;hp[45]=4449;atk[45]=2696;re[45]=152;total[45]=1035;mc[45]=89438;mc2[45]=134156;sc[45]=37125;hp[46]=4516;atk[46]=2732;re[46]=153;total[46]=1049;mc[46]=91425;mc2[46]=137138;sc[46]=37950;hp[47]=4584;atk[47]=2767;re[47]=155;total[47]=1063;mc[47]=93413;mc2[47]=140119;sc[47]=38775;hp[48]=4651;atk[48]=2802;re[48]=156;total[48]=1078;mc[48]=95400;mc2[48]=143100;sc[48]=39600;hp[49]=4719;atk[49]=2837;re[49]=158;total[49]=1092;mc[49]=97388;mc2[49]=146081;sc[49]=40425;hp[50]=4787;atk[50]=2873;re[50]=160;total[50]=1107;mc[50]=99375;mc2[50]=149063;sc[50]=41250;hp[51]=4854;atk[51]=2908;re[51]=161;total[51]=1121;mc[51]=101363;mc2[51]=152044;sc[51]=42075;hp[52]=4922;atk[52]=2943;re[52]=163;total[52]=1135;mc[52]=103350;mc2[52]=155025;sc[52]=42900;hp[53]=4989;atk[53]=2978;re[53]=164;total[53]=1149;mc[53]=105338;mc2[53]=158006;sc[53]=43725;hp[54]=5057;atk[54]=3013;re[54]=166;total[54]=1164;mc[54]=107325;mc2[54]=160988;sc[54]=44550;hp[55]=5124;atk[55]=3049;re[55]=167;total[55]=1178;mc[55]=109313;mc2[55]=163969;sc[55]=45375;hp[56]=5192;atk[56]=3084;re[56]=169;total[56]=1192;mc[56]=111300;mc2[56]=166950;sc[56]=46200;hp[57]=5259;atk[57]=3119;re[57]=170;total[57]=1206;mc[57]=113288;mc2[57]=169931;sc[57]=47025;hp[58]=5327;atk[58]=3154;re[58]=172;total[58]=1221;mc[58]=115275;mc2[58]=172913;sc[58]=47850;hp[59]=5394;atk[59]=3189;re[59]=174;total[59]=1235;mc[59]=117263;mc2[59]=175894;sc[59]=48675;hp[60]=5462;atk[60]=3225;re[60]=175;total[60]=1250;mc[60]=119250;mc2[60]=178875;sc[60]=49500;hp[61]=5529;atk[61]=3260;re[61]=177;total[61]=1264;mc[61]=121238;mc2[61]=181856;sc[61]=50325;hp[62]=5597;atk[62]=3295;re[62]=178;total[62]=1278;mc[62]=123225;mc2[62]=184838;sc[62]=51150;hp[63]=5664;atk[63]=3330;re[63]=180;total[63]=1292;mc[63]=125213;mc2[63]=187819;sc[63]=51975;hp[64]=5732;atk[64]=3366;re[64]=181;total[64]=1307;mc[64]=127200;mc2[64]=190800;sc[64]=52800;hp[65]=5799;atk[65]=3401;re[65]=183;total[65]=1321;mc[65]=129188;mc2[65]=193781;sc[65]=53625;hp[66]=5867;atk[66]=3436;re[66]=184;total[66]=1335;mc[66]=131175;mc2[66]=196763;sc[66]=54450;hp[67]=5934;atk[67]=3471;re[67]=186;total[67]=1350;mc[67]=133163;mc2[67]=199744;sc[67]=55275;hp[68]=6002;atk[68]=3506;re[68]=188;total[68]=1364;mc[68]=135150;mc2[68]=202725;sc[68]=56100;hp[69]=6069;atk[69]=3542;re[69]=189;total[69]=1378;mc[69]=137138;mc2[69]=205706;sc[69]=56925;hp[70]=6137;atk[70]=3577;re[70]=191;total[70]=1393;mc[70]=139125;mc2[70]=208688;sc[70]=57750;hp[71]=6204;atk[71]=3612;re[71]=192;total[71]=1407;mc[71]=141113;mc2[71]=211669;sc[71]=58575;hp[72]=6272;atk[72]=3647;re[72]=194;total[72]=1421;mc[72]=143100;mc2[72]=214650;sc[72]=59400;hp[73]=6339;atk[73]=3682;re[73]=195;total[73]=1435;mc[73]=145088;mc2[73]=217631;sc[73]=60225;hp[74]=6407;atk[74]=3718;re[74]=197;total[74]=1450;mc[74]=147075;mc2[74]=220613;sc[74]=61050;hp[75]=6475;atk[75]=3753;re[75]=199;total[75]=1464;mc[75]=149063;mc2[75]=223594;sc[75]=61875;hp[76]=6542;atk[76]=3788;re[76]=200;total[76]=1478;mc[76]=151050;mc2[76]=226575;sc[76]=62700;hp[77]=6610;atk[77]=3823;re[77]=202;total[77]=1493;mc[77]=153038;mc2[77]=229556;sc[77]=63525;hp[78]=6677;atk[78]=3859;re[78]=203;total[78]=1507;mc[78]=155025;mc2[78]=232538;sc[78]=64350;hp[79]=6745;atk[79]=3894;re[79]=205;total[79]=1522;mc[79]=157013;mc2[79]=235519;sc[79]=65175;hp[80]=6812;atk[80]=3929;re[80]=206;total[80]=1536;mc[80]=159000;mc2[80]=238500;sc[80]=66000;hp[81]=6880;atk[81]=3964;re[81]=208;total[81]=1550;mc[81]=160988;mc2[81]=241481;sc[81]=66825;hp[82]=6947;atk[82]=3999;re[82]=209;total[82]=1564;mc[82]=162975;mc2[82]=244463;sc[82]=67650;hp[83]=7015;atk[83]=4035;re[83]=211;total[83]=1579;mc[83]=164963;mc2[83]=247444;sc[83]=68475;hp[84]=7082;atk[84]=4070;re[84]=213;total[84]=1593;mc[84]=166950;mc2[84]=250425;sc[84]=69300;hp[85]=7150;atk[85]=4105;re[85]=214;total[85]=1607;mc[85]=168938;mc2[85]=253406;sc[85]=70125;hp[86]=7217;atk[86]=4140;re[86]=216;total[86]=1622;mc[86]=170925;mc2[86]=256388;sc[86]=70950;hp[87]=7285;atk[87]=4175;re[87]=217;total[87]=1636;mc[87]=172913;mc2[87]=259369;sc[87]=71775;hp[88]=7352;atk[88]=4211;re[88]=219;total[88]=1650;mc[88]=174900;mc2[88]=262350;sc[88]=72600;hp[89]=7420;atk[89]=4246;re[89]=220;total[89]=1665;mc[89]=176888;mc2[89]=265331;sc[89]=73425;hp[90]=7487;atk[90]=4281;re[90]=222;total[90]=1679;mc[90]=178875;mc2[90]=268313;sc[90]=74250;hp[91]=7555;atk[91]=4316;re[91]=224;total[91]=1693;mc[91]=180863;mc2[91]=271294;sc[91]=75075;hp[92]=7622;atk[92]=4352;re[92]=225;total[92]=1708;mc[92]=182850;mc2[92]=274275;sc[92]=75900;hp[93]=7690;atk[93]=4387;re[93]=227;total[93]=1722;mc[93]=184838;mc2[93]=277256;sc[93]=76725;hp[94]=7757;atk[94]=4422;re[94]=228;total[94]=1736;mc[94]=186825;mc2[94]=280238;sc[94]=77550;hp[95]=7825;atk[95]=4457;re[95]=230;total[95]=1751;mc[95]=188813;mc2[95]=283219;sc[95]=78375;hp[96]=7892;atk[96]=4492;re[96]=231;total[96]=1765;mc[96]=190800;mc2[96]=286200;sc[96]=79200;hp[97]=7960;atk[97]=4528;re[97]=233;total[97]=1779;mc[97]=192788;mc2[97]=289181;sc[97]=80025;hp[98]=8027;atk[98]=4563;re[98]=234;total[98]=1793;mc[98]=194775;mc2[98]=292163;sc[98]=80850;hp[99]=8095;atk[99]=4598;re[99]=236;total[99]=1808;mc[99]=196763;mc2[99]=295144;sc[99]=81675;
 function updateLV(element) { 
 	document.getElementById("lv").innerHTML = "LV." + element ; 
 } 

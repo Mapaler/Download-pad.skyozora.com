@@ -397,28 +397,38 @@ function vote(e){
 
 						</div>
 			
-			<script src="javascript/pixi.min.js"></script>
-			<script src="javascript/pixi-spine.js"></script>
+						<script src="javascript/spine-player.3.9.js"></script>
+   			<link rel="stylesheet" href="javascript/spine-player.3.9.css">
+			
 			<script>
-			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
-			document.getElementById('animation').appendChild(app.view);
-			// load spine data
-			app.loader.add('spineboy', 'images/graphics/animation/mons_8409.json').load(onAssetsLoaded);
-
-			const background = PIXI.Sprite.from('images/pets_pic/8409.png');
-			background.width = 640;
-			background.height = 585;
-			app.stage.addChild(background);
-
-			function onAssetsLoaded(loader, res) {
-				const { spineData } = res.spineboy;
-
-				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
-				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
-				spine.state.setAnimation(0, "animation", true);
-				spine.state.timeScale = 1;
-			}
+			new spine.SpinePlayer("animation", {
+				jsonUrl: "images/graphics/animation/mons_8409.json",
+				atlasUrl: "images/graphics/animation/mons_8409.atlas",
+				premultipliedAlpha: false,
+				showControls: false,
+				animation: "animation",
+				alpha: true,
+				backgroundColor: "#00000000",
+				viewport: {
+					x: -320,
+					y: -101,
+					width: 640,
+					height: 585,
+					padLeft: 0,
+					padRight: 0,
+					padTop: 0,
+					padBottom: 0,
+				},
+				backgroundImage: { 
+					url: "images/pets_pic/8409.png",
+					x: -320,
+					y: -101,
+					width: 640,
+					height: 585
+				}
+			});
 			</script>
+			
 		</td>
 			
 		<td width="39" bgcolor="#000000" class="previous_next">
@@ -620,7 +630,7 @@ function vote(e){
 	</tr>
 	<tr bgcolor="#000000">
 		<td width="60"><div id="lv_s"style="display:inline">LV.1</div></td>
-		<td>賣價: <img src="images/coin2.png" width="25" /><div id="sc"style="display:inline">150</div><img src="images/mpt.png" width="25" /><span class="yellow bold">100</span></td>
+		<td>賣價: <img src="images/coin2.png" width="25" /><div id="sc"style="display:inline">30000000</div><img src="images/mpt.png" width="25" /><span class="yellow bold">100</span></td>
 		<td>餵食經驗值: <div id="mc" style="display:inline">30000000</div> (相同屬性時: <div id="mc2" style="display:inline">45000000</div>)</td>
 	</tr>
 </table>
@@ -718,7 +728,7 @@ function vote(e){
 	<tr bgcolor="#000000" height="25">
 		<td width="80" align="center">地下城</td>
 		<td>
-	<ul style="margin:0px; padding-left:20px"><li><a href="stage/神秘の次元" target="_blank">神秘の次元</a></li><li><a href="stage/「十」チャレンジ！【制限時間60分】" target="_blank">「十」チャレンジ！【制限時間60分】</a></li></ul>
+	<ul style="margin:0px; padding-left:20px"><li><a href="stage/神秘の次元" target="_blank">神秘の次元</a></li><li><a href="stage/裏・神秘の次元" target="_blank">裏・神秘の次元</a></li><li><a href="stage/狂練の洞窟【超重力】" target="_blank">狂練の洞窟【超重力】</a></li><li><a href="stage/「十」チャレンジ！【制限時間60分】" target="_blank">「十」チャレンジ！【制限時間60分】</a></li></ul>
 	<tr bgcolor="#000000" height="25">
 		<td width="80" align="center">其他</td>
 		<td>
@@ -960,7 +970,7 @@ total=new Array();
 mc=new Array();
 mc2=new Array();
 sc=new Array();
-hp[1]=1500;atk[1]=500;re[1]=100;total[1]=283;mc[1]=30000000;mc2[1]=45000000;sc[1]=150;
+hp[1]=1500;atk[1]=500;re[1]=100;total[1]=283;mc[1]=30000000;mc2[1]=45000000;sc[1]=30000000;
 function updateLV(element) { 
 	document.getElementById("lv").innerHTML = "LV." + element ; 
 } 

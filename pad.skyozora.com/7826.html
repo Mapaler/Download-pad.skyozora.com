@@ -440,28 +440,38 @@ function vote(e){
 				</div>
 						</div>
 			
-			<script src="javascript/pixi.min.js"></script>
-			<script src="javascript/pixi-spine.js"></script>
+						<script src="javascript/spine-player.3.9.js"></script>
+   			<link rel="stylesheet" href="javascript/spine-player.3.9.css">
+			
 			<script>
-			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
-			document.getElementById('animation').appendChild(app.view);
-			// load spine data
-			app.loader.add('spineboy', 'images/graphics/animation/mons_7826.json').load(onAssetsLoaded);
-
-			const background = PIXI.Sprite.from('images/pets_pic/7826.png');
-			background.width = 640;
-			background.height = 585;
-			app.stage.addChild(background);
-
-			function onAssetsLoaded(loader, res) {
-				const { spineData } = res.spineboy;
-
-				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
-				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
-				spine.state.setAnimation(0, "animation", true);
-				spine.state.timeScale = 1;
-			}
+			new spine.SpinePlayer("animation", {
+				jsonUrl: "images/graphics/animation/mons_7826.json",
+				atlasUrl: "images/graphics/animation/mons_7826.atlas",
+				premultipliedAlpha: false,
+				showControls: false,
+				animation: "animation",
+				alpha: true,
+				backgroundColor: "#00000000",
+				viewport: {
+					x: -320,
+					y: -101,
+					width: 640,
+					height: 585,
+					padLeft: 0,
+					padRight: 0,
+					padTop: 0,
+					padBottom: 0,
+				},
+				backgroundImage: { 
+					url: "images/pets_pic/7826.png",
+					x: -320,
+					y: -101,
+					width: 640,
+					height: 585
+				}
+			});
 			</script>
+			
 		</td>
 			
 		<td width="39" bgcolor="#000000" class="previous_next">
@@ -728,7 +738,7 @@ function vote(e){
 		3		</td>
 	</tr>
 	<tr bgcolor="#000000">
-		<td colspan="5" style="line-height: 28px;">1回合內，天降的寶珠不會產生COMBO；<br />並解除寶珠的鎖定狀態；<br />並隨機生成<img src="images/drops/Water.png" width="25" /><img src="images/drops/Wood.png" width="25" /><img src="images/drops/Heart.png" width="25" />寶珠各4粒</td>
+		<td colspan="5" style="line-height: 28px;">1回合內，天降的寶珠不會產生COMBO；<br />並1回合內，寶珠移動時間變成1.5倍；<br />並解除寶珠的鎖定狀態；<br />並隨機生成<img src="images/drops/Water.png" width="25" /><img src="images/drops/Wood.png" width="25" /><img src="images/drops/Heart.png" width="25" />寶珠各4粒</td>
 	</tr>
 
 
@@ -817,6 +827,8 @@ function vote(e){
 由此覺醒技能產生的攻擊力計算為 1 + 15%×覺醒數目×(屬性COMBO數-1)"><img src="images/skill/skill-75.png"  /></a>
 					<a href="skill/%E3%82%B9%E3%82%AD%E3%83%AB%E3%83%96%E3%83%BC%E3%82%B9%E3%83%88%EF%BC%8B" class="tooltip" title="【スキルブースト＋】進入地下城的時候，隊伍全體的技能先儲了2回合&lt;br /&gt;
 ※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/skill/skill-56.png"  /></a>
+					<a href="skill/%E6%9A%97%E9%97%87%E8%80%90%E6%80%A7%EF%BC%8B" class="tooltip" title="【暗闇耐性＋】將敵人的暗闇攻撃無效化（不會變成全畫面黑色寶珠）&lt;br /&gt;
+※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/skill/skill-68.png"  /></a>
 				（隨機一種）</td>
 	</tr>
 	<tr align="left" bgcolor="#000000">
@@ -994,7 +1006,12 @@ p.EvoName {
 
 	<tr>
 		<td bgcolor="#000000" style="text-align:left; padding-left: 20px; padding-top: 20px; padding-right:20px">
-此寵物沒有進化
+
+
+<a href="pets/7826" class="EvoTarget"><img src="images/pets/7826.png" class="pic" /></a><br />	<ul class="wtree" style="margin-left:-40px">
+			<ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/8839" class="EvoTarget"><img src="images/pets/8839.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/輔助進化/" class="EvoTarget"><img src="images/assist.png" height="19" /></a></p><a href="pets/3911" class="no_style tooltip" title="3911 - 創裝之寶玉"><img src="images/pets/3911.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1327" class="no_style tooltip" title="1327 - 木之寶玉"><img src="images/pets/1327.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1327" class="no_style tooltip" title="1327 - 木之寶玉"><img src="images/pets/1327.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1327" class="no_style tooltip" title="1327 - 木之寶玉"><img src="images/pets/1327.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1327" class="no_style tooltip" title="1327 - 木之寶玉"><img src="images/pets/1327.png" width="35" height="35" style="padding:1px"  /></a></div></li></ul>	</ul>
+
+	
 		</td>
 	</tr>
 </table>
@@ -1099,7 +1116,7 @@ p.EvoName {
 
 
 <br />
-<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/10月のクエスト 上級者向け" class="tooltip" title="10月のクエスト 上級者向け<br />チャレンジLv9【3色限定】"><img src="images/stage/6234s.png" width="100"></a></td><td><a href="pets/7815" class="tooltip" title="7815 - 傳說的宗師・尤達大師"><img src="images/pets/7815.png" width="55" height="55" $team[L2][0]</a><a href="pets/7824" class="tooltip" title="7824 - 朱兒/丘巴卡"><img src="images/pets/7824.png" width="55" height="55" $team[L2][0]</a><a href="pets/5517" class="tooltip" title="5517 - 路路娜【暗黑】"><img src="images/pets/5517.png" width="55" height="55" $team[L2][0]</a><a href="pets/7826" class="tooltip" title="7826 - 亞蘇卡・譚諾"><img src="images/pets/7826.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/7825" class="tooltip" title="7825 - 帕德美/佩咪・艾米達拉"><img src="images/pets/7825.png" width="55" height="55" $team[L2][0]</a><a href="pets/7815" class="tooltip" title="7815 - 傳說的宗師・尤達大師"><img src="images/pets/7815.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/118204/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/12月のクエスト 上級者向け" class="tooltip" title="12月のクエスト 上級者向け<br />チャレンジLv9【全属性必須】"><img src="images/stage/6339s.png" width="100"></a></td><td><a href="pets/7849" class="tooltip" title="7849 - 白迅驅・地托拿"><img src="images/pets/7849.png" width="55" height="55" $team[L2][0]</a><a href="pets/5931" class="tooltip" title="5931 - 極醒之天陽神・阿頓"><img src="images/pets/5931.png" width="55" height="55" $team[L2][0]</a><a href="pets/7826" class="tooltip" title="7826 - 亞蘇卡・譚諾"><img src="images/pets/7826.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/6582" class="tooltip" title="6582 - 10連抽蛋龍"><img src="images/pets/6582.png" width="55" height="55" $team[L2][0]</a><a href="pets/5940" class="tooltip" title="5940 - 超轉生因陀羅"><img src="images/pets/5940.png" width="55" height="55" $team[L2][0]</a><a href="pets/7849" class="tooltip" title="7849 - 白迅驅・地托拿"><img src="images/pets/7849.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/118288/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
+<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/10月のクエスト 上級者向け" class="tooltip" title="10月のクエスト 上級者向け<br />チャレンジLv9【3色限定】"><img src="" width="100"></a></td><td><a href="pets/7815" class="tooltip" title="7815 - 傳說的宗師・尤達大師"><img src="images/pets/7815.png" width="55" height="55" $team[L2][0]</a><a href="pets/7824" class="tooltip" title="7824 - 朱兒/丘巴卡"><img src="images/pets/7824.png" width="55" height="55" $team[L2][0]</a><a href="pets/5517" class="tooltip" title="5517 - 路路娜【暗黑】"><img src="images/pets/5517.png" width="55" height="55" $team[L2][0]</a><a href="pets/7826" class="tooltip" title="7826 - 亞蘇卡・譚諾"><img src="images/pets/7826.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/7825" class="tooltip" title="7825 - 帕德美/佩咪・艾米達拉"><img src="images/pets/7825.png" width="55" height="55" $team[L2][0]</a><a href="pets/7815" class="tooltip" title="7815 - 傳說的宗師・尤達大師"><img src="images/pets/7815.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/118204/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/12月のクエスト 上級者向け" class="tooltip" title="12月のクエスト 上級者向け<br />チャレンジLv9【全属性必須】"><img src="images/stage/6339s.png" width="100"></a></td><td><a href="pets/7849" class="tooltip" title="7849 - 白迅驅・地托拿"><img src="images/pets/7849.png" width="55" height="55" $team[L2][0]</a><a href="pets/5931" class="tooltip" title="5931 - 極醒之天陽神・阿頓"><img src="images/pets/5931.png" width="55" height="55" $team[L2][0]</a><a href="pets/7826" class="tooltip" title="7826 - 亞蘇卡・譚諾"><img src="images/pets/7826.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/6582" class="tooltip" title="6582 - 10連抽蛋龍"><img src="images/pets/6582.png" width="55" height="55" $team[L2][0]</a><a href="pets/5940" class="tooltip" title="5940 - 超轉生因陀羅"><img src="images/pets/5940.png" width="55" height="55" $team[L2][0]</a><a href="pets/7849" class="tooltip" title="7849 - 白迅驅・地托拿"><img src="images/pets/7849.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/118288/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
 
 
 </td>

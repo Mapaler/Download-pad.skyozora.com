@@ -399,44 +399,46 @@ function vote(e){
 					<a href="skill/%E8%A6%9A%E9%86%92%E3%82%A2%E3%82%B7%E3%82%B9%E3%83%88" class="tooltip" title="【覚醒アシスト】輔助其他寵物時，可讓被輔助的寵物獲得自身的覺醒技能"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 							<div class="kakusei" style="top: 142px; left: 593px;">
-					<a href="skill/%E6%AF%92%E8%80%90%E6%80%A7" class="tooltip" title="【毒耐性】20%機率不受到將敵人的毒攻撃，寶珠不會變成&lt;img src=&quot;images/drops/Poison.png&quot; width=&quot;25&quot; alt=&quot;毒寶珠&quot; /&gt;&lt;br /&gt;效果以加法累積，全隊伍有5個此覺醒技能時則可達到100%無效化&lt;br /&gt;
+					<a href="skill/%E6%AF%92%E8%80%90%E6%80%A7%EF%BC%8B" class="tooltip" title="【毒耐性＋】不受到將敵人的毒攻撃，寶珠不會變成&lt;img src=&quot;images/drops/Poison.png&quot; width=&quot;25&quot; alt=&quot;毒寶珠&quot; /&gt;&lt;br /&gt;
 ※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 							<div class="kakusei" style="top: 192px; left: 593px;">
-					<a href="skill/%E6%AF%92%E8%80%90%E6%80%A7" class="tooltip" title="【毒耐性】20%機率不受到將敵人的毒攻撃，寶珠不會變成&lt;img src=&quot;images/drops/Poison.png&quot; width=&quot;25&quot; alt=&quot;毒寶珠&quot; /&gt;&lt;br /&gt;效果以加法累積，全隊伍有5個此覺醒技能時則可達到100%無效化&lt;br /&gt;
-※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/transparent.png" width="31" height="31"></a>
-				</div>
-							<div class="kakusei" style="top: 242px; left: 593px;">
-					<a href="skill/%E6%AF%92%E8%80%90%E6%80%A7" class="tooltip" title="【毒耐性】20%機率不受到將敵人的毒攻撃，寶珠不會變成&lt;img src=&quot;images/drops/Poison.png&quot; width=&quot;25&quot; alt=&quot;毒寶珠&quot; /&gt;&lt;br /&gt;效果以加法累積，全隊伍有5個此覺醒技能時則可達到100%無效化&lt;br /&gt;
-※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/transparent.png" width="31" height="31"></a>
-				</div>
-							<div class="kakusei" style="top: 292px; left: 593px;">
 					<a href="skill/HP%E5%BC%B7%E5%8C%96" class="tooltip" title="【HP強化】HP增加500點"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 						</div>
 			
-			<script src="javascript/pixi.min.js"></script>
-			<script src="javascript/pixi-spine.js"></script>
+						<script src="javascript/spine-player.3.9.js"></script>
+   			<link rel="stylesheet" href="javascript/spine-player.3.9.css">
+			
 			<script>
-			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
-			document.getElementById('animation').appendChild(app.view);
-			// load spine data
-			app.loader.add('spineboy', 'images/graphics/animation/mons_5298.json').load(onAssetsLoaded);
-
-			const background = PIXI.Sprite.from('images/pets_pic/5298.png');
-			background.width = 640;
-			background.height = 585;
-			app.stage.addChild(background);
-
-			function onAssetsLoaded(loader, res) {
-				const { spineData } = res.spineboy;
-
-				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
-				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
-				spine.state.setAnimation(0, "animation", true);
-				spine.state.timeScale = 1;
-			}
+			new spine.SpinePlayer("animation", {
+				jsonUrl: "images/graphics/animation/mons_5298.json",
+				atlasUrl: "images/graphics/animation/mons_5298.atlas",
+				premultipliedAlpha: false,
+				showControls: false,
+				animation: "animation",
+				alpha: true,
+				backgroundColor: "#00000000",
+				viewport: {
+					x: -320,
+					y: -101,
+					width: 640,
+					height: 585,
+					padLeft: 0,
+					padRight: 0,
+					padTop: 0,
+					padBottom: 0,
+				},
+				backgroundImage: { 
+					url: "images/pets_pic/5298.png",
+					x: -320,
+					y: -101,
+					width: 640,
+					height: 585
+				}
+			});
 			</script>
+			
 		</td>
 			
 		<td width="39" bgcolor="#000000" class="previous_next">
@@ -674,10 +676,10 @@ function vote(e){
 		<td width="46" style="font-size:20px">8</td>
 		<td width="46">最小<br />冷卻</td>
 		<td width="46" style="font-size:20px">
-		8		</td>
+		4		</td>
 	</tr>
 	<tr bgcolor="#000000">
-		<td colspan="5" style="line-height: 28px;">1回合內，<img src="images/drops/Heart.png" width="25" /><img src="images/drops/Poison.png" width="25" />寶珠的掉落率提高15%；<br />並3回合內，受到的傷害減少35%</td>
+		<td colspan="5" style="line-height: 28px;">1回合內，<img src="images/drops/Heart.png" width="25" /><img src="images/drops/Poison.png" width="25" />寶珠的掉落率提高15%；<br />並5回合內，受到的傷害減少35%</td>
 	</tr>
 
 
@@ -726,12 +728,8 @@ function vote(e){
 		<td width="80" class="head">覺醒技能</td>
 		<td>
 					<a href="skill/%E8%A6%9A%E9%86%92%E3%82%A2%E3%82%B7%E3%82%B9%E3%83%88" class="tooltip" title="【覚醒アシスト】輔助其他寵物時，可讓被輔助的寵物獲得自身的覺醒技能"><img src="images/skill/skill-49.png"  /></a>
-					<a href="skill/%E6%AF%92%E8%80%90%E6%80%A7" class="tooltip" title="【毒耐性】20%機率不受到將敵人的毒攻撃，寶珠不會變成&lt;img src=&quot;images/drops/Poison.png&quot; width=&quot;25&quot; alt=&quot;毒寶珠&quot; /&gt;&lt;br /&gt;效果以加法累積，全隊伍有5個此覺醒技能時則可達到100%無效化&lt;br /&gt;
-※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/skill/skill-13.png"  /></a>
-					<a href="skill/%E6%AF%92%E8%80%90%E6%80%A7" class="tooltip" title="【毒耐性】20%機率不受到將敵人的毒攻撃，寶珠不會變成&lt;img src=&quot;images/drops/Poison.png&quot; width=&quot;25&quot; alt=&quot;毒寶珠&quot; /&gt;&lt;br /&gt;效果以加法累積，全隊伍有5個此覺醒技能時則可達到100%無效化&lt;br /&gt;
-※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/skill/skill-13.png"  /></a>
-					<a href="skill/%E6%AF%92%E8%80%90%E6%80%A7" class="tooltip" title="【毒耐性】20%機率不受到將敵人的毒攻撃，寶珠不會變成&lt;img src=&quot;images/drops/Poison.png&quot; width=&quot;25&quot; alt=&quot;毒寶珠&quot; /&gt;&lt;br /&gt;效果以加法累積，全隊伍有5個此覺醒技能時則可達到100%無效化&lt;br /&gt;
-※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/skill/skill-13.png"  /></a>
+					<a href="skill/%E6%AF%92%E8%80%90%E6%80%A7%EF%BC%8B" class="tooltip" title="【毒耐性＋】不受到將敵人的毒攻撃，寶珠不會變成&lt;img src=&quot;images/drops/Poison.png&quot; width=&quot;25&quot; alt=&quot;毒寶珠&quot; /&gt;&lt;br /&gt;
+※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/skill/skill-70.png"  /></a>
 					<a href="skill/HP%E5%BC%B7%E5%8C%96" class="tooltip" title="【HP強化】HP增加500點"><img src="images/skill/skill-01.png"  /></a>
 				</td>
 	</tr>
@@ -913,7 +911,7 @@ p.EvoName {
 
 
 <a href="pets/5297" class="EvoTarget"><img src="images/pets/5297.png" width="80" height="80" /></a><br />	<ul class="wtree" style="margin-left:-40px">
-			<ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/5298" class="EvoTarget"><img src="images/pets/5298.png" class="pic" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/輔助進化/" class="EvoTarget"><img src="images/assist.png" height="19" /></a></p><a href="pets/3911" class="no_style tooltip" title="3911 - 創裝之寶玉"><img src="images/pets/3911.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/5076" class="no_style tooltip" title="5076 - 希石：邪牙之魔蛇龍・查哈克"><img src="images/pets/5076.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4568" class="no_style tooltip" title="4568 - 希石：夜行的屍靈龍・喪屍"><img src="images/pets/4568.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4562" class="no_style tooltip" title="4562 - 希石：道化龍・鬼魅小丑龍"><img src="images/pets/4562.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4569" class="no_style tooltip" title="4569 - 希石：不法的魔紳士・阿撒瀉勒"><img src="images/pets/4569.png" width="35" height="35" style="padding:1px"  /></a></div></li></ul>	</ul>
+			<ul><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/5298" class="EvoTarget"><img src="images/pets/5298.png" class="pic" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/輔助進化/" class="EvoTarget"><img src="images/assist.png" height="19" /></a></p><a href="pets/3911" class="no_style tooltip" title="3911 - 創裝之寶玉"><img src="images/pets/3911.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/5076" class="no_style tooltip" title="5076 - 希石：邪牙之魔蛇龍・查哈克"><img src="images/pets/5076.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4568" class="no_style tooltip" title="4568 - 希石：夜行的屍靈龍・喪屍"><img src="images/pets/4568.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4562" class="no_style tooltip" title="4562 - 希石：道化龍・鬼魅小丑龍"><img src="images/pets/4562.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/4569" class="no_style tooltip" title="4569 - 希石：不法的魔紳士・阿撒瀉勒"><img src="images/pets/4569.png" width="35" height="35" style="padding:1px"  /></a></div></li><li><div style="display:inline-block; padding: 0 2px 0 0 "><a href="pets/9231" class="EvoTarget"><img src="images/pets/9231.png" width="80" height="80" /></a></div><div style="display:inline-block; vertical-align:bottom; padding:0px"><p style="margin: 0 0 4px 0"><a href="/輔助進化/" class="EvoTarget"><img src="images/assist.png" height="19" /></a></p><a href="pets/3911" class="no_style tooltip" title="3911 - 創裝之寶玉"><img src="images/pets/3911.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/7493" class="no_style tooltip" title="7493 - 希石：惑亂神・厄莉絲＝龍"><img src="images/pets/7493.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1329" class="no_style tooltip" title="1329 - 暗之寶玉"><img src="images/pets/1329.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1329" class="no_style tooltip" title="1329 - 暗之寶玉"><img src="images/pets/1329.png" width="35" height="35" style="padding:1px"  /></a><a href="pets/1329" class="no_style tooltip" title="1329 - 暗之寶玉"><img src="images/pets/1329.png" width="35" height="35" style="padding:1px"  /></a></div></li></ul>	</ul>
 
 	
 		</td>

@@ -412,30 +412,43 @@ function vote(e){
 							<div class="kakusei" style="top: 292px; left: 593px;">
 					<a href="skill/%E3%83%81%E3%83%BC%E3%83%A0%E5%9B%9E%E5%BE%A9%E5%BC%B7%E5%8C%96" class="tooltip" title="【チーム回復強化】隊伍的回復力提升20%"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
+							<div class="kakusei" style="top: 342px; left: 593px;">
+					<a href="skill/L%E5%AD%97%E6%B6%88%E3%81%97%E6%94%BB%E6%92%83" class="tooltip" title="【L字消し攻撃】將5個與自身屬性相同的寶珠以L字形的方式消除，該寵物的攻擊力1.7倍，並可以解除盤面上的寶珠鎖定狀態，以及解除鎖定寶珠掉落的效果"><img src="images/transparent.png" width="31" height="31"></a>
+				</div>
 						</div>
 			
-			<script src="javascript/pixi.min.js"></script>
-			<script src="javascript/pixi-spine.js"></script>
+						<script src="javascript/spine-player.3.9.js"></script>
+   			<link rel="stylesheet" href="javascript/spine-player.3.9.css">
+			
 			<script>
-			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
-			document.getElementById('animation').appendChild(app.view);
-			// load spine data
-			app.loader.add('spineboy', 'images/graphics/animation/mons_7591.json').load(onAssetsLoaded);
-
-			const background = PIXI.Sprite.from('images/pets_pic/7591.png');
-			background.width = 640;
-			background.height = 585;
-			app.stage.addChild(background);
-
-			function onAssetsLoaded(loader, res) {
-				const { spineData } = res.spineboy;
-
-				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
-				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
-				spine.state.setAnimation(0, "animation", true);
-				spine.state.timeScale = 1;
-			}
+			new spine.SpinePlayer("animation", {
+				jsonUrl: "images/graphics/animation/mons_7591.json",
+				atlasUrl: "images/graphics/animation/mons_7591.atlas",
+				premultipliedAlpha: false,
+				showControls: false,
+				animation: "animation",
+				alpha: true,
+				backgroundColor: "#00000000",
+				viewport: {
+					x: -320,
+					y: -101,
+					width: 640,
+					height: 585,
+					padLeft: 0,
+					padRight: 0,
+					padTop: 0,
+					padBottom: 0,
+				},
+				backgroundImage: { 
+					url: "images/pets_pic/7591.png",
+					x: -320,
+					y: -101,
+					width: 640,
+					height: 585
+				}
+			});
 			</script>
+			
 		</td>
 			
 		<td width="39" bgcolor="#000000" class="previous_next">
@@ -597,14 +610,14 @@ function vote(e){
 			<table width="360" border="0" style="table-layout:fixed">
 				<tr>
 					<td width="46"></td>
-					<td width="80">HP:  <span style="color:#FF73B7; font-weight:900">-3439</span></td>
-					<td>攻擊力:  <span style="color:#FF73B7; font-weight:900">+4095</span></td>
+					<td width="80">HP:  <span style="color:#FF73B7; font-weight:900">-3739</span></td>
+					<td>攻擊力:  <span style="color:#FF73B7; font-weight:900">+3295</span></td>
 					<td>回復力:  <span style="color:#FF73B7; font-weight:900">+1529</span></td>
 				</tr>
 			</table>
 		</td>
 			<td>
-			<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數:  <span style="color:#FF73B7; font-weight:900">+985</span></a>
+			<a class="tooltip" title="能力指數 = HP/10 + 攻/5 + 回/3" style="text-decoration:none">能力指數:  <span style="color:#FF73B7; font-weight:900">+795</span></a>
 		</td>
 	</tr>
 
@@ -673,10 +686,10 @@ function vote(e){
 		<td width="46" style="font-size:20px">21</td>
 		<td width="46">最小<br />冷卻</td>
 		<td width="46" style="font-size:20px">
-		11		</td>
+		6		</td>
 	</tr>
 	<tr bgcolor="#000000">
-		<td colspan="5" style="line-height: 28px;">2回合內，敵人的屬性傷害吸收技能無效化；<br />並解除覺醒無效狀態；<br />並<img src="images/drops/Fire.png" width="25" /><img src="images/drops/Heart.png" width="25" /><img src="images/change.gif" /><img src="images/drops/Water.png" width="25" /></td>
+		<td colspan="5" style="line-height: 28px;">2回合內，敵人的屬性傷害吸收技能無效化；<br />並解除覺醒無效狀態；<br />並解除寶珠的鎖定狀態；<br />並<img src="images/drops/Fire.png" width="25" /><img src="images/drops/Heart.png" width="25" /><img src="images/change.gif" /><img src="images/drops/Water.png" width="25" /></td>
 	</tr>
 
 	<tr bgcolor="#000000">
@@ -738,6 +751,7 @@ function vote(e){
 ※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/skill/skill-28.png"  /></a>
 					<a href="skill/%E3%83%81%E3%83%BC%E3%83%A0HP%E5%BC%B7%E5%8C%96" class="tooltip" title="【チームHP強化】隊伍的HP量提升5%"><img src="images/skill/skill-46.png"  /></a>
 					<a href="skill/%E3%83%81%E3%83%BC%E3%83%A0%E5%9B%9E%E5%BE%A9%E5%BC%B7%E5%8C%96" class="tooltip" title="【チーム回復強化】隊伍的回復力提升20%"><img src="images/skill/skill-47.png"  /></a>
+					<a href="skill/L%E5%AD%97%E6%B6%88%E3%81%97%E6%94%BB%E6%92%83" class="tooltip" title="【L字消し攻撃】將5個與自身屬性相同的寶珠以L字形的方式消除，該寵物的攻擊力1.7倍，並可以解除盤面上的寶珠鎖定狀態，以及解除鎖定寶珠掉落的效果"><img src="images/skill/skill-60.png"  /></a>
 				</td>
 	</tr>
 	<tr align="left" bgcolor="#000000">

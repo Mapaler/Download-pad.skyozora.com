@@ -411,6 +411,9 @@ function vote(e){
 					<a href="skill/%E3%82%B9%E3%82%AD%E3%83%AB%E3%83%81%E3%83%A3%E3%83%BC%E3%82%B8" class="tooltip" title="【スキルチャージ】5屬性同時攻撃時，自身技能冷卻時間減少1回合"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 							<div class="kakusei" style="top: 292px; left: 593px;">
+					<a href="skill/5%E8%89%B2%E6%94%BB%E6%92%83%E5%BC%B7%E5%8C%96" class="tooltip" title="【5色攻撃強化】5種屬性同時攻擊時，攻擊力4.5倍"><img src="images/transparent.png" width="31" height="31"></a>
+				</div>
+							<div class="kakusei" style="top: 342px; left: 593px;">
 					<a href="skill/2%E4%BD%93%E6%94%BB%E6%92%83" class="tooltip" title="【2体攻撃】消除4顆與自身屬性相同的寶珠時，持有該技能的寵物、該組寶珠的攻擊力上升70%&lt;br /&gt;
 並可同時攻擊2個敵人（4顆以上不會有攻擊加乘）&lt;br /&gt;
 &lt;br /&gt;
@@ -419,28 +422,38 @@ function vote(e){
 				</div>
 						</div>
 			
-			<script src="javascript/pixi.min.js"></script>
-			<script src="javascript/pixi-spine.js"></script>
+						<script src="javascript/spine-player.3.9.js"></script>
+   			<link rel="stylesheet" href="javascript/spine-player.3.9.css">
+			
 			<script>
-			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
-			document.getElementById('animation').appendChild(app.view);
-			// load spine data
-			app.loader.add('spineboy', 'images/graphics/animation/mons_8476.json').load(onAssetsLoaded);
-
-			const background = PIXI.Sprite.from('images/pets_pic/8476.png');
-			background.width = 640;
-			background.height = 585;
-			app.stage.addChild(background);
-
-			function onAssetsLoaded(loader, res) {
-				const { spineData } = res.spineboy;
-
-				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
-				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
-				spine.state.setAnimation(0, "animation", true);
-				spine.state.timeScale = 1;
-			}
+			new spine.SpinePlayer("animation", {
+				jsonUrl: "images/graphics/animation/mons_8476.json",
+				atlasUrl: "images/graphics/animation/mons_8476.atlas",
+				premultipliedAlpha: false,
+				showControls: false,
+				animation: "animation",
+				alpha: true,
+				backgroundColor: "#00000000",
+				viewport: {
+					x: -320,
+					y: -101,
+					width: 640,
+					height: 585,
+					padLeft: 0,
+					padRight: 0,
+					padTop: 0,
+					padBottom: 0,
+				},
+				backgroundImage: { 
+					url: "images/pets_pic/8476.png",
+					x: -320,
+					y: -101,
+					width: 640,
+					height: 585
+				}
+			});
 			</script>
+			
 		</td>
 			
 		<td width="39" bgcolor="#000000" class="previous_next">
@@ -703,6 +716,7 @@ function vote(e){
 					<a href="skill/%E3%82%B9%E3%82%AD%E3%83%AB%E3%83%96%E3%83%BC%E3%82%B9%E3%83%88" class="tooltip" title="【スキルブースト】進入地下城的時候，隊伍全體的技能先儲了1回合&lt;br /&gt;
 ※2人協力模式時，此覺醒技能的效果可與友方隊伍共享"><img src="images/skill/skill-21.png"  /></a>
 					<a href="skill/%E3%82%B9%E3%82%AD%E3%83%AB%E3%83%81%E3%83%A3%E3%83%BC%E3%82%B8" class="tooltip" title="【スキルチャージ】5屬性同時攻撃時，自身技能冷卻時間減少1回合"><img src="images/skill/skill-51.png"  /></a>
+					<a href="skill/5%E8%89%B2%E6%94%BB%E6%92%83%E5%BC%B7%E5%8C%96" class="tooltip" title="【5色攻撃強化】5種屬性同時攻擊時，攻擊力4.5倍"><img src="images/skill/skill-81.png"  /></a>
 					<a href="skill/2%E4%BD%93%E6%94%BB%E6%92%83" class="tooltip" title="【2体攻撃】消除4顆與自身屬性相同的寶珠時，持有該技能的寵物、該組寶珠的攻擊力上升70%&lt;br /&gt;
 並可同時攻擊2個敵人（4顆以上不會有攻擊加乘）&lt;br /&gt;
 &lt;br /&gt;
@@ -925,7 +939,7 @@ p.EvoName {
 					datasets: [
 						{
 							label: "評分",
-							data: [10.00, 10.00, 0, 10.00, 8.00, 10.00],
+							data: [0, 0, 0, 0, 0, 10.00],
 							backgroundColor: "rgba(255,99,132,0.2)",
 							borderColor: "rgba(255,99,132,1)",
 							pointBackgroundColor: "rgba(255,99,132,1)",
@@ -991,11 +1005,11 @@ p.EvoName {
 			</script>
 			</div>
 		</td>
-		<td bgcolor="#000000" width="80">作為隊長</td><td bgcolor="#000000" class="poll"><select id="poll1" name="poll1" onChange="vote(1);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">作為隊員</td><td bgcolor="#000000" class="poll"><select id="poll2" name="poll2" onChange="vote(2);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">作為輔助</td><td bgcolor="#000000" class="poll">不可輔助</td></tr><tr align="center"><td bgcolor="#000000" width="80">單人配合</td><td bgcolor="#000000" class="poll"><select id="poll4" name="poll4" onChange="vote(4);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">協力配合</td><td bgcolor="#000000" class="poll"><select id="poll5" name="poll5" onChange="vote(5);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">美觀度</td><td bgcolor="#000000" class="poll"><select id="poll6" name="poll6" onChange="vote(6);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">平均得分</td><td bgcolor="#000000" id="AvgScore">8</td></tr></table>
+		<td bgcolor="#000000" width="80">作為隊長</td><td bgcolor="#000000" class="poll"><select id="poll1" name="poll1" onChange="vote(1);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">作為隊員</td><td bgcolor="#000000" class="poll"><select id="poll2" name="poll2" onChange="vote(2);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">作為輔助</td><td bgcolor="#000000" class="poll">不可輔助</td></tr><tr align="center"><td bgcolor="#000000" width="80">單人配合</td><td bgcolor="#000000" class="poll"><select id="poll4" name="poll4" onChange="vote(4);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">協力配合</td><td bgcolor="#000000" class="poll"><select id="poll5" name="poll5" onChange="vote(5);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">美觀度</td><td bgcolor="#000000" class="poll"><select id="poll6" name="poll6" onChange="vote(6);"><option value="">-</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select></td></tr><tr align="center"><td bgcolor="#000000" width="80">平均得分</td><td bgcolor="#000000" id="AvgScore">1.67</td></tr></table>
 
 
 <br />
-<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/神秘の次元" class="tooltip" title="神秘の次元<br />零次元の創造主【6タイプ以上必須】"><img src="images/stage/7777s.png" width="100"></a></td><td><a href="pets/7537" class="tooltip" title="7537 - 神託之天啓者・聖詩莉亞"><img src="images/pets/7537.png" width="55" height="55" $team[L2][0]</a><a href="pets/8416" class="tooltip" title="8416 - 盲愛的紅龍刀士・亞紀音"><img src="images/pets/8416.png" width="55" height="55" $team[L2][0]</a><a href="pets/7712" class="tooltip" title="7712 - 蕾歐娜"><img src="images/pets/7712.png" width="55" height="55" $team[L2][0]</a><a href="pets/8476" class="tooltip" title="8476 - 水彩幻畫師・阿多莉"><img src="images/pets/8476.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/8444" class="tooltip" title="8444 - 元始的大魔女・拉芬妮"><img src="images/pets/8444.png" width="55" height="55" $team[L2][0]</a><a href="pets/8476" class="tooltip" title="8476 - 水彩幻畫師・阿多莉"><img src="images/pets/8476.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/118399/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
+<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/パズドラアイランド" class="tooltip" title="パズドラアイランド<br />バカンス 中級"><img src="images/stage/2283s.png" width="100"></a></td><td><a href="pets/9057" class="tooltip" title="9057 - 超轉生毗濕奴"><img src="images/pets/9057.png" width="55" height="55" $team[L2][0]</a><a href="pets/4813" class="tooltip" title="4813 - 極醒之綠龍契士・希爾薇"><img src="images/pets/4813.png" width="55" height="55" $team[L2][0]</a><a href="pets/6528" class="tooltip" title="6528 - 極醒之翠角姬・風神"><img src="images/pets/6528.png" width="55" height="55" $team[L2][0]</a><a href="pets/307" class="tooltip" title="307 - 樹企鵝幼龍"><img src="images/pets/307.png" width="55" height="55" $team[L2][0]</a><a href="pets/568" class="tooltip" title="568 - 戰軍神・阿雷斯"><img src="images/pets/568.png" width="55" height="55" $team[L2][0]</a><a href="pets/8476" class="tooltip" title="8476 - 水彩幻畫師・阿多莉"><img src="images/pets/8476.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/118529/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/神秘の次元" class="tooltip" title="神秘の次元<br />零次元の創造主【6タイプ以上必須】"><img src="images/stage/7777s.png" width="100"></a></td><td><a href="pets/7537" class="tooltip" title="7537 - 神託之天啓者・聖詩莉亞"><img src="images/pets/7537.png" width="55" height="55" $team[L2][0]</a><a href="pets/8416" class="tooltip" title="8416 - 盲愛的紅龍刀士・亞紀音"><img src="images/pets/8416.png" width="55" height="55" $team[L2][0]</a><a href="pets/7712" class="tooltip" title="7712 - 蕾歐娜"><img src="images/pets/7712.png" width="55" height="55" $team[L2][0]</a><a href="pets/8476" class="tooltip" title="8476 - 水彩幻畫師・阿多莉"><img src="images/pets/8476.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/8444" class="tooltip" title="8444 - 元始的大魔女・拉芬妮"><img src="images/pets/8444.png" width="55" height="55" $team[L2][0]</a><a href="pets/8476" class="tooltip" title="8476 - 水彩幻畫師・阿多莉"><img src="images/pets/8476.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/118399/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/パズドラアイランド" class="tooltip" title="パズドラアイランド<br />バカンス 上級"><img src="images/stage/2283s.png" width="100"></a></td><td><a href="pets/9057" class="tooltip" title="9057 - 超轉生毗濕奴"><img src="images/pets/9057.png" width="55" height="55" $team[L2][0]</a><a href="pets/4813" class="tooltip" title="4813 - 極醒之綠龍契士・希爾薇"><img src="images/pets/4813.png" width="55" height="55" $team[L2][0]</a><a href="pets/6528" class="tooltip" title="6528 - 極醒之翠角姬・風神"><img src="images/pets/6528.png" width="55" height="55" $team[L2][0]</a><a href="pets/568" class="tooltip" title="568 - 戰軍神・阿雷斯"><img src="images/pets/568.png" width="55" height="55" $team[L2][0]</a><a href="pets/525" class="tooltip" title="525 - 綠色小麥龍"><img src="images/pets/525.png" width="55" height="55" $team[L2][0]</a><a href="pets/8476" class="tooltip" title="8476 - 水彩幻畫師・阿多莉"><img src="images/pets/8476.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a></td><td><a href="team/118530/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
 
 
 </td>

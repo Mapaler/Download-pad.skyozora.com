@@ -423,7 +423,7 @@ function vote(e){
 （如2橫行或以上連在一起消除，只作1行計算）&lt;br /&gt;"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 							<div class="kakusei" style="top: 392px; left: 593px;">
-					<a href="skill/%E8%B6%85%E3%81%A4%E3%81%AA%E3%81%92%E6%B6%88%E3%81%97%E5%BC%B7%E5%8C%96" class="tooltip" title="【超つなげ消し強化】消除12顆或以上與自身屬性相同的寶珠時，持有該技能的寵物、該組寶珠的攻擊力12倍"><img src="images/transparent.png" width="31" height="31"></a>
+					<a href="skill/%E8%B6%85%E3%81%A4%E3%81%AA%E3%81%92%E6%B6%88%E3%81%97%E5%BC%B7%E5%8C%96" class="tooltip" title="【超つなげ消し強化】消除12顆或以上與自身屬性相同的寶珠時，持有該技能的寵物攻擊力12倍"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 							<div class="kakusei" style="top: 442px; left: 593px;">
 					<a href="skill/%E3%83%80%E3%83%A1%E3%83%BC%E3%82%B8%E7%84%A1%E5%8A%B9%E8%B2%AB%E9%80%9A" class="tooltip" title="【ダメージ無効貫通】將與自身屬性相同的寶珠以形狀為3×3正方形的方式消除，該寵物的攻擊力2.5倍，並可以直接貫穿敵人的傷害無效化"><img src="images/transparent.png" width="31" height="31"></a>
@@ -433,28 +433,38 @@ function vote(e){
 				</div>
 						</div>
 			
-			<script src="javascript/pixi.min.js"></script>
-			<script src="javascript/pixi-spine.js"></script>
+						<script src="javascript/spine-player.3.9.js"></script>
+   			<link rel="stylesheet" href="javascript/spine-player.3.9.css">
+			
 			<script>
-			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
-			document.getElementById('animation').appendChild(app.view);
-			// load spine data
-			app.loader.add('spineboy', 'images/graphics/animation/mons_5910.json').load(onAssetsLoaded);
-
-			const background = PIXI.Sprite.from('images/pets_pic/5910.png');
-			background.width = 640;
-			background.height = 585;
-			app.stage.addChild(background);
-
-			function onAssetsLoaded(loader, res) {
-				const { spineData } = res.spineboy;
-
-				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
-				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
-				spine.state.setAnimation(0, "animation", true);
-				spine.state.timeScale = 1;
-			}
+			new spine.SpinePlayer("animation", {
+				jsonUrl: "images/graphics/animation/mons_5910.json",
+				atlasUrl: "images/graphics/animation/mons_5910.atlas",
+				premultipliedAlpha: false,
+				showControls: false,
+				animation: "animation",
+				alpha: true,
+				backgroundColor: "#00000000",
+				viewport: {
+					x: -320,
+					y: -101,
+					width: 640,
+					height: 585,
+					padLeft: 0,
+					padRight: 0,
+					padTop: 0,
+					padBottom: 0,
+				},
+				backgroundImage: { 
+					url: "images/pets_pic/5910.png",
+					x: -320,
+					y: -101,
+					width: 640,
+					height: 585
+				}
+			});
 			</script>
+			
 		</td>
 			
 		<td width="39" bgcolor="#000000" class="previous_next">
@@ -806,7 +816,7 @@ function vote(e){
 					<a href="skill/%E5%85%89%E5%88%97%E5%BC%B7%E5%8C%96" class="tooltip" title="【光列強化】消除一橫行的&lt;img src=&quot;images/drops/Light.png&quot; width=&quot;25&quot; alt=&quot;光寶珠&quot; /&gt;時，光屬性的攻擊力上升20%&lt;br /&gt;
 由此覺醒技能產生的攻擊力計算為 1 + 20%×覺醒數目×橫排數目&lt;br /&gt;
 （如2橫行或以上連在一起消除，只作1行計算）&lt;br /&gt;"><img src="images/skill/skill-25.png"  /></a>
-					<a href="skill/%E8%B6%85%E3%81%A4%E3%81%AA%E3%81%92%E6%B6%88%E3%81%97%E5%BC%B7%E5%8C%96" class="tooltip" title="【超つなげ消し強化】消除12顆或以上與自身屬性相同的寶珠時，持有該技能的寵物、該組寶珠的攻擊力12倍"><img src="images/skill/skill-82.png"  /></a>
+					<a href="skill/%E8%B6%85%E3%81%A4%E3%81%AA%E3%81%92%E6%B6%88%E3%81%97%E5%BC%B7%E5%8C%96" class="tooltip" title="【超つなげ消し強化】消除12顆或以上與自身屬性相同的寶珠時，持有該技能的寵物攻擊力12倍"><img src="images/skill/skill-82.png"  /></a>
 					<a href="skill/%E3%83%80%E3%83%A1%E3%83%BC%E3%82%B8%E7%84%A1%E5%8A%B9%E8%B2%AB%E9%80%9A" class="tooltip" title="【ダメージ無効貫通】將與自身屬性相同的寶珠以形狀為3×3正方形的方式消除，該寵物的攻擊力2.5倍，並可以直接貫穿敵人的傷害無效化"><img src="images/skill/skill-48.png"  /></a>
 					<a href="skill/%E3%83%80%E3%83%A1%E3%83%BC%E3%82%B8%E7%84%A1%E5%8A%B9%E8%B2%AB%E9%80%9A" class="tooltip" title="【ダメージ無効貫通】將與自身屬性相同的寶珠以形狀為3×3正方形的方式消除，該寵物的攻擊力2.5倍，並可以直接貫穿敵人的傷害無效化"><img src="images/skill/skill-48.png"  /></a>
 				</td>
@@ -1106,7 +1116,7 @@ p.EvoName {
 
 
 <br />
-<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/ニムエ降臨！" class="tooltip" title="ニムエ降臨！<br />聖湖の乙女 壊滅級"><img src="images/stage/6087s.png" width="100"></a></td><td><a href="pets/5885" class="tooltip" title="5885 - 決意之騎士・愛麗絲"><img src="images/pets/5885.png" width="55" height="55" $team[L2][0]</a><a href="pets/5915" class="tooltip" title="5915 - 滑神"><img src="images/pets/5915.png" width="55" height="55" $team[L2][0]</a><a href="pets/5910" class="tooltip" title="5910 - 點陣圖・橙龍契士・莎里雅"><img src="images/pets/5910.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5934" class="tooltip" title="5934 - 超轉生拉斐爾"><img src="images/pets/5934.png" width="55" height="55" $team[L2][0]</a><a href="pets/5883" class="tooltip" title="5883 - 狂暴補師・亞絲娜"><img src="images/pets/5883.png" width="55" height="55" $team[L2][0]</a><a href="pets/5841" class="tooltip" title="5841 - 雲外之大魔女・花絲卡"><img src="images/pets/5841.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116647/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/スカアハ降臨！" class="tooltip" title="スカアハ降臨！<br />武芸師 壊滅級"><img src="images/stage/6474s.png" width="100"></a></td><td><a href="pets/3654" class="tooltip" title="3654 - 麒麟"><img src="images/pets/3654.png" width="55" height="55" $team[L2][0]</a><a href="pets/5258" class="tooltip" title="5258 - 巧克力愛情・馬庫達爾"><img src="images/pets/5258.png" width="55" height="55" $team[L2][0]</a><a href="pets/4836" class="tooltip" title="4836 - 怒雷之全能神・宙斯 -GIGA-"><img src="images/pets/4836.png" width="55" height="55" $team[L2][0]</a><a href="pets/6396" class="tooltip" title="6396 - 冰之鑰匙繼承者・米妮特"><img src="images/pets/6396.png" width="55" height="55" $team[L2][0]</a><a href="pets/6029" class="tooltip" title="6029 - 黛絲鴨【快樂】"><img src="images/pets/6029.png" width="55" height="55" $team[L2][0]</a><a href="pets/5765" class="tooltip" title="5765 - 幪面超人（假面騎士）01"><img src="images/pets/5765.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/117350/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/降臨希石ラッシュ！" class="tooltip" title="降臨希石ラッシュ！<br />千紫万紅 超壊滅級"><img src="" width="100"></a></td><td><a href="pets/6371" class="tooltip" title="6371 - 鳴上 悠＆伊邪那岐大神"><img src="images/pets/6371.png" width="55" height="55" $team[L2][0]</a><a href="pets/5858" class="tooltip" title="5858 - 極醒之化身無盡之物・猶格＝索托斯"><img src="images/pets/5858.png" width="55" height="55" $team[L2][0]</a><a href="pets/5910" class="tooltip" title="5910 - 點陣圖・橙龍契士・莎里雅"><img src="images/pets/5910.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5136" class="tooltip" title="5136 - 極醒之白幻魔・伊雷姆"><img src="images/pets/5136.png" width="55" height="55" $team[L2][0]</a><a href="pets/6235" class="tooltip" title="6235 - 超轉生索爾"><img src="images/pets/6235.png" width="55" height="55" $team[L2][0]</a><a href="pets/6400" class="tooltip" title="6400 - 星之鑰匙繼承者・費魯魯"><img src="images/pets/6400.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/117421/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/極限の闘技場" class="tooltip" title="極限の闘技場<br />列界の化身"><img src="images/stage/4585_4742s.png" width="100"></a></td><td><a href="pets/5885" class="tooltip" title="5885 - 決意之騎士・愛麗絲"><img src="images/pets/5885.png" width="55" height="55" $team[L2][0]</a><a href="pets/5915" class="tooltip" title="5915 - 滑神"><img src="images/pets/5915.png" width="55" height="55" $team[L2][0]</a><a href="pets/5910" class="tooltip" title="5910 - 點陣圖・橙龍契士・莎里雅"><img src="images/pets/5910.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5934" class="tooltip" title="5934 - 超轉生拉斐爾"><img src="images/pets/5934.png" width="55" height="55" $team[L2][0]</a><a href="pets/5883" class="tooltip" title="5883 - 狂暴補師・亞絲娜"><img src="images/pets/5883.png" width="55" height="55" $team[L2][0]</a><a href="pets/5841" class="tooltip" title="5841 - 雲外之大魔女・花絲卡"><img src="images/pets/5841.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116624/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
+<table width=750 border=0 cellpadding=5 cellspacing=1 align="center"><tr align=center><td bgcolor="#000000" align=left colspan="3" style="padding:10px" class="head"><span style="font-size:18px">參考配搭</span> - 以下隨機列出其他玩家使用該寵物無石通關的隊伍</td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/ニムエ降臨！" class="tooltip" title="ニムエ降臨！<br />聖湖の乙女 壊滅級"><img src="images/stage/6087s.png" width="100"></a></td><td><a href="pets/5885" class="tooltip" title="5885 - 決意之騎士・愛麗絲"><img src="images/pets/5885.png" width="55" height="55" $team[L2][0]</a><a href="pets/5915" class="tooltip" title="5915 - 滑神"><img src="images/pets/5915.png" width="55" height="55" $team[L2][0]</a><a href="pets/5910" class="tooltip" title="5910 - 點陣圖・橙龍契士・莎里雅"><img src="images/pets/5910.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5934" class="tooltip" title="5934 - 超轉生拉斐爾"><img src="images/pets/5934.png" width="55" height="55" $team[L2][0]</a><a href="pets/5883" class="tooltip" title="5883 - 狂暴補師・亞絲娜"><img src="images/pets/5883.png" width="55" height="55" $team[L2][0]</a><a href="pets/5841" class="tooltip" title="5841 - 雲外之大魔女・花絲卡"><img src="images/pets/5841.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116647/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/極限の闘技場" class="tooltip" title="極限の闘技場<br />列界の化身"><img src="images/stage/4585_4742s.png" width="100"></a></td><td><a href="pets/5885" class="tooltip" title="5885 - 決意之騎士・愛麗絲"><img src="images/pets/5885.png" width="55" height="55" $team[L2][0]</a><a href="pets/5915" class="tooltip" title="5915 - 滑神"><img src="images/pets/5915.png" width="55" height="55" $team[L2][0]</a><a href="pets/5910" class="tooltip" title="5910 - 點陣圖・橙龍契士・莎里雅"><img src="images/pets/5910.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5934" class="tooltip" title="5934 - 超轉生拉斐爾"><img src="images/pets/5934.png" width="55" height="55" $team[L2][0]</a><a href="pets/5883" class="tooltip" title="5883 - 狂暴補師・亞絲娜"><img src="images/pets/5883.png" width="55" height="55" $team[L2][0]</a><a href="pets/5841" class="tooltip" title="5841 - 雲外之大魔女・花絲卡"><img src="images/pets/5841.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/116624/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/降臨希石ラッシュ！" class="tooltip" title="降臨希石ラッシュ！<br />千紫万紅 超壊滅級"><img src="" width="100"></a></td><td><a href="pets/6371" class="tooltip" title="6371 - 鳴上 悠＆伊邪那岐大神"><img src="images/pets/6371.png" width="55" height="55" $team[L2][0]</a><a href="pets/5858" class="tooltip" title="5858 - 極醒之化身無盡之物・猶格＝索托斯"><img src="images/pets/5858.png" width="55" height="55" $team[L2][0]</a><a href="pets/5910" class="tooltip" title="5910 - 點陣圖・橙龍契士・莎里雅"><img src="images/pets/5910.png" width="55" height="55" style="background-color:#FFFF00; padding:5px"$team[L2][0]</a><a href="pets/5136" class="tooltip" title="5136 - 極醒之白幻魔・伊雷姆"><img src="images/pets/5136.png" width="55" height="55" $team[L2][0]</a><a href="pets/6235" class="tooltip" title="6235 - 超轉生索爾"><img src="images/pets/6235.png" width="55" height="55" $team[L2][0]</a><a href="pets/6400" class="tooltip" title="6400 - 星之鑰匙繼承者・費魯魯"><img src="images/pets/6400.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/117421/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr><tr align=center bgcolor="#000000"><td width="100" style="font-size:10px"><a href="stage/スカアハ降臨！" class="tooltip" title="スカアハ降臨！<br />武芸師 壊滅級"><img src="images/stage/6474s.png" width="100"></a></td><td><a href="pets/3654" class="tooltip" title="3654 - 麒麟"><img src="images/pets/3654.png" width="55" height="55" $team[L2][0]</a><a href="pets/5258" class="tooltip" title="5258 - 巧克力愛情・馬庫達爾"><img src="images/pets/5258.png" width="55" height="55" $team[L2][0]</a><a href="pets/4836" class="tooltip" title="4836 - 怒雷之全能神・宙斯 -GIGA-"><img src="images/pets/4836.png" width="55" height="55" $team[L2][0]</a><a href="pets/6396" class="tooltip" title="6396 - 冰之鑰匙繼承者・米妮特"><img src="images/pets/6396.png" width="55" height="55" $team[L2][0]</a><a href="pets/6029" class="tooltip" title="6029 - 黛絲鴨【快樂】"><img src="images/pets/6029.png" width="55" height="55" $team[L2][0]</a><a href="pets/5765" class="tooltip" title="5765 - 幪面超人（假面騎士）01"><img src="images/pets/5765.png" width="55" height="55" $team[L2][0]</a></td><td><a href="team/117350/" target="_blank"><img src="images/detail.png" width="32" height="32" /></a></td></tr></table><br />
 
 
 </td>

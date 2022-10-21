@@ -409,25 +409,13 @@ function vote(e){
 					<a href="skill/%E8%B6%85%E3%82%B3%E3%83%B3%E3%83%9C%E5%BC%B7%E5%8C%96" class="tooltip" title="【超コンボ強化】10COMBO或以上時攻擊力5倍"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 							<div class="kakusei" style="top: 292px; left: 593px;">
-					<a href="skill/2%E4%BD%93%E6%94%BB%E6%92%83" class="tooltip" title="【2体攻撃】消除4顆與自身屬性相同的寶珠時，持有該技能的寵物、該組寶珠的攻擊力上升70%&lt;br /&gt;
-並可同時攻擊2個敵人（4顆以上不會有攻擊加乘）&lt;br /&gt;
-&lt;br /&gt;
-效果以乘法累積，如該寵物持有2個此覺醒技能時&lt;br /&gt;
-該組寶珠傷害提升為 (1+70%)(1+70%) = 2.89倍，如此類推"><img src="images/transparent.png" width="31" height="31"></a>
+					<a href="skill/%E8%B6%85%E3%82%B3%E3%83%B3%E3%83%9C%E5%BC%B7%E5%8C%96" class="tooltip" title="【超コンボ強化】10COMBO或以上時攻擊力5倍"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 							<div class="kakusei" style="top: 342px; left: 593px;">
-					<a href="skill/2%E4%BD%93%E6%94%BB%E6%92%83" class="tooltip" title="【2体攻撃】消除4顆與自身屬性相同的寶珠時，持有該技能的寵物、該組寶珠的攻擊力上升70%&lt;br /&gt;
-並可同時攻擊2個敵人（4顆以上不會有攻擊加乘）&lt;br /&gt;
-&lt;br /&gt;
-效果以乘法累積，如該寵物持有2個此覺醒技能時&lt;br /&gt;
-該組寶珠傷害提升為 (1+70%)(1+70%) = 2.89倍，如此類推"><img src="images/transparent.png" width="31" height="31"></a>
+					<a href="skill/2%E4%BD%93%E6%94%BB%E6%92%83%EF%BC%8B" class="tooltip" title="【2体攻撃＋】效果等同持有2個「2体攻撃」"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 							<div class="kakusei" style="top: 392px; left: 593px;">
-					<a href="skill/2%E4%BD%93%E6%94%BB%E6%92%83" class="tooltip" title="【2体攻撃】消除4顆與自身屬性相同的寶珠時，持有該技能的寵物、該組寶珠的攻擊力上升70%&lt;br /&gt;
-並可同時攻擊2個敵人（4顆以上不會有攻擊加乘）&lt;br /&gt;
-&lt;br /&gt;
-效果以乘法累積，如該寵物持有2個此覺醒技能時&lt;br /&gt;
-該組寶珠傷害提升為 (1+70%)(1+70%) = 2.89倍，如此類推"><img src="images/transparent.png" width="31" height="31"></a>
+					<a href="skill/2%E4%BD%93%E6%94%BB%E6%92%83%EF%BC%8B" class="tooltip" title="【2体攻撃＋】效果等同持有2個「2体攻撃」"><img src="images/transparent.png" width="31" height="31"></a>
 				</div>
 							<div class="kakusei" style="top: 442px; left: 593px;">
 					<a href="skill/2%E4%BD%93%E6%94%BB%E6%92%83" class="tooltip" title="【2体攻撃】消除4顆與自身屬性相同的寶珠時，持有該技能的寵物、該組寶珠的攻擊力上升70%&lt;br /&gt;
@@ -445,28 +433,38 @@ function vote(e){
 				</div>
 						</div>
 			
-			<script src="javascript/pixi.min.js"></script>
-			<script src="javascript/pixi-spine.js"></script>
+						<script src="javascript/spine-player.3.9.js"></script>
+   			<link rel="stylesheet" href="javascript/spine-player.3.9.css">
+			
 			<script>
-			let app = new PIXI.Application({ width: 640, height: 600, backgroundAlpha: 0, });
-			document.getElementById('animation').appendChild(app.view);
-			// load spine data
-			app.loader.add('spineboy', 'images/graphics/animation/mons_8480.json').load(onAssetsLoaded);
-
-			const background = PIXI.Sprite.from('images/pets_pic/8480.png');
-			background.width = 640;
-			background.height = 585;
-			app.stage.addChild(background);
-
-			function onAssetsLoaded(loader, res) {
-				const { spineData } = res.spineboy;
-
-				spine = app.stage.addChild(new PIXI.spine.Spine(spineData));
-				spine.position.set(app.renderer.width * 0.5, app.renderer.height * 0.8);
-				spine.state.setAnimation(0, "animation", true);
-				spine.state.timeScale = 1;
-			}
+			new spine.SpinePlayer("animation", {
+				jsonUrl: "images/graphics/animation/mons_8480.json",
+				atlasUrl: "images/graphics/animation/mons_8480.atlas",
+				premultipliedAlpha: false,
+				showControls: false,
+				animation: "animation",
+				alpha: true,
+				backgroundColor: "#00000000",
+				viewport: {
+					x: -320,
+					y: -101,
+					width: 640,
+					height: 585,
+					padLeft: 0,
+					padRight: 0,
+					padTop: 0,
+					padBottom: 0,
+				},
+				backgroundImage: { 
+					url: "images/pets_pic/8480.png",
+					x: -320,
+					y: -101,
+					width: 640,
+					height: 585
+				}
+			});
 			</script>
+			
 		</td>
 			
 		<td width="39" bgcolor="#000000" class="previous_next">
@@ -707,7 +705,7 @@ function vote(e){
 		3		</td>
 	</tr>
 	<tr bgcolor="#000000">
-		<td colspan="5" style="line-height: 28px;">1回合內，可以貫穿傷害無效盾；<br />並解除寶珠的鎖定狀態；<br />並<img src="images/drops/Fire.png" width="25" /><img src="images/change.gif" /><img src="images/drops/Light.png" width="25" />；<br /><img src="images/drops/Wood.png" width="25" /><img src="images/change.gif" /><img src="images/drops/Dark.png" width="25" /></td>
+		<td colspan="5" style="line-height: 28px;">1回合內，可以貫穿傷害無效盾；<br />並1回合內，自身的攻擊力變成2倍；<br />並解除寶珠的鎖定狀態；<br />並<img src="images/drops/Fire.png" width="25" /><img src="images/change.gif" /><img src="images/drops/Light.png" width="25" />；<br /><img src="images/drops/Wood.png" width="25" /><img src="images/change.gif" /><img src="images/drops/Dark.png" width="25" /></td>
 	</tr>
 
 
@@ -743,21 +741,9 @@ function vote(e){
 					<a href="skill/%E6%93%8D%E4%BD%9C%E6%99%82%E9%96%93%E5%BB%B6%E9%95%B7%EF%BC%8B" class="tooltip" title="【操作時間延長＋】寶珠移動時間延長1秒"><img src="images/skill/skill-53.png"  /></a>
 					<a href="skill/%E6%93%8D%E4%BD%9C%E6%99%82%E9%96%93%E5%BB%B6%E9%95%B7%EF%BC%8B" class="tooltip" title="【操作時間延長＋】寶珠移動時間延長1秒"><img src="images/skill/skill-53.png"  /></a>
 					<a href="skill/%E8%B6%85%E3%82%B3%E3%83%B3%E3%83%9C%E5%BC%B7%E5%8C%96" class="tooltip" title="【超コンボ強化】10COMBO或以上時攻擊力5倍"><img src="images/skill/skill-61.png"  /></a>
-					<a href="skill/2%E4%BD%93%E6%94%BB%E6%92%83" class="tooltip" title="【2体攻撃】消除4顆與自身屬性相同的寶珠時，持有該技能的寵物、該組寶珠的攻擊力上升70%&lt;br /&gt;
-並可同時攻擊2個敵人（4顆以上不會有攻擊加乘）&lt;br /&gt;
-&lt;br /&gt;
-效果以乘法累積，如該寵物持有2個此覺醒技能時&lt;br /&gt;
-該組寶珠傷害提升為 (1+70%)(1+70%) = 2.89倍，如此類推"><img src="images/skill/skill-27.png"  /></a>
-					<a href="skill/2%E4%BD%93%E6%94%BB%E6%92%83" class="tooltip" title="【2体攻撃】消除4顆與自身屬性相同的寶珠時，持有該技能的寵物、該組寶珠的攻擊力上升70%&lt;br /&gt;
-並可同時攻擊2個敵人（4顆以上不會有攻擊加乘）&lt;br /&gt;
-&lt;br /&gt;
-效果以乘法累積，如該寵物持有2個此覺醒技能時&lt;br /&gt;
-該組寶珠傷害提升為 (1+70%)(1+70%) = 2.89倍，如此類推"><img src="images/skill/skill-27.png"  /></a>
-					<a href="skill/2%E4%BD%93%E6%94%BB%E6%92%83" class="tooltip" title="【2体攻撃】消除4顆與自身屬性相同的寶珠時，持有該技能的寵物、該組寶珠的攻擊力上升70%&lt;br /&gt;
-並可同時攻擊2個敵人（4顆以上不會有攻擊加乘）&lt;br /&gt;
-&lt;br /&gt;
-效果以乘法累積，如該寵物持有2個此覺醒技能時&lt;br /&gt;
-該組寶珠傷害提升為 (1+70%)(1+70%) = 2.89倍，如此類推"><img src="images/skill/skill-27.png"  /></a>
+					<a href="skill/%E8%B6%85%E3%82%B3%E3%83%B3%E3%83%9C%E5%BC%B7%E5%8C%96" class="tooltip" title="【超コンボ強化】10COMBO或以上時攻擊力5倍"><img src="images/skill/skill-61.png"  /></a>
+					<a href="skill/2%E4%BD%93%E6%94%BB%E6%92%83%EF%BC%8B" class="tooltip" title="【2体攻撃＋】效果等同持有2個「2体攻撃」"><img src="images/skill/skill-96.png"  /></a>
+					<a href="skill/2%E4%BD%93%E6%94%BB%E6%92%83%EF%BC%8B" class="tooltip" title="【2体攻撃＋】效果等同持有2個「2体攻撃」"><img src="images/skill/skill-96.png"  /></a>
 					<a href="skill/2%E4%BD%93%E6%94%BB%E6%92%83" class="tooltip" title="【2体攻撃】消除4顆與自身屬性相同的寶珠時，持有該技能的寵物、該組寶珠的攻擊力上升70%&lt;br /&gt;
 並可同時攻擊2個敵人（4顆以上不會有攻擊加乘）&lt;br /&gt;
 &lt;br /&gt;
@@ -793,7 +779,7 @@ function vote(e){
 		<td class="head">隊長技能 - <a href="skill/墨猛虎の幻象"><span style="font-size:18px; font-weight:900">墨猛虎の幻象</span></a></td>
 <td bgcolor="#008be3" width="120" height="42" style="padding:0px; border-radius:8px; font-size:14px" align="center"><a href="/friendlist/8480/GroupUnspecified/Rank0-999/AllLeader/Unspecified/0-0/SortByLastUpdate/Page1/">搜尋戰友</a></td>	</tr>
 	<tr>
-		<td bgcolor="#000000" colspan=2>14COMBO或以上時受到的傷害減少75%、攻擊力3倍、追加1點固定傷害；<br />另外相連消除4個<img src="images/drops/Light.png" width="22" />光寶珠或<img src="images/drops/Dark.png" width="22" />暗寶珠，每次消除時攻擊力1.5倍、結算增加1COMBO</td>
+		<td bgcolor="#000000" colspan=2>12COMBO或以上時受到的傷害減少75%、攻擊力4倍、追加1點固定傷害；<br />另外相連消除4個<img src="images/drops/Light.png" width="22" />光寶珠或<img src="images/drops/Dark.png" width="22" />暗寶珠或<img src="images/drops/Heart.png" width="22" />回復寶珠，每次消除時攻擊力1.6倍、結算增加1COMBO</td>
 	</tr>
 </table>
 
